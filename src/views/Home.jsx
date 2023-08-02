@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div>
-      <div >
-        <h1 className='text-gray'>Desafiá los límites de los lectura con Bookbuster</h1>
+      <div>
+        <h1 className='text-gray-300 bg-'>
+          Desafiá los límites de los lectura con Bookbuster
+        </h1>
         <h3>
           Encontrá historias atrapantes de la manera que vos quieras. Descargá,
           alquilá, comprá y vendé libros en tu nueva librería online.
