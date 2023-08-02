@@ -1,16 +1,16 @@
-
+import { Routes, Route, useLocation } from 'react-router-dom'
+import Home from './views/Home';
+import NavBar from './components/navBar/navBar';
 import './App.css';
 
 function App() {
   return (
-    <>
-      <p>Inicia sesion con Email</p>
-      <SignInWithEmail />
-      <p>Registrate</p>
-      <SignupForm />
-      <p>Inicia sesion con google</p>
-      <SignInWithGoogle />
-    </>
+    <div>
+      <NavBar />
+      <Routes>
+        <Route path='/' element={<Home/>} />
+      </Routes>
+    </div>
   );
 }
 
