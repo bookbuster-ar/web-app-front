@@ -1,16 +1,13 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 dependencies:
-<<<<<<< HEAD
-=======
   autoprefixer:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.27)
->>>>>>> 9725849e2fec1f33a28b4dbf3aee2f1a8dc2a2da
   axios:
     specifier: ^1.4.0
     version: 1.4.0
@@ -3084,8 +3081,6 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
-<<<<<<< HEAD
-=======
   /autoprefixer@10.4.14(postcss@8.4.27):
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3102,7 +3097,6 @@ packages:
       postcss-value-parser: 4.2.0
     dev: false
 
->>>>>>> 9725849e2fec1f33a28b4dbf3aee2f1a8dc2a2da
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
@@ -4170,13 +4164,10 @@ packages:
       mime-types: 2.1.35
     dev: false
 
-<<<<<<< HEAD
-=======
   /fraction.js@4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: false
 
->>>>>>> 9725849e2fec1f33a28b4dbf3aee2f1a8dc2a2da
   /fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
