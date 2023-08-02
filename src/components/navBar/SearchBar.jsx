@@ -1,8 +1,10 @@
-
 const SearchBar = () => {
-  return(
-    <div>searchBar</div>
-  )
-}
+  return (
+    <div>
+      <input type='text' />
+      <button></button>
+    </div>
+  );
+};
 
 export default SearchBar;
