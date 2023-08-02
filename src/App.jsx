@@ -1,6 +1,4 @@
-import SignInWithGoogle from './components/Authentication/AuthGoogle';
-import SignInWithEmail from './components/Authentication/AuthEmail';
-import SignupForm from './components/Authentication/AuthSignUp';
+
 import './App.css';
 
 function App() {
