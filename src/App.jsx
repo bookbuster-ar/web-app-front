@@ -1,5 +1,5 @@
-import SignInWithGoogle from './components/Authentication/Google/AuthGoogle';
-import SignInWithEmail from './components/Authentication/Email/AuthEmail';
+import SignInWithGoogle from './components/Authentication/AuthGoogle';
+import SignInWithEmail from './components/Authentication/AuthEmail';
 import SignupForm from './components/Authentication/AuthSignUp';
 import './App.css';
 
