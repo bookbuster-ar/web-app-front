@@ -10,10 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "autoprefixer": "^10.4.14",
->>>>>>> 9725849e2fec1f33a28b4dbf3aee2f1a8dc2a2da
     "axios": "^1.4.0",
     "firebase": "^10.1.0",
     "postcss": "^8.4.27",
