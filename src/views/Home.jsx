@@ -3,73 +3,114 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div>
-      <div>
-        <h1>Desafiá los límites de los lectura con Bookbuster</h1>
-        <h3>
-          Encontrá historias atrapantes de la manera que vos quieras. Descargá,
-          alquilá, comprá y vendé libros en tu nueva librería online.
-        </h3>
-
-        <Link to={'/home/library'}>
-          <button>Explorar la librería</button>
-        </Link>
-
-        <button>Suscribirme</button>
-      </div>
-
-      <div>
+      <div className='bg-red-300 h-screen flex flex-col items-center justify-center space-y-12'>
         <div>
-          <h1>Recomendaciones personalizadas</h1>
-          <p>
-            Brindamos recomendaciones personalizadas que coincidan con tus
-            intereses. Además, contamos con expertos en el rubro a la hora de
-            publicar reseñas oficiales.
-          </p>
+          <h1 className='font-bold'>Desafiá los límites de los lectura con Bookbuster</h1>
         </div>
-
-        <div>
-          <p>imagen</p>
+        <div className='w-2/5 text-center '>
+          <h3 className='font-bold'>
+            Encontrá historias atrapantes de la manera que vos quieras.
+            Descargá, alquilá, comprá y vendé libros en tu nueva librería
+            online.
+          </h3>
+        </div>
+        <div className='flex flex-col space-y-4 w-56 items-center justify-center'>
+          <Link to={'/home/library'}>
+            <button className='bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md'>
+              Explorar la librería
+            </button>
+          </Link>
+          <button className='w-32 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md'>
+            Suscribirme
+          </button>
         </div>
       </div>
 
-      <div>
-        <div>
-          <h1>Descargá, alquilá, comprá o vendé libros</h1>
-          <p>
-            Accedé a una amplia gama de libros que se pueden descargar,
-            alquilar, vender o comprar. Todos nuestros libros cuentan con un
-            sello de calidad que te garantiza su perfecto estado.
-          </p>
-        </div>
-
-        <div>
-          <p>imagen</p>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <h1>Una librería tradicional, en un entorno digital</h1>
-          <p>
-            Desde tu hogar, explorá nuestra colección de libros y disfrutá de la
-            sensación de descubrimiento y exploración que disfrutarías en una
-            librería física.
-          </p>
-        </div>
-
-        <div>
-          <p>imagen</p>
+      <div className='bg-white text-black h-screen flex justify-center items-center'>
+        <div className='h-96 w-9/12 flex text-xl'>
+          <div className='w-3/5 h-full p-14 space-y-6'>
+            <div>
+              <h1 className='font-bold'>Recomendaciones personalizadas</h1>
+            </div>
+            <div>
+              <p>
+                Brindamos recomendaciones personalizadas que coincidan con tus
+                intereses. Además, contamos con expertos en el rubro a la hora
+                de publicar reseñas oficiales.
+              </p>
+            </div>
+          </div>
+          <div className='flex justify-center items-center h-full w-full'>
+            <p>imagen</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <h1>¿No encontrás lo que buscas? </h1>
-        <h2>Asesorate con nuestros libreros, o recorré nuestro catálogo.</h2>
-        <Link to={'/home/library'}>
-          <button>Explorar la librería</button>
-        </Link>
+      <div className='bg-white text-black h-screen flex justify-center items-center'>
+        <div className='h-96 w-4/5 flex text-xl'>
+          <div className='h-full p-9 space-y-6'>
+            <div>
+              <h1 className='font-bold'>
+                Descargá, alquilá, comprá o vendé libros
+              </h1>
+            </div>
+            <div className='w-9/12'>
+              <p>
+                Accedé a una amplia gama de libros que se pueden descargar,
+                alquilar, vender o comprar. Todos nuestros libros cuentan con un
+                sello de calidad que te garantiza su perfecto estado.
+              </p>
+            </div>
+          </div>
+          <div className='flex justify-center items-center h-full w-full'>
+            <p>imagen</p>
+          </div>
+        </div>
+      </div>
 
-        <button>Suscribirme</button>
+      <div className='bg-white text-black h-screen flex justify-center items-center'>
+        <div className='h-96 w-4/5 flex text-xl'>
+          <div className='h-full p-9 space-y-6'>
+            <div>
+              <h1 className='font-bold'>
+                Una librería tradicional, en un entorno digital
+              </h1>
+            </div>
+            <div>
+              <p className='w-9/12'>
+                Desde tu hogar, explorá nuestra colección de libros y disfrutá
+                de la sensación de descubrimiento y exploración que disfrutarías
+                en una librería física.
+              </p>
+            </div>
+          </div>
+          <div className='flex justify-center items-center h-full w-full'>
+            <p>imagen</p>
+          </div>
+        </div>
+      </div>
+
+      <div className='bg-white h-screen flex items-center justify-center'>
+        <div className='bg-red-300 w-screen h-4/5 flex flex-col items-center justify-center space-y-12'>
+          <div>
+            <h1 className='font-bold'>¿No encontrás lo que buscas? </h1>
+          </div>
+          <div className='w-2/5 text-center '>
+            <h2 className='font-bold text-2xl'>
+              Asesorate con nuestros libreros, o recorré nuestro catálogo.
+            </h2>
+          </div>
+          <div className='flex flex-col space-y-4 w-56 items-center justify-center'>
+            <Link to={'/home/library'}>
+              <button className='bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md'>
+                Explorar la librería
+              </button>
+            </Link>
+            <button className='w-32 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md'>
+              Suscribirme
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
