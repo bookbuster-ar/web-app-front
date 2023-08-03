@@ -9,7 +9,7 @@ export default {
       xl: '1280px',
     },
     fontFamily: {
-      sans: ['Montserrat', 'sans-serif'],
+      sans: ['Roboto', 'sans-serif'],
     },
     extend: {
       colors: {
