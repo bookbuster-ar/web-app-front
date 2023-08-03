@@ -5,7 +5,7 @@ const Home = () => {
     <div>
       <div className="bg-red-300 h-screen flex flex-col items-center justify-center space-y-12">
         <div>
-          <h1 className="font-bold">
+          <h1 className='font-bold text-4xl'>
             Desafiá los límites de los lectura con Bookbuster
           </h1>
         </div>
@@ -16,13 +16,13 @@ const Home = () => {
             online.
           </h3>
         </div>
-        <div className="flex flex-col space-y-4 w-56 items-center justify-center">
-          <Link to={"/home/library"}>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md">
+        <div className='flex flex-col space-y-4 w-56 items-center justify-center'>
+          <Link to={'/home/library'}>
+            <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'>
               Explorar la librería
             </button>
           </Link>
-          <button className="w-32 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md">
+          <button className='w-32 bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'>
             Suscribirme
           </button>
         </div>
