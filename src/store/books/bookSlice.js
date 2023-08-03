@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-const booksSlice = createSlice({
+const bookSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {},
@@ -18,4 +18,4 @@ export const selectStatus = (state) => state.books.status;
 export const selectError = (state) => state.books.error;
 
 // export const {actions jeje} = booksSlice.actions;
-export default booksSlice.reducer;
+export default bookSlice.reducer;
