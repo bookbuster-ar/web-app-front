@@ -32,7 +32,7 @@ const Library = () => {
   return (
     <div className='bg-white h-screen flex flex-col items-center justify-center '>
       <h1 className='font-bold text-4xl m-6'>Explorá la librería</h1>
-      <div className='flex flex-row flex-wrap m-6'>
+      <div className='flex flex-row flex-wrap m-6 max-w-5xl justify-center'>
         {genres.map((genre, index) => (
           <div
             className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer`}
