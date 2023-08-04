@@ -37,7 +37,7 @@ const GoogleSignIn = () => {
   return (
     <button 
       onClick={() => signInWithPopupAsync(auth, provider)}
-      className="flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+      className="flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600"
     >
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" className="h-5 w-5 mr-3"/>
       Sign in with Google
