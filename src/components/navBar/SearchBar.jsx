@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const SearchBar = () => {
   const handlerSearch = () => {
     alert('Simulamos que se busca algo mi rey');

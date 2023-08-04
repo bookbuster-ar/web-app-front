@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+console.log('vamos a usar axios para las peticiones', axios); // --------------------
+
 const initialState = {
   books: [],
   status: 'idle', // loading, failed, succedded
