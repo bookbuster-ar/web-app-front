@@ -1,6 +1,5 @@
-import SearchBar from './SearchBar';
 import { NavLink, Link } from 'react-router-dom';
-import logoNav from '../../assets/Logo.jpeg';
+import logoNav from '../assets/Logo.jpeg';
 import { useState } from 'react';
 
 const NavBar = () => {
@@ -27,9 +26,13 @@ const NavBar = () => {
           </Link>
         </div>
         <div className='space-x-6 mr-24'>
+          <Link to={'/home/search'}>
+            <button>Buscá</button>
+          </Link>
+
           <NavLink to={'/home/library'}>
             <button className='h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300'>
-              Explorá nuestros libros
+              Explorá la librería
             </button>
           </NavLink>
           <button
@@ -50,9 +53,6 @@ const NavBar = () => {
             </button>
           </Link>
         </div>
-      </div>
-      <div>
-        <SearchBar />
       </div>
 
       {showDialog && (
