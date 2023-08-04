@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import GirlImage from '../assets/girl.jpg';
-import { Link } from "react-router-dom";
 import image1 from "../assets/Home1.png";
 import image2 from "../assets/Home2.png";
 import image3 from "../assets/Home3.png";
