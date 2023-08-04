@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
+import GirlImage from '../assets/girl.jpg';
 
 const Home = () => {
   return (
     <div>
-      <div className='bg-red-300 h-screen flex flex-col items-center justify-center space-y-12'>
+      <div
+        className='bg-cover h-screen flex flex-col items-center justify-center space-y-12 bg-image'
+        style={{ backgroundImage: `url(${GirlImage})` }}
+      >
         <div>
           <h1 className='font-bold text-4xl text-white'>
             Desafiá los límites de los lectura con Bookbuster
