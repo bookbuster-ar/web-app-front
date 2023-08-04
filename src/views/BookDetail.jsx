@@ -17,36 +17,41 @@ const book = {
 
 const BookDetail = () => {
   return (
-    <div className="p-6 bg-white shadow-md rounded-lg">
-      <h1 className="text-2xl font-bold mb-2">{book.title}</h1>
-      <h2 className="text-lg text-gray-600 mb-4">by {book.author}</h2>
-      <ul className="mb-4">
-        <li className="text-sm text-red-600">Editorial: {book.editorial}</li>
-        <li className="text-sm text-gray-500">Temática: {book.thematic}</li>
-        <li className="text-sm text-gray-500">
-          Año de publicación: {book.publicationYear}
-        </li>
-        <li className="text-sm text-gray-500">
-          País de publicación:{book.publicationCountry}
-        </li>
-        <li className="text-sm text-gray-500">Idioma: {book.language}</li>
-        <li className="text-sm text-gray-500">
-          Edad recomendada: {book.recommendedAge}
-        </li>
-        <li className="text-sm text-gray-500">Tamaño: {book.size}</li>
-      </ul>
-      <img
-        className="w-48 h-48 object-contain mb-4 mx-auto rounded-xl"
-        src={book.image}
-        alt=""
-      />
+    <div className="p-6 bg-yellow-200 w-100 h-100 shadow-md rounded-lg">
+      <div className="bg-yellow-500 w-60 rounded-lg shadow-2xl">
+        <img
+          className="w-60 h-90 object-contain mb-4 mx-auto rounded-lg"
+          src={book.image}
+          alt=""
+        />
+      </div>
+
+      <div className="flex flex-col w-96 bg-blue-200 rounded-lg p-6">
+        <h1 className="text-2xl font-bold">{book.title}</h1>
+        <h2 className="text-md text-gray-600 mb-4">by {book.author}</h2>
+        <ul className="mb-4">
+          <li className="text-sm text-gray-500">Editorial: {book.editorial}</li>
+          <li className="text-sm text-gray-500">Temática: {book.thematic}</li>
+          <li className="text-sm text-gray-500">
+            Año de publicación: {book.publicationYear}
+          </li>
+          <li className="text-sm text-gray-500">
+            País de publicación: {book.publicationCountry}
+          </li>
+          <li className="text-sm text-gray-500">Idioma: {book.language}</li>
+          <li className="text-sm text-gray-500">
+            Edad recomendada: {book.recommendedAge}
+          </li>
+          <li className="text-sm text-gray-500">Tamaño: {book.size}</li>
+        </ul>
+      </div>
       <br />
 
       <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">
         Ver opciones de adquisición
       </button>
 
-      <div className="mt-8">
+      <div className="mt-8 bg-white p-6 shadow-2xl rounded-lg">
         <h2 className="text-xl font-semibold">Sinopsis</h2>
         <p className="text-sm text-gray-600 mt-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,{" "}
@@ -59,7 +64,7 @@ const BookDetail = () => {
         </p>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 bg-white p-6 shadow-2xl rounded-lg ">
         <h2 className="text-xl font-semibold">Reseñas editoriales</h2>
         <div className="mt-4">
           <h3 className="text-lg font-semibold">Asombroso</h3>
@@ -70,7 +75,7 @@ const BookDetail = () => {
         </div>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 bg-white p-6 shadow-2xl rounded-lg">
         <h2 className="text-xl font-semibold">Opiniones</h2>
         <div className="mt-4">
           <h3 className="text-lg font-semibold">Alfonso Rodriguez</h3>
