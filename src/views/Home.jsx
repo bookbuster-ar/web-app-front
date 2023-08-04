@@ -30,9 +30,11 @@ const Home = () => {
               Explorar la librería
             </button>
           </Link>
-          <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64'>
-            Obtener una recomendación
-          </button>
+          <Link to={'/home/recommendation'}>
+            <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64'>
+              Obtener una recomendación
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -123,9 +125,11 @@ const Home = () => {
                 Explorar la librería
               </button>
             </Link>
-            <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64'>
-              Obtener una recomendación
-            </button>
+            <Link to={'/home/recommendation'}>
+              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64'>
+                Obtener una recomendación
+              </button>
+            </Link>
           </div>
         </div>
       </div>
