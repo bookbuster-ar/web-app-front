@@ -34,21 +34,26 @@ const SignupForm = () => {
 
   return (
     <form id='signup-form' onSubmit={handleSubmit} className='flex flex-col'>
-      <label htmlFor='signup-email'>Email: </label>
       <input
         type='email'
+        placeholder='Correo electrónico'
         id='signup-email'
         value={email}
         onChange={handleChangeEmail}
+        className='m-1'
       />
-      <label htmlFor='signup-password'>Password: </label>
       <input
         type='password'
+        placeholder='Contraseña'
         id='signup-password'
         value={password}
         onChange={handleChangePassword}
+        className='m-1'
       />
-      <button type='submit'>Sign Up</button>
+      <button type='submit' className='bg-blue-200 rounded-2xl m-1'>
+        Registrarme
+      </button>
+
     </form>
   );
 };
