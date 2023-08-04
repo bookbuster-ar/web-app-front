@@ -1,6 +1,5 @@
-import SearchBar from './SearchBar';
 import { NavLink, Link } from 'react-router-dom';
-import logoNav from '../../assets/Logo.jpeg';
+import logoNav from '../assets/Logo.jpeg';
 import { useState } from 'react';
 
 const NavBar = () => {
@@ -15,9 +14,9 @@ const NavBar = () => {
   };
 
   return (
-    <div className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20'>
-      <div className='flex items-center'>
-        <div>
+    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20'>
+      <div className='flex items-center py-3 px-10'>
+        <div className='flex-grow-0'>
           <Link to='/'>
             <img
               className='w-12 rounded-full ml-4 mr-4'
@@ -26,33 +25,44 @@ const NavBar = () => {
             />
           </Link>
         </div>
-        <div className='space-x-6 mr-24'>
-          <NavLink to={'/home/library'}>
-            <button className='h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300'>
-              Explorá nuestros libros
-            </button>
-          </NavLink>
-          <button
-            onClick={openDialog}
-            className='h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300'
-          >
-            ¿Por qué suscribirme?
-          </button>
-          <button className='h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300'>
-            Vendé tus libros
-          </button>
-          <button className='h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300'>
-            Comprar suscripción
-          </button>
-          <Link to='/login'>
-            <button className='h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300'>
-              Iniciar sesión
-            </button>
-          </Link>
-        </div>
-      </div>
-      <div>
-        <SearchBar />
+        <nav className='space-x-6 mr-24 flex text-sm transition-colors duration-200 text-current font-medium'>
+          <ul className='flex space-x-4'>
+            <li>
+              <Link to={'/home/search'}>
+                <button className='px-4 py-2 inline-block'>Buscá</button>
+              </Link>
+            </li>
+            <li>
+              <NavLink to='/home/library'>
+                <button className='px-4 py-2 inline-block'>
+                  Explorá la librería
+                </button>
+              </NavLink>
+            </li>
+            <li>
+              <button onClick={openDialog} className='px-4 py-2 inline-block'>
+                ¿Por qué suscribirme?
+              </button>
+            </li>
+            <li>
+              <button className='px-4 py-2 inline-block'>
+                Vendé tus libros
+              </button>
+            </li>
+            <li>
+              <button className='px-4 py-2 inline-block'>
+                Comprar suscripción
+              </button>
+            </li>
+            <li>
+              <Link to='/login'>
+                <button className='px-4 py-2 inline-block'>
+                  Iniciar sesión
+                </button>
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
 
       {showDialog && (
@@ -127,7 +137,7 @@ const NavBar = () => {
           </div>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 

@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
+@layer components {
+  /* .btn{
+    @apply h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300;
+  } */
+}
