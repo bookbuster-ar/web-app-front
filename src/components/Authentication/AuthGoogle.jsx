@@ -2,8 +2,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   getAdditionalUserInfo,
-} from 'firebase/auth';
-import { provider, auth } from '../../services/firebase/firebase';
+} from "firebase/auth";
+import { provider, auth } from "../../services/firebase/firebase";
 
 async function signInWithPopupAsync(auth, provider) {
   try {

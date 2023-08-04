@@ -22,9 +22,9 @@ const colorClasses = {
   5: 'bg-purple-400',
   6: 'bg-pink-400',
   7: 'bg-gray-400',
-  8: 'bg-white',
-  9: 'bg-black',
-  10: 'bg-blueGray-400',
+  8: 'bg-yellow-600',
+  9: 'bg-green-600',
+  10: 'bg-blue-400',
   11: 'bg-lime-400',
 };
 
@@ -34,7 +34,9 @@ const Library = () => {
       <h1 className='font-bold text-4xl m-6'>Explorá la librería</h1>
       <div className='flex flex-row flex-wrap m-6'>
         {genres.map((genre, index) => (
-          <div className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer`}>
+          <div
+            className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer`}
+          >
             {genre}
           </div>
         ))}
