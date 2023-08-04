@@ -25,7 +25,7 @@ const SignInWithEmail = () => {
   };
 
   return (
-    <form onSubmit={handlerSubmit}>
+    <form onSubmit={handlerSubmit} className='flex flex-col'>
       <input
         type='email'
         value={email}
@@ -40,7 +40,7 @@ const SignInWithEmail = () => {
         placeholder='Contraseña'
         required
       />
-      <button type='submit'>Inicia sesión con correo electrónico</button>
+      <button type='submit'>Inicia sesión</button>
     </form>
   );
 };
