@@ -32,6 +32,7 @@ const SignInWithEmail = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder='Correo electrónico'
         required
+        className='m-1'
       />
       <input
         type='password'
@@ -39,8 +40,11 @@ const SignInWithEmail = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder='Contraseña'
         required
+        className='m-1'
       />
-      <button type='submit'>Inicia sesión</button>
+      <button type='submit' className='bg-blue-200 rounded-2xl m-1'>
+        Iniciar sesión
+      </button>
     </form>
   );
 };
