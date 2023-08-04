@@ -45,9 +45,11 @@ const NavBar = () => {
               </button>
             </li>
             <li>
-              <button className='px-4 py-2 inline-block'>
-                Vendé tus libros
-              </button>
+              <Link to='/home/sellbook'>
+                <button className='px-4 py-2 inline-block'>
+                  Vendé tus libros
+                </button>
+              </Link>
             </li>
             <li>
               <button className='px-4 py-2 inline-block'>
@@ -90,9 +92,11 @@ const NavBar = () => {
             <h2 className='text-lg font-semibold mb-2'>
               Nuestras suscripciones
             </h2>
-            <div className='bg-gray-100 flex flex-row'>
-              <div>
-                <h2 className='text-lg font-semibold mb-2'>Clásica</h2>
+            <div className='bg-gray-100 flex'>
+              <div className='flex flex-col justify-center '>
+                <div className='flex justify-center '>
+                  <h2 className='text-lg font-semibold mb-2 '>Clásica</h2>
+                </div>
                 <p>
                   • Envió sin cargo en caso de compra de libros nuevos y usados.
                 </p>
@@ -103,13 +107,18 @@ const NavBar = () => {
                 </p>
                 <p>• Acceso a catálogo exclusivo para suscriptores</p>
                 <p>• 30 días de permanencia de libros</p>
-                <h2 className='text-lg font-semibold mb-2 text-blue-500'>
-                  ARS$2.000
-                </h2>
+                <div className='flex justify-center '>
+                  <h2 className='text-lg font-semibold mb-2 text-blue-500 p-3'>
+                    ARS$2.000
+                  </h2>
+                </div>
               </div>
 
-              <div>
-                <h2 className='text-lg font-semibold mb-2'>Manija</h2>
+              <div className='flex flex-col justify-center '>
+                <div className='flex justify-center '>
+                  <h2 className='text-lg font-semibold mb-2'>Manija</h2>
+                </div>
+
                 <p>
                   • Envió sin cargo en caso de compra de libros nuevos y usados.
                 </p>
@@ -123,9 +132,11 @@ const NavBar = () => {
                 <p>
                   • 20% de descuento en cualquier compra o descarga de libros
                 </p>
-                <h2 className='text-lg font-semibold mb-2 color text-blue-500'>
-                  ARS$8.000
-                </h2>
+                <div className='flex justify-center '>
+                  <h2 className='text-lg font-semibold mb-2 color text-blue-500'>
+                    ARS$8.000
+                  </h2>
+                </div>
               </div>
             </div>
             <button

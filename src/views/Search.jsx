@@ -17,7 +17,7 @@ const genres = [
 
 const Search = () => {
   return (
-    <div className='bg-white h-screen flex flex-col items-center space-y-12'>
+    <div className='bg-white  h-screen flex flex-col items-center space-y-12'>
       <div>
         <SearchBar />
       </div>
