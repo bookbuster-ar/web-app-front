@@ -53,6 +53,7 @@ const SignupForm = () => {
       <button type='submit' className='bg-blue-200 rounded-2xl m-1'>
         Registrarme
       </button>
+
     </form>
   );
 };
