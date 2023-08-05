@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 console.log('vamos a usar axios para las peticiones', axios); // --------------------
+/* const {data} =  */
 
 const initialState = {
   books: [],
