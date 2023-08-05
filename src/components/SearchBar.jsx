@@ -1,15 +1,70 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useEffect, useRef, useState, useCallback } from "react";
+import { useMovies } from '../hooks/useMovies';
+import { Movies } from "./Movies";
+import debounce from "just-debounce-it";
+import { useDispatch } from 'react-redux';
+import { fetchMovies } from '../store/books/moviesSlice';
+
+function useSearch() {
+  const [hasSearched, setHasSearched] = useState(false)
+  const [search, setSearch] = useState("");
+  const [error, setError] = useState(null);
+  const isFirstInput = useRef(true);
+  const dispatch = useDispatch();
+
+  const debouncedGetMovies = useCallback(
+    debounce((search) => {
+      dispatch(fetchMovies(search));
+      
+    }, 500),
+    [dispatch]
+  );
+
+  useEffect(() => {
+    if (isFirstInput.current) {
+      isFirstInput.current = search === "";
+      return;
+    }
+    if (search === "") {
+      setError("");
+      return;
+    }
+
+    if (search.match(/^\d+$/)) {
+      setError("No se puede buscar una pelicula con un numero");
+      return;
+    }
+
+    if (search.length < 3) {
+      setError("La busqueda debe tener al menos 3 caracteres");
+      return;
+    }
+
+    setError(null);
+    debouncedGetMovies(search);
+    setHasSearched(true)
+  }, [search, debouncedGetMovies, hasSearched]);
+
+  return { search, setSearch, error, hasSearched, setHasSearched };
+}
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState('');
+  const { search, setSearch, error, hasSearched, setHasSearched } = useSearch();
+  const { movies, loading } = useMovies();
 
-  const handlerSearch = () => {
-    alert('Simulamos que se busca algo mi rey');
+  const handleChange = (event) => {
+    const newSearch = event.target.value;
+    setSearch(newSearch);
   };
 
+  const handleDelete = () => {
+    setSearch('')
+    setHasSearched(false)
+  }
+
   return (
-    <div className='space-x-2 flex items-center ml-15'>
+    <div className=''>
+      <div className='space-x-2 flex items-center ml-15 justify-center'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         fill='none'
@@ -25,21 +80,21 @@ const SearchBar = () => {
         />
       </svg>
       <input
-        type='text'
         placeholder='Buscá tu libro o autor aquí..'
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        value={search}
+        onChange={handleChange}
+        name='search'
         className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
       />
-      {inputValue && (
+      {search && (
         <svg
-          onClick={() => setInputValue('')}
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke-width='1.5'
-          stroke='currentColor'
-          class='w-6 h-6'
+        onClick={handleDelete}
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='1.5'
+        stroke='currentColor'
+        class='w-6 h-6'
         >
           <path
             stroke-linecap='round'
@@ -48,6 +103,16 @@ const SearchBar = () => {
           />
         </svg>
       )}
+      </div>
+      <br />
+      {error && <p>{error}</p>}
+      <br />
+      <div className='flex justify-center'>
+      <div >
+        {loading ? <p>Cargando ... </p> : null}
+        {search && <Movies movies={movies}/>}
+      </div>
+      </div>
     </div>
   );
 };

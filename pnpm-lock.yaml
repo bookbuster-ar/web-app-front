@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -17,6 +17,9 @@ dependencies:
   firebase:
     specifier: ^10.1.0
     version: 10.1.0(react-native@0.72.3)
+  just-debounce-it:
+    specifier: ^3.2.0
+    version: 3.2.0
   postcss:
     specifier: ^8.4.27
     version: 8.4.27
@@ -4895,6 +4898,10 @@ packages:
       object.assign: 4.1.4
       object.values: 1.1.6
     dev: true
+
+  /just-debounce-it@3.2.0:
+    resolution: {integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==}
+    dev: false
 
   /kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
