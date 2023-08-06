@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com';
+const URL_BASE = 'https://bookbuster-dev.onrender.com/'
 
-// console.log('vamos a usar axios para las peticiones', axios); // --------------------
-// /* const {data} =  */
+export const getBooksBySearch = createAsyncThunk('books/getBooksBySearch', async (search) => {
+  const { data } = await axios.get(`${URL_BASE}api/books?title=${search}`)
+  return data;
+})
 
 const initialState = {
   books: [],
@@ -20,7 +22,7 @@ export const fetchGenres = createAsyncThunk('books/fetchGenres', async () => {
   return data;
 });
 
-export const createBook = createAsyncThunk('books/createBook', async () => {
+export const createBook = createAsyncThunk('books/createBook', async (form) => {
   const response = await axios.post(`${URL_BASE}/api/books`, form);
   return response.status;
 });
@@ -56,6 +58,20 @@ const bookSlice = createSlice({
         state.error = action.error.message;
       });
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getBooksBySearch.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getBooksBySearch.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.books = action.payload
+      })
+      .addCase(getBooksBySearch.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.error.message;
+      })
+  }
 });
 
 export const selectAllBooks = (state) => state.books.books;
