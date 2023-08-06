@@ -4,6 +4,7 @@ import image1 from '../assets/Home1.png';
 import image2 from '../assets/Home2.png';
 import image3 from '../assets/Home3.png';
 import image4 from '../assets/Home4.jpg';
+import Footer from './Footer';
 
 const Home = () => {
   return (
@@ -138,6 +139,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
