@@ -1,8 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-console.log('vamos a usar axios para las peticiones', axios); // --------------------
-/* const {data} =  */
+const BASE_URL = 'https://bookbuster-dev.onrender.com/'
+
+export const getBooksBySearch = createAsyncThunk('books/getBooksBySearch', async (search) => {
+  const { data } = await axios.get(`${BASE_URL}api/books?title=${search}`)
+  return data;
+})
 
 const initialState = {
   books: [],
@@ -14,6 +18,20 @@ const bookSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getBooksBySearch.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getBooksBySearch.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.books = action.payload
+      })
+      .addCase(getBooksBySearch.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.error.message;
+      })
+  }
 });
 
 export const selectAllBooks = (state) => state.books.books;
