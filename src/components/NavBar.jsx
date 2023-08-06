@@ -14,7 +14,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20'>
+    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg'>
       <div className='flex items-center py-3 px-10'>
         <div className='flex-grow-0'>
           <Link to='/'>

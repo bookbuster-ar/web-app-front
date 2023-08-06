@@ -2,8 +2,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   getAdditionalUserInfo,
-} from "firebase/auth";
-import { provider, auth } from "../../services/firebase/firebase";
+} from 'firebase/auth';
+import { provider, auth } from '../../services/firebase/firebase';
 
 async function signInWithPopupAsync(auth, provider) {
   try {
@@ -13,7 +13,7 @@ async function signInWithPopupAsync(auth, provider) {
     const credential = GoogleAuthProvider.credentialFromResult(result);
 
     const token = credential.accessToken;
-    console.log("mandar el siguiente token al back", token); // TOKENNNNNNNNNNNNNNNNNN
+    console.log('mandar el siguiente token al back', token); // TOKENNNNNNNNNNNNNNNNNN
     // The signed-in user info.
     const user = result.user;
     console.log(user);
@@ -37,12 +37,12 @@ const GoogleSignIn = () => {
   return (
     <button
       onClick={() => signInWithPopupAsync(auth, provider)}
-      className="flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-red-400 hover:bg-gray-600"
+      className='flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md text-white bg-red-400 hover:bg-red-700 my-4'
     >
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-        alt="Google Logo"
-        className="h-5 w-5 mr-3"
+        src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'
+        alt='Google Logo'
+        className='h-5 w-5 mr-3 '
       />
       Iniciar sesión con Google
     </button>
