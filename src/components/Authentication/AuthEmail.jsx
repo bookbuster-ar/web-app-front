@@ -27,20 +27,20 @@ const SignInWithEmail = () => {
   return (
     <form onSubmit={handlerSubmit} className='flex flex-col'>
       <input
+        className='m-2 min-w-full rounded-md'
         type='email'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder='Correo electrónico'
+        placeholder='Ingresa correo electrónico'
         required
-        className='m-1'
       />
       <input
+        className='m-2 min-w-full rounded-md'
         type='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder='Contraseña'
+        placeholder='Ingresa contraseña'
         required
-        className='m-1'
       />
       <button type='submit' className='bg-blue-200 rounded-2xl m-1'>
         Iniciar sesión

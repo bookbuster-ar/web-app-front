@@ -40,7 +40,7 @@ const SignupForm = () => {
         id='signup-email'
         value={email}
         onChange={handleChangeEmail}
-        className='m-1'
+        className='m-2 min-w-full rounded-md'
       />
       <input
         type='password'
@@ -48,12 +48,11 @@ const SignupForm = () => {
         id='signup-password'
         value={password}
         onChange={handleChangePassword}
-        className='m-1'
+        className='m-2 min-w-full rounded-md'
       />
       <button type='submit' className='bg-blue-200 rounded-2xl m-1'>
         Registrarme
       </button>
-
     </form>
   );
 };
