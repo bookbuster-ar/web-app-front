@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBook, fetchGenres } from '../store/books/bookSlice';
 import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
+import buildFormData from '../util';
 
 const FormSell = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,8 @@ const FormSell = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(createBook(form));
+    const bookData = buildFormData(form);
+    dispatch(createBook(bookData));
 
     setForm({
       title: '',
