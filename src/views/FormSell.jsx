@@ -7,6 +7,7 @@ const FormSell = () => {
   const dispatch = useDispatch();
   const genres = useSelector(selectAllGenres);
   const genreStatus = useSelector(selectGenreStatus);
+  const [ imagePreview, setImagePreview ] = useState(null);
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -65,6 +66,8 @@ const FormSell = () => {
   const handleUploadCover = (event) => {
     event.preventDefault();
     const file = event.target.files[0];
+    const imagePreviewURL = URL.createObjectURL(file);
+    setImagePreview(imagePreviewURL)
 
     setForm((prevForm) => ({
       ...prevForm,
@@ -332,9 +335,9 @@ const FormSell = () => {
         </form>
       </div>
 
-      <div className=' w-2/5 fixed right-0'>
+      <div className=' w-2/5 fixed right-4 max-h-fit'>
         <h1 className='font-bold text-4xl text-black text-center'>Tu libro</h1>
-        <div className='text-black text-base rounded-md pl-2 p-2 h-5/6 bg-transparent border outline-none'>
+        <div className='text-black text-base rounded-md pl-2 p-2 h-5/6 bg-transparent border outline-none flex flex-col items-center justify-center'>
           <h2>{form.title}</h2>
           <h3>{form.author}</h3>
           <h3>{form.publication_year}</h3>
@@ -345,6 +348,7 @@ const FormSell = () => {
           <h3>{form.language}</h3>
           <h3>{form.size}</h3>
           <h3>{form.price}</h3>
+          {imagePreview && <img src={imagePreview} alt="Vista previa de la tapa" className='max-w-sm' />}
         </div>
       </div>
     </div>
