@@ -34,7 +34,6 @@ const FormSell = () => {
       extra: [], //arreglo de objetos
     },
   });
-  console.log(form);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
