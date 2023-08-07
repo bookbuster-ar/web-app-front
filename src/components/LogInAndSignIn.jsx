@@ -11,10 +11,10 @@ const LogInAndSignIn = () => {
     >
       <div className='flex flex-col justify-content items-center w-96 h-100 bg-gray-100 p-6 m-1 rounded-xl shadow-2xl'>
         <p className='font-bold text-lg m-2'>
-          Inicia sesión con correo electrónico
+          Iniciá sesión con correo electrónico
         </p>
         <SignInWithEmail />
-        <p className='font-bold text-lg m m-2'>Regístrate</p>
+        <p className='font-bold text-lg m m-2'>Registrate</p>
         <SignupForm />
         <SignInWithGoogle />
       </div>
