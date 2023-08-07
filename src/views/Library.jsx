@@ -1,17 +1,7 @@
-const genres = [
-  'Bienestar y salud',
-  'Ciencia',
-  'Feminismos y LGBTIQ',
-  'Historia y Política',
-  'Infatil-Niños',
-  'Música',
-  'Narrava',
-  'No ficción',
-  'Pensamientos y Filosofía',
-  'Poesía',
-  'Relatos breves',
-  'Teatro',
-];
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
+import { fetchGenres } from '../store/books/bookSlice';
 
 const colorClasses = {
   0: 'bg-red-400',
@@ -29,17 +19,29 @@ const colorClasses = {
 };
 
 const Library = () => {
+  const dispatch = useDispatch();
+  const genres = useSelector(selectAllGenres);
+  const genreStatus = useSelector(selectGenreStatus);
+
+  useEffect(() => {
+    dispatch(fetchGenres());
+  }, [dispatch]);
+
   return (
     <div className='bg-white h-screen flex flex-col items-center justify-center '>
       <h1 className='font-bold text-4xl m-6'>Explorá la librería</h1>
       <div className='flex flex-row flex-wrap m-6 max-w-5xl justify-center'>
-        {genres.map((genre, index) => (
-          <div
-            className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
-          >
-            {genre}
-          </div>
-        ))}
+        {genreStatus === 'loading' ? (
+          <p>Loading...</p>
+        ) : (
+          genres?.map((genre, index) => (
+            <div
+              className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
+            >
+              {genre.name}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

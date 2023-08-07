@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com'
+const URL_BASE = 'https://bookbuster-dev.onrender.com';
 
-export const getBooksBySearch = createAsyncThunk('books/getBooksBySearch', async (search) => {
-  const { data } = await axios.get(`${URL_BASE}/api/books?title=${search}`)
-  return data;
-})
+export const getBooksBySearch = createAsyncThunk(
+  'books/getBooksBySearch',
+  async (search) => {
+    const { data } = await axios.get(`${URL_BASE}/api/books?title=${search}`);
+    return data;
+  }
+);
 
 const initialState = {
   books: [],
@@ -22,16 +25,23 @@ export const fetchGenres = createAsyncThunk('books/fetchGenres', async () => {
   return data;
 });
 
-export const createBook = createAsyncThunk('books/createBook', async (bookData) => {
-  const response = await axios.post(`${URL_BASE}/api/books`, bookData,
-  {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-  
-  return response.status;
+export const fetchGenre = createAsyncThunk('books/fetchGenre', async () => {
+  const { data } = await axios.get(`${URL_BASE}/api/books/genre`);
+  return data;
 });
+
+export const createBook = createAsyncThunk(
+  'books/createBook',
+  async (bookData) => {
+    const response = await axios.post(`${URL_BASE}/api/books`, bookData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return response.status;
+  }
+);
 
 const bookSlice = createSlice({
   name: 'books',
@@ -68,13 +78,13 @@ const bookSlice = createSlice({
       })
       .addCase(getBooksBySearch.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.books = action.payload
+        state.books = action.payload;
       })
       .addCase(getBooksBySearch.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.error.message;
-      })
-  }
+      });
+  },
 });
 
 export const selectAllBooks = (state) => state.books.books;
