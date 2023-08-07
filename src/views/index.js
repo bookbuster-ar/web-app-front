@@ -5,5 +5,15 @@ import Search from './Search';
 import FormSell from './FormSell';
 import Recommendation from './Recommendation';
 import Subscription from './Subscription';
+import Genre from './Genre';
 
-export { Home, BookDetail, Library, Search, FormSell, Recommendation, Subscription };
+export {
+  Home,
+  BookDetail,
+  Library,
+  Search,
+  FormSell,
+  Recommendation,
+  Subscription,
+  Genre,
+};
