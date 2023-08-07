@@ -35,7 +35,7 @@ const Library = () => {
       <div className='flex flex-row flex-wrap m-6 max-w-5xl justify-center'>
         {genres.map((genre, index) => (
           <div
-            className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer`}
+            className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
           >
             {genre}
           </div>

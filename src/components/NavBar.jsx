@@ -72,7 +72,7 @@ const NavBar = () => {
       {showDialog && (
         <div className='fixed inset-0 flex items-center justify-center '>
           <div className='inset-0 bg-gray-700 opacity-50'></div>
-          <div className='bg-white absolute rounded-lg p-4 flex flex-col items-center justify-center w-2/4 h-5/6 shadow-xl'>
+          <div className='bg-white absolute rounded-lg p-4 flex flex-col items-center justify-center w-2/4 h-5/6 shadow-xl shadow-gray-300'>
             <h2 className='text-lg font-semibold mb-2'>
               ¿Por qué suscribirme?
             </h2>
