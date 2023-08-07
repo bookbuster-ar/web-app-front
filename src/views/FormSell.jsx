@@ -32,6 +32,7 @@ const FormSell = () => {
       extra: [], //arreglo de objetos
     },
   });
+  console.log(form);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -56,7 +57,7 @@ const FormSell = () => {
       price: '',
       images: {
         cover: {},
-        extra: [], //arreglo de objetos
+        extra: [],
       },
     });
   };
@@ -64,6 +65,7 @@ const FormSell = () => {
   const handleUploadCover = (event) => {
     event.preventDefault();
     const file = event.target.files[0];
+
     setForm((prevForm) => ({
       ...prevForm,
       images: {
@@ -129,139 +131,159 @@ const FormSell = () => {
         </p>
         <p>
           Si tu libro cumple con estos requisitos, completá los siguientes
-          datos:{' '}
+          datos:
         </p>
-        <form className='flex flex-col justify-content items-center m-3'>
-          <label>Título del libro</label>
-          <input
-            type='text'
-            name='title'
-            onChange={changeHandler}
-            value={form.title}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
-
-          <label>Autor</label>
-          <input
-            type='text'
-            name='author'
-            value={form.author}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
-
-          <label>Año de publicación</label>
-          <input
-            type='number'
-            name='publication_year'
-            value={form.publication_year}
-            min={`${currentYear}` - 14}
-            max={`${currentYear}`}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
-
-          <label>Editorial</label>
-          <input
-            type='text'
-            name='editorial'
-            value={form.editorial}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
-
-          <label>Colección (opcional)</label>
-          <input
-            type='text'
-            name='editorial_collection'
-            value={form.editorial_collection}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
-
-          <label>Géneros</label>
-          <select name='genres' onChange={selectHandler}>
-            {genreStatus === 'loading' ? (
-              <option>Loading...</option>
-            ) : (
-              genres?.map((gen, index) => {
-                return (
-                  <option
-                    key={`${gen.id}-${index}`}
-                    value={gen.name}
-                    id={gen.id}
-                  >
-                    {gen.name}
-                  </option>
-                );
-              })
-            )}
-          </select>
-
-          <h2>Géneros Seleccionados</h2>
-          <div>
-            {form.genres &&
-              form.genres?.map((gen) => (
-                <button
-                  className='text-black text-base rounded-md pl-2  p-2  bg-transparent border outline-none'
-                  key={gen.id}
-                  onClick={() => deleteSelection(gen)}
-                >
-                  {gen.name}
-                </button>
-              ))}
+        <form onSubmit={submitHandler} className='flex flex-col items-end'>
+          <div className='my-2'>
+            <label className='mr-16 w-48 items-center'>Título del libro</label>
+            <input
+              type='text'
+              name='title'
+              onChange={changeHandler}
+              value={form.title}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
           </div>
 
-          <label>Sinopsis</label>
-          <input
-            type='text'
-            name='synopsis'
-            value={form.synopsis}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
+          <div className='my-2'>
+            <label className='mr-16'>Autor</label>
+            <input
+              type='text'
+              name='author'
+              value={form.author}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
 
-          <label>Cantidad de páginas</label>
-          <input
-            type='number'
-            name='pages'
-            value={form.pages}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
+          <div className='my-2'>
+            <label className='mr-16'>Año de publicación</label>
+            <input
+              type='number'
+              name='publication_year'
+              value={form.publication_year}
+              min={`${currentYear}` - 14}
+              max={`${currentYear}`}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
 
-          <label>Idioma</label>
-          <input
-            type='text'
-            name='language'
-            value={form.language}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
+          <div className='my-2'>
+            <label className='mr-16'>Editorial</label>
+            <input
+              type='text'
+              name='editorial'
+              value={form.editorial}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
+          <div className='my-2'>
+            <label className='mr-16'>Colección (opcional)</label>
+            <input
+              type='text'
+              name='editorial_collection'
+              value={form.editorial_collection}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
+          <div className='my-2'>
+            <label className='mr-16'>Géneros</label>
+            <select name='genres' onChange={selectHandler}>
+              {genreStatus === 'loading' ? (
+                <option>Loading...</option>
+              ) : (
+                genres?.map((gen, index) => {
+                  return (
+                    <option
+                      key={`${gen.id}-${index}`}
+                      value={gen.name}
+                      id={gen.id}
+                    >
+                      {gen.name}
+                    </option>
+                  );
+                })
+              )}
+            </select>
+          </div>
 
-          <label>Tamaño</label>
-          <input
-            type='text'
-            name='size'
-            value={form.size}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
+          <div className='my-2'>
+            <h2 className='mr-16'>Géneros Seleccionados</h2>
+            <div>
+              {form.genres &&
+                form.genres?.map((gen) => (
+                  <button
+                    className='text-black text-base rounded-md pl-2  p-2  bg-transparent border outline-none'
+                    key={gen.id}
+                    onClick={() => deleteSelection(gen)}
+                  >
+                    {gen.name}
+                  </button>
+                ))}
+            </div>
+          </div>
 
-          <label>Sugerir precio</label>
-          <input
-            type='text'
-            name='price'
-            value={form.price}
-            onChange={changeHandler}
-            className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-          />
+          <div className='my-2'>
+            <label className='mr-16'>Sinopsis</label>
+            <input
+              type='text'
+              name='synopsis'
+              value={form.synopsis}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
 
-          <h1>Fotos reales del libro</h1>
+          <div className='my-2'>
+            <label className='mr-16'>Cantidad de páginas</label>
+            <input
+              type='number'
+              min='1'
+              name='pages'
+              value={form.pages}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
+          <div className='my-2'>
+            <label className='mr-16'>Idioma</label>
+            <input
+              type='text'
+              name='language'
+              value={form.language}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
+          <div className='my-2'>
+            <label className='mr-16'>Tamaño</label>
+            <input
+              type='text'
+              name='size'
+              value={form.size}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
+          <div className='my-2'>
+            <label className='mr-16'>Sugerir precio</label>
+            <input
+              type='text'
+              name='price'
+              value={form.price}
+              onChange={changeHandler}
+              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+            />
+          </div>
 
-          <div className='flex flex-col items-center'>
+          <h1 className='mr-36 font-bold'>Fotos reales del libro</h1>
+
+          <div className='flex flex-col items-end'>
             <div className='flex flex-row m-2'>
-              <label className='mr-4'>Tapa</label>
+              <label className='mr-16'>Tapa</label>
               <input
                 type='file'
                 onChange={handleUploadCover}
@@ -269,7 +291,7 @@ const FormSell = () => {
               />
             </div>
             <div className='flex flex-row m-2'>
-              <label className='mr-4'>Contratapa</label>
+              <label className='mr-16'>Contratapa</label>
               <input
                 type='file'
                 onChange={handleUploadExtraImages}
@@ -277,7 +299,7 @@ const FormSell = () => {
               />
             </div>
             <div className='flex flex-row m-2'>
-              <label className='mr-4'>Lomo</label>
+              <label className='mr-16'>Lomo</label>
               <input
                 type='file'
                 onChange={handleUploadExtraImages}
@@ -285,7 +307,7 @@ const FormSell = () => {
               />
             </div>
             <div className='flex flex-row m-2'>
-              <label className='mr-4'>Lomo abierto por la mitad</label>
+              <label className='mr-16'>Lomo abierto por la mitad</label>
               <input
                 type='file'
                 onChange={handleUploadExtraImages}
@@ -299,11 +321,10 @@ const FormSell = () => {
             caso de que tu libro cumpla con los requisitos, te enviaremos una
             confirmación junto al crédito para utilizar en nuestra plataforma.
             En caso de estar de acuerdo, nos encargaremos de retirar el libro,
-            sin costo adicional para vos.{' '}
+            sin costo adicional para vos.
           </p>
           <button
             type='submit'
-            onSubmit={submitHandler}
             className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'
           >
             Enviar información
@@ -311,10 +332,19 @@ const FormSell = () => {
         </form>
       </div>
 
-      <div className=' w-2/4'>
+      <div className=' w-2/5 fixed right-0'>
         <h1 className='font-bold text-4xl text-black text-center'>Tu libro</h1>
-        <div>
+        <div className='text-black text-base rounded-md pl-2 p-2 h-5/6 bg-transparent border outline-none'>
           <h2>{form.title}</h2>
+          <h3>{form.author}</h3>
+          <h3>{form.publication_year}</h3>
+          <h3>{form.editorial}</h3>
+          <h3>{form.editorial_collection}</h3>
+          <h3>{form.synopsis}</h3>
+          <h3>{form.pages}</h3>
+          <h3>{form.language}</h3>
+          <h3>{form.size}</h3>
+          <h3>{form.price}</h3>
         </div>
       </div>
     </div>
