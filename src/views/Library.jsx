@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import { fetchGenres } from '../store/books/bookSlice';
+import { Link } from 'react-router-dom';
 
 const colorClasses = {
   0: 'bg-red-400',
@@ -35,11 +36,14 @@ const Library = () => {
           <p>Loading...</p>
         ) : (
           genres?.map((genre, index) => (
-            <div key={index}
-              className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
-            >
-              {genre.name}
-            </div>
+            <Link to={`/home/library/genre/${genre.id}`}>
+              <button
+                className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
+              >
+                {genre.name}
+              </button>
+            </Link>
+
           ))
         )}
       </div>
