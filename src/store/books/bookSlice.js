@@ -22,8 +22,14 @@ export const fetchGenres = createAsyncThunk('books/fetchGenres', async () => {
   return data;
 });
 
-export const createBook = createAsyncThunk('books/createBook', async (form) => {
-  const response = await axios.post(`${URL_BASE}/api/books`, form);
+export const createBook = createAsyncThunk('books/createBook', async (bookData) => {
+  const response = await axios.post(`${URL_BASE}/api/books`, bookData,
+  {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  
   return response.status;
 });
 
