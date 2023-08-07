@@ -1,9 +1,14 @@
 import { NavLink, Link } from 'react-router-dom';
 import logoNav from '../assets/Logo.jpeg';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLogged } from '../store/user/authSlice';
+import { logOut } from '../store/user/authSlice';
 
 const NavBar = () => {
   const [showDialog, setShowDialog] = useState(false);
+  const isLogged = useSelector(selectIsLogged);
+  const dispatch = useDispatch()
 
   const openDialog = () => {
     setShowDialog(true);
@@ -12,6 +17,10 @@ const NavBar = () => {
   const closeDialog = () => {
     setShowDialog(false);
   };
+
+  const handleLogOut = () => {
+    dispatch(logOut(false))
+  }
 
   return (
     <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg'>
@@ -58,13 +67,23 @@ const NavBar = () => {
                 </button>
               </Link>
             </li>
-            <li>
-              <Link to='/login'>
-                <button className='px-4 py-2 inline-block'>
-                  Iniciar sesión
-                </button>
-              </Link>
-            </li>
+            {isLogged ? (
+              <li>
+                <Link to='/'>
+                  <button className='px-4 py-2 inline-block' onClick={handleLogOut}>
+                    Cerrar Sesión
+                  </button>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link to='/login'>
+                  <button className='px-4 py-2 inline-block'>
+                    Iniciar sesión
+                  </button>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

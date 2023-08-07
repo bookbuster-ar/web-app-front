@@ -9,6 +9,8 @@ import {
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
+const URL_BASE = 'https://bookbuster-dev.onrender.com';
+
 // thunk to login with email and password
 export const signInWithEmailAsync = createAsyncThunk(
   'auth/signInWithEmail',
@@ -16,11 +18,13 @@ export const signInWithEmailAsync = createAsyncThunk(
     const { user } = await signInWithEmailAndPassword(auth, email, password);
 
     // Request your backend with the user data
-    const { data } = await axios.post('api/auth/email', user);
+    const { data } = await axios.post(`${URL_BASE}/api/auth/login/local`, user);
 
     return {
-      ...user,
+      uid: user.uid,
+      email: user.email,
       ...data,
+      isLogged: true,
     };
   }
 );
@@ -30,18 +34,24 @@ export const signInWithGoogleAsync = createAsyncThunk('auth/signInWithGoogle', a
   const credential = GoogleAuthProvider.credentialFromResult(result);
   const token = credential.accessToken
 
-  const {data} = await axios.post('api/auth/google', { token });
+  const {data} = await axios.post(`${URL_BASE}/api/auth/signup/google`, { token });
 
+  const user = {
+    uid: result.user.uid,
+    email: result.user.email,
+    displayName: result.user.displayName
+  }
   return {
-    ...result.user,
-    ...data
+    ...user,
+    ...data,
+    isLogged: true,
   }
 })
 
 export const signUpWithEmailAsync = createAsyncThunk('auth/signUpWithEmail', async({email, password}) => {
   const { user } = await createUserWithEmailAndPassword(auth, email, password)
 
-  const { data } = await axios.post('api/auth/signup', user);
+  const { data } = await axios.post(`${URL_BASE}/api/auth/signup/local`, user);
 
   return {
     ...user,
@@ -54,9 +64,14 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     error: null,
+    isLogged: false,
     isLoading: false
   },
-  reducers: {},
+  reducers: {
+    logOut: (state,action) => {
+      state.isLogged = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signInWithEmailAsync.pending, (state) => {
@@ -65,6 +80,7 @@ const authSlice = createSlice({
       .addCase(signInWithEmailAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
+        state.isLogged = action.payload.isLogged;
       })
       .addCase(signInWithEmailAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -75,7 +91,8 @@ const authSlice = createSlice({
       })
       .addCase(signInWithGoogleAsync.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload
+        state.user = action.payload;
+        state.isLogged = action.payload.isLogged;
       })
       .addCase(signInWithGoogleAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -94,5 +111,9 @@ const authSlice = createSlice({
       });
   }
 })
+
+export const selectIsLogged = (state) => state.auth.isLogged
+
+export const { logOut } = authSlice.actions
 
 export default authSlice.reducer;

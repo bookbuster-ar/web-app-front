@@ -43,6 +43,7 @@ const Library = () => {
                 {genre.name}
               </button>
             </Link>
+
           ))
         )}
       </div>
