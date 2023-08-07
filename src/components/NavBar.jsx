@@ -8,7 +8,7 @@ import { logOut } from '../store/user/authSlice';
 const NavBar = () => {
   const [showDialog, setShowDialog] = useState(false);
   const isLogged = useSelector(selectIsLogged);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const openDialog = () => {
     setShowDialog(true);
@@ -19,8 +19,8 @@ const NavBar = () => {
   };
 
   const handleLogOut = () => {
-    dispatch(logOut(false))
-  }
+    dispatch(logOut(false));
+  };
 
   return (
     <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg'>
@@ -70,8 +70,11 @@ const NavBar = () => {
             {isLogged ? (
               <li>
                 <Link to='/'>
-                  <button className='px-4 py-2 inline-block' onClick={handleLogOut}>
-                    Cerrar Sesión
+                  <button
+                    className='px-4 py-2 inline-block'
+                    onClick={handleLogOut}
+                  >
+                    Cerrar sesión
                   </button>
                 </Link>
               </li>

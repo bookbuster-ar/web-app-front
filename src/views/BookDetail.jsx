@@ -1,6 +1,4 @@
 import React from 'react';
-// import Star from '../icons/Star';
-// import Star from '../icons/Star';
 
 const book = {
   title: 'El principito',
