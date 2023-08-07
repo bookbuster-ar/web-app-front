@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../services/firebase/firebase';
+import { signUpWithEmailAsync } from '../../store/user/authSlice';
+import { useDispatch } from 'react-redux';
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch()
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -16,20 +17,7 @@ const SignupForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      console.log(user);
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(`Error Code: ${errorCode}, Error Message: ${errorMessage}`);
-    }
+    dispatch(signUpWithEmailAsync({email, password}))
   };
 
   return (
@@ -40,7 +28,7 @@ const SignupForm = () => {
         id='signup-email'
         value={email}
         onChange={handleChangeEmail}
-        className='m-2 min-w-full rounded-md'
+        className='m-2 p-1 min-w-full rounded-md'
       />
       <input
         type='password'
@@ -48,9 +36,9 @@ const SignupForm = () => {
         id='signup-password'
         value={password}
         onChange={handleChangePassword}
-        className='m-2 min-w-full rounded-md'
+        className='m-2 p-1 min-w-full rounded-md'
       />
-      <button type='submit' className='bg-blue-200 rounded-2xl m-1'>
+      <button type='submit' className='bg-blue-200 rounded-2xl m-1 p-1 hover:bg-blue-300'>
         Registrarme
       </button>
     </form>

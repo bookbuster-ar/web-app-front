@@ -8,7 +8,7 @@ const FormSell = () => {
   const dispatch = useDispatch();
   const genres = useSelector(selectAllGenres);
   const genreStatus = useSelector(selectGenreStatus);
-  const [ imagePreview, setImagePreview ] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -45,6 +45,7 @@ const FormSell = () => {
     event.preventDefault();
     const bookData = buildFormData(form);
     dispatch(createBook(bookData));
+    setImagePreview(null)
 
     setForm({
       title: '',
@@ -69,7 +70,7 @@ const FormSell = () => {
     event.preventDefault();
     const file = event.target.files[0];
     const imagePreviewURL = URL.createObjectURL(file);
-    setImagePreview(imagePreviewURL)
+    setImagePreview(imagePreviewURL);
 
     setForm((prevForm) => ({
       ...prevForm,
@@ -119,25 +120,27 @@ const FormSell = () => {
   };
 
   return (
-    <div className='flex flex-row'>
+    <div className='flex flex-row '>
       <div className='flex flex-col justify-content items-center m-3 w-2/4'>
-        <h1 className='font-bold text-4xl text-black text-center'>
-          ¿Cómo venderle tus libros a Bookbuster?
-        </h1>
-        <h2>Bookbuster es una plataforma de novedades editoriales.</h2>
-        <h2>
-          Para vender tu libro a la plataforma, debe cumplir los siguientes
-          requisitos:
-        </h2>
-        <p>• El libro debe haberse publicado en los últimos 15 años.</p>
-        <p>
-          • No debe estar marcado, ni faltarle páginas, ni tener daños que
-          impidan su correcta lectura.
-        </p>
-        <p>
-          Si tu libro cumple con estos requisitos, completá los siguientes
-          datos:
-        </p>
+        <div className='flex flex-col justify-center items-center p-4 m-2 border-solid border border-blue-500 rounded-xl'>
+          <h1 className='font-bold text-4xl text-black text-center'>
+            ¿Cómo venderle tus libros a Bookbuster?
+          </h1>
+          <h2>Bookbuster es una plataforma de novedades editoriales.</h2>
+          <h2>
+            Para vender tu libro a la plataforma, debe cumplir los siguientes
+            requisitos:
+          </h2>
+          <p>• El libro debe haberse publicado en los últimos 15 años.</p>
+          <p>
+            • No debe estar marcado, ni faltarle páginas, ni tener daños que
+            impidan su correcta lectura.
+          </p>
+          <p>
+            Si tu libro cumple con estos requisitos, completá los siguientes
+            datos:
+          </p>
+        </div>
         <form onSubmit={submitHandler} className='flex flex-col items-end'>
           <div className='my-2'>
             <label className='mr-16 w-48 items-center'>Título del libro</label>
@@ -321,7 +324,7 @@ const FormSell = () => {
             </div>
           </div>
 
-          <p>
+          <p className='max-w-2xl p-2 m-4'>
             Evaluaremos tu libro y te responderemos en las próximas 48hs. En
             caso de que tu libro cumpla con los requisitos, te enviaremos una
             confirmación junto al crédito para utilizar en nuestra plataforma.
@@ -337,11 +340,11 @@ const FormSell = () => {
         </form>
       </div>
 
-      <div className=' w-2/5 fixed right-4 max-h-fit'>
-        <h1 className='font-bold text-4xl text-black text-center'>Tu libro</h1>
-        <div className='text-black text-base rounded-md pl-2 p-2 h-5/6 bg-transparent border outline-none flex flex-col items-center justify-center'>
-          <h2>{form.title}</h2>
-          <h3>{form.author}</h3>
+      <div className=' w-5/12 fixed right-4 max-h-fit '>
+        <h1 className='font-bold text-4xl text-black text-center p-4 m-2'>Tu libro</h1>
+        <div className=' text-black bg-blue-300 bg-opacity-10 text-base rounded-xl pl-2 p-2 h-5/6 bg-transparent border shadow-lg outline-none flex flex-col items-center justify-center'>
+          <h2 className='font-bold text-3xl'>{form.title}</h2>
+          <h3 className='text-xl'>{form.author}</h3>
           <h3>{form.publication_year}</h3>
           <h3>{form.editorial}</h3>
           <h3>{form.editorial_collection}</h3>
@@ -350,7 +353,13 @@ const FormSell = () => {
           <h3>{form.language}</h3>
           <h3>{form.size}</h3>
           <h3>{form.price}</h3>
-          {imagePreview && <img src={imagePreview} alt="Vista previa de la tapa" className='max-w-sm' />}
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt='Vista previa de la tapa'
+              className='max-w-xs'
+            />
+          )}
         </div>
       </div>
     </div>
