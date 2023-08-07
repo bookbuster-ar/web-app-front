@@ -7,6 +7,7 @@ const FormSell = () => {
   const dispatch = useDispatch();
   const genres = useSelector(selectAllGenres);
   const genreStatus = useSelector(selectGenreStatus);
+  const [ imagePreview, setImagePreview ] = useState(null);
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
@@ -64,6 +65,9 @@ const FormSell = () => {
   const handleUploadCover = (event) => {
     event.preventDefault();
     const file = event.target.files[0];
+    const imagePreviewURL = URL.createObjectURL(file);
+    setImagePreview(imagePreviewURL)
+
     setForm((prevForm) => ({
       ...prevForm,
       images: {
@@ -313,8 +317,9 @@ const FormSell = () => {
 
       <div className=' w-2/4'>
         <h1 className='font-bold text-4xl text-black text-center'>Tu libro</h1>
-        <div>
-          <h2>{form.title}</h2>
+        <div className='flex items-center flex-col'>
+          <h2 className='text-3xl'>{form.title}</h2>
+          {imagePreview && <img src={imagePreview} alt="Vista previa de la tapa" className='max-w-xl' />}
         </div>
       </div>
     </div>
