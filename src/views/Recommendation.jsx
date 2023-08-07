@@ -73,8 +73,8 @@ const Recommendation = () => {
             {genreStatus === 'loading' ? (
               <p>Loading...</p>
             ) : (
-              genres?.map((genre) => (
-                <button className='flex justify-center items-center p-2 border border-blue-500 rounded-lg w-auto focus:text-white focus:outline-none focus:bg-blue-500'>
+              genres?.map((genre, index) => (
+                <button key={index} className='flex justify-center items-center p-2 border border-blue-500 rounded-lg w-auto focus:text-white focus:outline-none focus:bg-blue-500'>
                   {genre.name}
                 </button>
               ))

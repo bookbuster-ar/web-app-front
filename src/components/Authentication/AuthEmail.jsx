@@ -1,15 +1,27 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAsync } from '../../store/user/authSlice'
 
 const SignInWithEmail = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
-    dispatch(signInWithEmailAsync({email, password}))
+    await dispatch(signInWithEmailAsync({email, password})).unwrap().then(() => {
+      navigate('/')
+    }).catch((error) => {
+      console.log(error);
+      if(error.code.includes('user')) {
+        window.alert('Usuario inexistente')
+      }
+      else if(error.code.includes('password')) {
+        window.alert('Usuario o contraseña incorrecta')
+      }
+    })
   };
 
   return (

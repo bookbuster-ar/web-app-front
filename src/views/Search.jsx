@@ -22,8 +22,8 @@ const Search = () => {
         {genreStatus === 'loading' ? (
           <p>Loading...</p>
         ) : (
-          genres?.map((genre) => (
-            <div className='text-black text-base rounded-md pl-2 w-96 bg-transparent flex justify-center border outline-none m-1 p-2 hover:border-blue-600 hover:text-blue-600 cursor-pointer'>
+          genres?.map((genre, index) => (
+            <div key={index} className='text-black text-base rounded-md pl-2 w-96 bg-transparent flex justify-center border outline-none m-1 p-2 hover:border-blue-600 hover:text-blue-600 cursor-pointer'>
               {genre.name}
             </div>
           ))

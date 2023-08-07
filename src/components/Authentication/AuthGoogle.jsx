@@ -1,12 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { signInWithGoogleAsync } from '../../store/user/authSlice'
+import { useNavigate } from 'react-router-dom';
 
 const GoogleSignIn = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleGoogleSignIn = async () => {
     try {
-      await dispatch(signInWithGoogleAsync());
+      await dispatch(signInWithGoogleAsync()).unwrap().then(() => {
+        navigate('/')
+      });
     } catch (error) {
       console.error('Error al iniciar sesión con Google: ', error);
     }

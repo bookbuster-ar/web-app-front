@@ -35,7 +35,7 @@ const Library = () => {
           <p>Loading...</p>
         ) : (
           genres?.map((genre, index) => (
-            <div
+            <div key={index}
               className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
             >
               {genre.name}
