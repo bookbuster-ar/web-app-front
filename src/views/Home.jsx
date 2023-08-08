@@ -25,14 +25,14 @@ const Home = () => {
             online.
           </h3>
         </div>
-        <div className='flex flex-col space-y-4 w-56 items-center justify-center'>
+        <div className='flex flex-row  w-56 items-center justify-center content-center'>
           <Link to={'/home/library'}>
-            <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'>
+            <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
               Explorar la librería
             </button>
           </Link>
           <Link to={'/home/recommendation'}>
-            <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64'>
+            <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
               Obtener una recomendación
             </button>
           </Link>

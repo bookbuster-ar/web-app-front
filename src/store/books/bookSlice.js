@@ -1,15 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com';
-
-export const getBooksBySearch = createAsyncThunk(
-  'books/getBooksBySearch',
-  async (search) => {
-    const { data } = await axios.get(`${URL_BASE}/api/books?title=${search}`);
-    return data;
-  }
-);
+const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
 
 const initialState = {
   books: [],
@@ -26,20 +18,36 @@ const initialState = {
   detailError: null,
 };
 
+export const getBooksBySearch = createAsyncThunk(
+  'books/getBooksBySearch',
+  async (search) => {
+    const { data } = await axios.get(`${URL_BASE}/books?title=${search}`);
+    return data;
+  }
+);
+
+export const getBookByDetail = createAsyncThunk(
+  'books/getBookByDetail',
+  async (id) => {
+    const { data } = await axios.get(`${URL_BASE}/books/${id}`);
+    return data;
+  }
+);
+
 export const fetchGenres = createAsyncThunk('books/fetchGenres', async () => {
-  const { data } = await axios.get(`${URL_BASE}/api/genres`);
+  const { data } = await axios.get(`${URL_BASE}/genres`);
   return data;
 });
 
 export const fetchGenre = createAsyncThunk('books/fetchGenre', async (id) => {
-  const { data } = await axios.get(`${URL_BASE}/api/books/genre?id=${id}`);
+  const { data } = await axios.get(`${URL_BASE}/books/genre?id=${id}`);
   return data;
 });
 
 export const createBook = createAsyncThunk(
   'books/createBook',
   async (bookData) => {
-    const response = await axios.post(`${URL_BASE}/api/books`, bookData, {
+    const response = await axios.post(`${URL_BASE}/books`, bookData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -100,6 +108,17 @@ const bookSlice = createSlice({
       .addCase(getBooksBySearch.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.error.message;
+      })
+      .addCase(getBookByDetail.pending, (state) => {
+        state.detailStatus = 'loading';
+      })
+      .addCase(getBookByDetail.fulfilled, (state, action) => {
+        state.detailStatus = 'succeeded';
+        state.detail = action.payload;
+      })
+      .addCase(getBookByDetail.rejected, (state) => {
+        state.detailStatus = 'failed';
+        state.detailError = action.error.message;
       });
   },
 });
@@ -115,6 +134,10 @@ export const selectGenreError = (state) => state.books.genresError;
 export const selectSingleGenre = (state) => state.books.singleGenre;
 export const selectSingleGenreStatus = (state) => state.books.singleGenreStatus;
 export const selectSingleGenreError = (state) => state.books.singleGenreError;
+
+export const selectDetail = (state) => state.books.detail;
+export const selectDetailStatus = (state) => state.books.detailStatus;
+export const selectDetailError = (state) => state.books.detailError;
 
 // export const {actions jeje} = booksSlice.actions;
 export default bookSlice.reducer;
