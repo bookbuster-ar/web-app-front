@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createBook, fetchGenres } from '../store/books/bookSlice';
-import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import buildFormData from '../util';
 
 const FormSell = () => {
   const dispatch = useDispatch();
-  const genres = useSelector(selectAllGenres);
-  const genreStatus = useSelector(selectGenreStatus);
   const [imagePreview, setImagePreview] = useState(null);
 
   const currentDate = new Date();
@@ -21,17 +18,11 @@ const FormSell = () => {
     title: '',
     author: '',
     publication_year: '',
-    editorial: '',
-    editorial_collection: '',
-    genres: [],
-    synopsis: '',
-    pages: '',
-    language: '',
-    size: '',
-    price: '',
+    editorial_id: '',
+    editorial_name: '',
     images: {
       cover: {},
-      extra: [], //arreglo de objetos
+      extra: [],
     },
   });
 
@@ -44,20 +35,14 @@ const FormSell = () => {
     event.preventDefault();
     const bookData = buildFormData(form);
     dispatch(createBook(bookData));
-    setImagePreview(null)
+    setImagePreview(null);
 
     setForm({
       title: '',
       author: '',
       publication_year: '',
-      editorial: '',
-      editorial_collection: '',
-      genres: [],
-      synopsis: '',
-      pages: '',
-      language: '',
-      size: '',
-      price: '',
+      editorial_id: '',
+      editorial_name: '',
       images: {
         cover: {},
         extra: [],
@@ -181,106 +166,7 @@ const FormSell = () => {
             <input
               type='text'
               name='editorial'
-              value={form.editorial}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-          <div className='my-2'>
-            <label className='mr-16'>Colección (opcional)</label>
-            <input
-              type='text'
-              name='editorial_collection'
-              value={form.editorial_collection}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-          <div className='my-2'>
-            <label className='mr-16'>Géneros</label>
-            <select name='genres' onChange={selectHandler}>
-              {genreStatus === 'loading' ? (
-                <option>Loading...</option>
-              ) : (
-                genres?.map((gen, index) => {
-                  return (
-                    <option
-                      key={`${gen.id}-${index}`}
-                      value={gen.name}
-                      id={gen.id}
-                    >
-                      {gen.name}
-                    </option>
-                  );
-                })
-              )}
-            </select>
-          </div>
-
-          <div className='my-2'>
-            <h2 className='mr-16'>Géneros Seleccionados</h2>
-            <div>
-              {form.genres &&
-                form.genres?.map((gen) => (
-                  <button
-                    className='text-black text-base rounded-md pl-2  p-2  bg-transparent border outline-none'
-                    key={gen.id}
-                    onClick={() => deleteSelection(gen)}
-                  >
-                    {gen.name}
-                  </button>
-                ))}
-            </div>
-          </div>
-
-          <div className='my-2'>
-            <label className='mr-16'>Sinopsis</label>
-            <input
-              type='text'
-              name='synopsis'
-              value={form.synopsis}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-
-          <div className='my-2'>
-            <label className='mr-16'>Cantidad de páginas</label>
-            <input
-              type='number'
-              min='1'
-              name='pages'
-              value={form.pages}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-          <div className='my-2'>
-            <label className='mr-16'>Idioma</label>
-            <input
-              type='text'
-              name='language'
-              value={form.language}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-          <div className='my-2'>
-            <label className='mr-16'>Tamaño</label>
-            <input
-              type='text'
-              name='size'
-              value={form.size}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-          <div className='my-2'>
-            <label className='mr-16'>Sugerir precio</label>
-            <input
-              type='text'
-              name='price'
-              value={form.price}
+              value={form.editorial_name}
               onChange={changeHandler}
               className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
             />
@@ -340,18 +226,14 @@ const FormSell = () => {
       </div>
 
       <div className=' w-5/12 fixed right-4 max-h-fit '>
-        <h1 className='font-bold text-4xl text-black text-center p-4 m-2'>Tu libro</h1>
+        <h1 className='font-bold text-4xl text-black text-center p-4 m-2'>
+          Tu libro
+        </h1>
         <div className=' text-black bg-blue-300 bg-opacity-10 text-base rounded-xl pl-2 p-2 h-5/6 bg-transparent border shadow-lg outline-none flex flex-col items-center justify-center'>
           <h2 className='font-bold text-3xl'>{form.title}</h2>
           <h3 className='text-xl'>{form.author}</h3>
           <h3>{form.publication_year}</h3>
           <h3>{form.editorial}</h3>
-          <h3>{form.editorial_collection}</h3>
-          <h3>{form.synopsis}</h3>
-          <h3>{form.pages}</h3>
-          <h3>{form.language}</h3>
-          <h3>{form.size}</h3>
-          <h3>{form.price}</h3>
           {imagePreview && (
             <img
               src={imagePreview}

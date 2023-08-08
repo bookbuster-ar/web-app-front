@@ -3,14 +3,9 @@ const buildFormData = (bookInfo) => {
     title,
     author,
     publication_year,
-    editorial,
-    editorial_collection,
+    editorial_id,
+    editorial_name,
     genres,
-    synopsis,
-    pages,
-    language,
-    size,
-    price,
     images: { cover, extra },
   } = bookInfo;
 
@@ -19,27 +14,20 @@ const buildFormData = (bookInfo) => {
   formData.append('title', title);
   formData.append('author', author);
   formData.append('publication_year', publication_year);
-  formData.append('editorial', editorial);
-  formData.append('editorial_collection', editorial_collection);
-  formData.append('genres', JSON.stringify(genres));
-  formData.append('synopsis', synopsis);
-  formData.append('pages', pages);
-  formData.append('language', language);
-  formData.append('size', size);
-  formData.append('price', price);
+  formData.append('editorial_id', editorial_id);
+  formData.append('editorial_name', editorial_name);
 
   if (cover instanceof File) {
     formData.append('cover', cover);
   }
 
   if (Array.isArray(extra) && extra.length > 0) {
-    extra.forEach((file, index) => {
+    extra.forEach((file) => {
       if (file instanceof File) {
-        formData.append(`extra[${index}]`, file);
+        formData.append(`extra`, file);
       }
     });
   }
-  console.log(formData);
   return formData;
 };
 

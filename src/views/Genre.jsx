@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
-import { fetchGenre } from '../store/books/bookSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSingleGenre, selectGenreStatus } from '../store/books/bookSlice';
+import {
+  fetchGenre,
+  selectSingleGenre,
+  selectGenreStatus,
+} from '../store/books/bookSlice';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +18,7 @@ const Genre = () => {
   useEffect(() => {
     dispatch(fetchGenre(id));
   }, [dispatch, id]);
-  console.log(singleGenreStatus);
+
   return (
     <div className='h-full flex flex-col items-center'>
       <div className='bg-gray-500 w-full h-36 flex justify-center items-center mb-16'>
