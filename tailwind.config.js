@@ -12,6 +12,9 @@ export default {
       sans: ['Roboto', 'sans-serif'],
     },
     extend: {
+      minWidth: {
+        'custom': '700px',
+      },
       colors: {
         primary: '#020617',
         secondary: '#0f172a',
