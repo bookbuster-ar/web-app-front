@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLogged } from '../store/user/authSlice';
 import { logOut } from '../store/user/authSlice';
+import User from '../icons/User';
 
 const NavBar = () => {
   const [showDialog, setShowDialog] = useState(false);
@@ -87,6 +88,13 @@ const NavBar = () => {
                 </Link>
               </li>
             )}
+            <li>
+              <Link to='/home/user'>
+                <button className='px-4 py-2 inline-block'>
+                  <User />
+                </button>
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

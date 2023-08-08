@@ -5,18 +5,17 @@ import { fetchGenres } from '../store/books/bookSlice';
 import { Link } from 'react-router-dom';
 
 const colorClasses = {
-  0: 'bg-red-400',
-  1: 'bg-yellow-400',
-  2: 'bg-green-400',
-  3: 'bg-blue-400',
-  4: 'bg-indigo-400',
-  5: 'bg-purple-400',
-  6: 'bg-pink-400',
-  7: 'bg-gray-400',
-  8: 'bg-yellow-600',
-  9: 'bg-green-600',
-  10: 'bg-blue-400',
-  11: 'bg-lime-400',
+  0: 'bg-red-300',
+  1: 'bg-blue-500',
+  2: 'bg-green-500',
+  3: 'bg-red-600',
+  4: 'bg-yellow-400',
+  5: 'bg-red-300',
+  6: 'bg-yellow-400',
+  7: 'bg-red-600',
+  8: 'bg-red-300',
+  9: 'bg-green-500',
+  10: 'bg-blue-500',
 };
 
 const Library = () => {
@@ -43,7 +42,6 @@ const Library = () => {
                 {genre.name}
               </button>
             </Link>
-
           ))
         )}
       </div>

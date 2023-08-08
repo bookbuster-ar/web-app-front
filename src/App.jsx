@@ -8,6 +8,7 @@ import {
   Recommendation,
   Subscription,
   Genre,
+  UserProfile,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
@@ -26,6 +27,7 @@ function App() {
         <Route path='/home/recommendation' element={<Recommendation />} />
         <Route path='/home/subscription' element={<Subscription />} />
         <Route path='/home/library/genre/:id' element={<Genre />} />
+        <Route path='/home/user' element={<UserProfile />} />
       </Routes>
     </div>
   );
