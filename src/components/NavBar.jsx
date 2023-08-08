@@ -122,7 +122,7 @@ const NavBar = () => {
                   <h2 className='text-lg font-semibold mb-2 '>Clásica</h2>
                 </div>
                 <p>
-                  • Envió sin cargo en caso de compra de libros nuevos y usados.
+                  • Envío sin cargo en caso de compra de libros nuevos y usados.
                 </p>
                 <p>• Alquilar hasta 2 libros en simultáneo.</p>
                 <p>
@@ -144,7 +144,7 @@ const NavBar = () => {
                 </div>
 
                 <p>
-                  • Envió sin cargo en caso de compra de libros nuevos y usados.
+                  • Envío sin cargo en caso de compra de libros nuevos y usados.
                 </p>
                 <p>• Alquilar hasta 4 libros en simultáneo.</p>
                 <p>
