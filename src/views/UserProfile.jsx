@@ -5,7 +5,7 @@ function UserProfile() {
     photoURL:
       'https://media.tycsports.com/files/2023/02/10/532928/lionel-messi_1440x810_wmk.webp',
     name: 'Juan Pérez',
-    bookGenres: ['Ciencia Ficción', 'Fantasía', 'Historia'],
+    bookGenres: ['Ciencia Ficción', 'Fantasía', 'Historia', 'Poesía'],
     email: 'juan@example.com',
     phone: '+1234567890',
     birthdate: '01/01/1990',
