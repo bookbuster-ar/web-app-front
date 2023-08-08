@@ -36,11 +36,6 @@ const Home = () => {
               Obtener una recomendación
             </button>
           </Link>
-          <Link to={'/home/detail'}>
-            <button className='bg-red-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'>
-              Ver detalle de libro
-            </button>
-          </Link>
         </div>
       </div>
 

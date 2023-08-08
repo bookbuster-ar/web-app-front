@@ -3,6 +3,7 @@ import { fetchGenre } from '../store/books/bookSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSingleGenre, selectGenreStatus } from '../store/books/bookSlice';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Genre = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Genre = () => {
         ) : (
           singleGenre.books?.map((book) => {
             return (
+              <Link to={`/detail/${book.id}`}>
                 <div className='w-44 text-sm'>
                   <img
                     className='h-56 w-44 object-cover'
@@ -34,6 +36,7 @@ const Genre = () => {
                   <h2>{book.author}</h2>
                   <h2 className='font-bold'>{book.title}</h2>
                 </div>
+              </Link>
             );
           })
         )}

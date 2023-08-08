@@ -21,6 +21,9 @@ const initialState = {
   singleGenre: {},
   singleGenreStatus: 'idle',
   singleGenreError: null,
+  detail: {},
+  detailStatus: 'idle',
+  detailError: null,
 };
 
 export const fetchGenres = createAsyncThunk('books/fetchGenres', async () => {

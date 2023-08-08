@@ -1,16 +1,20 @@
+import { Link } from 'react-router-dom';
+
 export function ListOfBooks({ books }) {
   return (
     <ul className='grid grid-cols-4 gap-5'>
       {books.map((book) => (
-        <li key={book.id}>
-          <h3>{book.title}</h3>
-          <p>{book.author}</p>
-          <img
-            src={book.images.cover}
-            alt={book.title}
-            className='h-72 w-3/4 object-cover'
-          />
-        </li>
+        <Link to={`/detail/${book.id}`}>
+          <li key={book.id}>
+            <h3>{book.title}</h3>
+            <p>{book.author}</p>
+            <img
+              src={book.images.cover}
+              alt={book.title}
+              className='h-72 w-3/4 object-cover'
+            />
+          </li>
+        </Link>
       ))}
     </ul>
   );
