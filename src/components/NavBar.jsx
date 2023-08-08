@@ -50,11 +50,6 @@ const NavBar = () => {
               </NavLink>
             </li>
             <li>
-              <button onClick={openDialog} className='px-4 py-2 inline-block'>
-                ¿Por qué suscribirme?
-              </button>
-            </li>
-            <li>
               <Link to='/home/sellbook'>
                 <button className='px-4 py-2 inline-block'>
                   Vendé tus libros
@@ -63,9 +58,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link to={'/home/subscription'}>
-                <button className='px-4 py-2 inline-block'>
-                  Comprar suscripción
-                </button>
+                <button className='px-4 py-2 inline-block'>Suscripción</button>
               </Link>
             </li>
             {isLogged ? (
