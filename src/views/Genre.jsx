@@ -16,26 +16,24 @@ const Genre = () => {
   }, [dispatch, id]);
   console.log(singleGenreStatus);
   return (
-    <div className='bg-red-200 h-3/6 '>
-      <div>
+    <div className='h-full flex flex-col items-center'>
+      <div className='bg-gray-500 w-full h-36 flex justify-center items-center mb-16'>
         <h1 className='font-bold text-4xl text-white'>{singleGenre.genre}</h1>
       </div>
-      <div className='grid grid-cols-4 gap-5'>
+      <div className='h-auto w-full px-5 flex flex-wrap gap-3'>
         {singleGenreStatus === 'loading' ? (
           <p>Loading...</p>
         ) : (
           singleGenre.books?.map((book) => {
             return (
-              <div>
-                <div>
-                  <h1>{book.title}</h1>
-                  <h2>{book.author}</h2>
+                <div className='w-44 text-sm'>
                   <img
-                    className='h-72 w-3/4 object-cover'
+                    className='h-56 w-44 object-cover'
                     src={book.images.cover}
                   />
+                  <h2>{book.author}</h2>
+                  <h2 className='font-bold'>{book.title}</h2>
                 </div>
-              </div>
             );
           })
         )}
