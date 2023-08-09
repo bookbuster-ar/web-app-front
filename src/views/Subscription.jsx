@@ -8,16 +8,13 @@ const Subscription = () => {
           Los beneficios de ser parte de la comunidad suscripta
         </h2>
         <h3 className='font-sans text-2xl text-black text-sm'>
-          Imagina un mundo donde cada página te invita a explorar más allá de lo
-          convencional. Al unirte a nuestra comunidad suscripta de amantes de
-          los libros, te embarcas en un viaje literario lleno de sorpresas.
-          Acceso exclusivo a títulos anticipados, invitaciones a charlas íntimas
-          con tus autores favoritos, y un club de lectura VIP donde tus
-          opiniones dan forma a nuestra colección. Además, cada mes, un libro
-          cuidadosamente seleccionado espera en tu estantería digital, una
-          puerta a nuevos horizontes. Con nosotros, la lectura no es solo un
-          pasatiempo, es una aventura continua que celebra la alegría de
-          descubrir, aprender y conectar.
+          Opción de alquilar libros físicos. Tenés descuentos en compras y
+          descargas sobre el precio regular de la plataforma. Tenés la
+          posibilidad de vender tus libros a la plataforma, y usar el crédito
+          para comprar o alquilar otros libros. No pagas nunca costos de envío o
+          retiro de libros. Accedés a un catálogo exclusivo para socios.
+          Descuentos en compras de productos y servicios de nuestras tiendas
+          amigas.
         </h3>
       </div>
       <div className='w-7/16 flex items-center'>
@@ -34,7 +31,7 @@ const Subscription = () => {
           <p>30 días de permanencia de libros</p>
           <div className='flex justify-center '>
             <h2 className='text-lg font-semibold mb-2 text-blue-500 mt-12'>
-              ARS$2.000
+              ARS $2.000
             </h2>
           </div>
           <div className='flex justify-center '>
