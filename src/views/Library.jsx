@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import { fetchGenres } from '../store/books/bookSlice';
+import Loader from '../icons/Loader/Loader';
 import { Link } from 'react-router-dom';
 
 const colorClasses = {
@@ -32,7 +33,7 @@ const Library = () => {
       <h1 className='font-bold text-4xl m-6'>Explorá la librería</h1>
       <div className='flex flex-row flex-wrap m-6 max-w-5xl justify-center'>
         {genreStatus === 'loading' ? (
-          <p>Loading...</p>
+          <Loader />
         ) : (
           genres?.map((genre, index) => (
             <Link to={`/home/library/genre/${genre.id}`}>

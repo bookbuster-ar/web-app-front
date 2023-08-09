@@ -1,60 +1,73 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBook, fetchGenres } from '../store/books/bookSlice';
 import buildFormData from '../util';
+import debounce from 'just-debounce-it';
+import { editoriales } from '../mock/editoriales';
+import { normalizeString } from '../util/normalizeString';
+
+const INITIAL_FORM_STATE = {
+  title: '',
+  author: '',
+  publication_year: '',
+  editorial_id: '',
+  editorial_name: '',
+  images: {
+    cover: null,
+    extra: [null, null, null],
+  },
+};
+
+const IMAGE_TYPES = {
+  backCover: 0,
+  spine: 1,
+  openSpine: 2,
+};
 
 const FormSell = () => {
+  const [filteredEditorials, setFilteredEditorials] = useState([]);
+  const [form, setForm] = useState(INITIAL_FORM_STATE);
+
   const dispatch = useDispatch();
-  const [imagePreview, setImagePreview] = useState(null);
+  const currentYear = new Date().getFullYear();
 
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-
-  useEffect(() => {
-    dispatch(fetchGenres());
-  }, [dispatch]);
-
-  const [form, setForm] = useState({
-    title: '',
-    author: '',
-    publication_year: '',
-    editorial_id: '',
-    editorial_name: '',
-    images: {
-      cover: {},
-      extra: [],
-    },
-  });
-
+  // Handlers
   const changeHandler = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
   };
 
+  const editorialChangeHandler = (event) => {
+    const value = event.target.value;
+    setForm({ ...form, editorial_name: value });
+    if (value.length >= 3) debouncedGetEditorial(value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    const bookData = buildFormData(form);
-    dispatch(createBook(bookData));
-    setImagePreview(null);
+    let updatedForm = { ...form };
+    const existingEditorial = editoriales.find(
+      (e) =>
+        normalizeString(e.name) === normalizeString(updatedForm.editorial_name)
+    );
+    console.log(updatedForm);
 
-    setForm({
-      title: '',
-      author: '',
-      publication_year: '',
-      editorial_id: '',
-      editorial_name: '',
-      images: {
-        cover: {},
-        extra: [],
-      },
-    });
+    if (existingEditorial) {
+      updatedForm.editorial_id = existingEditorial.id;
+      updatedForm.editorial_name = '';
+    } else {
+      updatedForm.editorial_id = null;
+    }
+
+    const bookData = buildFormData(updatedForm);
+    dispatch(createBook(bookData));
+
+    setForm(INITIAL_FORM_STATE);
   };
 
   const handleUploadCover = (event) => {
     event.preventDefault();
     const file = event.target.files[0];
-    const imagePreviewURL = URL.createObjectURL(file);
-    setImagePreview(imagePreviewURL);
 
     setForm((prevForm) => ({
       ...prevForm,
@@ -65,43 +78,55 @@ const FormSell = () => {
     }));
   };
 
-  const handleUploadExtraImages = (event) => {
+  const handleUploadExtraImages = (type) => (event) => {
     event.preventDefault();
     const file = event.target.files[0];
-    setForm((prevForm) => ({
-      ...prevForm,
-      images: {
-        ...prevForm.images,
-        extra: [...prevForm.images.extra, file],
-      },
-    }));
-  };
 
-  const selectHandler = (event) => {
-    if (
-      event.target.value &&
-      !form.genres.some((genre) => genre.name === event.target.value)
-    ) {
-      const selectedGenreName = event.target.value;
-      const selectedGenreID =
-        event.target.options[event.target.selectedIndex].id;
-      const newState = { ...form };
+    setForm((prevForm) => {
+      const extraImages = [...prevForm.images.extra];
 
-      newState.genres = [
-        ...newState.genres,
-        { id: selectedGenreID, name: selectedGenreName },
-      ];
-      setForm(newState);
-    }
-  };
+      if (type === 'backCover') extraImages[0] = file;
+      if (type === 'spine') extraImages[1] = file;
+      if (type === 'openSpine') extraImages[2] = file;
 
-  const deleteSelection = (genre) => {
-    let filteredGenres = form.genres.filter((gen) => gen !== genre);
-    setForm({
-      ...form,
-      genres: filteredGenres,
+      return {
+        ...prevForm,
+        images: {
+          ...prevForm.images,
+          extra: extraImages,
+        },
+      };
     });
   };
+
+  const debouncedGetEditorial = useCallback(
+    debounce((editorial) => {
+      if (editorial) {
+        const normalizedInput = normalizeString(editorial);
+        const matches = editoriales.filter((e) =>
+          normalizeString(e.name).includes(normalizedInput)
+        );
+        setFilteredEditorials(matches);
+      } else {
+        setFilteredEditorials([]);
+      }
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    dispatch(fetchGenres());
+  }, [dispatch]);
+
+  const images = [
+    { label: 'Tapa', image: form.images.cover },
+    { label: 'Contratapa', image: form.images.extra[IMAGE_TYPES.backCover] },
+    { label: 'Lomo', image: form.images.extra[IMAGE_TYPES.spine] },
+    {
+      label: 'Lomo abierto por la mitad',
+      image: form.images.extra[IMAGE_TYPES.openSpine],
+    },
+  ];
 
   return (
     <div className='flex flex-row '>
@@ -165,11 +190,31 @@ const FormSell = () => {
             <label className='mr-16'>Editorial</label>
             <input
               type='text'
-              name='editorial'
+              name='editorial_name'
               value={form.editorial_name}
-              onChange={changeHandler}
+              onChange={editorialChangeHandler}
               className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
             />
+            {filteredEditorials.length > 0 && (
+              <div>
+                {filteredEditorials.map((e) => (
+                  <div
+                    className='flex justify-center m-1 text-white border rounded-xl bg-blue-300 cursor-pointer '
+                    key={e.id}
+                    onClick={() => {
+                      setForm({
+                        ...form,
+                        editorial_id: e.id,
+                        editorial_name: e.name,
+                      });
+                      setFilteredEditorials([]);
+                    }}
+                  >
+                    {e.name}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <h1 className='mr-36 font-bold'>Fotos reales del libro</h1>
@@ -187,7 +232,7 @@ const FormSell = () => {
               <label className='mr-16'>Contratapa</label>
               <input
                 type='file'
-                onChange={handleUploadExtraImages}
+                onChange={handleUploadExtraImages('backCover')}
                 className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
               />
             </div>
@@ -195,7 +240,7 @@ const FormSell = () => {
               <label className='mr-16'>Lomo</label>
               <input
                 type='file'
-                onChange={handleUploadExtraImages}
+                onChange={handleUploadExtraImages('spine')}
                 className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
               />
             </div>
@@ -203,7 +248,7 @@ const FormSell = () => {
               <label className='mr-16'>Lomo abierto por la mitad</label>
               <input
                 type='file'
-                onChange={handleUploadExtraImages}
+                onChange={handleUploadExtraImages('openSpine')}
                 className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
               />
             </div>
@@ -233,13 +278,19 @@ const FormSell = () => {
           <h2 className='font-bold text-3xl'>{form.title}</h2>
           <h3 className='text-xl'>{form.author}</h3>
           <h3>{form.publication_year}</h3>
-          <h3>{form.editorial}</h3>
-          {imagePreview && (
-            <img
-              src={imagePreview}
-              alt='Vista previa de la tapa'
-              className='max-w-xs'
-            />
+          <h3>{form.editorial_name}</h3>
+          {images.map(
+            (imgData, index) =>
+              imgData.image && (
+                <div key={index} className='flex flex-col items-center'>
+                  <h4>{imgData.label}</h4>
+                  <img
+                    src={URL.createObjectURL(imgData.image)}
+                    alt={`Vista previa de ${imgData.label}`}
+                    className='max-w-xs'
+                  />
+                </div>
+              )
           )}
         </div>
       </div>
