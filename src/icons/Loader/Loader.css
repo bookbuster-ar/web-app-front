@@ -1,0 +1,45 @@
+.loader {
+  perspective: 67px;
+}
+
+.loader-child {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  transform-origin: left;
+  animation: loader 2s infinite;
+}
+
+.loader-child:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.loader-child:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loader-child:nth-child(3) {
+  animation-delay: 0.45s;
+}
+
+.loader-child:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.loader-child:nth-child(5) {
+  animation-delay: 0.75s;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50%, 80% {
+    transform: rotateY(-180deg);
+  }
+  90%, 100% {
+    opacity: 0;
+    transform: rotateY(-180deg);
+  }
+}
