@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
-import logoNav from '../assets/Logo.jpeg';
+import logoNav from '../assets/Logo.png';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLogged } from '../store/user/authSlice';
@@ -24,7 +24,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg'>
+    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg justify-between'>
       <div className='flex items-center py-3 px-10'>
         <div className='flex-grow-0'>
           <Link to='/'>
@@ -35,7 +35,7 @@ const NavBar = () => {
             />
           </Link>
         </div>
-        <nav className='space-x-6 mr-24 flex text-sm transition-colors duration-200 text-current font-medium'>
+        <nav className='space-x-6 flex text-sm transition-colors duration-200 text-current font-medium'>
           <ul className='flex space-x-4'>
             <li>
               <Link to={'/home/search'}>
@@ -56,9 +56,18 @@ const NavBar = () => {
                 </button>
               </Link>
             </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div className='flex items-center py-3 px-10'>
+        <nav className='space-x-6 mr-24 flex text-sm transition-colors duration-200 text-current font-medium'>
+          <ul className='flex space-x-4'>
             <li>
               <Link to={'/home/subscription'}>
-                <button className='px-4 py-2 inline-block'>Suscripción</button>
+                <button className='px-4 py-2 inline-block text-white bg-red-600 rounded-xl'>
+                  Suscripción
+                </button>
               </Link>
             </li>
             {isLogged ? (
@@ -96,24 +105,6 @@ const NavBar = () => {
         <div className='fixed inset-0 flex items-center justify-center '>
           <div className='inset-0 bg-gray-700 opacity-50'></div>
           <div className='bg-white absolute rounded-lg p-4 flex flex-col items-center justify-center w-2/4 h-5/6 shadow-xl shadow-gray-300'>
-            <h2 className='text-lg font-semibold mb-2'>
-              ¿Por qué suscribirme?
-            </h2>
-            <h3>Al suscribirte a Bookbuster:</h3>
-            <p>
-              • Opción de alquilar libros físicos.• Tenés descuentos en compras
-              y descargas sobre el precio regular de la plataforma.
-            </p>
-            <p>
-              • Tenés la posibilidad de vender tus libros a la plataforma, y
-              usar el crédito para comprar o alquilar otros libros.{' '}
-            </p>
-            <p> • No pagas nunca costos de envío o retiro de libros. </p>
-            <p>• Accedés a un catálogo exclusivo para socios. </p>
-            <p>
-              • Descuentos en compras de productos y servicios de nuestras
-              tiendas amigas.
-            </p>
             <h2 className='text-lg font-semibold mb-2'>
               Nuestras suscripciones
             </h2>
@@ -159,7 +150,7 @@ const NavBar = () => {
                 </p>
                 <div className='flex justify-center '>
                   <h2 className='text-lg font-semibold mb-2 color text-blue-500'>
-                    ARS$8.000
+                    ARS $8.000
                   </h2>
                 </div>
               </div>
