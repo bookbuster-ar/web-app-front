@@ -20,9 +20,8 @@ const Home = () => {
         </div>
         <div className='w-2/5 text-center '>
           <h3 className='font-bold text-white '>
-            Encontrá historias atrapantes de la manera que vos quieras.
-            Descargá, alquilá, comprá y vendé libros en tu nueva librería
-            online.
+            Encontrá historias atrapantes de la manera que vos quieras. Leé,
+            escuchá, alquilá, comprá y vendé libros en tu nueva librería online.
           </h3>
         </div>
         <div className='flex flex-row  w-56 items-center justify-center content-center'>
@@ -66,14 +65,15 @@ const Home = () => {
           <div className='h-full p-9 space-y-6'>
             <div>
               <h1 className='font-bold text-3xl'>
-                Descargá, alquilá, comprá o vendé libros
+                Leé, escuchá, alquilá, comprá o vendé libros
               </h1>
             </div>
             <div className='font-sans text-lg'>
               <p>
-                Accedé a una amplia gama de libros que se pueden descargar,
-                alquilar, vender o comprar. Todos nuestros libros cuentan con un
-                sello de calidad que te garantiza su perfecto estado.
+                Accedé a una amplia gama de libros que se pueden leer en línea,
+                escuchar alquilar, vender o comprar. Todos nuestros libros
+                cuentan con un sello de calidad que te garantiza su perfecto
+                estado.
               </p>
             </div>
           </div>
@@ -120,14 +120,14 @@ const Home = () => {
               Recorré nuestro catálogo.
             </h2>
           </div>
-          <div className='flex flex-col space-y-4 w-56 items-center justify-center'>
+          <div className='flex flex-row  w-56 items-center justify-center content-center'>
             <Link to={'/home/library'}>
-              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'>
+              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
                 Explorar la librería
               </button>
             </Link>
             <Link to={'/home/recommendation'}>
-              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64'>
+              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
                 Obtener una recomendación
               </button>
             </Link>
