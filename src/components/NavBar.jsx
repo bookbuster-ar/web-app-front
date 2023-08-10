@@ -24,7 +24,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg justify-between'>
+    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg justify-between sm:'>
       <div className='flex items-center py-3 px-10'>
         <div className='flex-grow-0'>
           <Link to='/'>
@@ -35,6 +35,8 @@ const NavBar = () => {
             />
           </Link>
         </div>
+
+        <div></div>
         <nav className='space-x-6 flex text-sm transition-colors duration-200 text-current font-medium'>
           <ul className='flex space-x-4'>
             <li>
@@ -56,14 +58,6 @@ const NavBar = () => {
                 </button>
               </Link>
             </li>
-
-          </ul>
-        </nav>
-      </div>
-
-      <div className='flex items-center py-3 px-10'>
-        <nav className='space-x-6 mr-24 flex text-sm transition-colors duration-200 text-current font-medium'>
-          <ul className='flex space-x-4'>
             <li>
               <Link to={'/home/subscription'}>
                 <button className='px-4 py-2 inline-block'>
@@ -100,9 +94,7 @@ const NavBar = () => {
             </li>
             <li>
               <Link to='/home/admin'>
-                <button className='px-4 py-2 inline-block'>
-                  Admin
-                </button>
+                <button className='px-4 py-2 inline-block'>Admin</button>
               </Link>
             </li>
           </ul>
