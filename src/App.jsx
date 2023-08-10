@@ -9,9 +9,11 @@ import {
   Subscription,
   Genre,
   UserProfile,
+  Admin,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
+
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Route path='/home/subscription' element={<Subscription />} />
         <Route path='/home/library/genre/:id' element={<Genre />} />
         <Route path='/home/user' element={<UserProfile />} />
+        <Route path='/home/admin' element={<Admin />} />
       </Routes>
     </div>
   );
