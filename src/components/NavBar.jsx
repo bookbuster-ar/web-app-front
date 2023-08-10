@@ -65,8 +65,8 @@ const NavBar = () => {
           <ul className='flex space-x-4'>
             <li>
               <Link to={'/home/subscription'}>
-                <button className='px-4 py-2 inline-block text-white bg-red-600 rounded-xl'>
-                  Suscripción
+                <button className='px-4 py-2 inline-block'>
+                  ¿Por qué suscribirme?
                 </button>
               </Link>
             </li>

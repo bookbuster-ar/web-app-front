@@ -20,8 +20,9 @@ const Home = () => {
         </div>
         <div className='w-2/5 text-center '>
           <h3 className='font-bold text-white '>
-            Encontrá historias atrapantes de la manera que vos quieras. Leé,
-            escuchá, alquilá, comprá y vendé libros en tu nueva librería online.
+            Encontrá las historias que te apasionan a tu manera. Alquilá,
+            visualizá, escuchá, comprá y vendé libros en tu nueva librería on
+            line.
           </h3>
         </div>
         <div className='flex flex-row  w-56 items-center justify-center content-center'>
@@ -65,7 +66,7 @@ const Home = () => {
           <div className='h-full p-9 space-y-6'>
             <div>
               <h1 className='font-bold text-3xl'>
-                Leé, escuchá, alquilá, comprá o vendé libros
+                Comprá, visualizá, escuchá, alquilá o vendé libros:
               </h1>
             </div>
             <div className='font-sans text-lg'>
