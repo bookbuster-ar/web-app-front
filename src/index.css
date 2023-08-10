@@ -13,3 +13,10 @@
     @apply h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300;
   } */
 }
+
+/* @media (prefers-color-scheme: dark) {
+  body {
+    background: #282c34;
+    color: #fff
+  }
+} */
