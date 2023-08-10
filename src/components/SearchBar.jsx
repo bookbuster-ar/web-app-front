@@ -60,7 +60,7 @@ const SearchBar = () => {
         <input
           type='text'
           value={search}
-          placeholder='Buscá tu libro o autor aquí..'
+          placeholder='Encontrá tu próximo libro'
           onChange={handleChange}
           name='search'
           className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'

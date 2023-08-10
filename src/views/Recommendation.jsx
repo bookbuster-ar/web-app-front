@@ -16,9 +16,7 @@ const Recommendation = () => {
     <div>
       <div className='text-center h-52 flex justify-center items-center'>
         <div>
-          <h2 className='text-3xl font-bold'>
-            Encontraremos el libro indicado para vos...
-          </h2>
+          <h2 className='text-3xl font-bold'>¿Qué libro estás buscando?</h2>
           <br />
           <h4>
             Pero antes de continuar, ¿por qué no respondes unas preguntas?
@@ -74,7 +72,10 @@ const Recommendation = () => {
               <p>Loading...</p>
             ) : (
               genres?.map((genre, index) => (
-                <button key={index} className='flex justify-center items-center p-2 border border-blue-500 rounded-lg w-auto focus:text-white focus:outline-none focus:bg-blue-500'>
+                <button
+                  key={index}
+                  className='flex justify-center items-center p-2 border border-blue-500 rounded-lg w-auto focus:text-white focus:outline-none focus:bg-blue-500'
+                >
                   {genre.name}
                 </button>
               ))
