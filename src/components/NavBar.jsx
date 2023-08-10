@@ -56,6 +56,7 @@ const NavBar = () => {
                 </button>
               </Link>
             </li>
+
           </ul>
         </nav>
       </div>
@@ -94,6 +95,13 @@ const NavBar = () => {
               <Link to='/home/user'>
                 <button className='px-4 py-2 inline-block'>
                   <User />
+                </button>
+              </Link>
+            </li>
+            <li>
+              <Link to='/home/admin'>
+                <button className='px-4 py-2 inline-block'>
+                  Admin
                 </button>
               </Link>
             </li>
