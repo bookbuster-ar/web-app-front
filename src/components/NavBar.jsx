@@ -65,6 +65,13 @@ const NavBar = () => {
                 </button>
               </Link>
             </li>
+            <li>
+              <Link to={'/gift'}>
+                <button className='px-4 py-2 inline-block'>
+                  Regalá una suscripción a Bookbuster
+                </button>
+              </Link>
+            </li>
             {isLogged ? (
               <li>
                 <Link to='/'>
