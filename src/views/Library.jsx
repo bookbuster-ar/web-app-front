@@ -17,6 +17,8 @@ const colorClasses = {
   8: 'bg-red-300',
   9: 'bg-green-500',
   10: 'bg-blue-500',
+  11: 'bg-red-600',
+  12: 'bg-yellow-400',
 };
 
 const Library = () => {

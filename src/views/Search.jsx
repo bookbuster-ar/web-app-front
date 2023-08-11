@@ -15,7 +15,7 @@ const Search = () => {
   }, [dispatch]);
 
   return (
-    <div className='bg-slate-50  h-screen flex flex-col items-center space-y-12 p-4'>
+    <div className='bg-slate-50  h-full flex flex-col items-center space-y-12 p-4'>
       <div className='w-10/12 flex justify-center items-center'>
         <SearchBar />
       </div>

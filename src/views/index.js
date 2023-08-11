@@ -8,6 +8,7 @@ import Subscription from './Subscription';
 import Genre from './Genre';
 import UserProfile from './UserProfile';
 import Admin from './Admin';
+import Gift from './Gift';
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   Genre,
   UserProfile,
   Admin,
+  Gift,
 };

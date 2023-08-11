@@ -10,10 +10,10 @@ import {
   Genre,
   UserProfile,
   Admin,
+  Gift,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
-
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
         <Route path='/home/library/genre/:id' element={<Genre />} />
         <Route path='/home/user' element={<UserProfile />} />
         <Route path='/home/admin' element={<Admin />} />
+        <Route path='/gift' element={<Gift />} />
       </Routes>
     </div>
   );
