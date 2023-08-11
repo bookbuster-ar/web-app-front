@@ -19,7 +19,7 @@ const Search = () => {
       <div className='w-10/12 flex justify-center items-center'>
         <SearchBar />
       </div>
-      <div className='flex flex-col align-items box-border'>
+      {/* <div className='flex flex-col align-items box-border'>
         {genreStatus === 'loading' ? (
           <Loader />
         ) : (
@@ -32,7 +32,7 @@ const Search = () => {
             </div>
           ))
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
