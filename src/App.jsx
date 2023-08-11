@@ -11,9 +11,11 @@ import {
   UserProfile,
   Admin,
   Gift,
+  FormProfile,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
+FormProfile;
 
 function App() {
   return (
@@ -29,9 +31,10 @@ function App() {
         <Route path='/home/recommendation' element={<Recommendation />} />
         <Route path='/home/subscription' element={<Subscription />} />
         <Route path='/home/library/genre/:id' element={<Genre />} />
-        <Route path='/home/user' element={<UserProfile />} />
-        <Route path='/home/admin' element={<Admin />} />
+        <Route path='/user' element={<UserProfile />} />
+        <Route path='/admin' element={<Admin />} />
         <Route path='/gift' element={<Gift />} />
+        <Route path='/user/profile' element={<FormProfile />} />
       </Routes>
     </div>
   );

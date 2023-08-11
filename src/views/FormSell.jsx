@@ -50,7 +50,6 @@ const FormSell = () => {
       (e) =>
         normalizeString(e.name) === normalizeString(updatedForm.editorial_name)
     );
-    console.log(updatedForm);
 
     if (existingEditorial) {
       updatedForm.editorial_id = existingEditorial.id;
