@@ -5,7 +5,6 @@ const buildFormData = (bookInfo) => {
     publication_year,
     editorial_id,
     editorial_name,
-    genres,
     images: { cover, extra },
   } = bookInfo;
 

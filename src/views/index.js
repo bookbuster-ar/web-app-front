@@ -9,6 +9,7 @@ import Genre from './Genre';
 import UserProfile from './UserProfile';
 import Admin from './Admin';
 import Gift from './Gift';
+import FormProfile from './FormProfile';
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   UserProfile,
   Admin,
   Gift,
+  FormProfile,
 };

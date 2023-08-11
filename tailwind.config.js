@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       minWidth: {
-        'custom': '700px',
+        custom: '700px',
       },
       colors: {
         primary: '#020617',
@@ -84,5 +84,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };

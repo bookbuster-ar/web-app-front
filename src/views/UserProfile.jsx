@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 
 function UserProfile() {
   const user = {
@@ -24,12 +24,12 @@ function UserProfile() {
         </div>
         <h2 className='text-2xl mb-6 text-center'>{user.name}</h2>
         <ul>
-          <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
-            Perfil
-          </li>
-          <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
-            Configuración
-          </li>
+          <Link to={'/user/profile'}>
+            <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
+              Editar perfil
+            </li>
+          </Link>
+
           <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
             Mis libros
           </li>

@@ -24,7 +24,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className='text-xs bg-white flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg justify-between sm:'>
+    <nav className='text-xs bg-blue-600 flex flex-row py-5 space-x-6 w-full items-center h-20 shadow-lg justify-between sm:'>
       <div className='flex items-center py-3 px-10'>
         <div className='flex-grow-0'>
           <Link to='/'>
@@ -36,8 +36,7 @@ const NavBar = () => {
           </Link>
         </div>
 
-        <div></div>
-        <nav className='space-x-6 flex text-sm transition-colors duration-200 text-current font-medium'>
+        <nav className='space-x-6 flex text-sm text-white transition-colors duration-200 text-current font-medium'>
           <ul className='flex space-x-4'>
             <li>
               <Link to={'/home/search'}>
@@ -52,13 +51,6 @@ const NavBar = () => {
               </NavLink>
             </li>
             <li>
-              <Link to='/home/sellbook'>
-                <button className='px-4 py-2 inline-block'>
-                  Vendé tus libros
-                </button>
-              </Link>
-            </li>
-            <li>
               <Link to={'/home/subscription'}>
                 <button className='px-4 py-2 inline-block'>
                   ¿Por qué suscribirme?
@@ -66,9 +58,16 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
+              <Link to='/home/sellbook'>
+                <button className='px-4 py-2 inline-block'>
+                  Vendé tus libros
+                </button>
+              </Link>
+            </li>
+            <li>
               <Link to={'/gift'}>
                 <button className='px-4 py-2 inline-block'>
-                  Regalá una suscripción a Bookbuster
+                  Regalá Bookbuster
                 </button>
               </Link>
             </li>
@@ -93,14 +92,14 @@ const NavBar = () => {
               </li>
             )}
             <li>
-              <Link to='/home/user'>
+              <Link to='/user'>
                 <button className='px-4 py-2 inline-block'>
                   <User />
                 </button>
               </Link>
             </li>
             <li>
-              <Link to='/home/admin'>
+              <Link to='/admin'>
                 <button className='px-4 py-2 inline-block'>Admin</button>
               </Link>
             </li>
