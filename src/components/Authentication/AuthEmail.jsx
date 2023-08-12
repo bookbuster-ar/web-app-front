@@ -14,13 +14,8 @@ const SignInWithEmail = () => {
     await dispatch(signInWithEmailAsync({email, password})).unwrap().then(() => {
       navigate('/')
     }).catch((error) => {
-      console.log(error);
-      if(error.code.includes('user')) {
-        window.alert('Usuario inexistente')
-      }
-      else if(error.code.includes('password')) {
-        window.alert('Usuario o contraseña incorrecta')
-      }
+      console.log(error)
+      window.alert(error?.error)
     })
   };
 
