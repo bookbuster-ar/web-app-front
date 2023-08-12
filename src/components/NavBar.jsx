@@ -28,11 +28,7 @@ const NavBar = () => {
       <div className='flex items-center py-3 px-10'>
         <div className='flex-grow-0'>
           <Link to='/'>
-            <img
-              className='w-12 rounded-full ml-4 mr-4'
-              src={logoNav}
-              alt='Logo'
-            />
+            <img className='w-16 ml-4 mr-4' src={logoNav} alt='Logo' />
           </Link>
         </div>
 

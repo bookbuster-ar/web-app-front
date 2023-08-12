@@ -42,8 +42,6 @@ const FormProfile = () => {
     setForm(INITIAL_FORM_STATE);
   };
 
-  console.log(form.image);
-
   return (
     <section className='flex flex-col justify-center items-center'>
       <div className='bg-gray-100 max-w-2xl rounded-3xl ring-1 ring-gray-200 m-10 p-12 '>
@@ -358,8 +356,8 @@ const FormProfile = () => {
                           Comentarios
                         </label>
                         <p className='text-gray-500'>
-                          Notificarme cuando alguien realiza un comentario en
-                          respuesta a mi reseña/comentario.
+                          Notificarme cuando alguien comente mi reseña o
+                          reaccione a mi comentario.
                         </p>
                       </div>
                     </div>
