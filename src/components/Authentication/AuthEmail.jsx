@@ -1,23 +1,39 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'; // Agregar useSelector
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAsync } from '../../store/user/authSlice'
+import { signInWithEmailAsync, setRedirectPath, selectIsLogged, redirectPathSelector } from '../../store/user/authSlice';
 
 const SignInWithEmail = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Utiliza useSelector para obtener los valores reales
+  const isLogged = useSelector(selectIsLogged);
+  const redirectPathValue = useSelector(redirectPathSelector);
+
+  useEffect(() => {
+    if (isLogged && redirectPathValue) {
+      navigate(redirectPathValue);
+      dispatch(setRedirectPath(null)); // Limpiar el redirectPath después de usarlo
+    }
+  }, [isLogged, redirectPathValue, navigate, dispatch]);
 
   const handlerSubmit = async (event) => {
     event.preventDefault();
     await dispatch(signInWithEmailAsync({email, password})).unwrap().then(() => {
-      navigate('/')
+      if (redirectPathValue) {
+        navigate(redirectPathValue);
+        dispatch(setRedirectPath(null)); // Limpiar el redirectPath después de usarlo
+      } else {
+        navigate('/');
+      }
     }).catch((error) => {
-      console.log(error)
-      window.alert(error?.error)
-    })
-  };
+      console.log(error);
+      window.alert(error?.error);
+    });
+  };  
 
   return (
     <form onSubmit={handlerSubmit} className='flex flex-col'>

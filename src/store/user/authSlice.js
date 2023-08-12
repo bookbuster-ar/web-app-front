@@ -84,7 +84,7 @@ export const verifyUserEmail = createAsyncThunk('auth/verifyUserEmail', async (_
       status,
     }
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response)
+    return thunkAPI.rejectWithValue({ status: error.response.status, ...error.response.data });
   }
 })
 
@@ -115,8 +115,13 @@ const authSlice = createSlice({
     isLogged: false,
     isLoading: false,
     statusEmailVerified: null,
+    redirectPath: null,
   },
-  reducers: {},
+  reducers: {
+    setRedirectPath: (state, action) => {
+      state.redirectPath = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signInWithEmailAsync.pending, (state) => {
@@ -181,11 +186,14 @@ const authSlice = createSlice({
       })
       .addCase(verifyUserEmail.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.statusEmailVerified = action.payload.status
+        state.error = action.payload.message;
       })
   },
 });
 
+export const { setRedirectPath } = authSlice.actions;
+export const redirectPathSelector = (state) => state.auth.redirectPath;
 export const selectStatusVerified = (state) => state.auth.statusEmailVerified;
 export const selectIsLogged = (state) => state.auth.isLogged;
 
