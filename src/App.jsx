@@ -17,7 +17,6 @@ import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
 import SubscriptionCheckout from './views/SubscriptionCheckout.jsx';
-import BookCHeckout from './views/BookCHeckout';
 
 function App() {
   return (
@@ -42,7 +41,6 @@ function App() {
           path='/subscriptioncheckout'
           element={<SubscriptionCheckout />}
         />
-        <Route path='/bookcheckout' element={<BookCHeckout />} />
       </Routes>
     </div>
   );
