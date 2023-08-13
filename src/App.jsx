@@ -15,6 +15,7 @@ import {
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
+import VerifyEmail from './components/VerifyEmail';
 FormProfile;
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/admin' element={<Admin />} />
         <Route path='/gift' element={<Gift />} />
         <Route path='/user/profile' element={<FormProfile />} />
+        <Route path='/VerifyEmail' element={<VerifyEmail />} />
       </Routes>
     </div>
   );

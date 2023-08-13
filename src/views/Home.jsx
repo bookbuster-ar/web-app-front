@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import GirlImage from '../assets/girl.jpg';
 import image1 from '../assets/Home1.png';
-import image2 from '../assets/Home2.png';
-import image3 from '../assets/Home3.png';
-import image4 from '../assets/Home4.jpg';
+// import image2 from '../assets/Home2.png';
+// import image3 from '../assets/Home3.png';
+// import image4 from '../assets/Home4.jpg';
 import Footer from './Footer';
 
 const Home = () => {
@@ -25,7 +25,7 @@ const Home = () => {
             line.
           </h3>
         </div>
-        <div className='flex flex-row  w-56 items-center justify-center content-center'>
+        <div className='flex flex-row w-56 items-center justify-center content-center'>
           <Link to={'/home/library'}>
             <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
               Explorar la librería
@@ -39,9 +39,12 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='bg-white text-black h-screen flex justify-center items-center'>
+      <div className='bg-red-600 text-black h-screen flex justify-center items-center'>
         <div className='h-96 w-4/5 flex text-xl'>
-          <div className='h-full p-9 space-y-6'>
+          <div className='flex justify-end items-center h-full w-full'>
+            <img src={image1} alt='Imagen' className='max-w-lg' />
+          </div>
+          <div className='h-full space-y-6'>
             <div>
               <h1 className='font-bold text-3xl'>
                 Recomendaciones personalizadas
@@ -55,13 +58,10 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className='flex justify-end items-center h-full w-full'>
-            <img src={image1} alt='Imagen' className='max-w-lg' />
-          </div>
         </div>
       </div>
 
-      <div className='bg-white text-black h-screen flex justify-center items-center'>
+      <div className='bg-yellow-300 text-black h-screen flex justify-center items-center'>
         <div className='h-96 w-4/5 flex text-xl'>
           <div className='h-full p-9 space-y-6'>
             <div>
@@ -79,12 +79,12 @@ const Home = () => {
             </div>
           </div>
           <div className='flex justify-center items-center h-full w-full'>
-            <img src={image2} alt='Imagen2' className='max-w-lg' />
+            {/* <img src={image2} alt='Imagen2' className='max-w-lg' /> */}
           </div>
         </div>
       </div>
 
-      <div className='bg-white text-black h-screen flex justify-center items-center'>
+      <div className='bg-pink-300 text-black h-screen flex justify-center items-center'>
         <div className='h-96 w-4/5 flex text-xl'>
           <div className='h-full p-9 space-y-6'>
             <div>
@@ -101,14 +101,14 @@ const Home = () => {
             </div>
           </div>
           <div className='flex justify-center items-center h-full w-full'>
-            <img src={image3} alt='Imagen3' className='max-w-xl' />
+            {/* <img src={image3} alt='Imagen3' className='max-w-xl' /> */}
           </div>
         </div>
       </div>
 
       <div
         className='bg-cover h-screen flex flex-col items-center justify-center space-y-12 bg-image'
-        style={{ backgroundImage: `url(${image4})` }}
+        // style={{ backgroundImage: `url(${image4})` }}
       >
         <div className=' w-screen h-4/5 flex flex-col items-center justify-center space-y-12'>
           <div>

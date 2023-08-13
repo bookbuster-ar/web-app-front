@@ -21,7 +21,12 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
+<<<<<<< HEAD
     "react-typed": "^1.2.0",
+=======
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
+>>>>>>> feature/auth_back
     "uuid": "^9.0.0"
   },
   "devDependencies": {
