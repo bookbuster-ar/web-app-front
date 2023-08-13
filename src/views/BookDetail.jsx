@@ -6,7 +6,8 @@ import {
   selectDetailStatus,
 } from '../store/books/bookSlice';
 import { useParams } from 'react-router-dom';
-import Reviews from '../components/Reviews';
+import ReviewList from '../components/reviews/ReviewsList';
+import FormAddReview from '../components/reviews/FormAddReview';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -65,6 +66,7 @@ const BookDetail = () => {
                   <span className='font-medium'>Tamaño:</span> {detail.size}
                 </li>
               </ul>
+              <FormAddReview />
             </div>
           </div>
         )}
@@ -81,7 +83,7 @@ const BookDetail = () => {
         <p className='text-sm text-gray-500 mt-2'>{detail.synopsis}</p>
       </div>
 
-      <Reviews />
+      <ReviewList />
     </div>
   );
 };
