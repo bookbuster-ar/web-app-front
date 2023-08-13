@@ -1,5 +1,4 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
-import { sub } from 'date-fns';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 const URL_BASE = 'https://bookbuster-dev.onrender.com/api/books';
 
@@ -19,12 +18,17 @@ export const fetchReviews = createAsyncThunk(
 
 export const postReview = createAsyncThunk(
   'reviews/postReview',
-  async (newReview, id) => {
+  async ({ newReview, id }) => {
+    const userId = localStorage.getItem('user_id');
+    const sessionId = localStorage.getItem('session_id');
     const response = await axios.post(`${URL_BASE}/${id}/reviews`, newReview, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
+        userId,
+        sessionId,
       },
     });
+
     return response.status;
   }
 );
@@ -36,23 +40,11 @@ const reviewsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchReviews.pending, (state) => {
-        state.status === 'loading';
+        state.status = 'loading';
       })
       .addCase(fetchReviews.fulfilled, (state, action) => {
-        state.status === 'succeeded';
-        let min = 1;
-        const loadedReviews = action.payload.map((rev) => {
-          rev.date = sub(new Date(), { minutes: min++ }).toISOString();
-          rev.reactions = {
-            thumbsUp: 0,
-            wow: 0,
-            heart: 0,
-            rocket: 0,
-            coffee: 0,
-          };
-          return rev;
-        });
-        state.reviews = state.reviews.concat(loadedReviews);
+        state.status = 'succeeded';
+        state.reviews = action.payload;
       })
       .addCase(fetchReviews.rejected, (state, action) => {
         state.status = 'failed';
@@ -77,7 +69,5 @@ const reviewsSlice = createSlice({
 export const selectAllReviews = (state) => state.reviews.reviews;
 export const selectReviewsStatus = (state) => state.reviews.status;
 export const selectReviewsError = (state) => state.reviews.error;
-
-export const { reviewAdded, reactionAdded } = reviewsSlice.actions;
 
 export default reviewsSlice.reducer;
