@@ -21,7 +21,7 @@ const initialState = {
 export const getBooksBySearch = createAsyncThunk(
   'books/getBooksBySearch',
   async (search) => {
-    const { data } = await axios.get(`${URL_BASE}/books?title=${search}`);
+    const { data } = await axios.get(`${URL_BASE}/books?search=${search}`);
     return data;
   }
 );
