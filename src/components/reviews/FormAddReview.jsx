@@ -27,6 +27,15 @@ const FormAddReview = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+
+    if (
+      !localStorage.getItem('session_id') ||
+      !localStorage.getItem('user_id')
+    ) {
+      window.alert('Es necesario iniciar sesión para crear la reseña');
+      return;
+    }
+
     let newReview = { ...form };
     dispatch(postReview(newReview, id));
     setForm(INITIAL_FORM_STATE);
