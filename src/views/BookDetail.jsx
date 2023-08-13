@@ -8,6 +8,7 @@ import {
 import { useParams } from 'react-router-dom';
 import ReviewList from '../components/reviews/ReviewsList';
 import FormAddReview from '../components/reviews/FormAddReview';
+import { Link } from 'react-router-dom';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -72,9 +73,11 @@ const BookDetail = () => {
         )}
 
         <div>
-          <button className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'>
-            Ver opciones de adquisición
-          </button>
+          <Link to={'/bookcheckout'}>
+            <button className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'>
+              Ver opciones de adquisición
+            </button>
+          </Link>
         </div>
       </div>
 
