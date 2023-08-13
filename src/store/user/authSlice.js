@@ -89,14 +89,17 @@ export const verifyUserEmail = createAsyncThunk('auth/verifyUserEmail', async (_
 })
 
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
+
   const session_id = localStorage.getItem('session_id');
-  if (!session_id) {
-    return thunkAPI.rejectWithValue('No session_id found in localStorage');
+  const user_id = localStorage.getItem('user_id');
+  if (!session_id || !user_id) {
+    return thunkAPI.rejectWithValue('No session found in localStorage');
   }
   
   try {
     const response = await axios.post(`${URL_BASE}/api/auth/logout`, { sessionId: session_id });
     localStorage.removeItem('session_id');
+    localStorage.removeItem('user_id');
 
     return {
       isLogged: response.status === 204 ? false : true,
@@ -120,6 +123,9 @@ const authSlice = createSlice({
   reducers: {
     setRedirectPath: (state, action) => {
       state.redirectPath = action.payload;
+    },
+    unsetEmailStatus: (state) => {
+      state.statusEmailVerified = null;
     }
   },
   extraReducers: (builder) => {
@@ -148,7 +154,8 @@ const authSlice = createSlice({
       .addCase(signInWithGoogleAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
-        localStorage.setItem('session_id', action.payload.session_id);
+        localStorage.setItem('session_id', action.payload.session_id)
+        localStorage.setItem('user_id', action.payload.user.id);
       })
       .addCase(signInWithGoogleAsync.rejected, (state, action) => {
         state.isLoading = false;
@@ -175,7 +182,7 @@ const authSlice = createSlice({
       })
       .addCase(logOut.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.response.data
+        state.error = action.error.response
       })
       .addCase(verifyUserEmail.pending, (state) => {
         state.isLoading = true;
@@ -192,7 +199,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setRedirectPath } = authSlice.actions;
+export const { setRedirectPath, unsetEmailStatus } = authSlice.actions;
 export const redirectPathSelector = (state) => state.auth.redirectPath;
 export const selectStatusVerified = (state) => state.auth.statusEmailVerified;
 export const selectIsLogged = (state) => state.auth.isLogged;

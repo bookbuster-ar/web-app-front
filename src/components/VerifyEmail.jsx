@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // No necesitamos useLocation
+import { useNavigate, useLocation } from 'react-router-dom'; // No necesitamos useLocation
 
 import {
   verifyUserEmail,
   selectStatusVerified,
+  setRedirectPath,
+  unsetEmailStatus
 } from '../store/user/authSlice';
 
 const EMAIL_STATES = {
@@ -18,10 +20,12 @@ const VerifyEmail = () => {
   const [emailVerified, setEmailVerified] = useState(EMAIL_STATES.NULL);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation()
   const statusVerified = useSelector(selectStatusVerified);
 
   const handlerVerifyEmail = () => {
     if (!localStorage.getItem('session_id')) {
+      dispatch(setRedirectPath(location.pathname))
       navigate('/login');
     } else {
       dispatch(verifyUserEmail());
@@ -29,6 +33,11 @@ const VerifyEmail = () => {
   };
 
   useEffect(() => {
+    dispatch(unsetEmailStatus())
+  },[])
+
+  useEffect(() => {
+
     switch (statusVerified) {
       case 201:
         setEmailVerified(EMAIL_STATES.VERIFIED);

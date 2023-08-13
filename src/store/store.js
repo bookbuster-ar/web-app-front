@@ -5,6 +5,7 @@ import { configureStore, getDefaultMiddleware, combineReducers } from '@reduxjs/
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './user/authSlice';
+import reviewsReducer from './reviews/reviewsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   books: bookReducer,
   bookshelves: bookshelvesReducer,
   user: userReducer,
+  reviews: reviewsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
