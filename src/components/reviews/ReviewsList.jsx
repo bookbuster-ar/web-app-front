@@ -8,6 +8,7 @@ import {
 import { useEffect } from 'react';
 import Review from './Review';
 import { useParams } from 'react-router-dom';
+import Loader from '../../icons/Loader/Loader';
 
 const ReviewList = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,19 @@ const ReviewList = () => {
       dispatch(fetchReviews(id));
     }
   }, [status, dispatch]);
+  console.log(reviews);
+
+  if (status === 'loading') {
+    return <Loader />;
+  }
 
   return (
     <section>
       <h2>Reviews</h2>
+
       {status !== 'failed' &&
-        reviews.map((review) => <Review key={review.id} review={review} />)}
+        reviews.length > 0 &&
+        reviews?.map((review) => <Review key={review.id} review={review} />)}
     </section>
   );
 };
