@@ -7,7 +7,7 @@ const initialState = {
   status: 'idle',
   error: null,
   comment: {},
-  commentStatus: '',
+  commentStatus: 'idle',
   commentError: null,
 };
 
@@ -38,10 +38,11 @@ export const postReview = createAsyncThunk(
 
 export const getComment = createAsyncThunk(
   'comment/fetchComment',
-  async (id) => {
+  async ({ reviewId, id }) => {
     const { data } = await axios.post(
-      `${URL_BASE}/${id}/reviews/:reviewId/comments`
+      `${URL_BASE}/${id}/reviews/${reviewId}/comments`
     );
+    return data;
   }
 );
 
