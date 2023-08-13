@@ -116,7 +116,7 @@ const bookSlice = createSlice({
         state.detailStatus = 'succeeded';
         state.detail = action.payload;
       })
-      .addCase(getBookByDetail.rejected, (state) => {
+      .addCase(getBookByDetail.rejected, (state, action) => {
         state.detailStatus = 'failed';
         state.detailError = action.error.message;
       });
