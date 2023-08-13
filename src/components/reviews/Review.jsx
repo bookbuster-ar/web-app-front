@@ -5,7 +5,7 @@ const Review = ({ review }) => {
     <article>
       <p>{review.content}</p>
       <p>
-        <ReviewAuthor userId={review.by.id} />
+        <ReviewAuthor userId={review.creator.id} />
       </p>
     </article>
   );
