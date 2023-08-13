@@ -7,24 +7,24 @@ const Subscription = () => {
       <div className='text-center text-4xl'>
         <h2 className='font-bold text-black'>Al suscribirte a Bookbuster:</h2>
         <p className='font-sans text-2xl text-black text-sm'>
-          • Opción de alquilar libros físicos.
+          Opción de alquilar libros físicos.
         </p>
         <p className='font-sans text-2xl text-black text-sm'>
-          • Tenés la posibilidad de vender tus libros a la plataforma, y usar el
+          Tenés la posibilidad de vender tus libros a la plataforma, y usar el
           crédito para comprar o alquilar otros libros.
         </p>
         <p className='font-sans text-2xl text-black text-sm'>
-          • No pagas nunca costos de envío o retiro de libros.
+          No pagas nunca costos de envío o retiro de libros.
         </p>
         <p className='font-sans text-2xl text-black text-sm'>
-          • Accedés a un catálogo exclusivo para socios.
+          Accedés a un catálogo exclusivo para socios.
         </p>
         <p className='font-sans text-2xl text-black text-sm'>
-          • Tenés descuentos en compras y descargas sobre el precio regular de
-          la plataforma.
+          Tenés descuentos en compras y descargas sobre el precio regular de la
+          plataforma.
         </p>
         <p className='font-sans text-2xl text-black text-sm'>
-          • Descuentos en compras de productos y servicios de nuestras tiendas
+          Descuentos en compras de productos y servicios de nuestras tiendas
           amigas. Nuestras suscripciones
         </p>
       </div>
