@@ -22,7 +22,6 @@ const ReviewList = () => {
       dispatch(fetchReviews(id));
     }
   }, [status, dispatch]);
-  console.log(reviews);
 
   if (status === 'loading') {
     return <Loader />;
@@ -35,6 +34,7 @@ const ReviewList = () => {
       {status !== 'failed' &&
         reviews.length > 0 &&
         reviews?.map((review) => <Review key={review.id} review={review} />)}
+
     </section>
   );
 };

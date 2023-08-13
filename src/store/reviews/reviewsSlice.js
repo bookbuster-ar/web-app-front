@@ -6,6 +6,9 @@ const initialState = {
   reviews: [],
   status: 'idle',
   error: null,
+  comment: {},
+  commentStatus: 'idle',
+  commentError: null,
 };
 
 export const fetchReviews = createAsyncThunk(
@@ -29,6 +32,34 @@ export const postReview = createAsyncThunk(
       },
     });
 
+    return response.status;
+  }
+);
+
+export const getComment = createAsyncThunk(
+  'comment/fetchComment',
+  async ({ reviewId, id }) => {
+    const { data } = await axios.post(
+      `${URL_BASE}/${id}/reviews/${reviewId}/comments`
+    );
+    return data;
+  }
+);
+
+export const postComment = createAsyncThunk(
+  'comment/postComment',
+  async ({ newComment, id, reviewId }) => {
+    const response = await axios.post(
+      `${URL_BASE}/${id}/reviews/${reviewId}/comments`,
+      newComment,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userId,
+          sessionId,
+        },
+      }
+    );
     return response.status;
   }
 );
@@ -62,6 +93,19 @@ const reviewsSlice = createSlice({
       .addCase(postReview.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(postComment.pending, (state) => {
+        state.commentStatus = 'loading';
+        state.commentError = null;
+      })
+      .addCase(postComment.fulfilled, (state, action) => {
+        if (action.payload.status === 201) {
+          state.commentStatus = 'succeeded';
+        }
+      })
+      .addCase(postComment.rejected, (state, action) => {
+        state.commentStatus = 'failed';
+        state.commentError = action.error.message;
       });
   },
 });
@@ -69,5 +113,9 @@ const reviewsSlice = createSlice({
 export const selectAllReviews = (state) => state.reviews.reviews;
 export const selectReviewsStatus = (state) => state.reviews.status;
 export const selectReviewsError = (state) => state.reviews.error;
+
+export const selectAllComment = (state) => state.reviews.comment;
+export const selectCommentStatus = (state) => state.reviews.commentError;
+export const selectCommentError = (state) => state.reviews.commentError;
 
 export default reviewsSlice.reducer;

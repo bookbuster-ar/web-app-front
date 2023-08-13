@@ -92,7 +92,7 @@ const FormAddReview = () => {
           />
           <label
             htmlFor='star1'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-purple-600'
+            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
           >
             ★
           </label>
@@ -106,7 +106,7 @@ const FormAddReview = () => {
           />
           <label
             htmlFor='star2'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-purple-600'
+            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
           >
             ★
           </label>
@@ -120,7 +120,7 @@ const FormAddReview = () => {
           />
           <label
             htmlFor='star3'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-purple-600'
+            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
           >
             ★
           </label>
@@ -134,7 +134,7 @@ const FormAddReview = () => {
           />
           <label
             htmlFor='star4'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-purple-600'
+            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
           >
             ★
           </label>
@@ -148,7 +148,7 @@ const FormAddReview = () => {
           />
           <label
             htmlFor='star5'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-purple-600'
+            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
           >
             ★
           </label>
