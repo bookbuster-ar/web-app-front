@@ -69,11 +69,6 @@ const Home = () => {
             intereses. Además, contamos con expertos en el rubro a la hora de
             publicar reseñas oficiales.
           </p>
-
-          <p className='font-sans text-lg text-white w-4/5'>
-            Además, contamos con expertos en el rubro a la hora de publicar
-            reseñas oficiales.
-          </p>
         </div>
       </div>
       <div
@@ -91,7 +86,7 @@ const Home = () => {
 
           <p className='font-sans text-lg text-blue-600 w-4/5'>
             Accedé a una amplia gama de libros que se pueden leer en línea,
-            escuchar alquilar, vender o comprar. Todos nuestros libros cuentan
+            escuchar, alquilar, vender o comprar. Todos nuestros libros cuentan
             con un sello de calidad que te garantiza su perfecto estado.
           </p>
         </div>
