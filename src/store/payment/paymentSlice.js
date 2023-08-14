@@ -25,8 +25,9 @@ export const subscribeUser = createAsyncThunk(
           },
         }
       );
-      console.log(response);
-      return response;
+      const { status } = response;
+      const { linkCheckout } = response.data.link;
+      return { linkCheckout, status };
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(
@@ -37,6 +38,7 @@ export const subscribeUser = createAsyncThunk(
 );
 
 const initialState = {
+  responseUrl: null,
   isLoading: false,
   status: null,
   error: null,
@@ -51,16 +53,22 @@ const paymentSlice = createSlice({
       .addCase(subscribeUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(subscribeUser.fulfilled, (state) => {
+      .addCase(subscribeUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+        state.responseUrl = action.payload.linkCheckout;
+        state.status = action.payload.status;
         // action ya veremos
       })
       .addCase(subscribeUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload.error;
+        state.status = action.payload.status;
       });
   },
 });
+
+export const selectResponseUrl = (state) => state.payment.responseUrl;
+export const selectStatus = (state) => state.payment.status;
 
 export default paymentSlice.reducer;
