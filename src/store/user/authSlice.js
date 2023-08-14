@@ -1,12 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-} from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
+// const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
 // ! TEMPORALMENTE USAMOS LOCALHOST PORQUE NO ESTA DEPLOYADO EL MERCADOPAGO DEL BACK
 const LOCALHOST = 'http://localhost:3001/api';
 
@@ -15,10 +12,10 @@ export const signInWithEmailAsync = createAsyncThunk(
   'auth/signInWithEmail',
   async ({ email, password }, thunkAPI) => {
     try {
-      const {data} = await axios.post(
-        `${LOCALHOST}/auth/login/local`,
-        { email, password }
-      );
+      const { data } = await axios.post(`${URL_BASE}/auth/login/local`, {
+        email,
+        password,
+      });
       console.log(data);
       const { session_id, user } = data.data;
       console.log(user, session_id);
@@ -26,7 +23,6 @@ export const signInWithEmailAsync = createAsyncThunk(
         user,
         session_id,
       };
-
     } catch (error) {
       // Enviar error al reducer
       return thunkAPI.rejectWithValue(error.response.data);
@@ -43,7 +39,7 @@ export const signInWithGoogleAsync = createAsyncThunk(
 
     console.log(token, 'token');
 
-    const { data } = await axios.post(`${LOCALHOST}/auth/signup/google`, {
+    const { data } = await axios.post(`${URL_BASE}/auth/signup/google`, {
       token,
     });
     console.log(data);
@@ -63,49 +59,60 @@ export const signInWithGoogleAsync = createAsyncThunk(
 export const signUpWithEmailAsync = createAsyncThunk(
   'auth/signUpWithEmail',
   async ({ name, lastname, email, password }) => {
-    const { data } = await axios.post(
-      `${LOCALHOST}/auth/signup/local`,
-      { name, lastname, email, password }
-    );
+    const { data } = await axios.post(`${URL_BASE}/auth/signup/local`, {
+      name,
+      lastname,
+      email,
+      password,
+    });
     return {
       ...data?.data,
     };
   }
 );
 
-export const verifyUserEmail = createAsyncThunk('auth/verifyUserEmail', async (_, thunkAPI) => {
-  const currentUserId = localStorage.getItem('user_id');
-  try {
-    const response = await axios.post(`${LOCALHOST}/auth/VerifyEmail`, {userId: currentUserId});
-    console.log(response);
-    const { status } = response;
-    const { data, message } = response.data;
-    return {
-      ...data,
-      message,
-      status,
+export const verifyUserEmail = createAsyncThunk(
+  'auth/verifyUserEmail',
+  async (_, thunkAPI) => {
+    const currentUserId = localStorage.getItem('user_id');
+    try {
+      const response = await axios.post(`${URL_BASE}/auth/VerifyEmail`, {
+        userId: currentUserId,
+      });
+      console.log(response);
+      const { status } = response;
+      const { data, message } = response.data;
+      return {
+        ...data,
+        message,
+        status,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        status: error.response.status,
+        ...error.response.data,
+      });
     }
-  } catch (error) {
-    return thunkAPI.rejectWithValue({ status: error.response.status, ...error.response.data });
   }
-})
+);
 
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
-
   const session_id = localStorage.getItem('session_id');
   const user_id = localStorage.getItem('user_id');
   if (!session_id || !user_id) {
     return thunkAPI.rejectWithValue('No session found in localStorage');
   }
-  
+
   try {
-    const response = await axios.post(`${LOCALHOST}/auth/logout`, { sessionId: session_id });
+    const response = await axios.post(`${URL_BASE}/auth/logout`, {
+      sessionId: session_id,
+    });
     localStorage.removeItem('session_id');
     localStorage.removeItem('user_id');
 
     return {
       isLogged: response.status === 204 ? false : true,
-      user: null
+      user: null,
     };
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -128,7 +135,7 @@ const authSlice = createSlice({
     },
     unsetEmailStatus: (state) => {
       state.statusEmailVerified = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -138,7 +145,7 @@ const authSlice = createSlice({
       .addCase(signInWithEmailAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.user;
-        state.isLogged = true
+        state.isLogged = true;
         localStorage.setItem('session_id', action.payload.session_id);
         localStorage.setItem('user_id', action.payload.user.id);
       })
@@ -156,7 +163,7 @@ const authSlice = createSlice({
       .addCase(signInWithGoogleAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
-        localStorage.setItem('session_id', action.payload.session_id)
+        localStorage.setItem('session_id', action.payload.session_id);
         localStorage.setItem('user_id', action.payload.user.id);
       })
       .addCase(signInWithGoogleAsync.rejected, (state, action) => {
@@ -184,20 +191,20 @@ const authSlice = createSlice({
       })
       .addCase(logOut.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.response
+        state.error = action.error.response;
       })
       .addCase(verifyUserEmail.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(verifyUserEmail.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.statusEmailVerified = action.payload.status
+        state.statusEmailVerified = action.payload.status;
       })
       .addCase(verifyUserEmail.rejected, (state, action) => {
         state.isLoading = false;
-        state.statusEmailVerified = action.payload.status
+        state.statusEmailVerified = action.payload.status;
         state.error = action.payload.message;
-      })
+      });
   },
 });
 

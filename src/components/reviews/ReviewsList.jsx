@@ -4,6 +4,7 @@ import {
   selectReviewsStatus,
   selectReviewsError,
   selectAllComment,
+  selectReloadReviews,
   fetchReviews,
 } from '../../store/reviews/reviewsSlice';
 import { useEffect } from 'react';
@@ -12,19 +13,16 @@ import { useParams } from 'react-router-dom';
 import Loader from '../../icons/Loader/Loader';
 
 const ReviewList = () => {
-
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const reviews = useSelector(selectAllReviews);
   const status = useSelector(selectReviewsStatus);
-
+  const reloadReviews = useSelector(selectReloadReviews);
 
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchReviews(id));
-    }
-  }, [status, dispatch]);
+    dispatch(fetchReviews(id));
+  }, [reloadReviews, dispatch]);
 
   if (status === 'loading') {
     return <Loader />;
@@ -32,7 +30,9 @@ const ReviewList = () => {
 
   return (
     <section>
-      <h2>Reviews</h2>
+      <h2 className='text-xl font-semibold text-gray-800'>
+        Opiniones de otros lectores
+      </h2>
 
       {status !== 'failed' &&
         reviews.length > 0 &&

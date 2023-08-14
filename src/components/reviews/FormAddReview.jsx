@@ -10,22 +10,23 @@ const INITIAL_FORM_STATE = {
 };
 
 const reactions = [
-  { name: 'Me lo devoré', id: 'mld' },
-  { name: 'Me costó terminarlo', id: 'mct' },
-  { name: 'Para viajar', id: 'pv' },
-  { name: 'Soy Fan', id: 'sf' },
-  { name: 'Preparate para llorar', id: 'ppl' },
-  { name: 'Romántico', id: 'rom' },
-  { name: 'Adorable', id: 'ado' },
-  { name: 'Ni fu ni fa', id: 'nfnf' },
-  { name: 'Profundo', id: 'pro' },
-  { name: 'Para regalar', id: 'pp' },
-  { name: 'Espeluznante', id: 'esp' },
-  { name: 'Justo en el blanco', id: 'jeeb' },
-  { name: 'Adictivo', id: 'adi' },
-  { name: 'Perfecto para la playa', id: 'pplp' },
-  { name: 'He aprendido mucho', id: 'hap' },
+  { name: 'Me lo devoré', id: 'mld', color: 'bg-red-300' },
+  { name: 'Me costó terminarlo', id: 'mct', color: 'bg-blue-500' },
+  { name: 'Para viajar', id: 'pv', color: 'bg-green-500' },
+  { name: 'Soy Fan', id: 'sf', color: 'bg-red-600' },
+  { name: 'Preparate para llorar', id: 'ppl', color: 'bg-yellow-400' },
+  { name: 'Romántico', id: 'rom', color: 'bg-red-300' },
+  { name: 'Adorable', id: 'ado', color: 'bg-yellow-400' },
+  { name: 'Ni fu ni fa', id: 'nfnf', color: 'bg-red-300' },
+  { name: 'Profundo', id: 'pro', color: 'bg-green-500' },
+  { name: 'Para regalar', id: 'pp', color: 'bg-blue-500' },
+  { name: 'Espeluznante', id: 'esp', color: 'bg-red-600' },
+  { name: 'Justo en el blanco', id: 'jeeb', color: 'bg-yellow-400' },
+  { name: 'Adictivo', id: 'adi', color: 'bg-red-300' },
+  { name: 'Perfecto para la playa', id: 'pplp', color: 'bg-green-500' },
+  { name: 'He aprendido mucho', id: 'hap', color: 'bg-blue-500' },
 ];
+
 const FormAddReview = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -70,7 +71,10 @@ const FormAddReview = () => {
 
   return (
     <div>
-      <form onSubmit={submitHandler} className='flex flex-col justify-center '>
+      <form
+        onSubmit={submitHandler}
+        className='flex flex-col justify-center md:col-span-4 p-6 shadow-lg rounded-lg my-11'
+      >
         <h2 className='text-lg my-2.5'>Opinión acerca del libro</h2>
         <label htmlFor='content'></label>
         <textarea
@@ -159,7 +163,7 @@ const FormAddReview = () => {
               <button
                 key={reaction.id}
                 value={reaction.id}
-                className='m-2 border border-teal-500 bg-teal-500 text-white px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-teal-600 focus:outline-none focus:shadow-outline focus:ring focus:ring-blue-300'
+                className={`m-2 border-none  ${reaction.color} text-white px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-blue-600 focus:outline-none focus:shadow-outline focus:ring focus:ring-blue-300`}
                 onClick={reactionHandler}
               >
                 {reaction.name}
@@ -170,7 +174,7 @@ const FormAddReview = () => {
 
         <button
           type='submit'
-          className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'
+          className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-96'
         >
           Publicar
         </button>
