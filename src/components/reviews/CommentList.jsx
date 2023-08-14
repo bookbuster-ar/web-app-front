@@ -16,16 +16,11 @@ const CommentList = ({ reviewId }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  console.log('ReviewId: ', reviewId, 'bookId: ', id);
-
   const comments = useSelector(selectAllComment);
   const status = useSelector(selectCommentStatus);
   const error = useSelector(selectCommentError);
 
   const reloadComments = useSelector(selectReloadComments);
-
-  console.log('CommentListtttttttt');
-  console.log('status: ', status);
 
   useEffect(() => {
     dispatch(getComment({ reviewId, id }));
@@ -34,7 +29,6 @@ const CommentList = ({ reviewId }) => {
   if (status === 'loading') {
     return <Loader />;
   }
-  console.log('COMENTARIOS', comments);
   return (
     <div>
       <FormAddComment reviewId={reviewId} />

@@ -4,6 +4,7 @@ import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import { fetchGenres } from '../store/books/bookSlice';
 import Loader from '../icons/Loader/Loader';
 import { Link } from 'react-router-dom';
+import IconoBoton2 from '../assets/IconoBoton2.png';
 
 const colorClasses = {
   0: 'bg-red-300',
@@ -32,8 +33,13 @@ const Library = () => {
 
   return (
     <div className='bg-white h-screen flex flex-col items-center justify-center '>
-      <h1 className='font-bold text-4xl m-6'>Explorá la librería</h1>
-      <div className='flex flex-row flex-wrap m-6 max-w-5xl justify-center'>
+      <div className=' flex '>
+        <img src={IconoBoton2} className='h-12' />
+        <h1 className='font-bold text-5xl text-blue-500'>
+          EXPLORÁ LA LIBRERÍA
+        </h1>
+      </div>
+      <div className='flex flex-row flex-wrap m-6 max-w-5xl  justify-center'>
         {genreStatus === 'loading' ? (
           <Loader />
         ) : (
