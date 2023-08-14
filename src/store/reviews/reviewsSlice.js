@@ -9,6 +9,7 @@ const initialState = {
   comment: [],
   commentStatus: 'idle',
   commentError: null,
+  reloadReviews: false,
   reloadComments: false,
 };
 
@@ -90,12 +91,10 @@ const reviewsSlice = createSlice({
       })
       .addCase(postReview.pending, (state) => {
         state.status = 'loading';
-        state.error = null;
       })
       .addCase(postReview.fulfilled, (state, action) => {
-        if (action.payload.status === 201) {
-          state.status = 'succeeded';
-        }
+        state.status = 'succeeded';
+        state.reloadReviews = !state.reloadReviews;
       })
       .addCase(postReview.rejected, (state, action) => {
         state.status = 'failed';
@@ -105,10 +104,8 @@ const reviewsSlice = createSlice({
         state.commentStatus = 'loading';
       })
       .addCase(postComment.fulfilled, (state, action) => {
-        if (action.payload.status === 201) {
-          state.commentStatus = 'succeeded';
-          state.reloadComments = !state.reloadComments;
-        }
+        state.commentStatus = 'succeeded';
+        state.reloadComments = !state.reloadComments;
       })
       .addCase(postComment.rejected, (state, action) => {
         state.commentStatus = 'failed';
@@ -137,5 +134,6 @@ export const selectCommentStatus = (state) => state.reviews.commentError;
 export const selectCommentError = (state) => state.reviews.commentError;
 
 export const selectReloadComments = (state) => state.reviews.reloadComments;
+export const selectReloadReviews = (state) => state.reviews.reloadReviews;
 
 export default reviewsSlice.reducer;
