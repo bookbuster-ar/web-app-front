@@ -16,7 +16,7 @@ import {
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
-FormProfile;
+import SubscriptionCheckout from './views/SubscriptionCheckout.jsx';
 
 function App() {
   return (
@@ -37,6 +37,10 @@ function App() {
         <Route path='/gift' element={<Gift />} />
         <Route path='/user/profile' element={<FormProfile />} />
         <Route path='/VerifyEmail' element={<VerifyEmail />} />
+        <Route
+          path='/subscriptioncheckout'
+          element={<SubscriptionCheckout />}
+        />
       </Routes>
     </div>
   );

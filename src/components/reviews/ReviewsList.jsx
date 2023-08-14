@@ -3,6 +3,7 @@ import {
   selectAllReviews,
   selectReviewsStatus,
   selectReviewsError,
+  selectAllComment,
   fetchReviews,
 } from '../../store/reviews/reviewsSlice';
 import { useEffect } from 'react';
@@ -11,18 +12,19 @@ import { useParams } from 'react-router-dom';
 import Loader from '../../icons/Loader/Loader';
 
 const ReviewList = () => {
+
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const reviews = useSelector(selectAllReviews);
   const status = useSelector(selectReviewsStatus);
 
+
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchReviews(id));
     }
   }, [status, dispatch]);
-  console.log(reviews);
 
   if (status === 'loading') {
     return <Loader />;
