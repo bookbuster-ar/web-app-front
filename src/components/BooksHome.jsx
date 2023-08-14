@@ -6,13 +6,13 @@ export function ListOfBooks({ books }) {
       {books.map((book) => (
         <Link to={`/detail/${book.id}`}>
           <li key={book.id}>
-            <h3>{book.title}</h3>
-            <p>{book.author}</p>
             <img
               src={book.images.cover}
               alt={book.title}
               className='h-72 w-3/4 object-cover'
             />
+            <p className='text-xs'>{book.author}</p>
+            <h3 className='font-semibold text-sm'>{book.title}</h3>
           </li>
         </Link>
       ))}
