@@ -1,7 +1,7 @@
 import SignInWithGoogle from './Authentication/AuthGoogle';
 import SignInWithEmail from './Authentication/AuthEmail';
 import SignupForm from './Authentication/AuthSignUp';
-import bgImage from '../assets/girl.jpg';
+import bgImage from '../assets/BgPink.png';
 
 const LogInAndSignIn = () => {
   return (
