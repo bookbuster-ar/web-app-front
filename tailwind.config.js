@@ -66,6 +66,7 @@ export default {
         lgPlus: '48px',
         xl: '64px',
         xxl: '80px',
+        110: '450px'
       },
       fontSize: {
         xs: '12px',
