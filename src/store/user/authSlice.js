@@ -3,7 +3,7 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
+// const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
 // ! TEMPORALMENTE USAMOS LOCALHOST PORQUE NO ESTA DEPLOYADO EL MERCADOPAGO DEL BACK
 const LOCALHOST = 'http://localhost:3001/api';
 

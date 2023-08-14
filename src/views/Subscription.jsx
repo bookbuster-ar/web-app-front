@@ -1,14 +1,24 @@
-import { Link } from 'react-router-dom';
 import FAQs from '../components/FAQs';
-import { useDispatch } from 'react-redux';
-import { subscribeUser } from '../store/payment/paymentSlice';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { subscribeUser, selectResponseUrl, selectStatus } from '../store/payment/paymentSlice';
+
 
 const Subscription = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  const responseUrl = useSelector(selectResponseUrl)
+  const status = useSelector(selectStatus)
+
+  useEffect(() => {
+    if(status === 200){
+      window.location.href = responseUrl;
+    }
+  },[status, dispatch])
 
   const handlerSubscription = () => {
     dispatch(subscribeUser());
   };
+
 
   return (
     <div className='flex flex-col items-center mx-14'>
