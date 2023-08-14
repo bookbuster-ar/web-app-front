@@ -4,7 +4,7 @@ import { postComment } from '../../store/reviews/reviewsSlice';
 import { useParams } from 'react-router-dom';
 
 const INITIAL_FORM_STATE = {
-  content: '',
+  comment: '',
 };
 
 const FormAddComment = ({ reviewId }) => {
@@ -37,11 +37,11 @@ const FormAddComment = ({ reviewId }) => {
     <div>
       <form onSubmit={submitHandler}>
         <h2 className='text-lg my-2.5'>Comentar</h2>
-        <label htmlFor='content'></label>
+        <label htmlFor='comment'></label>
         <textarea
-          name='content'
-          id='content'
-          value={form.content}
+          name='comment'
+          id='comment'
+          value={form.comment}
           onChange={changeHandler}
           placeholder='Comentá lo que pensás'
           className='w-96 bg-gray-200 border-none text-sm'
