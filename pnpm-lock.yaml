@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -44,18 +44,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.14.2
     version: 6.14.2(react-dom@18.2.0)(react@18.2.0)
-<<<<<<< HEAD
   react-typed:
     specifier: ^1.2.0
     version: 1.2.0(react-dom@18.2.0)(react@18.2.0)
-=======
-  redux:
-    specifier: ^4.2.1
-    version: 4.2.1
-  redux-persist:
-    specifier: ^6.0.0
-    version: 6.0.0(react@18.2.0)(redux@4.2.1)
->>>>>>> feature/auth_back
   redux:
     specifier: ^4.2.1
     version: 4.2.1
