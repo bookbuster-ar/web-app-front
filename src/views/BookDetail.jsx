@@ -9,11 +9,12 @@ import { useParams } from 'react-router-dom';
 import ReviewList from '../components/reviews/ReviewsList';
 import FormAddReview from '../components/reviews/FormAddReview';
 import { Link } from 'react-router-dom';
-
+import { selectAllReviews } from '../store/reviews/reviewsSlice';
 
 const BookDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const reviews = useSelector(selectAllReviews);
 
   const detail = useSelector(selectDetail);
   const status = useSelector(selectDetailStatus);
@@ -28,7 +29,7 @@ const BookDetail = () => {
         {status === 'loading' ? (
           <p>Loading...</p>
         ) : (
-          <div className='flex w-2/4'>
+          <div className='flex w-fill'>
             <div className='w-2/4'>
               <img
                 className='h-70 w-64 object-cover rounded-md'
@@ -68,25 +69,23 @@ const BookDetail = () => {
                   <span className='font-medium'>Tamaño:</span> {detail.size}
                 </li>
               </ul>
+              <div>
+                <Link to={'/bookcheckout'}>
+                  <button className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'>
+                    Ver opciones de adquisición
+                  </button>
+                </Link>
+              </div>
               <FormAddReview />
             </div>
           </div>
         )}
-
-        <div>
-          <Link to={'/bookcheckout'}>
-            <button className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'>
-              Ver opciones de adquisición
-            </button>
-          </Link>
-        </div>
       </div>
 
       <div className='md:col-span-4 bg-white p-6 shadow-lg rounded-lg my-11'>
         <h2 className='text-xl font-semibold text-gray-800'>Sinopsis</h2>
         <p className='text-sm text-gray-500 mt-2'>{detail.synopsis}</p>
       </div>
-
       <ReviewList />
     </div>
   );

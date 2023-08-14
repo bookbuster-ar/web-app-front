@@ -4,16 +4,18 @@ import { useDispatch } from 'react-redux';
 import { subscribeUser } from '../store/payment/paymentSlice';
 
 const Subscription = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handlerSubscription = () => {
-    dispatch(subscribeUser())
-  }
+    dispatch(subscribeUser());
+  };
 
   return (
     <div className='flex flex-col items-center p-14'>
       <div className='text-center text-4xl'>
-        <h2 className='font-bold text-black'>Al suscribirte a Bookbuster:</h2>
+        <h2 className='font-bold text-5xl text-blue-500'>
+          Al suscribirte a Bookbuster:
+        </h2>
         <p className='font-sans text-2xl text-black text-sm'>
           Opción de alquilar libros físicos.
         </p>
@@ -141,13 +143,13 @@ const Subscription = () => {
                 </span>
               </p>
               {/* <Link to={'/subscriptioncheckout'}> */}
-                <button
-                  href='#'
-                  onClick={handlerSubscription}
-                  className='mt-10 block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
-                >
-                  Suscribirme
-                </button>
+              <button
+                href='#'
+                onClick={handlerSubscription}
+                className='mt-10 block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              >
+                Suscribirme
+              </button>
               {/* </Link> */}
               <p className='mt-6 text-xs leading-5 text-gray-600'>
                 EL PRECIO NO INCLUYE IMPUESTOS VIGENTES EN ARGENTINA.

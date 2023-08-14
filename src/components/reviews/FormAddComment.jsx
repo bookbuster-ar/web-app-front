@@ -35,23 +35,25 @@ const FormAddComment = ({ reviewId }) => {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        <h2 className='text-lg my-2.5'>Comentar</h2>
-        <label htmlFor='comment'></label>
-        <textarea
-          name='comment'
-          id='comment'
-          value={form.comment}
-          onChange={changeHandler}
-          placeholder='Comentá lo que pensás'
-          className='w-96 bg-gray-200 border-none text-sm'
-        ></textarea>
-        <button
-          type='submit'
-          className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'
-        >
-          Publicar
-        </button>
+      <form onSubmit={submitHandler} className='my-6'>
+        <h2 className='text-sm text-gray-800'>Comentar</h2>
+        <div className='flex justify-start items-center'>
+          <label htmlFor='comment'></label>
+          <textarea
+            name='comment'
+            id='comment'
+            value={form.comment}
+            onChange={changeHandler}
+            placeholder='Comentá lo que pensás'
+            className='w-96 bg-gray-200 border-none text-sm'
+          ></textarea>
+          <button
+            type='submit'
+            className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md h-10'
+          >
+            Publicar
+          </button>
+        </div>
       </form>
     </div>
   );
