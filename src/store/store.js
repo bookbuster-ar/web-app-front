@@ -6,6 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './user/authSlice';
 import reviewsReducer from './reviews/reviewsSlice';
+import paymentReducer from './payment/paymentSlice'
 
 const persistConfig = {
   key: 'root',
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   bookshelves: bookshelvesReducer,
   user: userReducer,
   reviews: reviewsReducer,
+  payment: paymentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

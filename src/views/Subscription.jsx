@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom';
 import FAQs from '../components/FAQs';
+import { useDispatch } from 'react-redux';
+import { subscribeUser } from '../store/payment/paymentSlice';
 
 const Subscription = () => {
+  const dispatch = useDispatch()
+
+  const handlerSubscription = () => {
+    dispatch(subscribeUser())
+  }
+
   return (
     <div className='flex flex-col items-center p-14'>
       <div className='text-center text-4xl'>
@@ -52,9 +60,9 @@ const Subscription = () => {
                 aria-hidden='true'
               >
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
-                  clip-rule='evenodd'
+                  clipRule='evenodd'
                 />
               </svg>
               Envío sin cargo en caso de compra de libros nuevos y usados
@@ -67,9 +75,9 @@ const Subscription = () => {
                 aria-hidden='true'
               >
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
-                  clip-rule='evenodd'
+                  clipRule='evenodd'
                 />
               </svg>
               Alquilar hasta 2 libros en simultáneo
@@ -82,9 +90,9 @@ const Subscription = () => {
                 aria-hidden='true'
               >
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
-                  clip-rule='evenodd'
+                  clipRule='evenodd'
                 />
               </svg>
               Podés vender tus libros usados a la plataforma para comprar nuevos
@@ -97,9 +105,9 @@ const Subscription = () => {
                 aria-hidden='true'
               >
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
-                  clip-rule='evenodd'
+                  clipRule='evenodd'
                 />
               </svg>
               Acceso a catálogo exclusivo para suscriptores
@@ -112,9 +120,9 @@ const Subscription = () => {
                 aria-hidden='true'
               >
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'
-                  clip-rule='evenodd'
+                  clipRule='evenodd'
                 />
               </svg>
               30 días de permanencia de libros
@@ -132,14 +140,15 @@ const Subscription = () => {
                   ARS/mes
                 </span>
               </p>
-              <Link to={'/subscriptioncheckout'}>
+              {/* <Link to={'/subscriptioncheckout'}> */}
                 <button
                   href='#'
+                  onClick={handlerSubscription}
                   className='mt-10 block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
                 >
                   Suscribirme
                 </button>
-              </Link>
+              {/* </Link> */}
               <p className='mt-6 text-xs leading-5 text-gray-600'>
                 EL PRECIO NO INCLUYE IMPUESTOS VIGENTES EN ARGENTINA.
               </p>
