@@ -6,7 +6,9 @@ import {
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com';
+const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
+// ! TEMPORALMENTE USAMOS LOCALHOST PORQUE NO ESTA DEPLOYADO EL MERCADOPAGO DEL BACK
+const LOCALHOST = 'http://localhost:3001/api';
 
 // thunk to login with email and password
 export const signInWithEmailAsync = createAsyncThunk(
@@ -14,7 +16,7 @@ export const signInWithEmailAsync = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const {data} = await axios.post(
-        `${URL_BASE}/api/auth/login/local`,
+        `${LOCALHOST}/auth/login/local`,
         { email, password }
       );
       console.log(data);
@@ -41,7 +43,7 @@ export const signInWithGoogleAsync = createAsyncThunk(
 
     console.log(token, 'token');
 
-    const { data } = await axios.post(`${URL_BASE}/api/auth/signup/google`, {
+    const { data } = await axios.post(`${LOCALHOST}/auth/signup/google`, {
       token,
     });
     console.log(data);
@@ -62,7 +64,7 @@ export const signUpWithEmailAsync = createAsyncThunk(
   'auth/signUpWithEmail',
   async ({ name, lastname, email, password }) => {
     const { data } = await axios.post(
-      `${URL_BASE}/api/auth/signup/local`,
+      `${LOCALHOST}/auth/signup/local`,
       { name, lastname, email, password }
     );
     return {
@@ -74,7 +76,7 @@ export const signUpWithEmailAsync = createAsyncThunk(
 export const verifyUserEmail = createAsyncThunk('auth/verifyUserEmail', async (_, thunkAPI) => {
   const currentUserId = localStorage.getItem('user_id');
   try {
-    const response = await axios.post(`${URL_BASE}/api/auth/VerifyEmail`, {userId: currentUserId});
+    const response = await axios.post(`${LOCALHOST}/auth/VerifyEmail`, {userId: currentUserId});
     console.log(response);
     const { status } = response;
     const { data, message } = response.data;
@@ -97,7 +99,7 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   }
   
   try {
-    const response = await axios.post(`${URL_BASE}/api/auth/logout`, { sessionId: session_id });
+    const response = await axios.post(`${LOCALHOST}/auth/logout`, { sessionId: session_id });
     localStorage.removeItem('session_id');
     localStorage.removeItem('user_id');
 
