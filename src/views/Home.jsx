@@ -8,6 +8,8 @@ import PhotoHome3 from '../assets/PhotoHome3.png';
 import PhotoHome5 from '../assets/PhotoHome5.png';
 import PhotoHome4 from '../assets/PhotoHome4.png';
 import ElementoHome4 from '../assets/ElementoHome4.png';
+import IconoBoton1 from '../assets/IconoBoton1.png';
+import IconoBoton2 from '../assets/IconoBoton2.png';
 
 import Footer from './Footer';
 
@@ -32,12 +34,14 @@ const Home = () => {
           </div>
           <div className='flex flex-row w-56 items-center justify-center content-center'>
             <Link to={'/home/library'}>
-              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
+              <button className='bg-blue-500 p-2 hover:bg-blue-600 text-white font-semibold  w-64 m-2 flex justify-center'>
+                <img src={IconoBoton2} className='mx-1' />
                 Explorar la librería
               </button>
             </Link>
             <Link to={'/home/recommendation'}>
-              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
+              <button className='bg-blue-500 p-2 hover:bg-blue-600 text-white font-semibold  w-64 flex justify-center '>
+                <img src={IconoBoton1} className='mx-1' />
                 Obtener una recomendación
               </button>
             </Link>
@@ -80,7 +84,7 @@ const Home = () => {
           <h1 className='font-bold text-7xl text-blue-500'>
             COMPRÁ, VISUALIZÁ
           </h1>
-          <h1 className='font-bold text-7xl text-blue-500'>
+          <h1 className='font-bold text-7xl text-blue-500 my-2'>
             ESCUCHÁ, ALQUILÁ O{' '}
           </h1>
           <h1 className='font-bold text-7xl text-blue-500'>VENDÉ LIBROS</h1>
@@ -131,12 +135,14 @@ const Home = () => {
           </div>
           <div className='flex flex-row  w-56 items-center justify-center content-center'>
             <Link to={'/home/library'}>
-              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
+              <button className='bg-blue-500 p-2 hover:bg-blue-600 text-white font-semibold  w-64 m-2 flex justify-center'>
+                <img src={IconoBoton2} className='mx-1' />
                 Explorar la librería
               </button>
             </Link>
             <Link to={'/home/recommendation'}>
-              <button className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md w-64 m-2'>
+              <button className='bg-blue-500 p-2 hover:bg-blue-600 text-white font-semibold  w-64 flex justify-center '>
+                <img src={IconoBoton1} className='mx-1' />
                 Obtener una recomendación
               </button>
             </Link>
