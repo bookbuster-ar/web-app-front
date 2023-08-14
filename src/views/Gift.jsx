@@ -3,8 +3,12 @@ import FAQs from '../components/FAQs';
 const Gift = () => {
   return (
     <div className='flex flex-col justify-content items-center'>
-      <h2 className='text-center text-4xl font-bold m-6'>REGALÁ BOOKBUSTER</h2>
-      <h3>Regalá la experiencia de lectura sin límites</h3>
+      <h2 className='text-center text-4xl font-bold m-6 text-blue-500'>
+        REGALÁ BOOKBUSTER
+      </h2>
+      <h3 className='text-blue-600'>
+        Regalá la experiencia de lectura sin límites
+      </h3>
 
       <div className='flex flex-wrap'>
         <div className='rounded-2xl bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>

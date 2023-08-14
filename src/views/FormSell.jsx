@@ -131,7 +131,7 @@ const FormSell = () => {
     <div className='flex flex-row '>
       <div className='flex flex-col justify-content items-center m-3 w-2/4'>
         <div className='flex flex-col justify-center items-center p-4 m-2 border-solid border border-blue-500 rounded-xl'>
-          <h1 className='font-bold text-4xl text-black text-center'>
+          <h1 className='font-bold text-4xl text-black text-center text-blue-500'>
             ¿Cómo venderle tus libros a Bookbuster?
           </h1>
           <h2>Bookbuster es una plataforma de novedades editoriales.</h2>
@@ -151,7 +151,7 @@ const FormSell = () => {
         </div>
         <form onSubmit={submitHandler} className='flex flex-col items-end'>
           <div className='my-2'>
-            <label className='mr-16 w-48 items-center'>Título del libro</label>
+            <label className='mr-16 w-48 items-center '>Título del libro</label>
             <input
               type='text'
               name='title'
@@ -270,7 +270,7 @@ const FormSell = () => {
       </div>
 
       <div className=' w-5/12 fixed right-4 max-h-fit '>
-        <h1 className='font-bold text-4xl text-black text-center p-4 m-2'>
+        <h1 className='font-bold text-4xl text-blue-500 text-center p-4 m-2'>
           Tu libro
         </h1>
         <div className=' text-black bg-blue-300 bg-opacity-10 text-base rounded-xl pl-2 p-2 h-5/6 bg-transparent border shadow-lg outline-none flex flex-col items-center justify-center'>

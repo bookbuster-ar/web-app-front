@@ -1,6 +1,5 @@
 const Usuarios = () => {
-  const users = 
-  [
+  const users = [
     {
       photoURL:
         'https://media.tycsports.com/files/2023/02/10/532928/lionel-messi_1440x810_wmk.webp',
@@ -25,7 +24,7 @@ const Usuarios = () => {
       phone: '+1249384890',
       birthdate: '01/01/1990',
     },
-  ]
+  ];
   return (
     <div>
       <div className='flex mb-7'>
@@ -35,22 +34,18 @@ const Usuarios = () => {
         </button>
       </div>
       <div className='h-auto w-11/12 space-y-3'>
-        {
-          users?.map((user) => (
-            <div className='flex space-x-28 items-center'>
-              <div className='flex space-x-3'>
-                <button className='hover:text-red-600'>Bloquear</button>
-                <div className='flex items-center w-40 space-x-2'>
-                  <img src={user.photoURL} alt="photo" className="w-9 h-9"/>
-                  <p>{user.name}</p>
-                </div>
+        {users?.map((user) => (
+          <div className='flex space-x-28 items-center'>
+            <div className='flex space-x-3'>
+              <button className='hover:text-red-600'>Bloquear</button>
+              <div className='flex items-center w-40 space-x-2'>
+                <img src={user.photoURL} alt='photo' className='w-9 h-9' />
+                <p>{user.name}</p>
               </div>
-              <span>{user.email}</span>
-              <span>{user.phone}</span>
-              <span>{user.birthdate}</span>
             </div>
-          ))
-        }
+            <span>{user.email}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
