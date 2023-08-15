@@ -21,17 +21,17 @@ const Genre = () => {
 
   return (
     <div className='h-full flex flex-col items-center'>
-      <div className='bg-gray-500 w-full h-36 flex justify-center items-center mb-16'>
+      <div className='bg-gray-500 w-full h-36 flex justify-center items-center mb-10'>
         <h1 className='font-bold text-4xl text-white'>{singleGenre.genre}</h1>
       </div>
-      <div className='h-96 w-11/12 flex pt-4 gap-3 scroll-smooth snap-mandatory overflow-x-scroll mb-40'>
+      <div className='max-[640px]:flex-wrap h-96 w-11/12 flex pt-4 mb-14 gap-3 min-[640px]:overflow-x-scroll scrollbar-thumb-blue-500'>
         {singleGenreStatus === 'loading' ? (
           <p>Loading...</p>
         ) : (
-          singleGenre.books?.map((book) => {
+          singleGenre.books?.map((book, index) => {
             return (
-              <Link to={`/detail/${book.id}`}>
-                <div className='h-80 w-44 text-sm'>
+              <Link to={`/detail/${book.id}`} key={index}>
+                <div className='h-80 w-44 text-sm my-2'>
                   <img
                     className='h-64 w-44 object-fill'
                     src={book.images.cover}
