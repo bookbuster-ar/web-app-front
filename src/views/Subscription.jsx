@@ -31,22 +31,22 @@ const Subscription = () => {
             Opción de alquilar libros físicos.
           </p>
           <p className='font-sans text-2xl text-black text-sm'>
-            Tenés la posibilidad de vender tus libros a la plataforma, y usar el
+            Tenés la posibilidad de vender tus libros a la plataforma y usar el
             crédito para comprar o alquilar otros libros.
           </p>
           <p className='font-sans text-2xl text-black text-sm'>
-            No pagas nunca costos de envío o retiro de libros.
+            No pagás nunca costos de envío o retiro de libros.
           </p>
           <p className='font-sans text-2xl text-black text-sm'>
             Accedés a un catálogo exclusivo para socios.
           </p>
           <p className='font-sans text-2xl text-black text-sm'>
-            Tenés descuentos en compras y descargas sobre el precio regular de
+            Tenés descuentos en compras y descargás sobre el precio regular de
             la plataforma.
           </p>
           <p className='font-sans text-2xl text-black text-sm'>
             Descuentos en compras de productos y servicios de nuestras tiendas
-            amigas. Nuestras suscripciones
+            amigas.
           </p>
         </div>
       </div>
