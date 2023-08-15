@@ -233,7 +233,7 @@ const Home = () => {
   const [imageIndex1, setImageIndex1] = useState(0);
   const [imageIndex2, setImageIndex2] = useState(0);
   const [imageIndex3, setImageIndex3] = useState(0);
-  
+
   const settings = {
     infinite: true,
     lazyLoad: true,
@@ -359,7 +359,32 @@ const Home = () => {
           <img src={PhotoHome5} alt='Imagen' className='w-full h-full ' />
         </div>
       </div>
+      <div
+        className='bg-cover h-screen flex  bg-image'
+        style={{ backgroundImage: `url(${BgPink})` }}
+      >
+        <div>
+          <img src={PhotoHome3} alt='Imagen' className='w-full h-full' />
+        </div>
+        <div className='w-3/5 flex text-xl flex-col justify-center m-12'>
+          <div>
+            <h1 className='font-bold text-7xl text-white '>UNA LIBRERÍA</h1>
+            <h1 className='font-bold text-7xl text-white'>
+              TRADICIONAL, EN UN
+            </h1>
+            <h1 className='font-bold text-2xl text-black'>
+              ¿No encontrás lo que buscás?
+            </h1>
+            <h1 className='font-bold text-7xl text-white'>ENTORNO DIGITAL</h1>
+          </div>
 
+          <p className='font-sans text-lg text-white w-4/5'>
+            Desde tu hogar, explorá nuestra colección de libros y disfrutá de la
+            sensación de descubrimiento y exploración que disfrutarías en una
+            librería física.
+          </p>
+        </div>
+      </div>
       {/* //--------------Instalar "pnpm i react-slick slick-carousel react-icons"--------- */}
       <div className='w-screen h-5/6 flex justify-center items-center flex-wrap'>
         <div className='w-64 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl object-fill'>
@@ -516,31 +541,6 @@ const Home = () => {
       </div>
 
       {/* ------------------------------------------------------------------- */}
-      <div
-        className='bg-cover h-screen flex  bg-image'
-        style={{ backgroundImage: `url(${BgPink})` }}
-      >
-        <div>
-          <img src={PhotoHome3} alt='Imagen' className='w-full h-full' />
-        </div>
-        <div className='w-3/5 flex text-xl flex-col justify-center m-12'>
-          <div>
-            <h1 className='font-bold text-7xl text-white '>UNA LIBRERÍA</h1>
-            <h1 className='font-bold text-7xl text-white'>
-              TRADICIONAL, EN UN</h1>
-            <h1 className='font-bold text-2xl text-black'>
-              ¿No encontrás lo que buscás?
-            </h1>
-            <h1 className='font-bold text-7xl text-white'>ENTORNO DIGITAL</h1>
-          </div>
-
-          <p className='font-sans text-lg text-white w-4/5'>
-            Desde tu hogar, explorá nuestra colección de libros y disfrutá de la
-            sensación de descubrimiento y exploración que disfrutarías en una
-            librería física.
-          </p>
-        </div>
-      </div>
       <div className='bg-white h-screen flex flex-row'>
         <div className='flex flex-col items-center justify-center w-8/12 m-12'>
           <div>
