@@ -10,8 +10,9 @@ import PhotoHome4 from '../assets/PhotoHome4.png';
 import ElementoHome4 from '../assets/ElementoHome4.png';
 import IconoBoton1 from '../assets/IconoBoton1.png';
 import IconoBoton2 from '../assets/IconoBoton2.png';
-
 import Footer from './Footer';
+import Carousels from '../components/Carousels';
+
 
 const Home = () => {
   return (
@@ -107,6 +108,9 @@ const Home = () => {
             <h1 className='font-bold text-7xl text-white'>
               TRADICIONAL, EN UN
             </h1>
+            <h1 className='font-bold text-2xl text-black'>
+              ¿No encontrás lo que buscás?
+            </h1>
             <h1 className='font-bold text-7xl text-white'>ENTORNO DIGITAL</h1>
           </div>
 
@@ -117,6 +121,11 @@ const Home = () => {
           </p>
         </div>
       </div>
+
+      <div>
+        <Carousels/>
+      </div>
+
       <div className='bg-white h-screen flex flex-row'>
         <div className='flex flex-col items-center justify-center w-8/12 m-12'>
           <div>
