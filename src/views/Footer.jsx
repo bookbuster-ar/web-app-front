@@ -3,8 +3,9 @@ import Instagram from '../icons/Instagram';
 import Twitter from '../icons/Twitter';
 import Facebook from '../icons/Facebook';
 import { Link } from 'react-router-dom';
-import FooterIcon from '../assets/FooterIcon.png';
+// import FooterIcon from '../assets/FooterIcon.png';
 import FooterLogo from '../assets/FooterLogo.png';
+import Bookmark from '../icons/Bookmark';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -42,7 +43,7 @@ const Footer = () => {
           >
             <Facebook />
           </Link>
-          <img src={FooterIcon} />
+          <Bookmark />
         </div>
       </div>
     </footer>
