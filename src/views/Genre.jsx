@@ -7,7 +7,7 @@ import {
 } from '../store/books/bookSlice';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import icono from '../assets/FooterIcon.png';
+import icono from '../assets/Footer-BookBuster.png';
 
 const Genre = () => {
   const dispatch = useDispatch();

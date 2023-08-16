@@ -1,49 +1,15 @@
-import React from 'react';
-import Instagram from '../icons/Instagram';
-import Twitter from '../icons/Twitter';
-import Facebook from '../icons/Facebook';
-import { Link } from 'react-router-dom';
-// import FooterIcon from '../assets/FooterIcon.png';
-import FooterLogo from '../assets/FooterLogo.png';
-import Bookmark from '../icons/Bookmark';
+import FooterBook from '../assets/Footer-BookBuster.png'
+import FooterSave from '../assets/Footer-Save.png'
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className='bg-blue-600 text-black p-4'>
-      <div className='container mx-auto flex justify-between items-center'>
-        <div className='flex items-center space-x-4 text-white'>
-          <img src={FooterLogo} alt='Footer' />
-          <a href='#' className='hover:text-pink-200'>
-            Términos y Condiciones
-          </a>
-          <p>© {currentYear} Bookbuster</p>
+    <footer className='bg-bluebook h-[50px] sm:h-16 xl:h-24'>
+      <div className='h-full flex justify-center md:justify-between items-center mx-4 md:mx-6 xl:mx-8'>
+        <div className='w-10 h-10 xl:w-16 xl:h-16'>
+          <img src={FooterBook} alt="Logo de Book Buster" />
         </div>
-        <div className='flex items-center space-x-4 ml-x '>
-          <Link
-            to={'https://www.instagram.com/'}
-            target='_blank'
-            rel='noopener noreferrer'
-            className=''
-          >
-            <Instagram />
-          </Link>
-          <Link
-            to={'https://twitter.com/?lang=es'}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <Twitter />
-          </Link>
-          <Link
-            to={'https://www.facebook.com/'}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <Facebook />
-          </Link>
-          <Bookmark />
+        <div className='hidden md:inline md:w-6 md:h-6 xl:h-10 xl:w-10'>
+          <img src={FooterSave} alt="Logo de guardado amarillo" />
         </div>
       </div>
     </footer>

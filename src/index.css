@@ -8,6 +8,36 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+@font-face {
+  font-family: "Kabut";
+  src: url(./assets/fonts/KabutHitam.ttf);
+}
+
+.redbook-bg-image {
+  background-image: url('./assets/home/recomendaciones/BgRed.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.yellowbook-bg-image {
+  background-image: url('./assets/BgYellow.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.pinkbook-bg-image {
+  background-image: url('./assets/BgPink.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 @layer components {
   /* .btn{
     @apply h-8 rounded-lg p-3 text-black transition bg-transparent hover:scale-110 hover:bg-sky-500 duration-300;
