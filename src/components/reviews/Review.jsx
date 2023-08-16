@@ -22,14 +22,15 @@ const reactions = [
   { name: 'He aprendido mucho', id: 'hap', color: 'bg-blue-500' },
 ];
 
-
 const Review = ({ review, id }) => {
   const reactionFound = reactions.find((reac) => reac.id === review.reaction);
   const dispatch = useDispatch();
   const reviewId = review.id;
   const userid = localStorage.getItem('user_id');
 
-  let reviewOwner = review.creator.id === userid;
+  let reviewOwner = review.creator?.id === userid;
+
+  console.log('ID CREATOR', review);
 
   const handleDelete = () => {
     dispatch(deleteReview({ id, reviewId }));
