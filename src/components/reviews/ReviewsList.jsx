@@ -36,7 +36,9 @@ const ReviewList = () => {
 
       {status !== 'failed' &&
         reviews.length > 0 &&
-        reviews?.map((review) => <Review key={review.id} review={review} />)}
+        reviews?.map((review) => (
+          <Review key={review.id} review={review} id={id} />
+        ))}
     </section>
   );
 };

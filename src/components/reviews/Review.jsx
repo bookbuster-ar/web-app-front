@@ -1,5 +1,8 @@
 import CommentList from './CommentList';
+import LikeReview from './LikeReview';
 import Foto from '../../assets/ElementoHome4.png';
+import { deleteReview } from '../../store/reviews/reviewsSlice';
+import { useDispatch } from 'react-redux';
 
 const reactions = [
   { name: 'Me lo devoré', id: 'mld', color: 'bg-red-300' },
@@ -19,17 +22,39 @@ const reactions = [
   { name: 'He aprendido mucho', id: 'hap', color: 'bg-blue-500' },
 ];
 
-const Review = ({ review }) => {
+const Review = ({ review, id }) => {
   const reactionFound = reactions.find((reac) => reac.id === review.reaction);
+  const dispatch = useDispatch();
+  const reviewId = review.id;
+  const userid = localStorage.getItem('user_id');
+
+  let reviewOwner = review.creator.id === userid;
+
+  const handleDelete = () => {
+    dispatch(deleteReview({ id, reviewId }));
+  };
+
   return (
     <article className='md:col-span-4 bg-white p-6 shadow-lg rounded-lg my-11'>
-      <div className='flex items-center'>
-        <img src={Foto} alt='Foto' className='w-12 rounded-full mr-2' />
-        <p className='font-bold'>
-          {`${review.creator.name} ${review.creator.last_name}` ||
-            'unknown author'}{' '}
-        </p>
-        <p className='mx-1'> compartió una opinión</p>
+      <div className='flex flex-col'>
+        {reviewOwner ? (
+          <button
+            onClick={handleDelete}
+            className='bg-pink-300 rounded-full w-6 text-white my-4 hover:bg-pink-400'
+          >
+            X
+          </button>
+        ) : (
+          ''
+        )}
+        <div className='flex items-center'>
+          <img src={Foto} alt='Foto' className='w-12 rounded-full mr-2' />
+          <p className='font-bold'>
+            {`${review.creator?.name} ${review.creator?.last_name}` ||
+              'unknown author'}{' '}
+          </p>
+          <p className='mx-1'> compartió una opinión</p>
+        </div>
       </div>
       <div>
         <div
@@ -39,6 +64,12 @@ const Review = ({ review }) => {
         </div>
         <p className='my-4'>{review.content}</p>
         <p className='text-sm'>{review.createdAt} </p>
+        <LikeReview
+          reviewId={review.id}
+          id={id}
+          likes={review.likes}
+          reviewCreator={review.creator}
+        />
       </div>
       <CommentList reviewId={review.id} />
     </article>
