@@ -45,7 +45,7 @@ const BookDetail = () => {
     condition: 'new',
     image: detail.image,
     description: 'Compra del libro',
-  }
+  };
 
   const handlerBuyBook = () => {
     dispatch(BuyBook(bookToSend));
@@ -99,12 +99,12 @@ const BookDetail = () => {
               </ul>
               <div>
                 {/* <Link to={'/bookcheckout'}> */}
-                  <button
-                    onClick={handlerBuyBook}
-                    className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'
-                  >
-                    Comprar {/* temporal, antes Ver opciones de adquisicion */}
-                  </button>
+                <button
+                  onClick={handlerBuyBook}
+                  className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'
+                >
+                  Comprar {/* temporal, antes Ver opciones de adquisicion */}
+                </button>
                 {/* </Link> */}
               </div>
               <FormAddReview />
