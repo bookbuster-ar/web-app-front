@@ -22,7 +22,7 @@ const reactions = [
   { name: 'He aprendido mucho', id: 'hap', color: 'bg-blue-500' },
 ];
 
-const Review = ({ review, id }) => {
+
 const Review = ({ review, id }) => {
   const reactionFound = reactions.find((reac) => reac.id === review.reaction);
   const dispatch = useDispatch();
