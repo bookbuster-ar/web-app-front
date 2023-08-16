@@ -4,7 +4,7 @@ import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import { fetchGenres } from '../store/books/bookSlice';
 import Loader from '../icons/Loader/Loader';
 import { Link } from 'react-router-dom';
-import IconoBoton2 from '../assets/IconoBoton2.png';
+import IconoBoton2 from '../assets/PurpleEye.png';
 
 const colorClasses = {
   0: 'bg-red-300',

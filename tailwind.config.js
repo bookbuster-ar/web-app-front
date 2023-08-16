@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class',
+  /* darkMode: 'class', */
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
@@ -11,42 +11,19 @@ export default {
     },
     fontFamily: {
       sans: ['Roboto', 'sans-serif'],
+      kabut: ['Kabut', 'sans-serif'],
     },
     extend: {
       minWidth: {
         custom: '700px',
       },
       colors: {
-        azul: '#3B82F6',
-        primary: '#020617',
-        secondary: '#0f172a',
-        secondaryBorder: '#1e293b',
-        first: {
-          default: '#20A5FF',
-          50: '#e9f6ff',
-          100: '#d2edff',
-          200: '#bce4ff',
-          300: '#a6dbff',
-          400: '#90d2ff',
-          500: '#20A5FF',
-          600: '#136399',
-          700: '#105380',
-          800: '#0d4266',
-          900: '#0a314c',
-        },
-        second: '#0f172a',
-        neutral: {
-          0: '#FFFFFF',
-          50: '#FDFDFD',
-          100: '#F9F9F9',
-          200: '#F3F3F3',
-          300: '#E8E8E8',
-          400: '#D8D8D8',
-          500: '#A8A8A8',
-          600: '#888888',
-          700: '#686868',
-          900: '#2A2A2A',
-        },
+        pinkbook: '#F8A9F8',
+        bluebook: '#3456F3',
+        orangebook: '#F96215',
+        redbook: '#F8271C',
+        yellowbook: '#FBFF1F',
+        greybook: '#D9D9D980',
         success: {
           50: '#16E33D',
         },
@@ -67,7 +44,6 @@ export default {
         lgPlus: '48px',
         xl: '64px',
         xxl: '80px',
-        110: '450px'
       },
       fontSize: {
         xs: '12px',
@@ -80,9 +56,12 @@ export default {
         h3: '24px',
       },
       fontWeight: {
+        thin: 100,
+        extralight: 200,
         regular: 400,
-        semibold: 600,
+        semibold: 500,
         bold: 700,
+        dark:900,
       },
     },
   },
