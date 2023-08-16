@@ -72,7 +72,7 @@ const BookDetail = () => {
               <div>
                 <Link to={'/bookcheckout'}>
                   <button className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'>
-                    Ver opciones de adquisición
+                    Comprar
                   </button>
                 </Link>
               </div>

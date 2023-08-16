@@ -269,9 +269,11 @@ const Carousels = () => {
   };
 
   return (
-    <div className='w-screen h-5/6 flex justify-center items-center flex-wrap'>
-      <div className='w-64 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl object-fill'>
-        <h1 className='text-2xl mb-2 font-bold'>RECIÉN LLEGADOS</h1>
+    <div className='w-screen h-5/6 flex justify-center items-center flex-wrap my-20 '>
+      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl object-fill'>
+        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>
+          RECIÉN <br /> LLEGADOS
+        </h1>
         <Slider {...settings}>
           {books?.map((book, index) => {
             return (
@@ -308,8 +310,10 @@ const Carousels = () => {
         </Slider>
       </div>
 
-      <div className='w-64 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
-        <h1 className='text-2xl mb-2 font-bold'>RECIÉN LLEGADOS</h1>
+      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
+        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>
+          LOS MÁS <br /> POPULARES
+        </h1>
         <Slider {...settings1}>
           {books1?.map((book, index) => {
             return (
@@ -346,8 +350,8 @@ const Carousels = () => {
         </Slider>
       </div>
 
-      <div className='w-64 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
-        <h1 className='text-2xl mb-2 font-bold'>RECIÉN LLEGADOS</h1>
+      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
+        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>AUDIOLIBROS</h1>
         <Slider {...settings2}>
           {books2?.map((book, index) => {
             return (
@@ -384,8 +388,10 @@ const Carousels = () => {
         </Slider>
       </div>
 
-      <div className='w-64 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
-        <h1 className='text-2xl mb-2 font-bold'>RECIÉN LLEGADOS</h1>
+      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
+        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>
+          LIBROS <br /> USADOS
+        </h1>
         <Slider {...settings3}>
           {books3?.map((book, index) => {
             return (

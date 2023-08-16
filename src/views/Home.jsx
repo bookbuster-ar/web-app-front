@@ -13,7 +13,6 @@ import IconoBoton2 from '../assets/IconoBoton2.png';
 import Footer from './Footer';
 import Carousels from '../components/Carousels';
 
-
 const Home = () => {
   return (
     <div>
@@ -108,9 +107,6 @@ const Home = () => {
             <h1 className='font-bold text-7xl text-white'>
               TRADICIONAL, EN UN
             </h1>
-            <h1 className='font-bold text-2xl text-black'>
-              ¿No encontrás lo que buscás?
-            </h1>
             <h1 className='font-bold text-7xl text-white'>ENTORNO DIGITAL</h1>
           </div>
 
@@ -123,7 +119,7 @@ const Home = () => {
       </div>
 
       <div>
-        <Carousels/>
+        <Carousels />
       </div>
 
       <div className='bg-white h-screen flex flex-row'>
@@ -156,7 +152,7 @@ const Home = () => {
           <img
             src={PhotoHome4}
             alt='Imagen'
-            className='max-w-lg h-full absolute '
+            className='max-w-lg h-full absolute'
           />
           <img src={ElementoHome4} alt='Imagen' className='h-full w-full' />
         </div>
