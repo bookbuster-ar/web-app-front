@@ -37,7 +37,12 @@ const CommentList = ({ reviewId }) => {
       {status !== 'failed' &&
         comments.length > 0 &&
         comments?.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment
+            key={comment.id}
+            comment={comment}
+            id={id}
+            reviewId={reviewId}
+          />
         ))}
     </div>
   );

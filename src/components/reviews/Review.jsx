@@ -1,6 +1,6 @@
 import CommentList from './CommentList';
 import LikeReview from './LikeReview';
-import Foto from '../../assets/ElementoHome4.png';
+import Foto from '../../assets/home/noencontras/Background.png';
 import { deleteReview } from '../../store/reviews/reviewsSlice';
 import { useDispatch } from 'react-redux';
 
@@ -24,11 +24,21 @@ const reactions = [
 
 const Review = ({ review, id }) => {
   const reactionFound = reactions.find((reac) => reac.id === review.reaction);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const reviewId = review.id;
+  //   const
+
+  // let reviewOwner = review.creator.id ===
+
+  //   const handleDelete = () => {
+
+  //     dispatch(deleteReview({ id, reviewId }));
+  //   };
+
   return (
     <article className='md:col-span-4 bg-white p-6 shadow-lg rounded-lg my-11'>
       <div className='flex items-center'>
-        
+        {/* <button onClick={handleDelete}>X</button> */}
         <img src={Foto} alt='Foto' className='w-12 rounded-full mr-2' />
         <p className='font-bold'>
           {`${review.creator?.name} ${review.creator?.last_name}` ||

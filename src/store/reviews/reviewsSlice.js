@@ -41,11 +41,10 @@ export const postReview = createAsyncThunk(
 export const getComment = createAsyncThunk(
   'comment/getComment',
   async ({ reviewId, id }) => {
-    console.log('ReviewIddddd: ', reviewId, 'bookIdddd: ', id);
     const { data } = await axios.get(
       `${URL_BASE}/${id}/reviews/${reviewId}/comments`
     );
-    console.log('Este es el resultado del fatch: ', data);
+
     return data;
   }
 );
@@ -53,7 +52,6 @@ export const getComment = createAsyncThunk(
 export const postComment = createAsyncThunk(
   'comment/postComment',
   async ({ newComment, id, reviewId }) => {
-    console.log(newComment);
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
@@ -67,7 +65,66 @@ export const postComment = createAsyncThunk(
         },
       }
     );
+    return { status: response.status, data: response.data };
+  }
+);
 
+export const postLikeReview = createAsyncThunk(
+  'likeReview/postLikeReview',
+  async ({ id, reviewId }) => {
+    const userid = localStorage.getItem('user_id');
+    const sessionid = localStorage.getItem('session_id');
+    const response = await axios.post(
+      `${URL_BASE}/${id}/reviews/${reviewId}/like`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
+    return { status: response.status, data: response.data };
+  }
+);
+
+export const postLikeComment = createAsyncThunk(
+  'likeComment/postLikeComment',
+  async ({ id, reviewId, commentId }) => {
+    const userid = localStorage.getItem('user_id');
+    const sessionid = localStorage.getItem('session_id');
+    const response = await axios.post(
+      `${URL_BASE}/${id}/reviews/${reviewId}/comments/${commentId}/like`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
+    return { status: response.status, data: response.data };
+  }
+);
+
+export const deleteReview = createAsyncThunk(
+  'reviews/deleteReview',
+  async ({ id, reviewId }) => {
+    const userid = localStorage.getItem('user_id');
+    const sessionid = localStorage.getItem('session_id');
+    const response = await axios.delete(
+      `${URL_BASE}/${id}/reviews/${reviewId}`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     return { status: response.status, data: response.data };
   }
 );
@@ -103,7 +160,7 @@ const reviewsSlice = createSlice({
       .addCase(postComment.pending, (state) => {
         state.commentStatus = 'loading';
       })
-      .addCase(postComment.fulfilled, (state, action) => {
+      .addCase(postComment.fulfilled, (state) => {
         state.commentStatus = 'succeeded';
         state.reloadComments = !state.reloadComments;
       })
@@ -121,6 +178,15 @@ const reviewsSlice = createSlice({
       .addCase(getComment.rejected, (state, action) => {
         state.commentStatus = 'failed';
         state.commentError = action.error.message;
+      })
+      .addCase(postLikeReview.fulfilled, (state) => {
+        state.reloadReviews = !state.reloadReviews;
+      })
+      .addCase(postLikeComment.fulfilled, (state) => {
+        state.reloadComments = !state.reloadComments;
+      })
+      .addCase(deleteReview.fulfilled, (state) => {
+        state.reloadReviews = !state.reloadReviews;
       });
   },
 });
