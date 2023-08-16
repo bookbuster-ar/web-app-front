@@ -10,18 +10,46 @@ import ReviewList from '../components/reviews/ReviewsList';
 import FormAddReview from '../components/reviews/FormAddReview';
 import { Link } from 'react-router-dom';
 import { selectAllReviews } from '../store/reviews/reviewsSlice';
+import {
+  selectResponseUrl,
+  selectStatus,
+  BuyBook,
+} from '../store/payment/paymentSlice';
 
 const BookDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const reviews = useSelector(selectAllReviews);
 
+  const responseUrl = useSelector(selectResponseUrl);
+  const statusUrl = useSelector(selectStatus);
+
   const detail = useSelector(selectDetail);
   const status = useSelector(selectDetailStatus);
 
   useEffect(() => {
+    if (statusUrl === 200) {
+      window.location.href = responseUrl;
+    }
+  }, [statusUrl, dispatch]);
+
+  useEffect(() => {
     dispatch(getBookByDetail(id));
   }, [dispatch, id]);
+
+  const bookToSend = {
+    id: detail.id,
+    title: detail.title,
+    quantity: 1,
+    price: 1000,
+    condition: 'new',
+    image: detail.image,
+    description: 'Compra del libro',
+  };
+
+  const handlerBuyBook = () => {
+    dispatch(BuyBook(bookToSend));
+  };
 
   return (
     <div className='p-8 rounded-lg shadow-md '>
@@ -70,11 +98,14 @@ const BookDetail = () => {
                 </li>
               </ul>
               <div>
-                <Link to={'/bookcheckout'}>
-                  <button className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'>
-                    Ver opciones de adquisición
-                  </button>
-                </Link>
+                {/* <Link to={'/bookcheckout'}> */}
+                <button
+                  onClick={handlerBuyBook}
+                  className='bg-blue-900 hover:bg-blue-400 text-white font-light py-2 px-4 rounded-full mt-4'
+                >
+                  Comprar {/* temporal, antes Ver opciones de adquisicion */}
+                </button>
+                {/* </Link> */}
               </div>
               <FormAddReview />
             </div>

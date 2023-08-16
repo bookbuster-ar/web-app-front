@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { postLikeComment } from '../../store/reviews/reviewsSlice';
 import { useState } from 'react';
-import iconoOjo from '../../assets/IconoBoton2.png';
+import iconoOjo from '../../assets/PurpleEye.png';
 
 const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
   const dispatch = useDispatch();

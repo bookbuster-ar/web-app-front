@@ -4,7 +4,7 @@ import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import { fetchGenres } from '../store/books/bookSlice';
 import Loader from '../icons/Loader/Loader';
 import { Link } from 'react-router-dom';
-import IconoBoton2 from '../assets/IconoBoton2.png';
+import IconoBoton2 from '../assets/PurpleEye.png';
 
 const colorClasses = {
   0: 'bg-red-300',
@@ -44,7 +44,7 @@ const Library = () => {
           <Loader />
         ) : (
           genres?.map((genre, index) => (
-            <Link to={`/home/library/genre/${genre.id}`}>
+            <Link to={`/home/library/genre/${genre.id}`} key={index}>
               <button
                 className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
               >

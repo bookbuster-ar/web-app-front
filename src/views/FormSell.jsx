@@ -139,9 +139,9 @@ const FormSell = () => {
             Para vender tu libro a la plataforma, debe cumplir los siguientes
             requisitos:
           </h2>
-          <p>• El libro debe haberse publicado en los últimos 15 años.</p>
+          <p>El libro debe haberse publicado en los últimos 15 años.</p>
           <p>
-            • No debe estar marcado, ni faltarle páginas, ni tener daños que
+            No debe estar marcado, ni faltarle páginas, ni tener daños que
             impidan su correcta lectura.
           </p>
           <p>
