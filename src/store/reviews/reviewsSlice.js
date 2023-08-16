@@ -116,7 +116,25 @@ export const deleteReview = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
       `${URL_BASE}/${id}/reviews/${reviewId}`,
-      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
+    return { status: response.status, data: response.data };
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  'comment/deleteComment',
+  async ({ id, reviewId, commentId }) => {
+    const userid = localStorage.getItem('user_id');
+    const sessionid = localStorage.getItem('session_id');
+    const response = await axios.delete(
+      `${URL_BASE}/${id}/reviews/${reviewId}/comments/${commentId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -187,6 +205,9 @@ const reviewsSlice = createSlice({
       })
       .addCase(deleteReview.fulfilled, (state) => {
         state.reloadReviews = !state.reloadReviews;
+      })
+      .addCase(deleteComment.fulfilled, (state) => {
+        state.reloadComments = !state.reloadReviews;
       });
   },
 });
