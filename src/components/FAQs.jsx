@@ -6,10 +6,31 @@ const FAQs = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const questions = [
-    { question: '¿Pregunta 1?', answer: 'Respuesta a la pregunta 1.' },
-    { question: '¿Pregunta 2?', answer: 'Respuesta a la pregunta 2.' },
-    { question: '¿Pregunta 3?', answer: 'Respuesta a la pregunta 3.' },
-    { question: '¿Pregunta 4?', answer: 'Respuesta a la pregunta 4.' },
+    {
+      question: '¿Cómo funciona Blockbuster?',
+      answer:
+        'Siendo parte de la comunidad Blockbuster a través de la suscripción experimentas una nueva forma de leer en múltiples formatos, opciones de compra y recomendaciones. También podés usar Blockbuster como una librería on line tradicional para obtener tu libro físico nuevo o usado. ',
+    },
+    {
+      question: '¿Cómo empiezo a ser parte de la Comunidad Blockbuster?',
+      answer:
+        'Si sos parte de la comunidad Blockbuster vas a poder alquilar y vender libros físicos a través de la librería on line, comprar libros nuevos y usados. Acceder a los formatos de audiolibros y libros digitales sin límites. Además de recibir recomendaciones exclusivas y promociones. Empezá a leer de una forma diferente y suscríbete.',
+    },
+    {
+      question: '¿Cómo regalar una suscripción?',
+      answer:
+        'Elegí cuántos meses de suscripción quieres regalar, dejanos el correo electrónico de la persona a la que deseas enviar el regalo ¡Y listo!',
+    },
+    {
+      question: '¿Cómo alquilar un libro?',
+      answer:
+        'Fíjate qué libro te gusta. Si está disponible te aparecerá la opción de alquiler. Podrás tenerlo durante 40 días. Luego de ese tiempo podrás comprarlo o devolverlo para poder adquirir otro.  ',
+    },
+    {
+      question: '¿Cómo vender un libro?',
+      answer:
+        'Accedé al formulario de venta de libros. Blockbuster aceptará la venta y tendrás créditos para poder obtener otros libros de la librería.',
+    },
   ];
 
   return (
@@ -17,7 +38,8 @@ const FAQs = () => {
       {questions.map((faq, index) => (
         <div
           key={index}
-          className='border p-4 rounded-md shadow-lg min-w-custom '
+          className='border p-4 rounded-md shadow-lg min-w-custom'
+          style={{ width: '200px', overflowY: 'auto' }}
         >
           <div
             onClick={() => setOpenIndex(index === openIndex ? null : index)}
