@@ -17,6 +17,7 @@ export default {
         custom: '700px',
       },
       colors: {
+        azul: '#3B82F6',
         primary: '#020617',
         secondary: '#0f172a',
         secondaryBorder: '#1e293b',

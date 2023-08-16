@@ -55,7 +55,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <div className='space-x-2 flex items-center ml-15 justify-center'>
+      <div className='space-x-2 flex items-center my-9 ml-15 justify-center'>
         <Search />
         <input
           type='text'
