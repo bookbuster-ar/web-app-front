@@ -17,7 +17,7 @@ const Home = () => {
       <div className='redbook-bg-image h-[420px] md:h-[400px] lg:h-[515px] xl:h-[765px] my-1 md:my-2 xl:my-5 flex flex-col justify-end items-center md:flex-row-reverse md:items-end '>
         <Recomendaciones />
       </div>
-      <div className='yellowbook-bg-image h-[415px] md:h-[380px] lg:h-[520px] xl:h-[770px] my-1 md:my-2 xl:my-5 flex flex-col justify-end items-center md:flex-row-reverse md:items-end'>
+      <div className='yellowbook-bg-image h-[415px] md:h-[380px] lg:h-[520px] xl:h-[770px] my-1 md:my-2 xl:my-5 flex flex-col justify-end items-center md:items-end'>
         <InteractuaLibros />
       </div>
       <div className='pinkbook-bg-image h-[415px] md:h-[390px] lg:h-[525px] xl:h-[760px] md:my-2 xl:my-5 flex flex-col justify-end items-center md:flex-row-reverse md:items-end'>
