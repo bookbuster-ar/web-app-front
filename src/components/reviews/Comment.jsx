@@ -1,4 +1,4 @@
-import Foto from '../../assets/home/noencontras/Background.png';
+import Foto from '../../assets/ElementoHome4.png';
 import LikeComment from './LikeComment';
 import { useDispatch } from 'react-redux';
 import { deleteComment } from '../../store/reviews/reviewsSlice';
