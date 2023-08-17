@@ -71,7 +71,7 @@ export const deleteQuote = createAsyncThunk(
 );
 
 const quotesSlice = createSlice({
-  name: citas,
+  name: 'quotes',
   initialState,
   reducers: {},
   extraReducers(builder) {
@@ -111,6 +111,6 @@ export const selectAllQuotes = (state) => state.quotes.quotes;
 export const selectQuotesStatus = (state) => state.quotes.status;
 export const selectQuotesError = (state) => state.quotes.error;
 
-export const selectReloadReviews = (state) => state.quotes.reloadQuotes;
+export const selectReloadQuotes = (state) => state.quotes.reloadQuotes;
 
 export default quotesSlice.reducer;

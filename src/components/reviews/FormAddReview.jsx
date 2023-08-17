@@ -53,19 +53,19 @@ const FormAddReview = () => {
     }
   };
 
-  const submitHandler = async (event) => {
+  const submitHandler =  (event) => {
     event.preventDefault();
 
     if (
       !localStorage.getItem('session_id') ||
       !localStorage.getItem('user_id')
     ) {
-      window.alert('Es necesario iniciar sesión para crear la reseña');
+      window.alert('Es necesario iniciar sesión para crear una reseña');
       return;
     }
 
     let newReview = { ...form };
-    await dispatch(postReview({ newReview, id })); //ya se q no es necesario pero si no me aparecía en consola q se borraba antes del post
+     dispatch(postReview({ newReview, id })); //ya se q no es necesario pero si no me aparecía en consola q se borraba antes del post
     setForm(INITIAL_FORM_STATE);
   };
 

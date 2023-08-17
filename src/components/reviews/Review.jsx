@@ -30,8 +30,6 @@ const Review = ({ review, id }) => {
 
   let reviewOwner = review.creator?.id === userid;
 
-  console.log('ID CREATOR', review);
-
   const handleDelete = () => {
     dispatch(deleteReview({ id, reviewId }));
   };

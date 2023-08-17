@@ -3,7 +3,6 @@ import {
   selectAllReviews,
   selectReviewsStatus,
   selectReviewsError,
-  selectAllComment,
   selectReloadReviews,
   fetchReviews,
 } from '../../store/reviews/reviewsSlice';
@@ -28,8 +27,12 @@ const ReviewList = () => {
     return <Loader />;
   }
 
+  if (status === 'failed') {
+    return <p>{error}</p>;
+  }
+
   return (
-    <section>
+    <div>
       <h2 className='text-xl font-semibold text-gray-800'>
         Opiniones de otros lectores
       </h2>
@@ -39,21 +42,8 @@ const ReviewList = () => {
         reviews?.map((review) => (
           <Review key={review.id} review={review} id={id} />
         ))}
-    </section>
+    </div>
   );
 };
 
 export default ReviewList;
-
-/* if (status === 'loading') {
-    content = <p>Loading...</p>;
-  } else if (status === 'succeeded') {
-    const orderedReviews = reviews
-      .slice()
-      .sort((a, b) => b.date.localeCompare(a.date));
-    content = orderedReviews?.map((review) => {
-      return ;
-    });
-  } else if (status === 'failed') {
-    content = <p>{error}</p>;
-  } */
