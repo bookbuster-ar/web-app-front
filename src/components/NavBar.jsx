@@ -92,7 +92,7 @@ const NavBar = () => {
           onClick={handleMenu}
         >
           <button>
-            {showMenu ? <Delete color={'yellowbook'} /> : <ResponsiveMenu />}
+            {showMenu ? <Delete color={'yellowbook'} size={'md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2'} /> : <ResponsiveMenu />}
           </button>
         </div>
       </div>
@@ -148,7 +148,7 @@ const NavBar = () => {
               ) : (
                 <li onClick={handleMenu} className='text-white text-center my-4'>
                   <Link to='/login'>
-                    <button className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-current border bg-redbook hover:border-red-700 px-4 py-2 rounded-md'>
+                    <button className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out border bg-redbook hover:border-red-700 px-4 py-2 rounded-md'>
                       Iniciar sesión
                     </button>
                   </Link>
