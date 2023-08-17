@@ -20,7 +20,7 @@ const Comment = ({ comment, id, reviewId }) => {
         {commentOwner ? (
           <button
             onClick={handleDelete}
-            className='bg-pink-300 rounded-full w-6 text-white my-4 hover:bg-pink-400'
+            className='bg-pink-300 rounded-full w-6 text-white my-4 hover:bg-pink-400 self-end'
           >
             X
           </button>
@@ -33,12 +33,12 @@ const Comment = ({ comment, id, reviewId }) => {
             {`${comment.by?.name} ${comment?.by?.last_name}` ||
               'unknown author'}
           </p>
-          <p className='mx-1'> comentó esta reseña</p>
+          <p className='mx-1 text-sm'> comentó esta reseña -</p>
+          <p className=' text-sm'>{comment.createdAt}</p>
         </div>
       </div>
       <div>
         <p className='my-4'>{comment.content}</p>
-        <p className='text-sm'>{comment.createdAt} </p>
       </div>
       <div>
         <LikeComment

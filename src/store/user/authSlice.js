@@ -5,7 +5,6 @@ import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
-
 // thunk to login with email and password
 export const signInWithEmailAsync = createAsyncThunk(
   'auth/signInWithEmail',
@@ -90,15 +89,25 @@ export const verifyUserEmail = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   const session_id = localStorage.getItem('session_id');
+  console.log(session_id);
   const user_id = localStorage.getItem('user_id');
   if (!session_id || !user_id) {
     return thunkAPI.rejectWithValue('No session found in localStorage');
   }
 
   try {
-    const response = await axios.post(`${URL_BASE}/auth/logout`, {
-      sessionId: session_id,
-    });
+    const response = await axios.post(
+      `${URL_BASE}/auth/logout`,
+
+      {
+        headers: {
+          'Content-Type': 'application/json',
+
+          sessionId: session_id,
+          
+        },
+      }
+    );
     localStorage.removeItem('session_id');
     localStorage.removeItem('user_id');
 

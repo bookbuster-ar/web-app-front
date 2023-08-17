@@ -10,6 +10,7 @@ export default {
       xl: '1280px',
     },
     fontFamily: {
+      roboto: ['Roboto Flex'],
       sans: ['Roboto', 'sans-serif'],
       kabut: ['Kabut', 'sans-serif'],
     },
@@ -61,7 +62,7 @@ export default {
         regular: 400,
         semibold: 500,
         bold: 700,
-        dark:900,
+        dark: 900,
       },
     },
   },

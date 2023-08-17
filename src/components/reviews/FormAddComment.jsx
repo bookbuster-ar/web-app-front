@@ -36,7 +36,7 @@ const FormAddComment = ({ reviewId }) => {
   return (
     <div>
       <form onSubmit={submitHandler} className='my-6'>
-        <h2 className='text-sm text-gray-800'>Comentar</h2>
+        <h2 className='text-sm text-gray-800 '>Comentar</h2>
         <div className='flex justify-start items-center'>
           <label htmlFor='comment'></label>
           <textarea
@@ -45,11 +45,11 @@ const FormAddComment = ({ reviewId }) => {
             value={form.comment}
             onChange={changeHandler}
             placeholder='Comentá lo que pensás'
-            className='w-96 bg-gray-200 border-none text-sm'
+            className='w-full bg-slate-100 text-slate-600 h-28 placeholder:text-slate-600 placeholder:opacity-50 border border-gray-300 col-span-6 resize-none outline-none rounded-lg p-2 duration-300 focus:border-gray-300'
           ></textarea>
           <button
             type='submit'
-            className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md h-10'
+            className='bg-slate-100 stroke-slate-600 border text-gray-500 border-slate-200 col-span-2 flex justify-center rounded-lg p-2 duration-300 hover:border-slate-400 hover:text-gray-500  focus:border-slate-300'
           >
             Publicar
           </button>

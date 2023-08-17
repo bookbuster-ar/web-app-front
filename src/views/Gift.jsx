@@ -6,7 +6,7 @@ const Gift = () => {
       <h2 className='text-center text-4xl font-bold m-6 text-blue-500'>
         REGALÁ BOOKBUSTER
       </h2>
-      <h3 className='text-blue-600'>
+      <h3 className='text-gray-600'>
         Regalá la experiencia de lectura sin límites
       </h3>
 

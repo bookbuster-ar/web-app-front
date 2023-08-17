@@ -3,14 +3,13 @@ import {
   selectAllReviews,
   selectReviewsStatus,
   selectReviewsError,
-  selectAllComment,
   selectReloadReviews,
   fetchReviews,
 } from '../../store/reviews/reviewsSlice';
 import { useEffect } from 'react';
 import Review from './Review';
 import { useParams } from 'react-router-dom';
-import Loader from '../../icons/Loader/Loader';
+import Error from '../../components/Error';
 
 const ReviewList = () => {
   const dispatch = useDispatch();
@@ -18,18 +17,19 @@ const ReviewList = () => {
 
   const reviews = useSelector(selectAllReviews);
   const status = useSelector(selectReviewsStatus);
+  const error = useSelector(selectReviewsError);
   const reloadReviews = useSelector(selectReloadReviews);
 
   useEffect(() => {
     dispatch(fetchReviews(id));
   }, [reloadReviews, dispatch]);
 
-  if (status === 'loading') {
-    return <Loader />;
+  if (status === 'failed') {
+    return <div>{<Error />}</div>;
   }
 
   return (
-    <section>
+    <div className='w-1/2'>
       <h2 className='text-xl font-semibold text-gray-800'>
         Opiniones de otros lectores
       </h2>
@@ -39,21 +39,8 @@ const ReviewList = () => {
         reviews?.map((review) => (
           <Review key={review.id} review={review} id={id} />
         ))}
-    </section>
+    </div>
   );
 };
 
 export default ReviewList;
-
-/* if (status === 'loading') {
-    content = <p>Loading...</p>;
-  } else if (status === 'succeeded') {
-    const orderedReviews = reviews
-      .slice()
-      .sort((a, b) => b.date.localeCompare(a.date));
-    content = orderedReviews?.map((review) => {
-      return ;
-    });
-  } else if (status === 'failed') {
-    content = <p>{error}</p>;
-  } */
