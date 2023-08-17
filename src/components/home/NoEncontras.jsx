@@ -23,7 +23,7 @@ const NoEncontras = () => {
       </div>
       <div className='text-bluebook mb-8 text-center md:mb-6 md:text-start md:mr-72 md:max-w-md lg:scale-125 lg:mb-24 lg:mr-[480px] xl:scale-[1.75] xl:mb-28 xl:mr-[720px]'>
         <h1 className='font-dark text-4xl max-w-xs mb-2 md:text-5xl mx-auto md:max-w-lg'>
-          ¿NO ENCONTRÁS LO QUE BUSCAS?
+          ¿NO ENCONTRÁS LO QUE BUSCÁS?
         </h1>
         <p className='text-sm max-w-[250px] mx-auto md:max-w-[360px] md:ml-2 lg:max-w-[400px] xl:max-w-[420px] mb-4'>
           Asesorate con nuestros libreros, o recorré nuestro catálogo.

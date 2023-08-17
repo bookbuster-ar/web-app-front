@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
-const LOCALHOST = 'http://localhost:3001/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 export const subscribeUser = createAsyncThunk(
   'payment/subscribe',
@@ -15,7 +14,7 @@ export const subscribeUser = createAsyncThunk(
       console.log('userid:', userid);
 
       const response = await axios.post(
-        `${LOCALHOST}/payment/subscriptionOrder`,
+        `${URL_BASE}/payment/subscriptionOrder`,
         {},
         {
           headers: {
@@ -43,7 +42,7 @@ export const BuyBook = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     try {
-      const response = await axios.post(`${LOCALHOST}/payment/placeOrder`, data, {
+      const response = await axios.post(`${URL_BASE}/payment/placeOrder`, data, {
         headers: {
           'Content-Type': 'application/json',
           userid,

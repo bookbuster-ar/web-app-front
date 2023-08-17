@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-const URL_BASE = 'https://bookbuster-dev.onrender.com/api/books';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
   quotes: [],
