@@ -14,7 +14,7 @@ const Genre = () => {
   const { id } = useParams();
 
   const singleGenre = useSelector(selectSingleGenre);
-  const singleGenreStatus = useSelector(selectGenreStatus);
+  let singleGenreStatus = useSelector(selectGenreStatus);
 
   useEffect(() => {
     dispatch(fetchGenre(id));

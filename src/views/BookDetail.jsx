@@ -8,13 +8,14 @@ import {
 import { useParams } from 'react-router-dom';
 import ReviewList from '../components/reviews/ReviewsList';
 import FormAddReview from '../components/reviews/FormAddReview';
-import { Link } from 'react-router-dom';
 import { selectAllReviews } from '../store/reviews/reviewsSlice';
 import {
   selectResponseUrl,
   selectStatus,
   BuyBook,
 } from '../store/payment/paymentSlice';
+import QuotesList from '../components/quotes/QuotesList';
+import FormAddRQuote from '../components/quotes/FormAddQuote';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -79,10 +80,6 @@ const BookDetail = () => {
                   {detail.editorial}
                 </li>
                 <li>
-                  <span className='font-medium'>Temática: </span>
-                  {detail.editorial}
-                </li>
-                <li>
                   <span className='font-medium'>Año de publicación: </span>
                   {detail.publication_year}
                 </li>
@@ -108,6 +105,7 @@ const BookDetail = () => {
                 {/* </Link> */}
               </div>
               <FormAddReview />
+              <FormAddRQuote />
             </div>
           </div>
         )}
@@ -118,6 +116,7 @@ const BookDetail = () => {
         <p className='text-sm text-gray-500 mt-2'>{detail.synopsis}</p>
       </div>
       <ReviewList />
+      <QuotesList />
     </div>
   );
 };

@@ -1,21 +1,21 @@
 import { useDispatch } from 'react-redux';
-import { postLikeComment } from '../../store/reviews/reviewsSlice';
 import { useState } from 'react';
+import { postQuoteLike } from '../../store/quotes/quotesSlice';
 import iconoOjo from '../../assets/PurpleEye.png';
 
-const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
+const LikeQuote = ({ quoteId, id, likes, quoteCreator }) => {
   const dispatch = useDispatch();
   const [isLiked, setIsLiked] = useState(
-    likes.whoLiked.some((user) => user.id === commentCreator.id)
+    likes.whoLiked.some((user) => user.id === quoteCreator.id)
   );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleLike = () => {
     setIsLiked(!isLiked);
-    dispatch(postLikeComment({ id, reviewId, commentId }));
+    dispatch(postQuoteLike({ id, quoteId }));
   };
 
-  const whoLikedComment = likes.whoLiked?.map(
+  const whoLikedQuote = likes.whoLiked?.map(
     (user) => `${user.name} ${user.last_name}`
   );
 
@@ -34,7 +34,6 @@ const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
       ) : (
         <button onClick={handleLike}>🤍</button>
       )}
-    
 
       <button onClick={handleOpen} className='bg-blue-500 rounded-3xl w-6 ml-2'>
         <img src={iconoOjo} alt='ver' />
@@ -50,7 +49,7 @@ const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
                 <p>A {likes.count} personas les gusta esta reseña</p>
               )}
             </div>
-            {whoLikedComment?.map((user, index) => (
+            {whoLikedQuote?.map((user, index) => (
               <p key={index}>{user}</p>
             ))}
             <div className='flex flex-col items-center justify-center'>
@@ -68,4 +67,4 @@ const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
   );
 };
 
-export default LikeComment;
+export default LikeQuote;
