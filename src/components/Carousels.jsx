@@ -289,7 +289,7 @@ const Carousels = () => {
                     }
                   >
                     <img
-                      src={book.images.cover}
+                      src={book?.images?.cover}
                       alt={book.title}
                       className='h-[124px] w-[82px]'
                     />
@@ -330,7 +330,7 @@ const Carousels = () => {
                     }
                   >
                     <img
-                      src={book.images.cover}
+                      src={book?.images?.cover}
                       alt={book.title}
                       className='h-[124px] w-[82px]'
                     />
@@ -371,7 +371,7 @@ const Carousels = () => {
                     }
                   >
                     <img
-                      src={book.images.cover}
+                      src={book?.images?.cover}
                       alt={book.title}
                       className='h-[124px] w-[82px]'
                     />
@@ -412,7 +412,7 @@ const Carousels = () => {
                     }
                   >
                     <img
-                      src={book.images.cover}
+                      src={book?.images?.cover}
                       alt={book.title}
                       className='h-[124px] w-[82px]'
                     />
