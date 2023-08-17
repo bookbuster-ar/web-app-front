@@ -11,6 +11,7 @@ import Loader from '../../icons/Loader/Loader';
 import Comment from './Comment';
 import FormAddComment from './FormAddComment';
 import { useParams } from 'react-router-dom';
+import Error from '../Error';
 
 const CommentList = ({ reviewId }) => {
   const dispatch = useDispatch();
@@ -29,6 +30,11 @@ const CommentList = ({ reviewId }) => {
   if (status === 'loading') {
     return <Loader />;
   }
+
+  if (status === 'failed') {
+    return <Error />;
+  }
+
   return (
     <div>
       <FormAddComment reviewId={reviewId} />

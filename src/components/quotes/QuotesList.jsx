@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Loader from '../../icons/Loader/Loader';
 import {
   selectAllQuotes,
   selectQuotesStatus,
@@ -11,6 +10,7 @@ import {
 } from '../../store/quotes/quotesSlice';
 import Quote from './Quote';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import Error from '../Error';
 
 const QuotesList = () => {
   const dispatch = useDispatch();
@@ -25,20 +25,16 @@ const QuotesList = () => {
     dispatch(fetchQuotes(id));
   }, [reloadQuotes, dispatch]);
 
-  const handleQuoteClick = () => {
+  const handleQuoteClick = (index) => {
     setCurrentIndex(index);
   };
 
-  if (status === 'loading') {
-    return <Loader />;
-  }
-
   if (status === 'failed') {
-    return <p>{error}</p>;
+    return <Error />;
   }
 
   return (
-    <div className='relative group'>
+    <div className='relative group md:col-span-4 bg-white p-6 shadow-lg rounded-lg my-11'>
       {status !== 'failed' &&
         quotes.length > 0 &&
         quotes?.map((quote, index) => (
@@ -49,10 +45,10 @@ const QuotesList = () => {
             onClick={() => handleQuoteClick(index)}
           />
         ))}
-      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2x1 rounded-full p-2 bg-bluebook text-white cursor-pointer '>
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2x1 rounded-full p-2 bg-gray-300 text-white cursor-pointer '>
         <BsChevronCompactLeft size={30} />
       </div>
-      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2x1 rounded-full p-2 bg-bluebook text-white cursor-pointer '>
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2x1 rounded-full p-2 bg-gray-300 text-white cursor-pointer '>
         <BsChevronCompactRight size={30} />
       </div>
     </div>

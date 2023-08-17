@@ -41,7 +41,7 @@ export const fetchGenres = createAsyncThunk('books/fetchGenres', async () => {
 
 export const fetchGenre = createAsyncThunk('books/fetchGenre', async (id) => {
   const { data } = await axios.get(`${URL_BASE}/books/genre?id=${id}`);
-  return data;
+  return data.data;
 });
 
 export const createBook = createAsyncThunk(

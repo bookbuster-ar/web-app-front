@@ -12,7 +12,7 @@ const initialState = {
 export const fetchQuotes = createAsyncThunk(
   'quotes/fetchQuotes',
   async (id) => {
-    const { data } = await axios.get(`${URL_BASE}/${id}/quotes`);
+    const { data } = await axios.get(`${URL_BASE}/books/${id}/quotes`);
     return data;
   }
 );
@@ -22,14 +22,17 @@ export const postQuote = createAsyncThunk(
   async ({ newQuote, id }) => {
     const userId = localStorage.getItem('user_id');
     const sessionId = localStorage.getItem('session_id');
-    const response = await axios.post(`${URL_BASE}/${id}/quotes`, newQuote, {
-      headers: {
-        'Content-Type': 'application/json',
-        userId,
-        sessionId,
-      },
-    });
-
+    const response = await axios.post(
+      `${URL_BASE}/books/${id}/quotes`,
+      newQuote,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userId,
+          sessionId,
+        },
+      }
+    );
     return response.status;
   }
 );
@@ -40,7 +43,7 @@ export const postQuoteLike = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${URL_BASE}/${id}/quotes/${quoteId}/like`,
+      `${URL_BASE}/books/${id}/quotes/${quoteId}/like`,
       {},
       {
         headers: {
@@ -59,13 +62,16 @@ export const deleteQuote = createAsyncThunk(
   async ({ id, quoteId }) => {
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
-    const response = await axios.delete(`${URL_BASE}/${id}/quotes/${quoteId}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        userid,
-        sessionid,
-      },
-    });
+    const response = await axios.delete(
+      `${URL_BASE}/books/${id}/quotes/${quoteId}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     return { status: response.status, data: response.data };
   }
 );

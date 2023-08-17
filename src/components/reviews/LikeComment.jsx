@@ -34,13 +34,7 @@ const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
       ) : (
         <button onClick={handleLike}>🤍</button>
       )}
-      <div>
-        {likes.count === 1 ? (
-          <p> A 1 persona le gusta esta reseña </p>
-        ) : (
-          <p>a {likes.count} personas les gusta esta reseña</p>
-        )}
-      </div>
+    
 
       <button onClick={handleOpen} className='bg-blue-500 rounded-3xl w-6 ml-2'>
         <img src={iconoOjo} alt='ver' />
@@ -49,7 +43,13 @@ const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
       {isDialogOpen && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
           <div className='bg-white p-6 rounded-lg shadow-md max-w-sm w-full'>
-            <h4 className='mb-4'>Personas a las que les gusta esta reseña:</h4>
+            <div className='mb-4 font-semibold'>
+              {likes.count === 1 ? (
+                <p> A 1 persona le gusta esta reseña </p>
+              ) : (
+                <p>A {likes.count} personas les gusta esta reseña</p>
+              )}
+            </div>
             {whoLikedComment?.map((user, index) => (
               <p key={index}>{user}</p>
             ))}

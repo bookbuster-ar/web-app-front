@@ -9,7 +9,7 @@ import {
 import { useEffect } from 'react';
 import Review from './Review';
 import { useParams } from 'react-router-dom';
-import Loader from '../../icons/Loader/Loader';
+import Error from '../../components/Error';
 
 const ReviewList = () => {
   const dispatch = useDispatch();
@@ -17,22 +17,19 @@ const ReviewList = () => {
 
   const reviews = useSelector(selectAllReviews);
   const status = useSelector(selectReviewsStatus);
+  const error = useSelector(selectReviewsError);
   const reloadReviews = useSelector(selectReloadReviews);
 
   useEffect(() => {
     dispatch(fetchReviews(id));
   }, [reloadReviews, dispatch]);
 
-  if (status === 'loading') {
-    return <Loader />;
-  }
-
   if (status === 'failed') {
-    return <p>{error}</p>;
+    return <div>{<Error />}</div>;
   }
 
   return (
-    <div>
+    <div className='w-1/2'>
       <h2 className='text-xl font-semibold text-gray-800'>
         Opiniones de otros lectores
       </h2>

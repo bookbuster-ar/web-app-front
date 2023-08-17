@@ -1,12 +1,17 @@
 import bookReducer from './books/bookSlice';
 import bookshelvesReducer from './books/bookshelvesSlice';
 import userReducer from './user/userSlice';
-import { configureStore, getDefaultMiddleware, combineReducers } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './user/authSlice';
 import reviewsReducer from './reviews/reviewsSlice';
-import paymentReducer from './payment/paymentSlice'
+import paymentReducer from './payment/paymentSlice';
+import quotesReducer from './quotes/quotesSlice';
 
 const persistConfig = {
   key: 'root',
@@ -21,6 +26,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   reviews: reviewsReducer,
   payment: paymentReducer,
+  quotes: quotesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -28,7 +34,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware({
-    serializableCheck: false
+    serializableCheck: false,
   }),
 });
 

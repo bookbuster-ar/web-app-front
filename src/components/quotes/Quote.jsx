@@ -14,11 +14,7 @@ const Quote = ({ quote, id, onClick }) => {
   };
 
   return (
-    <article
-      className='w-full h-full bg-greybook duration-500'
-      onClick={onClick}
-    >
-      {/* // <article className='md:col-span-4 bg-white p-6 shadow-lg rounded-lg my-11'> */}
+    <article className='w-full h-full duration-500 p-12' onClick={onClick}>
       <div className='flex flex-col'>
         {quoteOwner ? (
           <button
@@ -33,19 +29,20 @@ const Quote = ({ quote, id, onClick }) => {
         <div className='flex items-center'>
           <img src={Foto} alt='Foto' className='w-12 rounded-full mr-2' />
           <p className='font-bold'>
-            {`${quote.by?.name} ${quote.by?.last_name}` || 'unknown author'}
+            {`${quote.creator?.name} ${quote.creator?.last_name}` ||
+              'unknown author'}
           </p>
-          <p className='mx-1'> compartió una cita</p>
+          <p className='mx-1 text-sm'> compartió una cita -</p>
+          <p className=' text-sm'>{quote.createdAt}</p>
         </div>
       </div>
       <div>
         <p className='my-4'>{quote.content}</p>
-        <p className='text-sm'>{quote.createdAt} </p>
         <LikeQuote
           quoteId={quote.id}
           id={id}
           likes={quote.likes}
-          quoteCreator={quote.by}
+          quoteCreator={quote.creator}
         />
       </div>
     </article>

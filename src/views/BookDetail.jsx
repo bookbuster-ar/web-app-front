@@ -15,6 +15,7 @@ import {
   BuyBook,
 } from '../store/payment/paymentSlice';
 import QuotesList from '../components/quotes/quotesList';
+import FormAddRQuote from '../components/quotes/FormAddQuote';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -79,10 +80,6 @@ const BookDetail = () => {
                   {detail.editorial}
                 </li>
                 <li>
-                  <span className='font-medium'>Temática: </span>
-                  {detail.editorial}
-                </li>
-                <li>
                   <span className='font-medium'>Año de publicación: </span>
                   {detail.publication_year}
                 </li>
@@ -108,6 +105,7 @@ const BookDetail = () => {
                 {/* </Link> */}
               </div>
               <FormAddReview />
+              <FormAddRQuote />
             </div>
           </div>
         )}
