@@ -3,14 +3,14 @@ import { postLikeReview } from '../../store/reviews/reviewsSlice';
 import { useState } from 'react';
 import iconoOjo from '../../assets/PurpleEye.png';
 
-const LikeReview = ({ id, reviewId, likes }) => {
+const LikeReview = ({ id, reviewId, likes, reviewCreator }) => {
   const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(
+    likes.whoLiked.some((user) => user.id === reviewCreator.id)
+  );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [likeCounter, setLikeCounter] = useState(0);
 
   const handleLike = () => {
-    setLikeCounter(likeCounter + 1);
     setIsLiked(!isLiked);
     dispatch(postLikeReview({ id, reviewId }));
   };
@@ -18,10 +18,7 @@ const LikeReview = ({ id, reviewId, likes }) => {
   const whoLikedReview = likes.whoLiked?.map(
     (user) => `${user.name} ${user.last_name}`
   );
-
-  //checkear si dentro de whoLiked esta el id del usuario logueado, de ser así, el corazón se debe mantener azuk
-  //para eso busco en likes.whoLiked y comparo con userId >>> const userid = localStorage.getItem('user_id');
-
+  
   const handleOpen = () => {
     setIsDialogOpen(true);
   };
@@ -38,10 +35,10 @@ const LikeReview = ({ id, reviewId, likes }) => {
         <button onClick={handleLike}>🤍</button>
       )}
       <div>
-        {likeCounter === 1 ? (
+        {likes.count === 1 ? (
           <p> A 1 persona le gusta esta reseña </p>
         ) : (
-          <p>A {likeCounter} personas les gusta esta reseña</p>
+          <p>A {likes.count} personas les gusta esta reseña</p>
         )}
       </div>
 
