@@ -206,23 +206,25 @@ const Carousels = () => {
   const NextArrow = ({ onClick }) => {
     return (
       <div
-        className='text-4xl text-red-500 absolute z-10 cursor-pointer right-0 top-1/2 h-24 flex items-center'
+        className='text-3xl text-redbook absolute z-10 cursor-pointer right-0 top-14'
         onClick={onClick}
       >
         <SlArrowRight />
       </div>
     );
   };
+
   const PrevArrow = ({ onClick }) => {
     return (
       <div
-        className='text-4xl text-red-500 absolute z-10 cursor-pointer left-0 top-1/2 h-24 flex items-center'
+        className='text-3xl text-redbook absolute z-10 cursor-pointer left-0 top-14'
         onClick={onClick}
       >
         <SlArrowLeft />
       </div>
     );
   };
+
   const settings = {
     infinite: true,
     lazyLoad: true,
@@ -269,40 +271,41 @@ const Carousels = () => {
   };
 
   return (
-    <div className='w-screen h-5/6 flex justify-center items-center flex-wrap my-20 '>
-      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl object-fill'>
-        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>
+    <>
+      <div className='h-[320px] w-[220px] mx-auto mt-8 mb-1 md:mt-28 md:ml-32 lg:mt-60 lg:ml-64 xl:mt-16 xl:ml-32 relative border border-slate-100 rounded-3xl shadow-lg'>
+        <h1 className='text-xl ml-6 leading-4 mb-3 mt-6 font-dark text-bluebook'>
           RECIÉN <br /> LLEGADOS
         </h1>
         <Slider {...settings}>
           {books?.map((book, index) => {
             return (
-              <div key={index} className='h-60'>
-                <div
-                  className={
-                    index === imageIndex
-                      ? 'scale-125 opacity-100 transition-transform duration-500 h-40'
-                      : 'scale-75 transition-transform duration-500 opacity-50 h-40'
-                  }
-                >
-                  <img
-                    src={book.images.cover}
-                    alt={book}
-                    className='h-48 object-fill mt-10'
-                  />
-                </div>
-
-                <div>
-                  <Link to={`/detail/${book.id}`}>
-                    {index === imageIndex ? (
-                      <div className='w-60 relative -left-20 mt-16'>
-                        <h2 className='font-bold text-xl'>{book.title}</h2>
-                        <h2>{book.author}</h2>
-                      </div>
-                    ) : (
-                      ''
-                    )}
-                  </Link>
+              <div key={index} className='h-96 relative mt-4'>
+                <div className='absolute'>
+                  <div
+                    className={
+                      index === imageIndex
+                        ? 'relative z-10 scale-125 opacity-100 transition-transform duration-500'
+                        : 'relative z-0 scale-75 opacity-50 transition-transform duration-500'
+                    }
+                  >
+                    <img
+                      src={book?.images?.cover}
+                      alt={book.title}
+                      className='h-[124px] w-[82px]'
+                    />
+                  </div>
+                  <div className='absolute mt-6 w-60 -ml-16 text-start'>
+                    <Link to={`/detail/${book.id}`}>
+                      {index === imageIndex ? (
+                        <div className=''>
+                          <h2 className='font-bold text-sm'>{book.title}</h2>
+                          <h2 className='text-xs'>{book.author}</h2>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
@@ -310,39 +313,40 @@ const Carousels = () => {
         </Slider>
       </div>
 
-      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
-        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>
+      <div className='h-[320px] w-[220px] mx-auto my-1 md:mt-28 md:mr-32 lg:mt-60 lg:mr-64 xl:mt-16 xl:ml-20 relative border border-slate-100 rounded-3xl shadow-lg'>
+        <h1 className='text-xl ml-6 leading-4 mb-3 mt-6 font-dark text-bluebook'>
           LOS MÁS <br /> POPULARES
         </h1>
         <Slider {...settings1}>
           {books1?.map((book, index) => {
             return (
-              <div key={index} className='h-60'>
-                <div
-                  className={
-                    index === imageIndex1
-                      ? 'scale-125 opacity-100 transition-transform duration-500 h-40'
-                      : 'scale-75 transition-transform duration-500 opacity-50 h-40'
-                  }
-                >
-                  <img
-                    src={book.images.cover}
-                    alt={book}
-                    className='h-48 object-fill mt-10'
-                  />
-                </div>
-
-                <div className=''>
-                  <Link to={`/detail/${book.id}`}>
-                    {index === imageIndex1 ? (
-                      <div className='w-60 relative -left-20 mt-16'>
-                        <h2 className='font-bold text-xl'>{book.title}</h2>
-                        <h2>{book.author}</h2>
-                      </div>
-                    ) : (
-                      ''
-                    )}
-                  </Link>
+              <div key={index} className='h-96 relative mt-4'>
+                <div className='absolute'>
+                  <div
+                    className={
+                      index === imageIndex1
+                        ? 'relative z-10 scale-125 opacity-100 transition-transform duration-500'
+                        : 'relative z-0 scale-75 opacity-50 transition-transform duration-500'
+                    }
+                  >
+                    <img
+                      src={book?.images?.cover}
+                      alt={book.title}
+                      className='h-[124px] w-[82px]'
+                    />
+                  </div>
+                  <div className='absolute mt-6 w-60 -ml-16 text-start'>
+                    <Link to={`/detail/${book.id}`}>
+                      {index === imageIndex1 ? (
+                        <div className=''>
+                          <h2 className='font-bold text-sm'>{book.title}</h2>
+                          <h2 className='text-xs'>{book.author}</h2>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
@@ -350,37 +354,40 @@ const Carousels = () => {
         </Slider>
       </div>
 
-      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
-        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>AUDIOLIBROS</h1>
+      <div className='h-[320px] w-[220px] mx-auto my-1 md:-mt-24 md:ml-32 lg:-mt-56 lg:ml-64 xl:mt-16 xl:ml-8 relative border border-slate-100 rounded-3xl shadow-lg'>
+        <h1 className='text-xl ml-6 leading-4 mb-7 mt-6 font-dark text-bluebook'>
+          AUDIOLIBROS
+        </h1>
         <Slider {...settings2}>
           {books2?.map((book, index) => {
             return (
-              <div key={index} className='h-60'>
-                <div
-                  className={
-                    index === imageIndex2
-                      ? 'scale-125 opacity-100 transition-transform duration-500 h-40'
-                      : 'scale-75 transition-transform duration-500 opacity-50 h-40'
-                  }
-                >
-                  <img
-                    src={book.images.cover}
-                    alt={book}
-                    className='h-48 object-fill mt-10'
-                  />
-                </div>
-
-                <div className=''>
-                  <Link to={`/detail/${book.id}`}>
-                    {index === imageIndex2 ? (
-                      <div className='w-60 relative -left-20 mt-16'>
-                        <h2 className='font-bold text-xl'>{book.title}</h2>
-                        <h2>{book.author}</h2>
-                      </div>
-                    ) : (
-                      ''
-                    )}
-                  </Link>
+              <div key={index} className='h-96 relative mt-4'>
+                <div className='absolute'>
+                  <div
+                    className={
+                      index === imageIndex2
+                        ? 'relative z-10 scale-125 opacity-100 transition-transform duration-500'
+                        : 'relative z-0 scale-75 opacity-50 transition-transform duration-500'
+                    }
+                  >
+                    <img
+                      src={book?.images?.cover}
+                      alt={book.title}
+                      className='h-[124px] w-[82px]'
+                    />
+                  </div>
+                  <div className='absolute mt-6 w-60 -ml-16 text-start'>
+                    <Link to={`/detail/${book.id}`}>
+                      {index === imageIndex2 ? (
+                        <div className=''>
+                          <h2 className='font-bold text-sm'>{book.title}</h2>
+                          <h2 className='text-xs'>{book.author}</h2>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
@@ -388,46 +395,47 @@ const Carousels = () => {
         </Slider>
       </div>
 
-      <div className='w-72 h-110 relative my-3 mx-10 px-1 py-5 border rounded-3xl shadow-xl'>
-        <h1 className='text-2xl ml-3 mb-2 font-bold text-azul'>
+      <div className='h-[320px] w-[220px] mx-auto my-1 md:-mt-24 md:mr-32 lg:-mt-56 lg:mr-64 xl:mt-16 xl:ml-0 relative border border-slate-100 rounded-3xl shadow-lg'>
+        <h1 className='text-xl ml-6 leading-4 mb-3 mt-6 font-dark text-bluebook'>
           LIBROS <br /> USADOS
         </h1>
         <Slider {...settings3}>
           {books3?.map((book, index) => {
             return (
-              <div key={index} className='h-60'>
-                <div
-                  className={
-                    index === imageIndex3
-                      ? 'scale-125 opacity-100 transition-transform duration-500 h-40'
-                      : 'scale-75 transition-transform duration-500 opacity-50 h-40'
-                  }
-                >
-                  <img
-                    src={book.images.cover}
-                    alt={book}
-                    className='h-48 object-fill mt-10'
-                  />
-                </div>
-
-                <div className=''>
-                  <Link to={`/detail/${book.id}`}>
-                    {index === imageIndex3 ? (
-                      <div className='w-60 relative -left-20 mt-16'>
-                        <h2 className='font-bold text-xl'>{book.title}</h2>
-                        <h2>{book.author}</h2>
-                      </div>
-                    ) : (
-                      ''
-                    )}
-                  </Link>
+              <div key={index} className='h-96 relative mt-4'>
+                <div className='absolute'>
+                  <div
+                    className={
+                      index === imageIndex3
+                        ? 'relative z-10 scale-125 opacity-100 transition-transform duration-500'
+                        : 'relative z-0 scale-75 opacity-50 transition-transform duration-500'
+                    }
+                  >
+                    <img
+                      src={book?.images?.cover}
+                      alt={book.title}
+                      className='h-[124px] w-[82px]'
+                    />
+                  </div>
+                  <div className='absolute mt-6 w-60 -ml-16 text-start'>
+                    <Link to={`/detail/${book.id}`}>
+                      {index === imageIndex3 ? (
+                        <div className=''>
+                          <h2 className='font-bold text-sm'>{book.title}</h2>
+                          <h2 className='text-xs'>{book.author}</h2>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
           })}
         </Slider>
       </div>
-    </div>
+    </>
   );
 };
 

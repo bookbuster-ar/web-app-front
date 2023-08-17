@@ -3,14 +3,16 @@ import { postLikeComment } from '../../store/reviews/reviewsSlice';
 import { useState } from 'react';
 import iconoOjo from '../../assets/PurpleEye.png';
 
-const LikeComment = ({ commentId, id, likes, reviewId }) => {
+const LikeComment = ({ commentId, id, likes, reviewId, commentCreator }) => {
   const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(
+    likes.whoLiked.some((user) => user.id === commentCreator.id)
+  );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleLike = async () => {
+  const handleLike = () => {
     setIsLiked(!isLiked);
-    await dispatch(postLikeComment({ id, reviewId, commentId }));
+    dispatch(postLikeComment({ id, reviewId, commentId }));
   };
 
   const whoLikedComment = likes.whoLiked?.map(
