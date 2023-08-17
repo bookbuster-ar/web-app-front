@@ -3,7 +3,7 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-dev.onrender.com/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 
 // thunk to login with email and password
@@ -33,15 +33,11 @@ export const signInWithGoogleAsync = createAsyncThunk(
   'auth/signInWithGoogle',
   async () => {
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-
-    console.log(token, 'token');
+    const token = await result.user.getIdToken();
 
     const { data } = await axios.post(`${URL_BASE}/auth/signup/google`, {
       token,
     });
-    console.log(data);
     const user = {
       uid: result.user.uid,
       email: result.user.email,
