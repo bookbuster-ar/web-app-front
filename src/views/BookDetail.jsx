@@ -14,7 +14,7 @@ import {
   selectStatus,
   BuyBook,
 } from '../store/payment/paymentSlice';
-import QuotesList from '../components/quotes/quotesList';
+import QuotesList from '../components/quotes/QuotesList';
 import FormAddRQuote from '../components/quotes/FormAddQuote';
 
 const BookDetail = () => {
