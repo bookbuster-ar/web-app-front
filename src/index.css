@@ -12,6 +12,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+nav {
+  transition: transform 0.3s ease-in-out;
+}
+
 @font-face {
   font-family: "Kabut";
   src: url(./assets/fonts/KabutHitam.ttf);
