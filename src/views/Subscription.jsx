@@ -1,54 +1,57 @@
 import FAQs from '../components/FAQs';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { subscribeUser, selectResponseUrl, selectStatus } from '../store/payment/paymentSlice';
-
+import {
+  subscribeUser,
+  selectResponseUrl,
+  selectStatus,
+} from '../store/payment/paymentSlice';
 
 const Subscription = () => {
-  const dispatch = useDispatch()
-  const responseUrl = useSelector(selectResponseUrl)
-  const status = useSelector(selectStatus)
+  const dispatch = useDispatch();
+  const responseUrl = useSelector(selectResponseUrl);
+  console.log(responseUrl);
+  const status = useSelector(selectStatus);
 
-  useEffect(() => {
-    if(status === 200){
-      window.location.href = responseUrl;
-    }
-  },[status, dispatch])
-
-  const handlerSubscription = () => {
-    dispatch(subscribeUser());
+  const monthSubscription = {
+    price: 2000,
   };
 
+  useEffect(() => {
+    if (status === 200) {
+      window.location.href = responseUrl;
+    }
+  }, [status, dispatch]);
+
+  const handlerSubscription = () => {
+    dispatch(subscribeUser(monthSubscription));
+  };
 
   return (
-    <div className='flex flex-col items-center mx-14'>
-      <div className='flex flex-col w-full text-center rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none'>
-        <div className='p-8 sm:p-10 lg:flex-auto'>
-          <h2 className='font-bold text-5xl text-blue-500'>
-            Al suscribirte a Bookbuster:
-          </h2>
-          <p className='font-sans text-2xl text-black text-sm'>
-            Opción de alquilar libros físicos.
-          </p>
-          <p className='font-sans text-2xl text-black text-sm'>
-            Tenés la posibilidad de vender tus libros a la plataforma y usar el
-            crédito para comprar o alquilar otros libros.
-          </p>
-          <p className='font-sans text-2xl text-black text-sm'>
-            No pagás nunca costos de envío o retiro de libros.
-          </p>
-          <p className='font-sans text-2xl text-black text-sm'>
-            Accedés a un catálogo exclusivo para socios.
-          </p>
-          <p className='font-sans text-2xl text-black text-sm'>
-            Tenés descuentos en compras y descargás sobre el precio regular de
-            la plataforma.
-          </p>
-          <p className='font-sans text-2xl text-black text-sm'>
-            Descuentos en compras de productos y servicios de nuestras tiendas
-            amigas.
-          </p>
-        </div>
+    <div className='flex flex-col items-center p-14'>
+      <div className='text-center text-4xl'>
+        <h2 className='font-bold text-black'>Al suscribirte a Bookbuster:</h2>
+        <p className='font-sans text-2xl text-black text-sm'>
+          Opción de alquilar libros físicos.
+        </p>
+        <p className='font-sans text-2xl text-black text-sm'>
+          Tenés la posibilidad de vender tus libros a la plataforma, y usar el
+          crédito para comprar o alquilar otros libros.
+        </p>
+        <p className='font-sans text-2xl text-black text-sm'>
+          No pagas nunca costos de envío o retiro de libros.
+        </p>
+        <p className='font-sans text-2xl text-black text-sm'>
+          Accedés a un catálogo exclusivo para socios.
+        </p>
+        <p className='font-sans text-2xl text-black text-sm'>
+          Tenés descuentos en compras y descargas sobre el precio regular de la
+          plataforma.
+        </p>
+        <p className='font-sans text-2xl text-black text-sm'>
+          Descuentos en compras de productos y servicios de nuestras tiendas
+          amigas. Nuestras suscripciones
+        </p>
       </div>
 
       <div className='mx-auto max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none'>
@@ -57,7 +60,7 @@ const Subscription = () => {
             Suscribite
           </h3>
           <div className='mt-10 flex items-center gap-x-4'>
-            <h4 className='flex-none text-sm font-semibold leading-6 text-blue-600'>
+            <h4 className='flex-none text-sm font-semibold leading-6 text-bluebook'>
               Incluye
             </h4>
             <div className='h-px flex-auto bg-gray-100'></div>
@@ -68,7 +71,7 @@ const Subscription = () => {
           >
             <li className='flex gap-x-3'>
               <svg
-                className='h-6 w-5 flex-none text-blue-600'
+                className='h-6 w-5 flex-none text-bluebook'
                 viewBox='0 0 20 20'
                 fill='currentColor'
                 aria-hidden='true'
@@ -83,7 +86,7 @@ const Subscription = () => {
             </li>
             <li className='flex gap-x-3'>
               <svg
-                className='h-6 w-5 flex-none text-blue-600'
+                className='h-6 w-5 flex-none text-bluebook'
                 viewBox='0 0 20 20'
                 fill='currentColor'
                 aria-hidden='true'
@@ -98,7 +101,7 @@ const Subscription = () => {
             </li>
             <li className='flex gap-x-3'>
               <svg
-                className='h-6 w-5 flex-none text-blue-600'
+                className='h-6 w-5 flex-none text-bluebook'
                 viewBox='0 0 20 20'
                 fill='currentColor'
                 aria-hidden='true'
@@ -113,7 +116,7 @@ const Subscription = () => {
             </li>
             <li className='flex gap-x-3'>
               <svg
-                className='h-6 w-5 flex-none text-blue-600'
+                className='h-6 w-5 flex-none text-bluebook'
                 viewBox='0 0 20 20'
                 fill='currentColor'
                 aria-hidden='true'
@@ -128,7 +131,7 @@ const Subscription = () => {
             </li>
             <li className='flex gap-x-3'>
               <svg
-                className='h-6 w-5 flex-none text-blue-600'
+                className='h-6 w-5 flex-none text-bluebook'
                 viewBox='0 0 20 20'
                 fill='currentColor'
                 aria-hidden='true'

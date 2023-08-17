@@ -35,7 +35,7 @@ const Library = () => {
     <div className='bg-white h-screen flex flex-col items-center justify-center '>
       <div className=' flex '>
         <img src={IconoBoton2} className='h-12' />
-        <h1 className='font-bold text-5xl text-blue-500'>
+        <h1 className='font-bold text-5xl text-bluebook'>
           EXPLORÁ LA LIBRERÍA
         </h1>
       </div>
@@ -44,7 +44,7 @@ const Library = () => {
           <Loader />
         ) : (
           genres?.map((genre, index) => (
-            <Link to={`/home/library/genre/${genre.id}`} key={index}>
+            <Link to={`library/genre/${genre.id}`} key={index}>
               <button
                 className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
               >

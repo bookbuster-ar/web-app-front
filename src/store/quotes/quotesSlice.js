@@ -71,7 +71,7 @@ export const deleteQuote = createAsyncThunk(
 );
 
 const quotesSlice = createSlice({
-  name: citas,
+  name: 'quotes',
   initialState,
   reducers: {},
   extraReducers(builder) {

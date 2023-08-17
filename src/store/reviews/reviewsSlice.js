@@ -167,7 +167,7 @@ const reviewsSlice = createSlice({
       .addCase(postReview.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(postReview.fulfilled, (state, action) => {
+      .addCase(postReview.fulfilled, (state) => {
         state.status = 'succeeded';
         state.reloadReviews = !state.reloadReviews;
       })

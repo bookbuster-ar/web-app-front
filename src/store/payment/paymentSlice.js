@@ -5,17 +5,14 @@ const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 export const subscribeUser = createAsyncThunk(
   'payment/subscribe',
-  async (_, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
       const sessionid = localStorage.getItem('session_id');
       const userid = localStorage.getItem('user_id');
 
-      console.log('sessionid:', sessionid);
-      console.log('userid:', userid);
-
       const response = await axios.post(
         `${URL_BASE}/payment/subscriptionOrder`,
-        {},
+        data,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -28,7 +25,6 @@ export const subscribeUser = createAsyncThunk(
       const { linkCheckout } = response.data.link;
       return { linkCheckout, status };
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(
         error.response ? error.response.data : error.message
       );
@@ -42,18 +38,21 @@ export const BuyBook = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     try {
-      const response = await axios.post(`${URL_BASE}/payment/placeOrder`, data, {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid
-        },
-      });
+      const response = await axios.post(
+        `${URL_BASE}/payment/placeOrder`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
       const { status } = response;
       const init_point = response.data.response.body.init_point;
 
-      return {status, init_point};
-      
+      return { status, init_point };
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response ? error.response.data : error.message
@@ -97,8 +96,8 @@ const paymentSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.responseUrl = action.payload.init_point;
-        state.status = action.payload.status
-      })
+        state.status = action.payload.status;
+      });
   },
 });
 
