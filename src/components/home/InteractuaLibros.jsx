@@ -13,7 +13,6 @@ const InteractuaLibros = () => {
           src={Girl}
           alt='Chica en blanco y negro con un libro en la cabeza'
         />
-        
       </div>
       <div className='absolute w-12 h-12 ml-32 md:h-14 md:mr-16 md:w-14 mb-32 md:mb-[270px] md:ml-[644px] lg:h-16 lg:w-16 lg:mb-96 lg:mr-24 xl:w-20 xl:h-20 xl:mr-40 xl:mb-[565px]'>
         <img src={Asterisc} alt='Circulo amarillo sobre el libro de la chica' />
@@ -48,7 +47,6 @@ const InteractuaLibros = () => {
           />
         </div>
       </div>
-      
     </>
   );
 };

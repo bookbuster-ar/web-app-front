@@ -34,12 +34,12 @@ const FAQs = () => {
   ];
 
   return (
-    <div className='space-y-2 p-16'>
+    <div className='w-screen py-16'>
       {questions.map((faq, index) => (
         <div
           key={index}
-          className='border p-4 rounded-md shadow-lg min-w-custom'
-          style={{ width: '200px', overflowY: 'auto' }}
+          className='border p-4 rounded-md shadow-lg mx-auto w-4/5 '
+          style={{ overflowY: 'auto' }}
         >
           <div
             onClick={() => setOpenIndex(index === openIndex ? null : index)}

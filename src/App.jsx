@@ -13,7 +13,8 @@ import {
   Gift,
   FormProfile,
   NotFound,
-  SubscriptionCheckout
+  SubscriptionCheckout,
+  Rent,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
@@ -42,7 +43,8 @@ function App() {
           path='/subscriptioncheckout'
           element={<SubscriptionCheckout />}
         />
-        <Route path='*' element={<NotFound/>} />
+        <Route path='*' element={<NotFound />} />
+        <Route path='/rent' element={<Rent />} />
       </Routes>
     </div>
   );
