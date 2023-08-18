@@ -139,7 +139,7 @@ const Library = () => {
           <Loader />
         ) : (
           genres?.map((genre, index) => (
-            <Link to={`library/genre/${genre.id}`} key={index}>
+            <Link to={`/library/genre/${genre.id}`} key={index}>
               <button
                 className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
               >

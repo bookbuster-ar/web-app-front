@@ -10,7 +10,6 @@ import {
 const Subscription = () => {
   const dispatch = useDispatch();
   const responseUrl = useSelector(selectResponseUrl);
-  console.log(responseUrl);
   const status = useSelector(selectStatus);
 
   const monthSubscription = {

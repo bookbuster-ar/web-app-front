@@ -30,7 +30,6 @@ const SignInWithEmail = () => {
         navigate('/');
       }
     }).catch((error) => {
-      console.log(error);
       window.alert(error?.error);
     });
   };  
