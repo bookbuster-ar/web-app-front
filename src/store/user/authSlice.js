@@ -14,6 +14,7 @@ export const signInWithEmailAsync = createAsyncThunk(
         email,
         password,
       });
+      console.log(data);
       const { session_id, user } = data.data;
       return {
         user,

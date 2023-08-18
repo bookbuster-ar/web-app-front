@@ -35,7 +35,6 @@ const FormProfile = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    let completedForm = { ...form };
 
     //dispatch de put
 
