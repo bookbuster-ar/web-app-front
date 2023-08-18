@@ -34,12 +34,12 @@ const Usuarios = () => {
         </button>
       </div>
       <div className='h-auto w-11/12 space-y-3'>
-        {users?.map((user) => (
-          <div className='flex space-x-28 items-center'>
+        {users?.map((user, index) => (
+          <div key={index} className='flex space-x-28 items-center'>
             <div className='flex space-x-3'>
               <button className='hover:text-red-600'>Bloquear</button>
               <div className='flex items-center w-40 space-x-2'>
-                <img src={user.photoURL} alt='photo' className='w-9 h-9' />
+                <img src={user.photoURL} alt='photo' className='w-9 h-9 bg-contain' />
                 <p>{user.name}</p>
               </div>
             </div>

@@ -22,7 +22,7 @@ export const getBooksBySearch = createAsyncThunk(
   'books/getBooksBySearch',
   async (search) => {
     const { data } = await axios.get(`${URL_BASE}/books?search=${search}`);
-    return data;
+    return data.data;
   }
 );
 
@@ -60,7 +60,13 @@ export const createBook = createAsyncThunk(
 const bookSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {},
+  reducers: {
+    resetBooks: (state) => {
+      state.books = [];
+      state.status = 'idle';
+      state.error = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGenres.pending, (state) => {
@@ -123,6 +129,8 @@ const bookSlice = createSlice({
   },
 });
 
+export const { resetBooks } = bookSlice.actions;
+
 export const selectAllBooks = (state) => state.books.books;
 export const selectStatus = (state) => state.books.status;
 export const selectError = (state) => state.books.error;
@@ -139,5 +147,4 @@ export const selectDetail = (state) => state.books.detail;
 export const selectDetailStatus = (state) => state.books.detailStatus;
 export const selectDetailError = (state) => state.books.detailError;
 
-// export const {actions jeje} = booksSlice.actions;
 export default bookSlice.reducer;

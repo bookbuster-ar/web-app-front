@@ -10,12 +10,25 @@ import Avatar from '../components/Avatar';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const isLogged = useSelector(selectIsLogged);
   const dispatch = useDispatch();
 
+  const isAdmin = true // Harcodeada temporalmente
+
+  const handleProfile = () => {
+    setShowProfile(!showProfile);
+  };
+
   const handleLogOut = () => {
     dispatch(logOut());
-    setShowMenu(!showMenu)
+    setShowMenu(false);
+    setShowProfile(false);
+  };
+
+  const handleClose = () => {
+    setShowMenu(false);
+    setShowProfile(false)
   };
 
   const handleMenu = () => {
@@ -23,8 +36,8 @@ const NavBar = () => {
   };
 
   return (
-    <nav className='bg-bluebook shadow-lg md:shadow-none '>
-      <div className='h-14 md:h-20 lg:h-24 xl:h-32 w-full flex justify-between xl:justify-center'>
+    <nav className='relative shadow-lg md:shadow-none '>
+      <div className='bg-bluebook h-14 md:h-20 lg:h-24 xl:h-32 w-full flex justify-between xl:justify-center'>
         <div className='px-5 py-3.5 md:px-6 md:py-4 lg:px-7 lg:py-5 xl:px-12 xl:py-9 '>
           <Link to='/'>
             <img
@@ -36,36 +49,36 @@ const NavBar = () => {
         </div>
         <div className='hidden xl:ml-6 xl:flex xl:w-full xl:justify-around xl:items-center space-x-4 mx-4'>
           <div className='text-white my-4'>
-            <Link to='/home/library'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-current hover:border-yellowbook'>
+            <Link to='/library'>
+              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
                 Explorá la Librería
               </span>
             </Link>
           </div>
           <div className='text-white my-4'>
-            <Link to='/home/subscription'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-current hover:border-yellowbook'>
+            <Link to='/subscription'>
+              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
                 ¿Por qué suscribirme?
               </span>
             </Link>
           </div>
           <div className='text-white my-4'>
-            <Link to='/home/sellbook'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-current hover:border-yellowbook'>
+            <Link to='/sellbook'>
+              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
                 Vendé o Alquila
               </span>
             </Link>
           </div>
           <div className='text-white my-4'>
             <Link to='/gift'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-current hover:border-yellowbook'>
-                Regalá Bookbuste
+              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
+                Regalá Bookbuster
               </span>
             </Link>
           </div>
           <div className='text-white my-4'>
-            <Link to='/home/search'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-current hover:border-yellowbook'>
+            <Link to='/search'>
+              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
                 Encontrá tu próximo libro
               </span>
             </Link>
@@ -73,14 +86,14 @@ const NavBar = () => {
           {isLogged ? (
             <div
               className='text-white my-4 cursor-pointer'
-              onClick={handleLogOut}
+              onClick={handleProfile}
             >
               <Avatar />
             </div>
           ) : (
             <div className='text-white my-4'>
               <Link to='/login'>
-                <button className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-current border bg-redbook hover:border-red-700 px-4 py-2 rounded-md'>
+                <button className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out border bg-redbook hover:border-red-700 px-4 py-2 rounded-md'>
                   Iniciar sesión
                 </button>
               </Link>
@@ -92,61 +105,86 @@ const NavBar = () => {
           onClick={handleMenu}
         >
           <button>
-            {showMenu ? <Delete color={'yellowbook'} size={'md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2'} /> : <ResponsiveMenu />}
+            {showMenu ? (
+              <Delete
+                color={'yellowbook'}
+                size={'md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2'}
+              />
+            ) : (
+              <ResponsiveMenu />
+            )}
           </button>
         </div>
       </div>
       {/* Mobile menu */}
       {showMenu && (
-        <div className='xl:hidden'>
-          <div className='space-y-1 px-2 pb-3 pt-2'>
+        <div className='bg-bluebook xl:hidden'>
+          <div className='px-2 pb-3 pt-1'>
             <ul>
               <li className='text-white text-center my-4'>
-              <Link to='/home/library'>
-                <span onClick={handleMenu} className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                  Explorá la Librería
-                </span>
+                <Link to='/library'>
+                  <span
+                    onClick={handleClose}
+                    className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                  >
+                    Explorá la Librería
+                  </span>
                 </Link>
               </li>
               <li className='text-white text-center my-4'>
-              <Link to='/home/subscription'>
-                <span onClick={handleMenu} className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                  ¿Por qué suscribirme?
-                </span>
+                <Link to='/subscription'>
+                  <span
+                    onClick={handleClose}
+                    className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                  >
+                    ¿Por qué suscribirme?
+                  </span>
                 </Link>
               </li>
               <li className='text-white text-center my-4'>
-              <Link to='/home/sellbook'>
-                <span onClick={handleMenu} className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                  Vendé o Alquila
-                </span>
+                <Link to='/sellbook'>
+                  <span
+                    onClick={handleClose}
+                    className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                  >
+                    Vendé o Alquila
+                  </span>
                 </Link>
               </li>
               <li className='text-white text-center my-4'>
-              <Link to='/gift'>
-                <span onClick={handleMenu} className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                  Regalá Bookbuste
-                </span>
+                <Link to='/gift'>
+                  <span
+                    onClick={handleClose}
+                    className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                  >
+                    Regalá Bookbuste
+                  </span>
                 </Link>
               </li>
               <li className='text-white text-center my-4'>
-              <Link to='/home/search'>
-                <span onClick={handleMenu} className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                  Encontrá tu próximo libro
-                </span>
+                <Link to='/search'>
+                  <span
+                    onClick={handleClose}
+                    className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                  >
+                    Encontrá tu próximo libro
+                  </span>
                 </Link>
               </li>
               {isLogged ? (
                 <li
                   className='text-white text-center my-4'
-                  onClick={handleLogOut}
+                  onClick={handleProfile}
                 >
                   <Link to='/'>
                     <Avatar />
                   </Link>
                 </li>
               ) : (
-                <li onClick={handleMenu} className='text-white text-center my-4'>
+                <li
+                  onClick={handleMenu}
+                  className='text-white text-center my-4'
+                >
                   <Link to='/login'>
                     <button className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out border bg-redbook hover:border-red-700 px-4 py-2 rounded-md'>
                       Iniciar sesión
@@ -154,6 +192,54 @@ const NavBar = () => {
                   </Link>
                 </li>
               )}
+            </ul>
+          </div>
+        </div>
+      )}
+      {/* Show Profile Menu */}
+      {showProfile && (
+        <div className='bg-bluebook xl:absolute xl:right-0 xl:w-60 xl:rounded-bl-2xl xl:z-10'>
+          <div className='px-4 pb-3 pt-1 text-center'>
+            <ul>
+              <li className='text-white my-4'>
+                <Link to='/user'>
+                  <span
+                    onClick={handleClose}
+                    className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                  >
+                    Tu perfil
+                  </span>
+                </Link>
+              </li>
+              <li className='text-white my-4'>
+                <Link to='/user/profile'>
+                  <span
+                    onClick={handleClose}
+                    className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                  >
+                    Configuración
+                  </span>
+                </Link>
+              </li>
+              {isAdmin && (
+                <li className='text-white my-4'>
+                  <Link to='/admin'>
+                    <span
+                      onClick={handleClose}
+                      className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
+                    >
+                      Administrador
+                    </span>
+                  </Link>
+                </li>
+              )}
+              <div className='text-white my-4' onClick={handleLogOut}>
+                <Link to='/'>
+                  <button className='cursor-pointer border-transparent transition-colors duration-300 ease-in-out border bg-redbook hover:border-red-700 px-4 py-2 rounded-md'>
+                    Cerrar sesión
+                  </button>
+                </Link>
+              </div>
             </ul>
           </div>
         </div>

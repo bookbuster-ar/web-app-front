@@ -14,9 +14,7 @@ export const signInWithEmailAsync = createAsyncThunk(
         email,
         password,
       });
-      console.log(data);
       const { session_id, user } = data.data;
-      console.log(user, session_id);
       return {
         user,
         session_id,
@@ -73,7 +71,6 @@ export const verifyUserEmail = createAsyncThunk(
       const response = await axios.post(`${URL_BASE}/auth/VerifyEmail`, {
         userId: currentUserId,
       });
-      console.log(response);
       const { status } = response;
       const { data, message } = response.data;
       return {

@@ -1,4 +1,4 @@
-function Delete({color, size}) {
+function Delete({color, size, classN}) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -6,7 +6,7 @@ function Delete({color, size}) {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={`w-6 h-6  text-${color} ${size}`}
+      className={`w-6 h-6  text-${color} ${size} ${classN}`}
     >
       <path
         strokeLinecap='round'
