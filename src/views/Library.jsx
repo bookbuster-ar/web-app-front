@@ -40,8 +40,8 @@ const Library = () => {
       </h1>
       <div className='h-[800px] w-[900px]'>
         <div className='grid h-full grid-cols-12 grid-rows-6 relative'>
-          <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
-            <div className='bg-orangebook relative col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer overflow-hidden group hover:bg-orange-200'>
+          <div className='bg-orangebook relative col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer overflow-hidden group hover:bg-orange-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
               <div className='relative transition-all duration-500 h-full ease-in left-5'>
                 <div className='absolute bottom-2 leading-10 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
                   NARRATIVAS
@@ -56,8 +56,8 @@ const Library = () => {
                   <img src={RedMark} alt='Marcador Rojo' />
                 </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
           <div className='bg-redbook col-span-3 row-span-3 text-2xl text-yellowbook font-sans font-black cursor-pointer'>
             <span className='absolute top-56 inset-x-80 font-roboto'>
