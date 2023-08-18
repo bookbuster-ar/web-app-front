@@ -91,15 +91,21 @@ const BookDetail = () => {
                     onClick={handlerBuyBook}
                     className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 ml-2'
                   >
-                    Comprar {/* temporal, antes Ver opciones de adquisicion */}
+                    Opciones de adquisición{' '}
+                    {/* temporal, antes Ver opciones de adquisicion */}
+                  </button>
+                  <button className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 my-3'>
+                    +
                   </button>
                   {/* </Link> */}
                 </div>
-                <div className=' w-full font-semibold '>
+                <div className=' w-full  '>
                   <ul className='flex '>
                     <li
                       className={`flex-fill ${
-                        toggle === 1 ? 'text-blue-500' : 'text-gray-800'
+                        toggle === 1
+                          ? 'text-bluebook  font-bold'
+                          : 'text-gray-800'
                       } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(1)}
                     >
@@ -107,7 +113,9 @@ const BookDetail = () => {
                     </li>
                     <li
                       className={`flex-fill ${
-                        toggle === 2 ? 'text-blue-500' : 'text-gray-800'
+                        toggle === 2
+                          ? 'text-bluebook font-bold'
+                          : 'text-gray-800 '
                       } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(2)}
                     >
@@ -115,7 +123,9 @@ const BookDetail = () => {
                     </li>
                     <li
                       className={`flex-fill ${
-                        toggle === 3 ? 'text-blue-500' : 'text-gray-800'
+                        toggle === 3
+                          ? 'text-bluebook  font-bold'
+                          : 'text-gray-800'
                       } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(3)}
                     >
@@ -123,7 +133,9 @@ const BookDetail = () => {
                     </li>
                     <li
                       className={`flex-fill ${
-                        toggle === 4 ? 'text-blue-500' : 'text-gray-800'
+                        toggle === 4
+                          ? 'text-bluebook font-bold'
+                          : 'text-gray-800'
                       } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(4)}
                     >
@@ -131,7 +143,9 @@ const BookDetail = () => {
                     </li>
                     <li
                       className={`flex-fill ${
-                        toggle === 5 ? 'text-blue-500' : 'text-gray-800'
+                        toggle === 5
+                          ? 'text-bluebook font-bold'
+                          : 'text-gray-800'
                       } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(5)}
                     >

@@ -149,7 +149,7 @@ const Review = ({ review, id }) => {
       </div>
       <div>
         <div
-          className={`${reactionFound.color}  ${reactionFound.hover} ${reactionFound.color} ${reactionFound.text}m-2 border-none text-white px-4 py-2 m-2 w-fit h-fit text-center`}
+          className={`${reactionFound.color}  ${reactionFound.hover} ${reactionFound.color} ${reactionFound.text} font-bold m-2 border-none px-4 py-2 w-fit h-fit text-center`}
         >
           {reactionFound.name}
         </div>

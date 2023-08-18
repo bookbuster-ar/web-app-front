@@ -6,6 +6,7 @@ import {
   selectResponseUrl,
   selectStatus,
 } from '../store/payment/paymentSlice';
+import TitleBookBuster from '../assets/home/desafia/TitleBookBuster.png';
 
 const Subscription = () => {
   const dispatch = useDispatch();
@@ -27,30 +28,37 @@ const Subscription = () => {
   };
 
   return (
-    <div className='flex flex-col items-center p-14'>
-      <div className='text-center text-4xl'>
-        <h2 className='font-bold text-black'>Al suscribirte a Bookbuster:</h2>
-        <p className='font-sans text-2xl text-black text-sm'>
-          Opción de alquilar libros físicos.
-        </p>
-        <p className='font-sans text-2xl text-black text-sm'>
-          Tenés la posibilidad de vender tus libros a la plataforma, y usar el
-          crédito para comprar o alquilar otros libros.
-        </p>
-        <p className='font-sans text-2xl text-black text-sm'>
-          No pagas nunca costos de envío o retiro de libros.
-        </p>
-        <p className='font-sans text-2xl text-black text-sm'>
-          Accedés a un catálogo exclusivo para socios.
-        </p>
-        <p className='font-sans text-2xl text-black text-sm'>
-          Tenés descuentos en compras y descargas sobre el precio regular de la
-          plataforma.
-        </p>
-        <p className='font-sans text-2xl text-black text-sm'>
-          Descuentos en compras de productos y servicios de nuestras tiendas
-          amigas. Nuestras suscripciones
-        </p>
+    <div className='flex flex-col items-center p-14 '>
+      <div className='flex text-4xl'>
+        <div className='flex flex-col items-center mr-20'>
+          <h2 className='font-bold font-roboto text-5xl text-bluebook'>
+            AL SUSCRIBIRTE A
+          </h2>
+          <img src={TitleBookBuster} alt='TitleBookBuster' />
+        </div>
+        <div>
+          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+            Acceder a la opción de alquilar libros físicos.
+          </p>
+          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+            Tenés la posibilidad de vender tus libros a la plataforma, y usar el
+            crédito para comprar o alquilar otros libros.
+          </p>
+          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+            Tener el envío o retiro de libros accesibles
+          </p>
+          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+            Accedés a un catálogo y contenido exclusivo para socios.
+          </p>
+          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+            Tenés descuentos en compras, lectura on line y audiolibros sobre el
+            precio regular de la plataforma.
+          </p>
+          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+            Descuentos en compras de productos y servicios de nuestras tiendas
+            amigas.
+          </p>
+        </div>
       </div>
 
       <div className='mx-auto max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none'>
@@ -160,7 +168,7 @@ const Subscription = () => {
               <button
                 href='#'
                 onClick={handlerSubscription}
-                className='mt-10 block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+                className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
               >
                 Suscribirme
               </button>

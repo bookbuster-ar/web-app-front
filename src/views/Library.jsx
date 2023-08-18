@@ -35,7 +35,7 @@ const Library = () => {
   return (
     <div className='bg-white h-screen flex flex-col items-center justify-center '>
       <img src={PurpleEye} className='h-12 mt-10' />
-      <h1 className='font-bold font-roboto text-5xl text-blue-500'>
+      <h1 className='font-bold font-roboto text-5xl text-bluebook'>
         EXPLORÁ LA LIBRERÍA
       </h1>
       <div className='h-[800px] w-[900px]'>
