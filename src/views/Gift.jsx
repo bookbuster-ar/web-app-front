@@ -3,7 +3,7 @@ import FAQs from '../components/FAQs';
 const Gift = () => {
   return (
     <div className='flex flex-col justify-content items-center'>
-      <h2 className='text-center text-4xl font-bold m-6 text-blue-500'>
+      <h2 className='font-bold font-roboto text-5xl text-bluebook mt-6'>
         REGALÁ BOOKBUSTER
       </h2>
       <h3 className='text-gray-600'>

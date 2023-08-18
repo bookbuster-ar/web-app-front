@@ -12,6 +12,7 @@ import Gift from './Gift';
 import FormProfile from './FormProfile';
 import SubscriptionCheckout from './SubscriptionCheckout';
 import NotFound from './NotFound';
+import Rent from './Rent';
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   FormProfile,
   SubscriptionCheckout,
   NotFound,
+  Rent,
 };

@@ -1,9 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createBook, fetchGenres, getEditorials, selectEditorials } from '../store/books/bookSlice';
+import {
+  createBook,
+  fetchGenres,
+  getEditorials,
+  selectEditorials,
+} from '../store/books/bookSlice';
 import buildFormData from '../util';
 import debounce from 'just-debounce-it';
 import { normalizeString } from '../util/normalizeString';
+import OrangeLines from '../assets/home/desafia/OrangeLines.png';
 
 const INITIAL_FORM_STATE = {
   title: '',
@@ -26,7 +32,7 @@ const IMAGE_TYPES = {
 const FormSell = () => {
   const [filteredEditorials, setFilteredEditorials] = useState([]);
   const [form, setForm] = useState(INITIAL_FORM_STATE);
-  const editorials = useSelector(selectEditorials)
+  const editorials = useSelector(selectEditorials);
 
   const dispatch = useDispatch();
   const currentYear = new Date().getFullYear();
@@ -115,7 +121,7 @@ const FormSell = () => {
 
   useEffect(() => {
     dispatch(fetchGenres());
-    dispatch(getEditorials())
+    dispatch(getEditorials());
   }, [dispatch]);
 
   const images = [
@@ -131,18 +137,26 @@ const FormSell = () => {
   return (
     <div className='flex flex-row '>
       <div className='flex flex-col justify-content items-center m-3 w-2/4'>
-        <div className='flex flex-col justify-center items-center p-4 m-2 border-solid border border-blue-500 rounded-xl'>
-          <h1 className='font-bold text-4xl text-center text-bluebook'>
-            ¿Cómo venderle tus libros a Bookbuster?
+        <div className='flex flex-col justify-center  p-4 m-2 '>
+          <div className='hidden md:absolute md:inline'>
+            <img
+              className='md:h-10 md:ml-80 md:-mt-16 lg:h-14 lg:ml-[400px] lg:-mt-20 xl:h-14 xl:ml-[10px] xl:-mt-[150px]'
+              src={OrangeLines}
+              alt='Lineas naranjas horizontales'
+            />
+          </div>
+          <h1 className='font-bold font-roboto text-5xl text-bluebook my-6 text-center'>
+            ¿CÓMO VENDERLE TUS LIBROS A BOOKBUSTER?
           </h1>
-          <h2>Bookbuster es una plataforma de novedades editoriales.</h2>
           <h2>
-            Para vender tu libro a la plataforma, debe cumplir los siguientes
-            requisitos:
+            Bookbuster es una plataforma de novedades editoriales. Para vender
+            tu libro a la plataforma, debe cumplir los siguientes requisitos:
           </h2>
-          <p>El libro debe haberse publicado en los últimos 15 años.</p>
-          <p>
-            No debe estar marcado, ni faltarle páginas, ni tener daños que
+          <p className=' font-bold text-bluebook'>
+            • El libro debe haberse publicado en los últimos 15 años.
+          </p>
+          <p className=' font-bold text-bluebook'>
+            • No debe estar marcado, ni faltarle páginas, ni tener daños que
             impidan su correcta lectura.
           </p>
           <p>
@@ -187,7 +201,7 @@ const FormSell = () => {
           </div>
 
           <div className='my-2'>
-            <label className='mr-16'>Editorial</label>
+            <label className='mr-16 '>Editorial</label>
             <input
               type='text'
               name='editorial_name'
@@ -217,7 +231,9 @@ const FormSell = () => {
             )}
           </div>
 
-          <h1 className='mr-36 font-bold'>Fotos reales del libro</h1>
+          <h1 className='mr-36 font-bold text-gray-600'>
+            Fotos reales del libro
+          </h1>
 
           <div className='flex flex-col items-end'>
             <div className='flex flex-row m-2'>
@@ -254,7 +270,7 @@ const FormSell = () => {
             </div>
           </div>
 
-          <p className='max-w-2xl p-2 m-4'>
+          <p className='p-4 m-2 '>
             Evaluaremos tu libro y te responderemos en las próximas 48hs. En
             caso de que tu libro cumpla con los requisitos, te enviaremos una
             confirmación junto al crédito para utilizar en nuestra plataforma.
@@ -263,17 +279,18 @@ const FormSell = () => {
           </p>
           <button
             type='submit'
-            className='bg-blue-500 p-3 hover:bg-blue-600 text-white font-semibold rounded-md'
+            className='bg-bluebook hover:bg-blue-800 text-white font-light py-4 px-4 my-3 self-center'
           >
             Enviar información
           </button>
         </form>
       </div>
 
-      <div className=' w-5/12 fixed right-4 max-h-fit '>
-        <h1 className='font-bold text-4xl text-blue-500 text-center p-4 m-2'>
-          Tu libro
+      <div className=' w-5/12 ml-10 max-h-fit'>
+        <h1 className='font-bold font-roboto text-4xl text-bluebook text-center p-4 m-2'>
+          TU LIBRO
         </h1>
+
         <div className=' text-black bg-blue-300 bg-opacity-10 text-base rounded-xl pl-2 p-2 h-5/6 bg-transparent border shadow-lg outline-none flex flex-col items-center justify-center'>
           <h2 className='font-bold text-3xl'>{form.title}</h2>
           <h3 className='text-xl'>{form.author}</h3>
