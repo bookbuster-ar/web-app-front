@@ -98,31 +98,41 @@ const BookDetail = () => {
                 <div className=' w-full font-semibold '>
                   <ul className='flex '>
                     <li
-                      className='flex-fill mr-6'
+                      className={`flex-fill ${
+                        toggle === 1 ? 'text-blue-500' : 'text-gray-800'
+                      } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(1)}
                     >
                       Descripción
                     </li>
                     <li
-                      className='flex-fill mx-6'
+                      className={`flex-fill ${
+                        toggle === 2 ? 'text-blue-500' : 'text-gray-800'
+                      } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(2)}
                     >
                       Citas
                     </li>
                     <li
-                      className='flex-fill mx-6'
+                      className={`flex-fill ${
+                        toggle === 3 ? 'text-blue-500' : 'text-gray-800'
+                      } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(3)}
                     >
                       Tu cita
                     </li>
                     <li
-                      className='flex-fill mx-6'
+                      className={`flex-fill ${
+                        toggle === 4 ? 'text-blue-500' : 'text-gray-800'
+                      } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(4)}
                     >
                       Lectores
                     </li>
                     <li
-                      className='flex-fill mx-6'
+                      className={`flex-fill ${
+                        toggle === 5 ? 'text-blue-500' : 'text-gray-800'
+                      } mr-6 cursor-pointer`}
                       onClick={() => updateToggle(5)}
                     >
                       Tu opinión
