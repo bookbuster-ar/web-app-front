@@ -163,9 +163,9 @@ const FormAddReview = () => {
     <div>
       <form
         onSubmit={submitHandler}
-        className='flex flex-col justify-center md:col-span-4 p-6 shadow-lg rounded-lg'
+        className='flex flex-col justify-center p-6 shadow-lg rounded-lg'
       >
-        <h2 className='text-center text-gray-400 text-xl font-bold col-span-6 mb-4'>
+        <h2 className='text-center text-gray-400 text-xl font-bold  '>
           Opinión acerca del libro
         </h2>
         <label htmlFor='content'></label>
