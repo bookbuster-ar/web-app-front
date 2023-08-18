@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateProfile } from '../store/user/userSlice';
+import buildProfileFormData from '../util/buildProfileFormData';
 
 const INITIAL_FORM_STATE = {
-  about: '',
+  aboutMe: '',
   image: null,
   name: '',
   lastname: '',
@@ -12,12 +15,13 @@ const INITIAL_FORM_STATE = {
   city: '',
   province: '',
   postal_code: '',
-  checked: false,
+  wantNotifications: false,
 };
 
 const FormProfile = () => {
   const [form, setForm] = useState(INITIAL_FORM_STATE);
   const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -30,14 +34,14 @@ const FormProfile = () => {
   };
 
   const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
+    setForm({ ...form, wantNotifications: event.target.checked });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    let completedForm = { ...form };
+    const formData = buildProfileFormData(form, INITIAL_FORM_STATE);
 
-    //dispatch de put
+    dispatch(updateProfile(formData));
 
     setForm(INITIAL_FORM_STATE);
   };
