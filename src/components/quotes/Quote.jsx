@@ -15,7 +15,7 @@ const Quote = ({ quote, id, onClick }) => {
 
   return (
     <article className='w-full h-full duration-500 p-12' onClick={onClick}>
-      <div className='flex flex-col'>
+      <div className='flex flex-col w-full'>
         {quoteOwner ? (
           <button
             onClick={handleDelete}
@@ -26,7 +26,7 @@ const Quote = ({ quote, id, onClick }) => {
         ) : (
           ''
         )}
-        <div className='flex items-center'>
+        <div className='flex items-center w-full'>
           <img src={Foto} alt='Foto' className='w-12 rounded-full mr-2' />
           <p className='font-bold'>
             {`${quote.creator?.name} ${quote.creator?.last_name}` ||
