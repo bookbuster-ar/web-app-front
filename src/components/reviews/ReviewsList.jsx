@@ -30,7 +30,7 @@ const ReviewList = () => {
 
   return (
     <div className='w-1/2'>
-      <h2 className='text-xl font-semibold text-gray-800'>
+      <h2 className='text-xl font-semibold text-gray-800 mt-2'>
         Opiniones de otros lectores
       </h2>
 
