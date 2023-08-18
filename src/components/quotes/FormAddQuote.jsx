@@ -37,8 +37,10 @@ const FormAddQuote = () => {
     <div>
       <form
         onSubmit={submitHandler}
-        className='bg-white border border-slate-200 grid grid-cols-6 gap-2 rounded-xl p-2 text-sm'
+        className='bg-white grid grid-cols-6 gap-2 shadow-lg rounded-xl p-6 text-sm'
       >
+        {/* flex flex-col justify-center md:col-span-4 p-6 shadow-lg rounded-lg
+        my-11 */}
         <h2 className='text-center text-gray-400 text-xl font-bold col-span-6'>
           Cita
         </h2>
@@ -51,7 +53,6 @@ const FormAddQuote = () => {
           placeholder='Tu cita...'
           className='bg-slate-100 text-slate-600 h-28 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-300 col-span-6 resize-none outline-none rounded-lg p-2 duration-300 focus:border-gray-300'
         ></textarea>
-
         <button
           type='submit'
           className='bg-slate-100 stroke-slate-600 border text-gray-500 border-slate-200 col-span-2 flex justify-center rounded-lg p-2 duration-300 hover:border-slate-400 hover:text-gray-500  focus:border-slate-300'
