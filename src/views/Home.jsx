@@ -23,13 +23,13 @@ const Home = () => {
       <div className='pinkbook-bg-image h-[415px] md:h-[390px] lg:h-[525px] xl:h-[760px] md:my-2 xl:my-5 flex flex-col justify-end items-center md:flex-row-reverse md:items-end'>
         <EntornoDigital />
       </div>
-      <div className='h-[1350px] grid grid-cols-1 md:h-[900px] md:my-2 md:grid-cols-2 md:scale-125 lg:h-[1200px] lg:scale-[1.6] xl:h-[400px] xl:my-5 xl:grid-cols-4 xl:scale-110'>
+      {<div className='h-[1350px] grid grid-cols-1 md:h-[900px] md:my-2 md:grid-cols-2 md:scale-125 lg:h-[1200px] lg:scale-[1.6] xl:h-[400px] xl:my-5 xl:grid-cols-4 xl:scale-110'>
         <Carousels />
-      </div>
+      </div>}
       <div className='h-[250px] md:h-[230px] lg:h-[380px] xl:h-[460px] flex flex-col justify-end items-center md:flex-row md:items-end'>
         <NoEncontras />
       </div>
-      <Footer className='bg-' />
+      <Footer />
     </div>
   );
 };

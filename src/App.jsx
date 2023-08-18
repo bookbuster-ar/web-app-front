@@ -13,12 +13,11 @@ import {
   Gift,
   FormProfile,
   NotFound,
-  SubscriptionCheckout,
-  Rent,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -30,21 +29,44 @@ function App() {
         <Route path='/library' element={<Library />} />
         <Route path='/detail/:id' element={<BookDetail />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/sellbook' element={<FormSell />} />
         <Route path='/recommendation' element={<Recommendation />} />
         <Route path='/subscription' element={<Subscription />} />
         <Route path='/library/genre/:id' element={<Genre />} />
-        <Route path='/user' element={<UserProfile />} />
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/gift' element={<Gift />} />
-        <Route path='/user/profile' element={<FormProfile />} />
         <Route path='/VerifyEmail' element={<VerifyEmail />} />
+        <Route path='/gift' element={<Gift />} />
         <Route
-          path='/subscriptioncheckout'
-          element={<SubscriptionCheckout />}
+          path='/sellbook'
+          element={
+            <ProtectedRoute>
+              <FormSell />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/user'
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/user/profile'
+          element={
+            <ProtectedRoute>
+              <FormProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/admin'
+          element={
+            <ProtectedRoute isAdminRoute={true}>
+              <Admin />
+            </ProtectedRoute>
+          }
         />
         <Route path='*' element={<NotFound />} />
-        <Route path='/rent' element={<Rent />} />
       </Routes>
     </div>
   );
