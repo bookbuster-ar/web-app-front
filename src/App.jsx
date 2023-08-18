@@ -12,11 +12,12 @@ import {
   Admin,
   Gift,
   FormProfile,
+  NotFound,
+  SubscriptionCheckout
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
-import SubscriptionCheckout from './views/SubscriptionCheckout.jsx';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           path='/subscriptioncheckout'
           element={<SubscriptionCheckout />}
         />
+        <Route path='*' element={<NotFound/>} />
       </Routes>
     </div>
   );

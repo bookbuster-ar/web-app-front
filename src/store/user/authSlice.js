@@ -89,7 +89,6 @@ export const verifyUserEmail = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   const session_id = localStorage.getItem('session_id');
-  console.log(session_id);
   const user_id = localStorage.getItem('user_id');
   if (!session_id || !user_id) {
     return thunkAPI.rejectWithValue('No session found in localStorage');

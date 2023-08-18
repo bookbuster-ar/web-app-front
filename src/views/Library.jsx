@@ -4,8 +4,8 @@ import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import { fetchGenres } from '../store/books/bookSlice';
 import Loader from '../icons/Loader/Loader';
 import { Link } from 'react-router-dom';
-import IconoBoton2 from '../assets/PurpleEye.png';
-import Bookmark from '../icons/Bookmark';
+import PurpleEye from '../assets/PurpleEye.png';
+import RedMark from '../assets/RedMark.png';
 
 const colorClasses = {
   0: 'bg-red-300',
@@ -34,22 +34,25 @@ const Library = () => {
 
   return (
     <div className='bg-white h-screen flex flex-col items-center justify-center '>
-      <img src={IconoBoton2} className='h-12 mt-10' />
+      <img src={PurpleEye} className='h-12 mt-10' />
       <h1 className='font-bold font-roboto text-5xl text-blue-500'>
         EXPLORÁ LA LIBRERÍA
       </h1>
-      <div className='h-[800px] w-[900px] bg-blue-200'>
-        <div className='grid h-full bg-blue-400 grid-cols-12 grid-rows-6 relative'>
-          <div className='bg-orangebook col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer transition ease-in duration-500 overflow-hidden relative group hover:text-bluebook hover:bg-orange-200'>
-            <div className='absolute -bottom-28 group-hover:bottom-2 left-5'>
-              <div className='transition-opacity duration-300 leading-10 font-roboto'>
+      <div className='h-[800px] w-[900px]'>
+        <div className='grid h-full grid-cols-12 grid-rows-6 relative'>
+          <div className='bg-orangebook relative col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer overflow-hidden group hover:bg-orange-200'>
+            <div className='relative transition-all duration-500 h-full ease-in left-5'>
+              <div className='absolute bottom-2 leading-10 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
                 NARRATIVAS
               </div>
-              <div className='opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-xs leading-5 top-1'>
+              <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 duration-300 text-[10px] text-bluebook'>
                 Se trata de un género literario que presenta una serie de hechos
                 reales o ficticios. Se caracteriza por ser una narración
                 extensa, tener una trama compleja en la que el narrador se vale
                 de la descripción, diálogos o monólogos.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-8 top-4 w-10 h-10'>
+                <img src={RedMark} alt='Marcador Rojo' />
               </div>
             </div>
           </div>
@@ -131,12 +134,12 @@ const Library = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-row flex-wrap m-6 max-w-5xl  justify-center'>
+      {/* <div className='flex flex-row flex-wrap m-6 max-w-5xl  justify-center'>
         {genreStatus === 'loading' ? (
           <Loader />
         ) : (
           genres?.map((genre, index) => (
-            <Link to={`library/genre/${genre.id}`} key={index}>
+            <Link to={`/library/genre/${genre.id}`} key={index}>
               <button
                 className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
               >
@@ -145,7 +148,7 @@ const Library = () => {
             </Link>
           ))
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

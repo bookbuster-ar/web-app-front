@@ -16,6 +16,9 @@ const initialState = {
   detail: {},
   detailStatus: 'idle',
   detailError: null,
+  editorials: [],
+  editorialsStatus: 'idle',
+  editorialsError: null,
 };
 
 export const getBooksBySearch = createAsyncThunk(
@@ -56,6 +59,11 @@ export const createBook = createAsyncThunk(
     return response.status;
   }
 );
+
+export const getEditorials = createAsyncThunk('books/getEditorials', async () => {
+  const { data } = await axios.get(`${URL_BASE}/editorials`)
+  return data
+})
 
 const bookSlice = createSlice({
   name: 'books',
@@ -125,7 +133,18 @@ const bookSlice = createSlice({
       .addCase(getBookByDetail.rejected, (state, action) => {
         state.detailStatus = 'failed';
         state.detailError = action.error.message;
-      });
+      })
+      .addCase(getEditorials.pending, (state) => {
+        state.genresStatus = 'loading';
+      })
+      .addCase(getEditorials.fulfilled, (state, action) => {
+        state.editorialsStatus = 'succeeded';
+        state.editorials = action.payload;
+      })
+      .addCase(getEditorials.rejected, (state, action) => {
+        state.editorialsStatus = 'failed';
+        state.editorialsError = action.error.message;
+      })
   },
 });
 
@@ -146,5 +165,9 @@ export const selectSingleGenreError = (state) => state.books.singleGenreError;
 export const selectDetail = (state) => state.books.detail;
 export const selectDetailStatus = (state) => state.books.detailStatus;
 export const selectDetailError = (state) => state.books.detailError;
+
+export const selectEditorials = (state) => state.books.editorials;
+export const selectEditorialsStatus = (state) => state.books.editorialsStatus;
+export const selectEditorialsError = (state) => state.books.editorialsError;
 
 export default bookSlice.reducer;
