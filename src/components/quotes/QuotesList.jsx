@@ -34,7 +34,7 @@ const QuotesList = () => {
   }
 
   return (
-    <div className='relative group md:col-span-4 bg-white p-6 shadow-lg rounded-lg my-11'>
+    <div className='relative group md:col-span-4 bg-white shadow-lg rounded-lg w-full'>
       {status !== 'failed' &&
         quotes.length > 0 &&
         quotes?.map((quote, index) => (
