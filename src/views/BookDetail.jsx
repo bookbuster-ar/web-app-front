@@ -119,6 +119,12 @@ const BookDetail = () => {
                       className='flex-fill mx-6'
                       onClick={() => updateToggle(4)}
                     >
+                      Lectores
+                    </li>
+                    <li
+                      className='flex-fill mx-6'
+                      onClick={() => updateToggle(5)}
+                    >
                       Tu opinión
                     </li>
                   </ul>
@@ -168,8 +174,12 @@ const BookDetail = () => {
                 <div className={toggle === 3 ? 'block' : 'hidden'}>
                   <FormAddRQuote />
                 </div>
-                {/* este es el contenido de TU OPINIÓN */}
+                {/* este es el contenido de Opiniones */}
                 <div className={toggle === 4 ? 'block' : 'hidden'}>
+                  <ReviewList />
+                </div>
+                {/* este es el contenido de TU OPINIÓN */}
+                <div className={toggle === 5 ? 'block' : 'hidden'}>
                   <FormAddReview />
                 </div>
               </div>
@@ -177,8 +187,6 @@ const BookDetail = () => {
           </div>
         )}
       </div>
-
-      <ReviewList />
     </div>
   );
 };
