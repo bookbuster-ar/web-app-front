@@ -25,13 +25,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LogInAndSignIn />} />
-        <Route path='/home/library' element={<Library />} />
+        <Route path='/library' element={<Library />} />
         <Route path='/detail/:id' element={<BookDetail />} />
-        <Route path='/home/search' element={<Search />} />
-        <Route path='/home/sellbook' element={<FormSell />} />
-        <Route path='/home/recommendation' element={<Recommendation />} />
-        <Route path='/home/subscription' element={<Subscription />} />
-        <Route path='/home/library/genre/:id' element={<Genre />} />
+        <Route path='/search' element={<Search />} />
+        <Route path='/sellbook' element={<FormSell />} />
+        <Route path='/recommendation' element={<Recommendation />} />
+        <Route path='/subscription' element={<Subscription />} />
+        <Route path='/library/genre/:id' element={<Genre />} />
         <Route path='/user' element={<UserProfile />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/gift' element={<Gift />} />

@@ -47,13 +47,13 @@ const DesafiaLasNormas = () => {
           />
         </div>
         <div className='flex flex-row items-center md:justify-start justify-center md:-mt-3 mb-2 gap-2'>
-          <Link to={'/home/recommendation'}>
+          <Link to={'/recommendation'}>
             <button className='bg-bluebook py-1 text-[9px] text-white w-36 flex justify-center items-center'>
               <img src={YellowHeart} className='mr-2 h-3.5 w-3.5' alt='Corazon amarillo' />
               Obtené una recomendación
             </button>
           </Link>
-          <Link to={'/home/library'}>
+          <Link to={'/library'}>
             <button className='bg-bluebook py-[5px] text-[8px] text-white w-32 flex justify-evenly items-center'>
               <img src={PurpleEye} className='h-3 w-6' alt='Ojo purpura' />
               Explorá la librería

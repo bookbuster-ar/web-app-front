@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import HomeIcon from '../icons/HomeIcon';
 
 function UserProfile() {
   const user = {
@@ -19,25 +20,25 @@ function UserProfile() {
           <img
             src={user.photoURL}
             alt='User Avatar'
-            className='w-32 h-32 rounded-full border-2 border-gray-300'
+            className='w-32 h-32 rounded-full border-2 border-gray-300 object-cover'
           />
         </div>
         <h2 className='text-2xl mb-6 text-center'>{user.name}</h2>
         <ul>
           <Link to={'/user/profile'}>
-            <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
+            <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
               Editar perfil
             </li>
           </Link>
 
-          <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
+          <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
             Mis libros
           </li>
-          <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
+          <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
             Notificaciones
           </li>
-          <li className='mb-4 text-blue-600 cursor-pointer hover:text-blue-800'>
-            Salir
+          <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
+            <Link to='/'><HomeIcon /></Link>
           </li>
         </ul>
       </div>
