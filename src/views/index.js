@@ -10,7 +10,6 @@ import UserProfile from './UserProfile';
 import Admin from './Admin';
 import Gift from './Gift';
 import FormProfile from './FormProfile';
-import SubscriptionCheckout from './SubscriptionCheckout';
 import NotFound from './NotFound';
 import Rent from './Rent';
 
@@ -27,7 +26,6 @@ export {
   Admin,
   Gift,
   FormProfile,
-  SubscriptionCheckout,
   NotFound,
   Rent,
 };
