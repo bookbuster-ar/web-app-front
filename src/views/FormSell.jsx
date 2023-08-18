@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { createBook, fetchGenres } from '../store/books/bookSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { createBook, fetchGenres, getEditorials, selectEditorials } from '../store/books/bookSlice';
 import buildFormData from '../util';
 import debounce from 'just-debounce-it';
-import { editoriales } from '../mock/editoriales';
 import { normalizeString } from '../util/normalizeString';
 
 const INITIAL_FORM_STATE = {
@@ -27,6 +26,7 @@ const IMAGE_TYPES = {
 const FormSell = () => {
   const [filteredEditorials, setFilteredEditorials] = useState([]);
   const [form, setForm] = useState(INITIAL_FORM_STATE);
+  const editorials = useSelector(selectEditorials)
 
   const dispatch = useDispatch();
   const currentYear = new Date().getFullYear();
@@ -46,7 +46,7 @@ const FormSell = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     let updatedForm = { ...form };
-    const existingEditorial = editoriales.find(
+    const existingEditorial = editorials.find(
       (e) =>
         normalizeString(e.name) === normalizeString(updatedForm.editorial_name)
     );
@@ -102,7 +102,7 @@ const FormSell = () => {
     debounce((editorial) => {
       if (editorial) {
         const normalizedInput = normalizeString(editorial);
-        const matches = editoriales.filter((e) =>
+        const matches = editorials.filter((e) =>
           normalizeString(e.name).includes(normalizedInput)
         );
         setFilteredEditorials(matches);
@@ -115,6 +115,7 @@ const FormSell = () => {
 
   useEffect(() => {
     dispatch(fetchGenres());
+    dispatch(getEditorials())
   }, [dispatch]);
 
   const images = [
@@ -131,7 +132,7 @@ const FormSell = () => {
     <div className='flex flex-row '>
       <div className='flex flex-col justify-content items-center m-3 w-2/4'>
         <div className='flex flex-col justify-center items-center p-4 m-2 border-solid border border-blue-500 rounded-xl'>
-          <h1 className='font-bold text-4xl text-black text-center text-blue-500'>
+          <h1 className='font-bold text-4xl text-center text-bluebook'>
             ¿Cómo venderle tus libros a Bookbuster?
           </h1>
           <h2>Bookbuster es una plataforma de novedades editoriales.</h2>

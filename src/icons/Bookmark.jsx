@@ -1,11 +1,11 @@
-function Bookmark(props) {
+function Bookmark({textColor, size}) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       height='3em'
       viewBox='0 0 384 512'
       style={{ marginLeft: '50px', marginRigth: '1px' }}
-      {...props}
+      className={`text-red-400 ${size}`}
     >
       <path
         fill='yellow'
