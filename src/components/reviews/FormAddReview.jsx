@@ -165,9 +165,6 @@ const FormAddReview = () => {
         onSubmit={submitHandler}
         className='flex flex-col justify-center p-6 shadow-lg rounded-lg'
       >
-        <h2 className='text-center text-gray-400 text-xl font-bold  '>
-          Opinión acerca del libro
-        </h2>
         <label htmlFor='content'></label>
         <textarea
           name='content'

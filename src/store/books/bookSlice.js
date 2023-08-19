@@ -19,6 +19,15 @@ const initialState = {
   editorials: [],
   editorialsStatus: 'idle',
   editorialsError: null,
+  bookSubgenres: [],
+  bookSubgenresStatus: 'idle',
+  bookSubgenresError: null,
+  genreSubgenres: [],
+  genreSubgenresStatus: 'idle',
+  genreSubgenresError: null,
+  booksByGenre: [],
+  booksByGenreStatus: 'idle',
+  booksByGenreError: null,
 };
 
 export const getBooksBySearch = createAsyncThunk(
@@ -60,10 +69,33 @@ export const createBook = createAsyncThunk(
   }
 );
 
-export const getEditorials = createAsyncThunk('books/getEditorials', async () => {
-  const { data } = await axios.get(`${URL_BASE}/editorials`)
-  return data
-})
+export const getEditorials = createAsyncThunk(
+  'books/getEditorials',
+  async () => {
+    const { data } = await axios.get(`${URL_BASE}/editorials`);
+    return data;
+  }
+);
+
+export const getBookSubgenres = createAsyncThunk(
+  'books/getBookSubgenres',
+  async (id) => {
+    const { data } = await axios.get(
+      `${URL_BASE}/books/subgenres?bookId=${id}`
+    );
+    return data;
+  }
+);
+
+export const getGenreSubgenres = createAsyncThunk(
+  'books/getGenreSubgenres',
+  async (id) => {
+    const { data } = await axios.get(
+      `${URL_BASE}/books/genre/subgenres?bookId=${id}`
+    );
+    return data.subgenres;
+  }
+);
 
 const bookSlice = createSlice({
   name: 'books',
@@ -73,7 +105,7 @@ const bookSlice = createSlice({
       state.books = [];
       state.status = 'idle';
       state.error = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -145,6 +177,17 @@ const bookSlice = createSlice({
         state.editorialsStatus = 'failed';
         state.editorialsError = action.error.message;
       })
+      .addCase(getBookSubgenres.pending, (state) => {
+        state.bookSubgenresStatus = 'loading';
+      })
+      .addCase(getBookSubgenres.fulfilled, (state, action) => {
+        state.bookSubgenresStatus = 'succeeded';
+        state.bookSubgenres = action.payload;
+      })
+      .addCase(getBookSubgenres.rejected, (state, action) => {
+        state.bookSubgenresStatus = 'failed';
+        state.bookSubgenresError = action.error.message;
+      });
   },
 });
 
@@ -169,5 +212,11 @@ export const selectDetailError = (state) => state.books.detailError;
 export const selectEditorials = (state) => state.books.editorials;
 export const selectEditorialsStatus = (state) => state.books.editorialsStatus;
 export const selectEditorialsError = (state) => state.books.editorialsError;
+
+export const selectBookSubgenres = (state) => state.books.bookSubgenres;
+export const selectBookSubgenresStatus = (state) =>
+  state.books.bookSubgenresStatus;
+export const selectBookSubgenresError = (state) =>
+  state.books.bookSubgenresError;
 
 export default bookSlice.reducer;
