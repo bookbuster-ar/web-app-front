@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 const ProtectedRoute = ({children, isAdminRoute = false}) => {
   const user = useSelector(selectUser)
   const navigate = useNavigate();
+  console.log(user);
 
   useEffect(() => {
     if(!user){
@@ -14,7 +15,7 @@ const ProtectedRoute = ({children, isAdminRoute = false}) => {
     }
   },[user, navigate])
   
-  if( isAdminRoute && user !== 'Admin') {
+  if( isAdminRoute && user.role.name !== 'Admin') {
     return <NotFound/>
   }
 
