@@ -3,7 +3,7 @@ import { useState } from 'react';
 const Synopsis = ({ text }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const shortenedText = `${text.slice(0, 300)}...`; // Asume que deseas mostrar los primeros 300 caracteres
+  const shortenedText = `${text?.slice(0, 300)}...`; // Asume que deseas mostrar los primeros 300 caracteres
 
   return (
     <div className='p-4'>

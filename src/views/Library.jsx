@@ -69,7 +69,7 @@ const Library = () => {
           {/* Esto es una separacion */}
           {/* Esto es una separacion */}
           <div className='bg-pinkbook relative col-span-4 row-span-1 text-3xl font-roboto text-yellowbook font-black cursor-pointer group hover:bg-pink-200'>
-            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+            <Link to='genre/e60e1481-ce30-416b-a13a-8ed9c554dd11'>
               <div className='relative transition-all duration-500 h-full ease-in left-5'>
                 <div className='absolute bottom-0 leading-1 font-roboto duration-500 group-hover:bottom-14 group-hover:text-bluebook'>
                   TEATRO
