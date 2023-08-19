@@ -164,7 +164,6 @@ const Subscription = () => {
                   ARS/mes
                 </span>
               </p>
-              {/* <Link to={'/subscriptioncheckout'}> */}
               <button
                 href='#'
                 onClick={handlerSubscription}

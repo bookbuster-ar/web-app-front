@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-// import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
+import { useDispatch } from 'react-redux'
 import { fetchGenres } from '../store/books/bookSlice';
-// import Loader from '../icons/Loader/Loader';
 import { Link } from 'react-router-dom';
 import PurpleEye from '../assets/PurpleEye.png';
 import RedMark from '../assets/RedMark.png';
@@ -313,21 +311,6 @@ const Library = () => {
           </div>
         </div>
       </div>
-      {/* <div className='flex flex-row flex-wrap m-6 max-w-5xl  justify-center'>
-        {genreStatus === 'loading' ? (
-          <Loader />
-        ) : (
-          genres?.map((genre, index) => (
-            <Link to={`/library/genre/${genre.id}`} key={index}>
-              <button
-                className={`w-36 h-36 ${colorClasses[index]} m-2 rounded-2xl flex justify-center text-gray-50 cursor-pointer shadow-gray-400 shadow-lg`}
-              >
-                {genre.name}
-              </button>
-            </Link>
-          ))
-        )}
-      </div> */}
     </div>
   );
 };

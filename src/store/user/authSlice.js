@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { setUser } from './userSlice'
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
@@ -15,12 +16,13 @@ export const signInWithEmailAsync = createAsyncThunk(
         password,
       });
       const { session_id, user } = data.data;
+
+      thunkAPI.dispatch(setUser(user))
       return {
         user,
         session_id,
       };
     } catch (error) {
-      // Enviar error al reducer
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -88,28 +90,25 @@ export const verifyUserEmail = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
-  const session_id = localStorage.getItem('session_id');
-  const user_id = localStorage.getItem('user_id');
-  if (!session_id || !user_id) {
+  const sessionid = localStorage.getItem('session_id');
+  const userid = localStorage.getItem('user_id');
+  if (!sessionid || !userid) {
     return thunkAPI.rejectWithValue('No session found in localStorage');
   }
 
   try {
     const response = await axios.post(
       `${URL_BASE}/auth/logout`,
-
       {
         headers: {
           'Content-Type': 'application/json',
-
-          sessionId: session_id,
-          
+          sessionid,
         },
       }
     );
     localStorage.removeItem('session_id');
     localStorage.removeItem('user_id');
-
+    console.log(response);
     return {
       isLogged: response.status === 204 ? false : true,
       user: null,
