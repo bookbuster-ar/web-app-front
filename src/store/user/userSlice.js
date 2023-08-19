@@ -4,8 +4,25 @@ import axios from 'axios';
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
-  //user en singular
-  user: {},
+  user: {
+    id: '',
+    name: '',
+    last_name: '',
+    email: '',
+    email_verified: false,
+    about: null,
+    subscription: false,
+    date_of_register: '',
+    is_blocked: false,
+    credit: 0,
+    is_inactive: false,
+    want_notifications: false,
+    image: null,
+    role: {
+      id: '',
+      name: '',
+    },
+  },
   status: 'idle',
   error: null,
   updateStatus: 'idle',
@@ -27,7 +44,8 @@ export const updateProfile = createAsyncThunk(
     const sessionId = localStorage.getItem('session_id');
     const { data } = await axios.put(
       `${URL_BASE}/users/profile`,
-      updatedProfile, sessionId,
+      updatedProfile,
+      sessionId,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +79,7 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder //USER
@@ -102,8 +120,7 @@ const userSlice = createSlice({
   },
 });
 
-
-export const {setUser} = userSlice.actions;
+export const { setUser } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectUserStatus = (state) => state.user.status;

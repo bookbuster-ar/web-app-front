@@ -16,7 +16,7 @@ export const signInWithEmailAsync = createAsyncThunk(
         password,
       });
       const { session_id, user } = data.data;
-
+      console.log(data);
       thunkAPI.dispatch(setUser(user))
       return {
         user,
@@ -30,23 +30,19 @@ export const signInWithEmailAsync = createAsyncThunk(
 
 export const signInWithGoogleAsync = createAsyncThunk(
   'auth/signInWithGoogle',
-  async () => {
+  async (_, thunkAPI) => {
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
     const token = await result.user.getIdToken();
 
     const { data } = await axios.post(`${URL_BASE}/auth/signup/google`, {
       token,
     });
-    const user = {
-      uid: result.user.uid,
-      email: result.user.email,
-      displayName: result.user.displayName,
-    };
+    const {user, session_id} = data;
+    thunkAPI.dispatch(setUser(user))
     return {
-      ...user,
-      ...data,
-      isLogged: true,
-    };
+      user,
+      session_id
+    }
   }
 );
 
@@ -99,10 +95,11 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     const response = await axios.post(
       `${URL_BASE}/auth/logout`,
+      {},
       {
         headers: {
           'Content-Type': 'application/json',
-          sessionid,
+          sessionid: sessionid,
         },
       }
     );
