@@ -41,9 +41,9 @@ const FormAddQuote = () => {
       >
         {/* flex flex-col justify-center md:col-span-4 p-6 shadow-lg rounded-lg
         my-11 */}
-        <h2 className='text-center text-gray-400 text-xl font-bold col-span-6'>
+        {/* <h2 className='text-center text-gray-400 text-xl font-bold col-span-6'>
           Cita
-        </h2>
+        </h2> */}
         <label htmlFor='content'></label>
         <textarea
           name='content'

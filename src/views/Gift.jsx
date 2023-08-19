@@ -1,14 +1,22 @@
 import FAQs from '../components/FAQs';
+import GiftImage from '../assets/Gift.png';
+import LinePink from '../assets/home/recomendaciones/Line-Pink.png';
 
 const Gift = () => {
   return (
     <div className='flex flex-col justify-content items-center'>
+      <img src={GiftImage} alt='Books' className='mt-8' />
       <h2 className='font-bold font-roboto text-5xl text-bluebook mt-6'>
         REGALÁ BOOKBUSTER
       </h2>
-      <h3 className='text-gray-600'>
+      <h3 className='text-gray-600 font-roboto text-3xl m-6'>
         Regalá la experiencia de lectura sin límites
       </h3>
+      <img
+        src={LinePink}
+        alt='LinePink'
+        className='absolute mt-[470px] ml-[470px] w-[200px] '
+      />
 
       <div className='flex flex-wrap'>
         <div className='rounded-2xl bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
@@ -26,9 +34,9 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full rounded-md bg-blue-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
-              Regalar
+              REGALAR
             </a>
           </div>
         </div>
@@ -48,9 +56,9 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full rounded-md bg-blue-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
-              Regalar
+              REGALAR
             </a>
           </div>
         </div>
@@ -70,9 +78,9 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full rounded-md bg-blue-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
-              Regalar
+              REGALAR
             </a>
           </div>
         </div>

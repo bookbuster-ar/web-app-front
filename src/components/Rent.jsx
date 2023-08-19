@@ -4,7 +4,7 @@ import Yellow from '../assets/home/recomendaciones/Line-Yellow.png';
 
 const Rent = () => {
   return (
-    <div className='flex flex-col items-center '>
+    <div className='flex flex-col items-center relative'>
       <h2 className='font-bold font-roboto text-5xl text-bluebook my-6 text-center'>
         Te prestamos, vos decidís si devolvés
       </h2>
@@ -25,18 +25,14 @@ const Rent = () => {
       <div>
         <img src={Red} alt='RedAsterisc' className='absolute ml-[500px]' />
       </div>
-      <div>
-        <img
-          src={Heart}
-          alt='Heart'
-          className='absolute ml-[-700px] mt-[-200px] '
-        />
+      <div className='absolute'>
+        <img src={Heart} alt='Heart' className=' ml-[-700px] mt-[-200px] ' />
       </div>
-      <div>
+      <div className='absolute bottom-0'>
         <img
           src={Yellow}
           alt='Yellow'
-          className='absolute ml-[280px] mt-[-220px] h-[30px] w-[100] '
+          className=' ml-[740px] mt-[-220px] h-[30px] w-60 '
         />
       </div>
     </div>
