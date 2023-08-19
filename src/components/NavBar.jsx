@@ -65,14 +65,7 @@ const NavBar = () => {
           <div className='text-white my-4'>
             <Link to='/sellbook'>
               <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Vendé
-              </span>
-            </Link>
-          </div>
-          <div className='text-white my-4'>
-            <Link to='/rent'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Alquilá
+                Vendé o alquilá
               </span>
             </Link>
           </div>

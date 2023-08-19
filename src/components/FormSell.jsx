@@ -279,9 +279,9 @@ const FormSell = () => {
           </p>
           <button
             type='submit'
-            className='bg-bluebook hover:bg-blue-800 text-white font-light py-4 px-4 my-3 self-center'
+            className='bg-bluebook hover:bg-blue-800 text 3x1 text-white font-bold font-roboto py-4 px-4 my-3 self-center'
           >
-            Enviar información
+            ENVIAR INFORMACIÓN
           </button>
         </form>
       </div>

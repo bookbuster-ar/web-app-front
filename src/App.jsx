@@ -4,7 +4,6 @@ import {
   BookDetail,
   Library,
   Search,
-  FormSell,
   Recommendation,
   Subscription,
   Genre,
@@ -14,11 +13,12 @@ import {
   FormProfile,
   NotFound,
   SubscriptionCheckout,
-  Rent,
+  SellOrRent,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
+
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Route path='/library' element={<Library />} />
         <Route path='/detail/:id' element={<BookDetail />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/sellbook' element={<FormSell />} />
+        <Route path='/sellbook' element={<SellOrRent />} />
         <Route path='/recommendation' element={<Recommendation />} />
         <Route path='/subscription' element={<Subscription />} />
         <Route path='/library/genre/:id' element={<Genre />} />
@@ -44,7 +44,6 @@ function App() {
           element={<SubscriptionCheckout />}
         />
         <Route path='*' element={<NotFound />} />
-        <Route path='/rent' element={<Rent />} />
       </Routes>
     </div>
   );
