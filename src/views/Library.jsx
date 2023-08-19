@@ -1,32 +1,14 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
+import { useDispatch } from 'react-redux';
+// import { selectAllGenres, selectGenreStatus } from '../store/books/bookSlice';
 import { fetchGenres } from '../store/books/bookSlice';
-import Loader from '../icons/Loader/Loader';
+// import Loader from '../icons/Loader/Loader';
 import { Link } from 'react-router-dom';
 import PurpleEye from '../assets/PurpleEye.png';
 import RedMark from '../assets/RedMark.png';
 
-const colorClasses = {
-  0: 'bg-red-300',
-  1: 'bg-blue-500',
-  2: 'bg-green-500',
-  3: 'bg-red-600',
-  4: 'bg-yellow-400',
-  5: 'bg-red-300',
-  6: 'bg-yellow-400',
-  7: 'bg-red-600',
-  8: 'bg-red-300',
-  9: 'bg-green-500',
-  10: 'bg-blue-500',
-  11: 'bg-red-600',
-  12: 'bg-yellow-400',
-};
-
 const Library = () => {
   const dispatch = useDispatch();
-  const genres = useSelector(selectAllGenres);
-  const genreStatus = useSelector(selectGenreStatus);
 
   useEffect(() => {
     dispatch(fetchGenres());
@@ -40,99 +22,294 @@ const Library = () => {
       </h1>
       <div className='h-[800px] w-[900px]'>
         <div className='grid h-full grid-cols-12 grid-rows-6 relative'>
-          <div className='bg-orangebook relative col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer overflow-hidden group hover:bg-orange-200'>
+          {/* Esto es una separacion */}
+          <div className='bg-orangebook relative col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer group hover:bg-orange-200'>
             <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
               <div className='relative transition-all duration-500 h-full ease-in left-5'>
-                <div className='absolute bottom-2 leading-10 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
+                <div className='absolute bottom-1 leading-10 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
                   NARRATIVAS
                 </div>
-                <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 duration-300 text-[10px] text-bluebook'>
-                  Se trata de un género literario que presenta una serie de
-                  hechos reales o ficticios. Se caracteriza por ser una
-                  narración extensa, tener una trama compleja en la que el
-                  narrador se vale de la descripción, diálogos o monólogos.
+                <div className='absolute bottom-11 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 duration-300 text-[10px] text-bluebook'>
+                  Historias atrapantes, novelas perfectas, ficción creativa de
+                  amor, terror, suspenso, policiales, clásicos y contemporáneos
+                  de todo el mundo.
                 </div>
-                <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-8 top-4 w-10 h-10'>
+                <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-8 top-3 w-9 h-9'>
                   <img src={RedMark} alt='Marcador Rojo' />
                 </div>
               </div>
             </Link>
           </div>
-
-          <div className='bg-redbook col-span-3 row-span-3 text-2xl text-yellowbook font-sans font-black cursor-pointer'>
-            <span className='absolute top-56 inset-x-80 font-roboto'>
-              NO FICCIÓN <br />Y CRÓNICA
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-redbook relative col-span-3 row-span-3 text-2xl font-roboto text-yellowbook font-black cursor-pointer group hover:bg-red-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-5'>
+                <div className='absolute bottom-2 leading-6 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
+                  NO FICCIÓN <br />Y CRÓNICA
+                </div>
+              </div>
+              <div className='absolute bottom-7 transition-opacity opacity-0 group-hover:opacity-100 max-w-[200px] left-5 leading-4 duration-200 text-[10px] text-bluebook'>
+                Relatos en primera persona, periodismo, viajes, investigación y
+                reflexión a través de historias reales.
+              </div>
+            </Link>
+            <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-3 top-3 w-10 h-10'>
+              <img src={RedMark} alt='Marcador Rojo' />
+            </div>
           </div>
-
-          <div className='bg-pinkbook col-span-4 row-span-1 text-3xl text-yellowbook font-sans font-black cursor-pointer'>
-            <span className='absolute top-16 inset-x-2/3 font-roboto'>
-              TEATRO
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-pinkbook relative col-span-4 row-span-1 text-3xl font-roboto text-yellowbook font-black cursor-pointer group hover:bg-pink-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-5'>
+                <div className='absolute bottom-0 leading-1 font-roboto duration-500 group-hover:bottom-14 group-hover:text-bluebook'>
+                  TEATRO
+                </div>
+              </div>
+              <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[200px] left-5 leading-4 duration-200 text-[10px] text-bluebook'>
+                Dramaturgia, historias basadas en diálogos, ensayos y
+                reflexiones sobre el teatro.
+              </div>
+            </Link>
+            <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-3 top-3 w-8 h-8'>
+              <img src={RedMark} alt='Marcador Rojo' />
+            </div>
           </div>
-
-          <div className='bg-yellowbook col-span-1 row-span-2 text-md text-redbook font-sans font-black cursor-pointer'>
-            <span className='absolute top-36 font-roboto'>
-              CIEN
-              <br />
-              CIA
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-yellowbook relative col-span-1 row-span-2 text-md font-roboto text-redbook font-black cursor-pointer group hover:bg-yellow-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-1 font-roboto'>
+                <div className='absolute bottom-2 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
+                  CIENCIA
+                </div>
+              </div>
+              <div className='absolute bottom-1 transition-opacity opacity-0 group-hover:opacity-100 max-w-[200px] left-3 duration-200 text-[6px] text-bluebook'>
+                Investigación y ensayo sobre ciencia, ecología, naturaleza,
+                biología, medio ambiente, recursos, pensamiento lógico y
+                matemático.
+              </div>
+            </Link>
+            <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-5 h-5'>
+              <img src={RedMark} alt='Marcador Rojo' />
+            </div>
           </div>
-
-          <div className='bg-white col-span-4 row-span-1 text-xl text-redbook font-sans font-black cursor-pointer'>
-            <span className='absolute top-36 left-2/3 font-roboto'>
-              HISTORIA Y POLÍTICA
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-white relative col-span-4 row-span-1 text-xl font-roboto text-redbook font-black cursor-pointer group hover:bg-blue-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-5 font-roboto'>
+                <div className='absolute bottom-1 font-roboto duration-500 group-hover:bottom-14 group-hover:text-bluebook'>
+                  HISTORIA Y POLÍTICA
+                </div>
+              </div>
+              <div className='absolute bottom-4 transition-opacity opacity-0 group-hover:opacity-100 max-w-[200px] left-5 duration-200 text-[8px] text-bluebook'>
+                Análisis, periodismo, actualidad, ensayos y reflexiones sobre
+                sucesos sociales, históricos y políticos. Relatos históricos y
+                políticos.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-3 top-3 w-8 h-8'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-white col-span-4 row-span-1 text-xl text-bluebook font-sans font-black cursor-pointer'>
-            <span className='absolute top-64 left-10 font-roboto'>
-              RELATOS BREVES
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-white relative col-span-4 row-span-1 text-xl font-roboto text-bluebook font-black cursor-pointer group hover:bg-blue-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-5'>
+                <div className='absolute bottom-2 duration-500 group-hover:bottom-12 group-hover:text-bluebook'>
+                  RELATOS BREVES
+                </div>
+              </div>
+              <div className='absolute bottom-4 transition-opacity opacity-0 group-hover:opacity-100 max-w-[200px] left-5 duration-200 text-[10px] text-bluebook'>
+                Lecturas rápidas y precisas, libros objetos, cuentos y relatos
+                atrapantes.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-4 top-4 w-8 h-8'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-bluebook col-span-4 row-span-2 text-xl text-white font-sans font-black cursor-pointer'>
-            <span className='absolute top-80 left-2/3 font-roboto'>
-              PENSAMIENTOS <br /> Y FILOSOFÍA
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-bluebook relative col-span-4 row-span-2 text-xl font-roboto text-white font-black cursor-pointer group hover:bg-blue-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-5 font-roboto'>
+                <div className='absolute bottom-2 duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
+                  PENSAMIENTOS <br /> Y FILOSOFÍA
+                </div>
+              </div>
+              <div className='absolute bottom-4 transition-opacity opacity-0 group-hover:opacity-100 max-w-[200px] left-5 duration-200 text-[10px] text-bluebook'>
+                Ensayos, pensamiento contemporáneo y clásico, nuevas filosofías,
+                estudios del lenguaje, ambientalismo, economía y sociología.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-3 top-3 w-8 h-8'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-orangebook col-span-1 row-span-2 text-yellowbook font-sans font-black cursor-pointer'>
-            <span className='absolute bottom-52 font-roboto'>
-              JÓVE
-              <br />
-              NES
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-orangebook relative col-span-1 row-span-2 text-md font-roboto text-yellowbook font-black cursor-pointer group hover:bg-orange-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-3'>
+                <div className='absolute bottom-2 leading-5 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
+                  JÓVE
+                  <br />
+                  NES
+                </div>
+              </div>
+              <div className='absolute bottom-3 transition-opacity opacity-0 group-hover:opacity-100 max-w-[200px] left-3 duration-200 text-[6px] text-bluebook'>
+                Ensayos, pensamiento contemporáneo y clásico, nuevas filosofías,
+                estudios del lenguaje, ambientalismo, economía y sociología.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-5 h-5'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-yellowbook col-span-4 row-span-1 text-2xl text-redbook font-sans font-black cursor-pointer'>
-            <span className='absolute bottom-52 left-10 font-roboto'>
-              POESÍA
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-yellowbook relative col-span-4 row-span-1 text-2xl font-roboto text-redbook font-black cursor-pointer group hover:bg-yellow-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-5'>
+                <div className='absolute bottom-1 font-roboto duration-500 group-hover:bottom-14 group-hover:text-bluebook'>
+                  POESÍA
+                </div>
+              </div>
+              <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 left-5 duration-200 text-[9px] text-bluebook'>
+                Ensayos, pensamiento contemporáneo y clásico, nuevas filosofías,
+                estudios del lenguaje, ambientalismo, economía y sociología.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-6 h-6'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-pinkbook col-span-3 row-span-1 text-2xl text-bluebook font-sans font-black cursor-pointer'>
-            <span className='absolute bottom-52 left-80 font-roboto'>
-              MÚSICA
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-pinkbook relative col-span-3 row-span-1 font-roboto text-2xl text-bluebook font-black cursor-pointer group hover:bg-pink-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-5'>
+                <div className='absolute bottom-1 font-roboto duration-500 group-hover:bottom-14 group-hover:text-bluebook'>
+                  MÚSICA
+                </div>
+              </div>
+              <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 left-5 duration-200 text-[9px] text-bluebook'>
+                Novedades musicales, ensayos y reflexiones sobre la música.
+                Historias con la música como protagonista.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-6 h-6'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-redbook col-span-3 row-span-2 text-xl  text-white font-sans font-black cursor-pointer'>
-            <span className='absolute bottom-5 left-10 font-roboto'>
-              BIENESTAR Y <br /> ESPIRITUALIDAD
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-redbook relative col-span-3 row-span-2 text-xl font-roboto text-white font-black cursor-pointer group hover:bg-red-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-3'>
+                <div className='absolute bottom-1 left-1 font-roboto duration-500 group-hover:bottom-20 group-hover:text-bluebook'>
+                  BIENESTAR Y <br /> ESPIRITUALIDAD
+                </div>
+              </div>
+              <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 left-4 duration-200 text-[10px] text-bluebook'>
+                Medicina del estilo de vida, terapias alternativas, yoga,
+                budismo, ayurveda, neurociencia, magia y astrología.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-4 top-4 w-8 h-8'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-white col-span-3 row-span-2 text-xl text-orangebook font-roboto font-black cursor-pointer'>
-            <span className='absolute bottom-5 left-64 font-roboto'>
-              NIÑOS Y NIÑAS
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-white relative col-span-3 row-span-2 text-xl font-roboto text-orangebook font-black cursor-pointer group hover:bg-blue-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-3'>
+                <div className='absolute bottom-1 left-1 front-roboto duration-500 group-hover:bottom-20 group-hover:text-bluebook'>
+                  NIÑOS Y NIÑAS
+                </div>
+              </div>
+              <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 left-4 duration-200 text-[10px] text-bluebook'>
+                Literatura infantil, narrativa inicial, audiolibros y historias
+                dibujadas. Juegos y recreos literarios.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-4 top-4 w-8 h-8'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
-
-          <div className='bg-pinkbook col-span-6 row-span-2 text-4xl text-redbook font-sans font-black cursor-pointer'>
-            <span className='absolute bottom-2 left-2/3 font-roboto'>
-              FEMINISMOS Y <br /> LGTBIQ
-            </span>
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          {/* Esto es una separacion */}
+          <div className='bg-pinkbook relative col-span-6 row-span-2 text-4xl font-roboto text-redbook font-black cursor-pointer group hover:bg-pink-200'>
+            <Link to='genre/fc94da93-75ff-4e12-a9cd-b61333126dce'>
+              <div className='relative transition-all duration-500 h-full ease-in left-3'>
+                <div className='absolute bottom-1 left-1 front-roboto duration-500 group-hover:bottom-20 group-hover:text-bluebook'>
+                  FEMINISMOS Y <br /> LGTBIQ
+                </div>
+              </div>
+              <div className='absolute bottom-2 transition-opacity opacity-0 group-hover:opacity-100 max-w-[250px] leading-4 left-4 duration-200 text-[10px] text-bluebook'>
+                Literatura diversa, autores trans, sexualidad, pensamiento
+                feminista, mujeres, poesía y ensayo.
+              </div>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-5 top-5 w-10 h-10'>
+                <img src={RedMark} alt='Marcador Rojo' />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

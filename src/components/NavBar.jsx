@@ -36,7 +36,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className='relative shadow-lg md:shadow-none '>
+    <nav className='relative shadow-lg md:shadow-none'>
       <div className='bg-bluebook h-14 md:h-20 lg:h-24 xl:h-32 w-full flex justify-between xl:justify-center'>
         <div className='px-5 py-3.5 md:px-6 md:py-4 lg:px-7 lg:py-5 xl:px-12 xl:py-9 '>
           <Link to='/'>
