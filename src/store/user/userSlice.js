@@ -27,10 +27,10 @@ export const updateProfile = createAsyncThunk(
     const sessionId = localStorage.getItem('session_id');
     const { data } = await axios.put(
       `${URL_BASE}/users/profile`,
-      updatedProfile,
+      updatedProfile, sessionId,
       {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
           userId,
           sessionId,
         },
@@ -58,7 +58,11 @@ export const getFavGenres = createAsyncThunk('user/getFavGenres', async () => {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder //USER
       .addCase(fetchUser.pending, (state) => {
@@ -97,6 +101,9 @@ const userSlice = createSlice({
       });
   },
 });
+
+
+export const {setUser} = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectUserStatus = (state) => state.user.status;

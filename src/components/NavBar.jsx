@@ -14,7 +14,7 @@ const NavBar = () => {
   const isLogged = useSelector(selectIsLogged);
   const dispatch = useDispatch();
 
-  const isAdmin = true; // Harcodeada temporalmente
+  const isAdmin = true // Harcodeada temporalmente
 
   const handleProfile = () => {
     setShowProfile(!showProfile);
@@ -28,7 +28,7 @@ const NavBar = () => {
 
   const handleClose = () => {
     setShowMenu(false);
-    setShowProfile(false);
+    setShowProfile(false)
   };
 
   const handleMenu = () => {
@@ -65,7 +65,7 @@ const NavBar = () => {
           <div className='text-white my-4'>
             <Link to='/sellbook'>
               <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Vendé o alquilá
+                Vendé o Alquilá
               </span>
             </Link>
           </div>
