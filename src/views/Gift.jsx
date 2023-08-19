@@ -1,10 +1,15 @@
 import FAQs from '../components/FAQs';
 import GiftImage from '../assets/Gift.png';
 import LinePink from '../assets/home/recomendaciones/Line-Pink.png';
+import estrellaNaranja from '../assets/gift/estrellaNaranja.png';
+import estrellaAzul from '../assets/gift/estrellaAzul.png';
+import manchaRoja from '../assets/gift/manchaRoja.png';
+import cruzRosa from '../assets/gift/cruzRosa.png';
+import YellowLines from '../assets/home/entorno/Yellow.png';
 
 const Gift = () => {
   return (
-    <div className='flex flex-col justify-content items-center'>
+    <div className='flex flex-col justify-content items-center relative'>
       <img src={GiftImage} alt='Books' className='mt-8' />
       <h2 className='font-bold font-roboto text-5xl text-bluebook mt-6'>
         REGALÁ BOOKBUSTER
@@ -85,7 +90,44 @@ const Gift = () => {
           </div>
         </div>
       </div>
+      <div>
+        <img
+          src={estrellaNaranja}
+          alt='estrellaNaranja'
+          className='absolute w-[470px] ml-[400px] top-0 '
+        />
+      </div>
 
+      <div>
+        <img
+          src={cruzRosa}
+          alt='estrellaNaranja'
+          className='absolute w-[250px] ml-[-700px] top-10 rotate-12'
+        />
+      </div>
+
+      <div>
+        <img
+          src={estrellaAzul}
+          alt='estrellaNaranja'
+          className='absolute w-[250px] ml-[-650px] top-[350px]'
+        />
+      </div>
+
+      <div>
+        <img
+          src={manchaRoja}
+          alt='estrellaNaranja'
+          className='absolute w-[250px] ml-[500px] top-[550px]'
+        />
+      </div>
+      <div>
+        <img
+          src={YellowLines}
+          alt='estrellaNaranja'
+          className='absolute w-[250px] ml-[-700px] top-[650px]'
+        />
+      </div>
       <div>
         <FAQs />
       </div>

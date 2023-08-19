@@ -105,6 +105,8 @@ const bookSlice = createSlice({
       state.books = [];
       state.status = 'idle';
       state.error = null;
+      state.singleGenreStatus = 'idle';
+      state.singleGenreError = null;
     },
   },
   extraReducers: (builder) => {
