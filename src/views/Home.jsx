@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 const Home = () => {
   return (
-    <div>
+    <div className='no-scroll-x'>
       <div className='h-[265px] md:h-[500px] xl:h-[920px] my-1 md:my-2 xl:my-5 flex justify-center items-end'>
         <div>
           <DesafiaLasNormas />
