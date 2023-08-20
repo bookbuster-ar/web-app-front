@@ -6,7 +6,7 @@ const Synopsis = ({ text }) => {
   const shortenedText = `${text?.slice(0, 300)}...`; // Asume que deseas mostrar los primeros 300 caracteres
 
   return (
-    <div className='p-4'>
+    <div className='mb-4'>
       {isExpanded ? text : shortenedText}
       <button
         onClick={() => setIsExpanded(!isExpanded)}

@@ -11,8 +11,9 @@ const initialState = {
 
 export const fetchQuotes = createAsyncThunk(
   'quotes/fetchQuotes',
-  async (id) => {
-    const { data } = await axios.get(`${URL_BASE}/books/${id}/quotes`);
+  async (bookId) => {
+    const { data } = await axios.get(`${URL_BASE}/books/${bookId}/quotes`);
+    console.log(data);
     return data;
   }
 );
