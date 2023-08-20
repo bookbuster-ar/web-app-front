@@ -25,7 +25,7 @@ const Admin = () => {
           <img
             src={user.photoURL}
             alt='User Avatar'
-            className='w-20 h-20 rounded-full border-2 border-gray-300'
+            className='w-20 h-20 rounded-full border-2 border-gray-300 cover'
           />
         </div>
         <h2 className='text-xl mb-6 text-center text-white'>(admin)</h2>

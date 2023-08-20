@@ -403,8 +403,7 @@ const Carousels = () => {
           {books3?.map((book, index) => {
             return (
               <div key={index} className='h-96 relative mt-4'>
-                <div className='absolute bg-red-400'>
-                  <Link to={`/library`}>
+                <div className='absolute'>
                   <div
                     className={
                       index === imageIndex3
@@ -418,7 +417,6 @@ const Carousels = () => {
                       className='h-[124px] w-[82px]'
                     />
                   </div>
-                  </Link>
                   <div className='absolute mt-6 w-60 -ml-16 text-start'>
                     <Link to={`/detail/${book.id}`}>
                       {index === imageIndex3 ? (

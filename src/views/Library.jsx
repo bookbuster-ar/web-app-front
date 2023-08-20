@@ -19,7 +19,7 @@ const Library = () => {
         EXPLORÁ LA LIBRERÍA
       </h1>
       <div className='h-[800px] w-[900px]'>
-        <div className='grid h-full grid-cols-12 grid-rows-6 relative'>
+        <div className='grid h-full grid-cols-12 grid-rows-6z relative'>
           {/* Esto es una separacion */}
           <div className='bg-orangebook relative col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer group hover:bg-orange-200'>
             <Link to='genre/cd49e523-5861-4669-9e26-8766812de9d5'>
