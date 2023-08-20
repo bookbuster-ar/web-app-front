@@ -12,9 +12,9 @@ const Recomendaciones = () => {
           RECOMENDACIONES PERSONALIZADAS
         </h1>
         <p className='text-xs font-thin max-w-xs'>
-          Brindamos recomendaciones personaliadas que coincidan con tus
+          Brindamos recomendaciones personalizadas que coincidan con tus
           intereses. Además, contamos con expertos en el rubro a la hora de
-          publicar reseñas oficiales
+          publicar reseñas oficiales.
         </p>
         <div className='absolute'>
           <img className='h-6 -mt-36 ml-40 md:ml-60 md:-mt-44' src={LineYellow} alt='' />

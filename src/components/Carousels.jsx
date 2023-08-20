@@ -7,190 +7,190 @@ import { useState } from 'react';
 
 const books = [
   {
-    id: '0645213e-330a-4ac5-b2cf-7ba0db79a90f',
+    id: 'b2f693f7-d74b-4744-bc6f-885e7132bbd8',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924506/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/be7315f3-8c2c-4d92-992e-ee7af54888b5.jpg',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407890/book/15b1632a-d54c-4850-9d66-614d002e2add/a704a18b-034c-4024-bc01-84f52eaf83cb.jpg',
+    },
+    title: 'Poeta Chileno',
+    author: 'Alejandro Zambra',
+  },
+  {
+    id: 'b8ec3370-6a74-471e-a026-ccf44b777bb4',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407841/book/8022896d-1648-4ffa-ac49-629e4bf4b298/d9478fe2-4b6c-4e99-b2f0-1a0e960c4da6.jpg',
+    },
+    title: 'CARTAS A THEO',
+    author: 'Vincent van Gogh',
+  },
+  {
+    id: '1f93104a-7eef-4f08-8f80-1bc59d046106',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407821/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/c17db0c0-9d5f-4684-94ff-60802f8f945b.jpg',
     },
     title: 'Poesía completa',
     author: 'Alejandra Pizarnik',
   },
   {
-    id: '76534d28-7dfc-4dac-a98d-9926948a2db3',
+    id: '70e6f1ae-b955-4e03-9ab4-a13b4f274e26',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924507/book/76534d28-7dfc-4dac-a98d-9926948a2db3/12c91e2d-ccb5-4be9-9b37-842d0b355ccd.webp',
-    },
-    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
-    author: 'Blanca Varela',
-  },
-  {
-    id: '27b3cd26-be27-4baa-a367-9148acdfa7e5',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924508/book/27b3cd26-be27-4baa-a367-9148acdfa7e5/961a2cb8-2f7e-49c3-a4f9-9c777eb03cc4.png',
-    },
-    title: 'Nadie duerme de verdad aquí',
-    author: 'Verónica Pérez Arango',
-  },
-  {
-    id: '7e320b7e-842d-49bb-b5d1-b3c65be041d0',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924509/book/7e320b7e-842d-49bb-b5d1-b3c65be041d0/a920bbc2-dcc5-4f3e-926b-3f69f9c21f54.jpg',
-    },
-    title: 'Envíame tus poemas y te enviaré los míos',
-    author: 'Fabián Casas',
-  },
-  {
-    id: 'ff92db80-294c-4aaf-b52e-4e3fce44c34e',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924510/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/0d4612f7-4cfc-4748-a5fa-bbb660832205.webp',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407828/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/77a478af-3eb2-4d98-842f-c00d24586543.webp',
     },
     title: 'NOVÍSIMOS (Poemas inéditos)',
     author: 'Juana Bignozzi',
+  },
+  {
+    id: '7e4a4403-abc5-4f21-bba8-79cb1d00eebd',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407823/book/76534d28-7dfc-4dac-a98d-9926948a2db3/07f997f0-d6ac-4254-abf2-eaec55ee950e.webp',
+    },
+    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
+    author: 'Blanca Varela',
   },
 ];
 const books1 = [
   {
-    id: '0645213e-330a-4ac5-b2cf-7ba0db79a90f',
+    id: 'b2f693f7-d74b-4744-bc6f-885e7132bbd8',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924506/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/be7315f3-8c2c-4d92-992e-ee7af54888b5.jpg',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407890/book/15b1632a-d54c-4850-9d66-614d002e2add/a704a18b-034c-4024-bc01-84f52eaf83cb.jpg',
+    },
+    title: 'Poeta Chileno',
+    author: 'Alejandro Zambra',
+  },
+  {
+    id: 'b8ec3370-6a74-471e-a026-ccf44b777bb4',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407841/book/8022896d-1648-4ffa-ac49-629e4bf4b298/d9478fe2-4b6c-4e99-b2f0-1a0e960c4da6.jpg',
+    },
+    title: 'CARTAS A THEO',
+    author: 'Vincent van Gogh',
+  },
+  {
+    id: '1f93104a-7eef-4f08-8f80-1bc59d046106',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407821/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/c17db0c0-9d5f-4684-94ff-60802f8f945b.jpg',
     },
     title: 'Poesía completa',
     author: 'Alejandra Pizarnik',
   },
   {
-    id: '76534d28-7dfc-4dac-a98d-9926948a2db3',
+    id: '70e6f1ae-b955-4e03-9ab4-a13b4f274e26',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924507/book/76534d28-7dfc-4dac-a98d-9926948a2db3/12c91e2d-ccb5-4be9-9b37-842d0b355ccd.webp',
-    },
-    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
-    author: 'Blanca Varela',
-  },
-  {
-    id: '27b3cd26-be27-4baa-a367-9148acdfa7e5',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924508/book/27b3cd26-be27-4baa-a367-9148acdfa7e5/961a2cb8-2f7e-49c3-a4f9-9c777eb03cc4.png',
-    },
-    title: 'Nadie duerme de verdad aquí',
-    author: 'Verónica Pérez Arango',
-  },
-  {
-    id: '7e320b7e-842d-49bb-b5d1-b3c65be041d0',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924509/book/7e320b7e-842d-49bb-b5d1-b3c65be041d0/a920bbc2-dcc5-4f3e-926b-3f69f9c21f54.jpg',
-    },
-    title: 'Envíame tus poemas y te enviaré los míos',
-    author: 'Fabián Casas',
-  },
-  {
-    id: 'ff92db80-294c-4aaf-b52e-4e3fce44c34e',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924510/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/0d4612f7-4cfc-4748-a5fa-bbb660832205.webp',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407828/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/77a478af-3eb2-4d98-842f-c00d24586543.webp',
     },
     title: 'NOVÍSIMOS (Poemas inéditos)',
     author: 'Juana Bignozzi',
+  },
+  {
+    id: '7e4a4403-abc5-4f21-bba8-79cb1d00eebd',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407823/book/76534d28-7dfc-4dac-a98d-9926948a2db3/07f997f0-d6ac-4254-abf2-eaec55ee950e.webp',
+    },
+    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
+    author: 'Blanca Varela',
   },
 ];
 const books2 = [
   {
-    id: '0645213e-330a-4ac5-b2cf-7ba0db79a90f',
+    id: 'b2f693f7-d74b-4744-bc6f-885e7132bbd8',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924506/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/be7315f3-8c2c-4d92-992e-ee7af54888b5.jpg',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407890/book/15b1632a-d54c-4850-9d66-614d002e2add/a704a18b-034c-4024-bc01-84f52eaf83cb.jpg',
+    },
+    title: 'Poeta Chileno',
+    author: 'Alejandro Zambra',
+  },
+  {
+    id: 'b8ec3370-6a74-471e-a026-ccf44b777bb4',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407841/book/8022896d-1648-4ffa-ac49-629e4bf4b298/d9478fe2-4b6c-4e99-b2f0-1a0e960c4da6.jpg',
+    },
+    title: 'CARTAS A THEO',
+    author: 'Vincent van Gogh',
+  },
+  {
+    id: '1f93104a-7eef-4f08-8f80-1bc59d046106',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407821/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/c17db0c0-9d5f-4684-94ff-60802f8f945b.jpg',
     },
     title: 'Poesía completa',
     author: 'Alejandra Pizarnik',
   },
   {
-    id: '76534d28-7dfc-4dac-a98d-9926948a2db3',
+    id: '70e6f1ae-b955-4e03-9ab4-a13b4f274e26',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924507/book/76534d28-7dfc-4dac-a98d-9926948a2db3/12c91e2d-ccb5-4be9-9b37-842d0b355ccd.webp',
-    },
-    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
-    author: 'Blanca Varela',
-  },
-  {
-    id: '27b3cd26-be27-4baa-a367-9148acdfa7e5',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924508/book/27b3cd26-be27-4baa-a367-9148acdfa7e5/961a2cb8-2f7e-49c3-a4f9-9c777eb03cc4.png',
-    },
-    title: 'Nadie duerme de verdad aquí',
-    author: 'Verónica Pérez Arango',
-  },
-  {
-    id: '7e320b7e-842d-49bb-b5d1-b3c65be041d0',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924509/book/7e320b7e-842d-49bb-b5d1-b3c65be041d0/a920bbc2-dcc5-4f3e-926b-3f69f9c21f54.jpg',
-    },
-    title: 'Envíame tus poemas y te enviaré los míos',
-    author: 'Fabián Casas',
-  },
-  {
-    id: 'ff92db80-294c-4aaf-b52e-4e3fce44c34e',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924510/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/0d4612f7-4cfc-4748-a5fa-bbb660832205.webp',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407828/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/77a478af-3eb2-4d98-842f-c00d24586543.webp',
     },
     title: 'NOVÍSIMOS (Poemas inéditos)',
     author: 'Juana Bignozzi',
+  },
+  {
+    id: '7e4a4403-abc5-4f21-bba8-79cb1d00eebd',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407823/book/76534d28-7dfc-4dac-a98d-9926948a2db3/07f997f0-d6ac-4254-abf2-eaec55ee950e.webp',
+    },
+    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
+    author: 'Blanca Varela',
   },
 ];
 const books3 = [
   {
-    id: '0645213e-330a-4ac5-b2cf-7ba0db79a90f',
+    id: 'b2f693f7-d74b-4744-bc6f-885e7132bbd8',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924506/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/be7315f3-8c2c-4d92-992e-ee7af54888b5.jpg',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407890/book/15b1632a-d54c-4850-9d66-614d002e2add/a704a18b-034c-4024-bc01-84f52eaf83cb.jpg',
+    },
+    title: 'Poeta Chileno',
+    author: 'Alejandro Zambra',
+  },
+  {
+    id: 'b8ec3370-6a74-471e-a026-ccf44b777bb4',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407841/book/8022896d-1648-4ffa-ac49-629e4bf4b298/d9478fe2-4b6c-4e99-b2f0-1a0e960c4da6.jpg',
+    },
+    title: 'CARTAS A THEO',
+    author: 'Vincent van Gogh',
+  },
+  {
+    id: '1f93104a-7eef-4f08-8f80-1bc59d046106',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407821/book/0645213e-330a-4ac5-b2cf-7ba0db79a90f/c17db0c0-9d5f-4684-94ff-60802f8f945b.jpg',
     },
     title: 'Poesía completa',
     author: 'Alejandra Pizarnik',
   },
   {
-    id: '76534d28-7dfc-4dac-a98d-9926948a2db3',
+    id: '70e6f1ae-b955-4e03-9ab4-a13b4f274e26',
     images: {
       cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924507/book/76534d28-7dfc-4dac-a98d-9926948a2db3/12c91e2d-ccb5-4be9-9b37-842d0b355ccd.webp',
-    },
-    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
-    author: 'Blanca Varela',
-  },
-  {
-    id: '27b3cd26-be27-4baa-a367-9148acdfa7e5',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924508/book/27b3cd26-be27-4baa-a367-9148acdfa7e5/961a2cb8-2f7e-49c3-a4f9-9c777eb03cc4.png',
-    },
-    title: 'Nadie duerme de verdad aquí',
-    author: 'Verónica Pérez Arango',
-  },
-  {
-    id: '7e320b7e-842d-49bb-b5d1-b3c65be041d0',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924509/book/7e320b7e-842d-49bb-b5d1-b3c65be041d0/a920bbc2-dcc5-4f3e-926b-3f69f9c21f54.jpg',
-    },
-    title: 'Envíame tus poemas y te enviaré los míos',
-    author: 'Fabián Casas',
-  },
-  {
-    id: 'ff92db80-294c-4aaf-b52e-4e3fce44c34e',
-    images: {
-      cover:
-        'http://res.cloudinary.com/djfa22pkl/image/upload/v1691924510/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/0d4612f7-4cfc-4748-a5fa-bbb660832205.webp',
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407828/book/ff92db80-294c-4aaf-b52e-4e3fce44c34e/77a478af-3eb2-4d98-842f-c00d24586543.webp',
     },
     title: 'NOVÍSIMOS (Poemas inéditos)',
     author: 'Juana Bignozzi',
+  },
+  {
+    id: '7e4a4403-abc5-4f21-bba8-79cb1d00eebd',
+    images: {
+      cover:
+        'https://res.cloudinary.com/djfa22pkl/image/upload/v1692407823/book/76534d28-7dfc-4dac-a98d-9926948a2db3/07f997f0-d6ac-4254-abf2-eaec55ee950e.webp',
+    },
+    title: 'Las cosas que digo son ciertas (Poesía completa 1949-2000)',
+    author: 'Blanca Varela',
   },
 ];
 
@@ -403,7 +403,8 @@ const Carousels = () => {
           {books3?.map((book, index) => {
             return (
               <div key={index} className='h-96 relative mt-4'>
-                <div className='absolute'>
+                <div className='absolute bg-red-400'>
+                  <Link to={`/library`}>
                   <div
                     className={
                       index === imageIndex3
@@ -412,11 +413,12 @@ const Carousels = () => {
                     }
                   >
                     <img
-                      src={book?.images?.cover}
+                      src={book.images.cover}
                       alt={book.title}
                       className='h-[124px] w-[82px]'
                     />
                   </div>
+                  </Link>
                   <div className='absolute mt-6 w-60 -ml-16 text-start'>
                     <Link to={`/detail/${book.id}`}>
                       {index === imageIndex3 ? (
