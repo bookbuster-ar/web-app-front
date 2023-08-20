@@ -4,6 +4,7 @@ import { fetchGenres } from '../store/books/bookSlice';
 import { Link } from 'react-router-dom';
 import PurpleEye from '../assets/PurpleEye.png';
 import RedMark from '../assets/RedMark.png';
+import Footer from '../views/Footer';
 
 const Library = () => {
   const dispatch = useDispatch();
@@ -13,13 +14,15 @@ const Library = () => {
   }, [dispatch]);
 
   return (
-    <div className='bg-white h-screen flex flex-col items-center justify-center '>
-      <img src={PurpleEye} className='h-12 mt-10' />
-      <h1 className='font-bold font-roboto text-5xl text-bluebook'>
-        EXPLORÁ LA LIBRERÍA
-      </h1>
-      <div className='h-[800px] w-[900px]'>
-        <div className='grid h-full grid-cols-12 grid-rows-6z relative'>
+    <div className='bg-white h-screen no-scroll-x w-screen '>
+      <div className='flex items-center justify-start mt-8 ml-12'>
+        <img src={PurpleEye} className='h-12' />
+        <h1 className='font-bold font-roboto text-5xl text-bluebook'>
+          EXPLORÁ LA LIBRERÍA
+        </h1>
+      </div>
+      <div className='h-[829px] w-11/12 my-12 mx-auto'>
+        <div className='grid h-full grid-cols-12 grid-rows-6 relative'>
           {/* Esto es una separacion */}
           <div className='bg-orangebook relative col-span-4 row-span-2 text-4xl font-roboto text-white font-black cursor-pointer group hover:bg-orange-200'>
             <Link to='genre/cd49e523-5861-4669-9e26-8766812de9d5'>
@@ -310,6 +313,9 @@ const Library = () => {
             </Link>
           </div>
         </div>
+      </div>
+      <div className='w-screen'>
+        <Footer />
       </div>
     </div>
   );
