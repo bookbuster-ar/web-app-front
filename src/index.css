@@ -17,6 +17,10 @@ nav {
   transition: transform 0.3s ease-in-out;
 }
 
+.no-scroll-x {
+  overflow-x: hidden;
+}
+
 @font-face {
   font-family: "Kabut";
   src: url(./assets/fonts/KabutHitam.ttf);

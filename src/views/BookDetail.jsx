@@ -19,6 +19,7 @@ import {
 import QuotesList from '../components/quotes/QuotesList';
 import FormAddRQuote from '../components/quotes/FormAddQuote';
 import Synopsis from '../components/Synopsis';
+import Loader from '../icons/Loader/Loader';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -67,10 +68,12 @@ const BookDetail = () => {
   };
 
   return (
-    <div className='p-10 flex felx-col content-center'>
+    <div className='p-10 flex flex-col content-center'>
       <div className='mb-10 '>
         {status === 'loading' ? (
-          <p>Loading...</p>
+          <div className='flex flex-col items-center w-full mt-60 '>
+            <Loader />
+          </div>
         ) : (
           <div className='flex w-full h-[500px] ml-20'>
             <div className='w-96 mx-14 '>

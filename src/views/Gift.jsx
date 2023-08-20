@@ -9,7 +9,7 @@ import YellowLines from '../assets/home/entorno/Yellow.png';
 
 const Gift = () => {
   return (
-    <div className='flex flex-col justify-content items-center relative'>
+    <div className='flex flex-col justify-content items-center relative no-scroll-x'>
       <img src={GiftImage} alt='Books' className='mt-8' />
       <h2 className='font-bold font-roboto text-5xl text-bluebook mt-6'>
         REGALÁ BOOKBUSTER
