@@ -28,7 +28,7 @@ const Subscription = () => {
   };
 
   return (
-    <div className='flex flex-col items-center p-14 '>
+    <div className='flex flex-col items-center p-14 no-scroll-x'>
       <div className='flex text-4xl'>
         <div className='flex flex-col items-center mr-20'>
           <h2 className='font-bold font-roboto text-5xl text-bluebook'>
@@ -168,7 +168,6 @@ const Subscription = () => {
                 href='#'
                 onClick={handlerSubscription}
                 className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
-
               >
                 SUSCRIBIRME
               </button>

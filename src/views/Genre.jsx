@@ -24,7 +24,11 @@ const Genre = () => {
   console.log(singleGenreStatus);
 
   if (singleGenreStatus === 'loading') {
-    return <Loader />;
+    return (
+      <div className='flex flex-col items-center mt-60'>
+        <Loader />;
+      </div>
+    );
   }
   return (
     <div className='h-full flex flex-col items-center'>
