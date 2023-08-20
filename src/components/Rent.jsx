@@ -25,7 +25,7 @@ const Rent = () => {
   if (status === 'loading') {
     return (
       <div className='flex flex-col items-center mt-60'>
-        <Loader />;
+        <Loader />
       </div>
     );
   } else if (status === 'failed') {
@@ -34,7 +34,7 @@ const Rent = () => {
 
   return (
     <div className='flex flex-col items-center relative'>
-      <h2 className='font-bold font-roboto text-5xl text-bluebook my-6 text-center'>
+      <h2 className='font-bold font-roboto text-5xl text-bluebook mt-10 text-center uppercase'>
         Te prestamos, vos decidís si devolvés
       </h2>
       <p className='text-justify text 4x1 mx-8 font-roboto text-gray-800 mt-6'>
@@ -42,10 +42,9 @@ const Rent = () => {
         posibilidad de alquilar libros físicos con una permanencia de 30 días.
       </p>
       <p className='text-justify text 4x1 mx-8 font-roboto text-gray-800'>
-        Si te gustó mucho podés comprarlo y quedártelo para siempre.{' '}
+        Si te gustó mucho podés comprarlo y quedártelo para siempre.
       </p>
       <p className='text-justify text 4x1 mx-8 font-roboto text-gray-800'>
-        {' '}
         Si no te gustó, lo devolvés y te prestamos una nueva lectura.
       </p>
       <button className='bg-bluebook py-4 px-4 text 3x1 font-bold font-roboto text-white m-6 hover:bg-blue-700'>

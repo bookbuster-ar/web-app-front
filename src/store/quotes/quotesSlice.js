@@ -20,21 +20,26 @@ export const fetchQuotes = createAsyncThunk(
 
 export const postQuote = createAsyncThunk(
   'quotes/postQuote',
-  async ({ newQuote, id }) => {
-    const userId = localStorage.getItem('user_id');
-    const sessionId = localStorage.getItem('session_id');
-    const response = await axios.post(
-      `${URL_BASE}/books/${id}/quotes`,
-      newQuote,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userId,
-          sessionId,
-        },
-      }
-    );
-    return response.status;
+  async ({ newQuote, id }, thunkAPI) => {
+    try {
+      const userId = localStorage.getItem('user_id');
+      const sessionId = localStorage.getItem('session_id');
+      const response = await axios.post(
+        `${URL_BASE}/books/${id}/quotes`,
+        newQuote,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userId,
+            sessionId,
+          },
+        }
+      );
+      return response.status;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -103,7 +108,8 @@ const quotesSlice = createSlice({
       })
       .addCase(postQuote.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        console.log(action.payload.response.data);
+        state.error = action.payload?.response?.data?.error;
       })
       .addCase(postQuoteLike.fulfilled, (state) => {
         state.reloadQuotes = !state.reloadQuotes;

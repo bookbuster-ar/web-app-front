@@ -4,7 +4,6 @@ import LinePink from '../assets/home/recomendaciones/Line-Pink.png';
 import estrellaNaranja from '../assets/gift/estrellaNaranja.png';
 import manchaRoja from '../assets/gift/manchaRoja.png';
 import cruzRosa from '../assets/gift/cruzRosa.png';
-import YellowLines from '../assets/home/entorno/Yellow.png';
 
 const Gift = () => {
   return (
@@ -23,7 +22,7 @@ const Gift = () => {
       />
 
       <div className='flex flex-wrap'>
-        <div className='rounded-2xl bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
+        <div className='rounded-2xl  bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
           <div className='mx-auto max-w-xs px-8'>
             <p className='text-base font-semibold text-gray-600'>
               Regalo por 1 mes
@@ -38,7 +37,7 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
             </a>
@@ -60,7 +59,7 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
             </a>
@@ -82,7 +81,7 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
             </a>

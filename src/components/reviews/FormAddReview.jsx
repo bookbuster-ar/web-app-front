@@ -149,13 +149,13 @@ const FormAddReview = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if (
-      !localStorage.getItem('session_id') ||
-      !localStorage.getItem('user_id')
-    ) {
-      setShowError(true); // Set the state to show the error message
-      return;
-    }
+    // if (
+    //   !localStorage.getItem('session_id') ||
+    //   !localStorage.getItem('user_id')
+    // ) {
+    //   setShowError(true); // Set the state to show the error message
+    //   return;
+    // }
 
     let newReview = { ...form };
     dispatch(postReview({ newReview, id })); //ya se q no es necesario pero si no me aparecía en consola q se borraba antes del post
