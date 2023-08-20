@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postQuote } from '../../store/quotes/quotesSlice';
 import { useParams } from 'react-router-dom';
+import ErrorMessage from '../ErrorMessage';
+import { selectQuotesError } from '../../store/quotes/quotesSlice';
 
 const INITIAL_FORM_STATE = {
   content: '',
@@ -11,6 +13,8 @@ const FormAddQuote = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [form, setForm] = useState(INITIAL_FORM_STATE);
+  // const [showError, setShowError] = useState(false);
+  const error = useSelector(selectQuotesError);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -20,30 +24,27 @@ const FormAddQuote = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if (
-      !localStorage.getItem('session_id') ||
-      !localStorage.getItem('user_id')
-    ) {
-      window.alert('Es necesario iniciar sesión para crear una cita');
-      return;
-    }
+    // if (
+    //   !localStorage.getItem('session_id') ||
+    //   !localStorage.getItem('user_id')
+    // ) {
+    //   setShowError(true); // Set the state to show the error message
+    //   return;
+    // }
 
     let newQuote = { ...form };
+    console.log(newQuote);
     dispatch(postQuote({ newQuote, id }));
     setForm(INITIAL_FORM_STATE);
   };
 
   return (
     <div>
+      {error && <ErrorMessage message={error} />}
       <form
         onSubmit={submitHandler}
-        className='bg-white grid grid-cols-6 gap-2 shadow-lg rounded-xl p-6 text-sm'
+        className='bg-white grid grid-cols-6 gap-2 shadow-lg rounded-xl p-6 text-sm w-9/12   '
       >
-        {/* flex flex-col justify-center md:col-span-4 p-6 shadow-lg rounded-lg
-        my-11 */}
-        {/* <h2 className='text-center text-gray-400 text-xl font-bold col-span-6'>
-          Cita
-        </h2> */}
         <label htmlFor='content'></label>
         <textarea
           name='content'

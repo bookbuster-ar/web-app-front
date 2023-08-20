@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postReview } from '../../store/reviews/reviewsSlice';
 import { useParams } from 'react-router-dom';
+import ErrorMessage from '../ErrorMessage';
+import { selectReviewsError } from '../../store/reviews/reviewsSlice';
 
 const INITIAL_FORM_STATE = {
   content: '',
@@ -121,6 +123,7 @@ const FormAddReview = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [form, setForm] = useState(INITIAL_FORM_STATE);
+  const [showError, setShowError] = useState(false);
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -150,7 +153,7 @@ const FormAddReview = () => {
       !localStorage.getItem('session_id') ||
       !localStorage.getItem('user_id')
     ) {
-      window.alert('Es necesario iniciar sesión para crear una reseña');
+      setShowError(true); // Set the state to show the error message
       return;
     }
 
@@ -161,9 +164,14 @@ const FormAddReview = () => {
 
   return (
     <div>
+      {showError && (
+        <ErrorMessage
+          message={'Es necesario iniciar sesión para crear una reseña'}
+        />
+      )}
       <form
         onSubmit={submitHandler}
-        className='flex flex-col justify-center p-6 shadow-lg rounded-lg'
+        className='flex flex-col justify-center p-6 shadow-lg rounded-lg w-9/12'
       >
         <label htmlFor='content'></label>
         <textarea

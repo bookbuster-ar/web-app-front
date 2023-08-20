@@ -5,16 +5,17 @@ import LikeQuote from './LikeQuote';
 
 const Quote = ({ quote, id, onClick }) => {
   const dispatch = useDispatch();
+  const quoteId = quote.id;
   const userid = localStorage.getItem('user_id');
 
   let quoteOwner = quote.by?.id === userid;
 
   const handleDelete = () => {
-    dispatch(deleteQuote({ id, reviewId }));
+    dispatch(deleteQuote({ id, quoteId }));
   };
 
   return (
-    <article className='w-full h-full duration-500 p-12' onClick={onClick}>
+    <article className='w-9/12 h-full duration-500 p-12' onClick={onClick}>
       <div className='flex flex-col w-full'>
         {quoteOwner ? (
           <button

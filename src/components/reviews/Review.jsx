@@ -125,7 +125,7 @@ const Review = ({ review, id }) => {
   };
 
   return (
-    <article className=' bg-white p-6 shadow-lg rounded-lg '>
+    <article className=' bg-white p-6 shadow-lg rounded-lg w-9/12'>
       <div className='flex flex-col'>
         {reviewOwner ? (
           <button
