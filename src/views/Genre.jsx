@@ -7,8 +7,8 @@ import {
 } from '../store/books/bookSlice';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import icono from '../assets/Footer-BookBuster.png';
 import Loader from '../icons/Loader/Loader';
+import RedMark from '../assets/RedMark.png';
 
 const Genre = () => {
   const dispatch = useDispatch();
@@ -26,15 +26,15 @@ const Genre = () => {
   if (singleGenreStatus === 'loading') {
     return (
       <div className='flex flex-col items-center mt-60'>
-        <Loader />;
+        <Loader />                            
       </div>
     );
   }
   return (
     <div className='h-full flex flex-col items-center'>
       <div className='w-full h-36 flex items-center my-8'>
-        <img src={icono} alt='icono' className='w-12 ml-20' />
-        <h1 className='font-bold text-5xl text-blue-700 ml-4'>
+        <img src={RedMark} alt='icono' className='w-12 ml-20' />
+        <h1 className='font-bold font-roboto uppercase text-5xl text-blue-700 ml-4'>
           {singleGenre.genre}
         </h1>
       </div>
