@@ -2,10 +2,9 @@ import FAQs from '../components/FAQs';
 import GiftImage from '../assets/Gift.png';
 import LinePink from '../assets/home/recomendaciones/Line-Pink.png';
 import estrellaNaranja from '../assets/gift/estrellaNaranja.png';
-import estrellaAzul from '../assets/gift/estrellaAzul.png';
 import manchaRoja from '../assets/gift/manchaRoja.png';
 import cruzRosa from '../assets/gift/cruzRosa.png';
-import YellowLines from '../assets/home/entorno/Yellow.png';
+import Footer from './Footer';
 
 const Gift = () => {
   return (
@@ -24,7 +23,7 @@ const Gift = () => {
       />
 
       <div className='flex flex-wrap'>
-        <div className='rounded-2xl bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
+        <div className='rounded-2xl  bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
           <div className='mx-auto max-w-xs px-8'>
             <p className='text-base font-semibold text-gray-600'>
               Regalo por 1 mes
@@ -39,7 +38,7 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
             </a>
@@ -61,7 +60,7 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
             </a>
@@ -83,7 +82,7 @@ const Gift = () => {
             </p>
             <a
               href='#'
-              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-semibold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
+              className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
             </a>
@@ -100,36 +99,38 @@ const Gift = () => {
 
       <div>
         <img
-          src={cruzRosa}
+          src={manchaRoja}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[-700px] top-10 rotate-12'
+          className='absolute w-[250px] ml-[-700px] top-16  '
         />
       </div>
 
       <div>
         <img
-          src={estrellaAzul}
+          src={cruzRosa}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[-650px] top-[350px]'
+          className='absolute w-[250px] ml-[-800px] top-[480px] rotate-12'
         />
       </div>
-
       <div>
         <img
           src={manchaRoja}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[500px] top-[550px]'
+          className='absolute w-[250px] ml-[660px] top-[750px]'
         />
       </div>
       <div>
         <img
-          src={YellowLines}
+          src={estrellaNaranja}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[-700px] top-[650px]'
+          className='absolute w-[270px] ml-[-900px] top-[950px] '
         />
       </div>
       <div>
         <FAQs />
+      </div>
+      <div className='w-screen'>
+        <Footer />
       </div>
     </div>
   );

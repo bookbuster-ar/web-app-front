@@ -38,7 +38,7 @@ const FAQs = () => {
       {questions.map((faq, index) => (
         <div
           key={index}
-          className='border p-4 rounded-md shadow-lg mx-auto w-4/5 '
+          className='border p-4 shadow-lg mx-auto w-4/5 '
           style={{ overflowY: 'auto' }}
         >
           <div

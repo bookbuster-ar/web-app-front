@@ -252,9 +252,9 @@ const Library = () => {
             </Link>
           </div>
         </div>
-      </div>
-      <div className='w-screen'>
-        <Footer />
+        <div className='w-screen'>
+          <Footer />
+        </div>
       </div>
     </div>
   );

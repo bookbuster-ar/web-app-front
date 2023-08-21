@@ -54,19 +54,32 @@ export const updateProfile = createAsyncThunk(
         },
       }
     );
-    console.log(data);
+
     return data;
   }
 );
 
 //No terminado
 //FALTAN LOS CASOS
-export const addFavGenres = createAsyncThunk('user/addFavGenres', async () => {
-  const response = await axios.post(
-    `${URL_BASE}/users/preferences/genres`,
-    favGenre
-  );
-});
+export const addFavGenres = createAsyncThunk(
+  'user/addFavGenres',
+  async (genreIds) => {
+    const userId = localStorage.getItem('user_id');
+    const sessionId = localStorage.getItem('session_id');
+    const response = await axios.post(
+      `${URL_BASE}/users/preferences/genres`,
+      genreIds,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userId,
+          sessionId,
+        },
+      }
+    );
+    return response.status;
+  }
+);
 
 export const getFavGenres = createAsyncThunk('user/getFavGenres', async () => {
   const { data } = await axios.get(`${URL_BASE}/users/preferences/genres`);

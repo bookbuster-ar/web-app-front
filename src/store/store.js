@@ -1,6 +1,7 @@
 import bookReducer from './books/bookSlice';
 import bookshelvesReducer from './books/bookshelvesSlice';
 import userReducer from './user/userSlice';
+import adminReducer from './user/adminSlice';
 import {
   configureStore,
   getDefaultMiddleware,
@@ -12,6 +13,7 @@ import authReducer from './user/authSlice';
 import reviewsReducer from './reviews/reviewsSlice';
 import paymentReducer from './payment/paymentSlice';
 import quotesReducer from './quotes/quotesSlice';
+import booksForRentReducer from './books/booksForRentSlice';
 
 const persistConfig = {
   key: 'root',
@@ -24,9 +26,11 @@ const rootReducer = combineReducers({
   books: bookReducer,
   bookshelves: bookshelvesReducer,
   user: userReducer,
+  admin: adminReducer,
   reviews: reviewsReducer,
   payment: paymentReducer,
   quotes: quotesReducer,
+  booksForRent: booksForRentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
