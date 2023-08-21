@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
 
 const initialState = {
   users: [],
@@ -44,11 +44,26 @@ const initialState = {
   userRolError: null,
 };
 
-}
+export const getAllUsers = createAsyncThunk(
+  'admin/getAllUsers',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`${URL_BASE}/users`);
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
-export const addCreditUser = createAsyncThunk('admin/addCreditUser', async (amount, thunkAPI) => {
-  const { data } = await axios.post(`${URL_BASE}/`)
-})
+export const getUserByName = createAsyncThunk(
+  'admin/getUserByName',
+  async (name) => {
+    const { data } = await axios.get(`${URL_BASE}/users/search?name=${name}`);
+    return data;
+  }
+);
 
 export const getUsersBanned = createAsyncThunk(
   'admin/getUsersBanned',
@@ -169,8 +184,8 @@ const adminSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(addCreditUser.fulfilled, (state, action) => {
-        state.
+      .addCase(getAllUsers.pending, (state) => {
+        state.usersStatus = 'loading';
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
