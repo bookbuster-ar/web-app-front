@@ -1,6 +1,7 @@
 import bookReducer from './books/bookSlice';
 import bookshelvesReducer from './books/bookshelvesSlice';
 import userReducer from './user/userSlice';
+import adminReducer from './user/adminSlice';
 import {
   configureStore,
   getDefaultMiddleware,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   books: bookReducer,
   bookshelves: bookshelvesReducer,
   user: userReducer,
+  admin: adminReducer,
   reviews: reviewsReducer,
   payment: paymentReducer,
   quotes: quotesReducer,

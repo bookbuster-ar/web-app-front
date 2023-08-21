@@ -19,7 +19,7 @@ const InteractuaLibros = () => {
       </div>
       <div className='absolute'>
         <img
-          className='h-16 mr-48 mb-6 md:h-14 md:mb-8 md:mr-64 lg:h-16 lg:mb-11 lg:ml-[604px] xl:h-24 xl:mb-16 xl:mr-[510px]'
+          className='h-16 mr-48 mb-6 md:h-14 md:mb-8 md:mr-64 lg:h-16 lg:mb-11 lg:mr-[352px] xl:h-24 xl:mb-16 xl:mr-[510px]'
           src={Heart}
           alt='Corazon rojo sobre la chica'
         />
