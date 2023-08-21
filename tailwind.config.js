@@ -77,6 +77,32 @@ export default {
         '15': 'repeat(15, minmax(0, 1fr))',
         '16': 'repeat(16, minmax(0, 1fr))',
       },
+      gridColumnStart: {
+        // Añade soporte para 'col-start-8', 'col-start-9', ..., 'col-start-17'
+        '8': '8',
+        '9': '9',
+        '10': '10',
+        '11': '11',
+        '12': '12',
+        '13': '13',
+        '14': '14',
+        '15': '15',
+        '16': '16',
+        '17': '17',
+      },
+      gridRowStart: {
+        // Añade soporte para 'row-start-8', 'row-start-9', ..., 'row-start-17'
+        '8': '8',
+        '9': '9',
+        '10': '10',
+        '11': '11',
+        '12': '12',
+        '13': '13',
+        '14': '14',
+        '15': '15',
+        '16': '16',
+        '17': '17',
+      }
     }, 
   },
   plugins: [require('@tailwindcss/forms')],
