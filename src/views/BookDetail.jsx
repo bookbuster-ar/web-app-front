@@ -20,6 +20,7 @@ import QuotesList from '../components/quotes/QuotesList';
 import FormAddRQuote from '../components/quotes/FormAddQuote';
 import Synopsis from '../components/Synopsis';
 import Loader from '../icons/Loader/Loader';
+import Footer from './Footer';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -223,6 +224,7 @@ const BookDetail = () => {
           </div>
         )}
       </div>
+      
     </div>
   );
 };
