@@ -2,7 +2,6 @@ import FAQs from '../components/FAQs';
 import GiftImage from '../assets/Gift.png';
 import LinePink from '../assets/home/recomendaciones/Line-Pink.png';
 import estrellaNaranja from '../assets/gift/estrellaNaranja.png';
-import estrellaAzul from '../assets/gift/estrellaAzul.png';
 import manchaRoja from '../assets/gift/manchaRoja.png';
 import cruzRosa from '../assets/gift/cruzRosa.png';
 import YellowLines from '../assets/home/entorno/Yellow.png';
@@ -100,32 +99,31 @@ const Gift = () => {
 
       <div>
         <img
-          src={cruzRosa}
+          src={manchaRoja}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[-700px] top-10 rotate-12'
+          className='absolute w-[250px] ml-[-700px] top-16  '
         />
       </div>
 
       <div>
         <img
-          src={estrellaAzul}
+          src={cruzRosa}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[-650px] top-[350px]'
+          className='absolute w-[250px] ml-[-800px] top-[480px] rotate-12'
         />
       </div>
-
       <div>
         <img
           src={manchaRoja}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[500px] top-[550px]'
+          className='absolute w-[250px] ml-[660px] top-[750px]'
         />
       </div>
       <div>
         <img
-          src={YellowLines}
+          src={estrellaNaranja}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[-700px] top-[650px]'
+          className='absolute w-[270px] ml-[-900px] top-[950px] '
         />
       </div>
       <div>

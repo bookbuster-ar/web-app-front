@@ -171,7 +171,7 @@ const BookDetail = () => {
                 <div>
                   {/* este es el contenido de DESCRIPCIÓN */}
                   <div className={toggle === 1 ? 'block' : 'hidden'}>
-                    <ul>
+                    <ul className='w-9/12'>
                       <li className='max-w-xl'>
                         <Synopsis text={detail.synopsis} />
                       </li>
