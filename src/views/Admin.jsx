@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Usuarios from '../components/Admin/Usuarios';
 import Productos from '../components/Admin/Productos';
 import Compras from '../components/Admin/Compras';
-import Reseñas from '../components/Admin/Reseñas';
+import Revision from '../components/Admin/Reseñas';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../store/user/userSlice';
 import ResponsiveMenu from '../icons/ResponsiveMenu';
@@ -11,55 +11,83 @@ import Delete from '../icons/Delete';
 const Admin = () => {
   const user = useSelector(selectUser);
   const [adminMenu, setAdminMenu] = useState(true);
-  const [activeView, setActiveView] = useState(0);
+  const [activeView, setActiveView] = useState(1);
+
+  const updateView = (value) => {
+    setActiveView(value);
+  };
 
   return (
     <div>
-      <div className='min-h-screen bg-gray-500 flex'>
+      <div className='min-h-screen flex'>
         <nav className='hidden bg-bluebook xl:flex xl:flex-col xl:w-40 xl:items-center'>
-          <div className='hidden bg-bluebook xl:flex xl:flex-col xl:justify-around xl:w-40 xl:items-center'>
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Usuarios
-              </span>
-            </div>
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Suscripciones
-              </span>
-            </div>
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Baneados
-              </span>
-            </div>
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Recomendados
-              </span>
-            </div>
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Generos
-              </span>
-            </div>
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Subgeneros
-              </span>
-            </div>
-            
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Libros vendidos
-              </span>
-            </div>
-            <div className='text-white my-4'>
-              <span className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'>
-                Transacciones
-              </span>
-            </div>
-          </div>
+          <ul className='hidden bg-bluebook xl:flex xl:flex-col xl:justify-around xl:w-40 xl:items-center'>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 1 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(1)}
+            >
+              Usuarios
+            </li>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 2 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(2)}
+            >
+              Suscripciones
+            </li>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 3 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(3)}
+            >
+              Baneados
+            </li>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 4 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(4)}
+            >
+              Revisión
+            </li>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 5 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(5)}
+            >
+              Generos
+            </li>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 6 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(6)}
+            >
+              Subgeneros
+            </li>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 7 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(7)}
+            >
+              Libros vendidos
+            </li>
+            <li
+              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
+                activeView === 8 ? 'text-yellowbook' : 'text-white'
+              } `}
+              onClick={() => setActiveView(8)}
+            >
+              Transacciones
+            </li>
+          </ul>
+
           <div className='xl:hidden cursor-pointer mx-5' onClick=''>
             <button>
               {adminMenu ? (
@@ -72,6 +100,7 @@ const Admin = () => {
               )}
             </button>
           </div>
+
           {/* Mobile menu */}
           {adminMenu && (
             <div className='bg-bluebook xl:hidden'>
@@ -129,6 +158,33 @@ const Admin = () => {
           )}
         </nav>
         {/* ... */}
+
+        <div>
+          <div className={activeView === 1 ? 'block' : 'hidden'}>
+            <Usuarios />
+          </div>
+          <div className={activeView === 2 ? 'block' : 'hidden'}>
+            <h1>Suscriptores</h1>
+          </div>
+          <div className={activeView === 3 ? 'block' : 'hidden'}>
+            <h1>Baneados</h1>
+          </div>
+          <div className={activeView === 4 ? 'block' : 'hidden'}>
+            <Revision />
+          </div>
+          <div className={activeView === 5 ? 'block' : 'hidden'}>
+            <h1>Géneros</h1>
+          </div>
+          <div className={activeView === 6 ? 'block' : 'hidden'}>
+            <h1>Subgéneros</h1>
+          </div>
+          <div className={activeView === 7 ? 'block' : 'hidden'}>
+            <h1>Libros vendidos</h1>
+          </div>
+          <div className={activeView === 8 ? 'block' : 'hidden'}>
+            <h1>Transacciones</h1>
+          </div>
+        </div>
       </div>
     </div>
   );

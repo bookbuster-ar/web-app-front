@@ -4,6 +4,7 @@ import LinePink from '../assets/home/recomendaciones/Line-Pink.png';
 import estrellaNaranja from '../assets/gift/estrellaNaranja.png';
 import manchaRoja from '../assets/gift/manchaRoja.png';
 import cruzRosa from '../assets/gift/cruzRosa.png';
+import Footer from './Footer';
 
 const Gift = () => {
   return (
@@ -127,6 +128,9 @@ const Gift = () => {
       </div>
       <div>
         <FAQs />
+      </div>
+      <div className='w-screen'>
+        <Footer />
       </div>
     </div>
   );
