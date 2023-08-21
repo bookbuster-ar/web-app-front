@@ -19,7 +19,7 @@ const Admin = () => {
 
   return (
     <div>
-      <div className='min-h-screen flex'>
+      <div className='min-h-screen flex no-scroll-x'>
         <nav className='hidden bg-bluebook xl:flex xl:flex-col xl:w-40 xl:items-center'>
           <ul className='hidden bg-bluebook xl:flex xl:flex-col xl:justify-around xl:w-40 xl:items-center'>
             <li
