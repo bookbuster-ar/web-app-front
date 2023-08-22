@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { setUser } from './userSlice'
+import { setUser } from './userSlice';
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
@@ -17,7 +17,7 @@ export const signInWithEmailAsync = createAsyncThunk(
       });
       const { session_id, user } = data.data;
       console.log(data);
-      thunkAPI.dispatch(setUser(user))
+      thunkAPI.dispatch(setUser(user));
       return {
         user,
         session_id,
@@ -37,12 +37,12 @@ export const signInWithGoogleAsync = createAsyncThunk(
     const { data } = await axios.post(`${URL_BASE}/auth/signup/google`, {
       token,
     });
-    const {user, session_id} = data;
-    thunkAPI.dispatch(setUser(user))
+    const { user, session_id } = data;
+    thunkAPI.dispatch(setUser(user));
     return {
       user,
-      session_id
-    }
+      session_id,
+    };
   }
 );
 
@@ -158,6 +158,7 @@ const authSlice = createSlice({
       })
       .addCase(signInWithGoogleAsync.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isLogged = true;
         state.user = action.payload;
         localStorage.setItem('session_id', action.payload.session_id);
         localStorage.setItem('user_id', action.payload.user.id);

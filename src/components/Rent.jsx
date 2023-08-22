@@ -21,14 +21,8 @@ const Rent = () => {
   useEffect(() => {
     dispatch(getBooksForRent());
   }, [dispatch]);
-
-  if (status === 'loading') {
-    return (
-      <div className='flex flex-col items-center mt-60'>
-        <Loader />
-      </div>
-    );
-  } else if (status === 'failed') {
+  
+if (status === 'failed') {
     <p>{error}</p>;
   }
 
@@ -59,7 +53,7 @@ const Rent = () => {
           ELEGÍ TU PRÓXIMA LECTURA
         </p>
         <div className='max-[640px]:flex-wrap h-96 w-11/12 gap-3 my-2 flex min-[640px]:overflow-x-scroll'>
-          {booksForRent?.map((book, index) => {
+          {status === 'loading' ? <Loader/> : booksForRent?.map((book, index) => {
             return (
               <Link to={`/detail/${book.id}`} key={index}>
                 <div className='h-72 w-36 text-sm my-4'>
