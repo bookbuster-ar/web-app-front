@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import HomeIcon from '../icons/HomeIcon';
 import { selectUser } from '../store/user/userSlice';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import PersonalInfo from '../components/userProfile/PersonalInfo';
+import UserBooks from '../components/userProfile/UserBooks';
+import Bookshelves from '../components/userProfile/Bookshelves';
 
 /* Asi llega el user
 user: {
@@ -27,6 +31,12 @@ user: {
 function UserProfile() {
   const user = useSelector(selectUser);
 
+  const [toggle, setToggle] = useState(1);
+
+  const updateToggle = (value) => {
+    setToggle(value);
+  };
+
   return (
     <div className='min-h-screen bg-gray-100 flex'>
       {/* Barra Lateral */}
@@ -38,24 +48,51 @@ function UserProfile() {
               'https://img.freepik.com/vector-premium/perfil-avatar-mujer-icono-redondo_24640-14042.jpg?w=826'
             }
             alt='User Avatar'
-            className={`w-32 h-32 rounded-full border-4 ${user.subscription ? 'border-violet-600' : 'border-gray-600'} object-cover`}
+            className={`w-32 h-32 rounded-full border-4 ${
+              user.subscription ? 'border-violet-600' : 'border-gray-600'
+            } object-cover`}
           />
         </div>
         <h2 className='text-2xl mb-6 text-center'>{user.name}</h2>
         <ul>
-          <Link to={'/user/profile'}>
-            <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
+          <li
+            className={`flex-fill ${
+              toggle === 1 ? 'text-bluebook mb-4' : 'text-gray-800 mb-4'
+            } mr-6 cursor-pointer`}
+            onClick={() => updateToggle(1)}
+          >
+            Mi perfil
+          </li>
+          <Link to='/user/profile'>
+            <li
+              className=' flex-fill text-gray-800 mb-4 mr-6 cursor-pointer'
+              onClick={() => updateToggle(1)}
+            >
               Editar perfil
             </li>
           </Link>
-
-          <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
+          <li
+            className={`flex-fill ${
+              toggle === 2 ? 'text-bluebook mb-4' : 'text-gray-800 mb-4'
+            } mr-6 cursor-pointer`}
+            onClick={() => updateToggle(2)}
+          >
             Mis libros
           </li>
-          <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
-            Notificaciones
+          <li
+            className={`flex-fill ${
+              toggle === 3 ? 'text-bluebook mb-4' : 'text-gray-800 mb-4'
+            } mr-6 cursor-pointer`}
+            onClick={() => updateToggle(3)}
+          >
+            Mis estanterías
           </li>
-          <li className='mb-4 text-bluebook cursor-pointer hover:text-blue-800'>
+          <li
+            className={`flex-fill ${
+              toggle === 4 ? 'text-bluebook mb-4' : 'text-gray-800 mb-4'
+            } mr-6 cursor-pointer`}
+            onClick={() => updateToggle(4)}
+          >
             <Link to='/'>
               <HomeIcon />
             </Link>
@@ -63,55 +100,14 @@ function UserProfile() {
         </ul>
       </div>
 
-      {/* Contenido principal */}
-      <div className='w-3/4 bg-gray-100 p-8'>
-        <h2 className='text-3xl mb-8'>Información de Perfil</h2>
-        <div className='bg-white p-8 rounded-xl shadow-lg'>
-          {/* <h3 className='font-semibold text-xl mb-6'>
-            Preferencias de Géneros de Libros:
-          </h3> */}
-          {/* <ul className='list-disc pl-5 mb-8'>
-            {user.bookGenres.map((genre) => (
-              <li key={genre} className='text-gray-700 mb-2'>
-                {genre}
-              </li>
-            ))}
-          </ul> */}
-
-          <h3 className='font-semibold text-xl mb-6'>Datos Personales:</h3>
-          <ul>
-            <li className='text-gray-700 mb-4'>
-              <strong>Nombre:</strong> {user.name || null}
-            </li>
-            <li className='text-gray-700 mb-4'>
-              <strong>Apellido:</strong> {user.last_name || null}
-            </li>
-            <li className='text-gray-700 mb-4'>
-              <strong>Email:</strong> {user.email}
-            </li>
-            <li className='text-gray-700 mb-4'>
-              <strong>Teléfono:</strong> {user.phone || null}
-            </li>
-            <li className='text-gray-700 mb-4'>
-              <strong>creditos:</strong> {user.credit ?? null}
-            </li>
-            {user.subscription ? (
-              <li className='text-gray-700 mb-4'>
-                <strong className='bg-violet-600 rounded-lg py-2 px-4 text-white'>
-                  Suscrito
-                </strong>
-              </li>
-            ) : (
-              <Link to='/subscription'>
-                <li className=' text-gray-700 mb-4'>
-                  <strong className='bg-violet-600 rounded-lg py-2 px-4 text-white'>
-                    Suscribirse
-                  </strong>
-                </li>
-              </Link>
-            )}
-          </ul>
-        </div>
+      <div className={toggle === 1 ? 'block w-11/12' : 'hidden '}>
+        <PersonalInfo user={user} />
+      </div>
+      <div className={toggle === 2 ? 'block' : 'hidden'}>
+        <UserBooks />
+      </div>
+      <div className={toggle === 3 ? 'block' : 'hidden'}>
+        <Bookshelves />
       </div>
     </div>
   );

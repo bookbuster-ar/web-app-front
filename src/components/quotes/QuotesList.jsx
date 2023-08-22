@@ -20,7 +20,6 @@ const QuotesList = () => {
   const error = useSelector(selectQuotesError);
   const reloadQuotes = useSelector(selectReloadQuotes);
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(quotes);
 
   useEffect(() => {
     dispatch(fetchQuotes(id));
