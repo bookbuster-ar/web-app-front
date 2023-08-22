@@ -63,8 +63,8 @@ const Bookshelves = () => {
       </div>
       <div className='flex flex-col justify-center items-center'>
         {book_shelf_categories &&
-          book_shelf_categories?.map((bookshelf) => (
-            <div key={bookshelf.id} className='my-4'>
+          book_shelf_categories.map((bookshelf) => (
+            <div className='my-4' key={bookshelf.id}>
               <Carrousel bookshelf={bookshelf} />
             </div>
           ))}

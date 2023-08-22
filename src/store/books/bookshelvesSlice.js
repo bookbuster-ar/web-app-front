@@ -4,12 +4,12 @@ import axios from 'axios';
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
-  bookshelves: [],
+  bookshelves: {},
   status: 'idle',
   error: null,
   addStatus: null,
   deletedStatus: null,
-  bookshelf: [],
+  bookshelf: {},
   bookshelfStatus: 'idle',
   bookshelfError: null,
 };
@@ -17,30 +17,28 @@ const initialState = {
 export const getBookshelves = createAsyncThunk(
   'bookshelves/getBookshelves',
   async () => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
+    const userId = localStorage.getItem('user_id');
+    const sessionId = localStorage.getItem('session_id');
     const { data } = await axios.get(`${URL_BASE}/shelves`, {
       headers: {
         'Content-Type': 'application/json',
-        userid,
-        sessionid,
+        userid: userId,
+        sessionid: sessionId,
       },
     });
-    console.log(data);
-    // return data.book_shelf_categories;
     return data;
   }
 );
 
 export const addToBookshelf = createAsyncThunk(
   'bookshelves/addToBookshelf',
-  async ({ bookId, book_shelf_categoriy_id }) => {
+  async ({ bookId, book_shelf_category_id }) => {
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
-    console.log('userid de add', userid);
-    console.log('sessionid de add', sessionid);
+    console.log(bookId, 'slice');
     const response = await axios.post(
-      `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_categoriy_id=${book_shelf_categoriy_id}`,
+      `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+      {},
       {
         headers: {
           'Content-Type': 'application/json',
@@ -56,11 +54,11 @@ export const addToBookshelf = createAsyncThunk(
 //faltan los cases
 export const deleteBookFromShelf = createAsyncThunk(
   'bookshelves/deleteBookFromShelf',
-  async ({ bookId, book_shelf_categoriy_id }) => {
+  async ({ bookId, book_shelf_category_id }) => {
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_categoriy_id}`,
+      `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -75,11 +73,12 @@ export const deleteBookFromShelf = createAsyncThunk(
 
 export const getBookshelf = createAsyncThunk(
   'bookshelves/getBookshelf',
-  async ({ book_shelf_categoriy_id }) => {
+  async (book_shelf_category_id) => {
+    console.log('Book Shelf Category ID: ', book_shelf_category_id);
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const { data } = await axios.get(
-      `${URL_BASE}/shelves/shelfbooks?book_shelf_category_id=${book_shelf_categoriy_id}`,
+      `${URL_BASE}/shelves/shelfbooks?book_shelf_category_id=${book_shelf_category_id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +87,7 @@ export const getBookshelf = createAsyncThunk(
         },
       }
     );
-    console.log(data);
+    console.log('Response of BookShelf Category: ', data);
     return data;
   }
 );
@@ -100,6 +99,7 @@ export const createNewShelf = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
       `${URL_BASE}/shelves/createNewShelf?name=${name}&book_shelves_id =${book_shelves_id}`,
+      {},
       {
         headers: {
           'Content-Type': 'application/json',

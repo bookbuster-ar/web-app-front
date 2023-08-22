@@ -93,10 +93,10 @@ const BookDetail = () => {
 
   const bookId = id;
   const selectHandler = (event) => {
-    const book_shelf_categoriy_id =
+    const book_shelf_category_id =
       event.target.options[event.target.selectedIndex].id;
-    console.log(id);
-    dispatch(addToBookshelf({ bookId, book_shelf_categoriy_id }));
+    console.log('book_shelf_category_id!!!!!!!!!!!! AHHHHHHH', book_shelf_category_id);
+    dispatch(addToBookshelf({bookId, book_shelf_category_id}));
   };
 
   return (
