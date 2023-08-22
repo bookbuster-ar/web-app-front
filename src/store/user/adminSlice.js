@@ -72,7 +72,7 @@ export const getUserByName = createAsyncThunk(
   async (name) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-  
+
     const { data } = await axios.get(`${URL_BASE}/users/search?name=${name}`, {
       headers: {
         'Content-Type': 'application/json',

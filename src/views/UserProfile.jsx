@@ -85,7 +85,7 @@ function UserProfile() {
             } mr-6 cursor-pointer`}
             onClick={() => updateToggle(3)}
           >
-            Mis estanterías
+            Mis estanterÃ­as
           </li>
           <li
             className={`flex-fill ${
