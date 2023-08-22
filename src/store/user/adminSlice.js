@@ -7,9 +7,9 @@ const initialState = {
   users: [],
   usersStatus: 'idle',
   usersError: null,
-  singleUser: {},
-  singleUserStatus: 'idle',
-  singleUserError: null,
+  usersByName: {},
+  usersByNameStatus: 'idle',
+  usersByNameError: null,
   recommend: [],
   recommendStatus: 'idle',
   recommendError: null,
@@ -47,11 +47,21 @@ const initialState = {
 export const getAllUsers = createAsyncThunk(
   'admin/getAllUsers',
   async (_, thunkAPI) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    console.log(userid);
     try {
-      const { data } = await axios.get(`${URL_BASE}/users`);
+      const { data } = await axios.get(`${URL_BASE}/users`, {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      });
       console.log(data);
       return data;
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -60,7 +70,16 @@ export const getAllUsers = createAsyncThunk(
 export const getUserByName = createAsyncThunk(
   'admin/getUserByName',
   async (name) => {
-    const { data } = await axios.get(`${URL_BASE}/users/search?name=${name}`);
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+  
+    const { data } = await axios.get(`${URL_BASE}/users/search?name=${name}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        userid,
+        sessionid,
+      },
+    });
     return data;
   }
 );
@@ -173,10 +192,13 @@ export const createRecommend = createAsyncThunk(
   }
 );
 
-export const updateRole = createAsyncThunk('admin/updateRole', async (userId, roleId) => {
-  const { data } = await axios.put(`${URL_BASE}/user/${userId}/role`, roleId)
-  return data
-})
+export const updateRole = createAsyncThunk(
+  'admin/updateRole',
+  async (userId, roleId) => {
+    const { data } = await axios.put(`${URL_BASE}/user/${userId}/role`, roleId);
+    return data;
+  }
+);
 
 const adminSlice = createSlice({
   name: 'admin',
@@ -191,16 +213,20 @@ const adminSlice = createSlice({
         state.usersStatus = 'succeeded';
         state.users = action.payload;
       })
+      .addCase(getAllUsers.rejected, (state, action) => {
+        state.usersStatus = 'failed';
+        state.usersError = action.error;
+      })
       .addCase(getUserByName.pending, (state) => {
-        state.singleUserStatus = 'loading';
+        state.usersStatus = 'loading';
       })
       .addCase(getUserByName.fulfilled, (state, action) => {
-        state.singleUserStatus = 'succeeded';
-        state.singleUser = action.payload;
+        state.usersStatus = 'succeeded';
+        state.users = action.payload;
       })
       .addCase(getUserByName.rejected, (state, action) => {
-        state.singleUserStatus = 'failed';
-        state.singleUserError = action.error;
+        state.usersStatus = 'failed';
+        state.usersError = action.error;
       })
       .addCase(createRecommend.pending, (state) => {
         state.recommendStatus = 'loading';
@@ -302,14 +328,17 @@ const adminSlice = createSlice({
       })
       .addCase(updateRole.fulfilled, (state, action) => {
         state.userRolStatus = 'succeeded';
-        state.userRol = action.payload
+        state.userRol = action.payload;
       })
       .addCase(updateRole.rejected, (state, action) => {
         state.userRolStatus = 'failed';
-        state.userRolError = action.error
-      })
-      
+        state.userRolError = action.error;
+      });
   },
 });
+
+export const selectAllUsers = (state) => state.admin.users;
+export const selectUsersStatus = (state) => state.admin.usersStatus;
+export const selectUsersError = (state) => state.admin.usersError;
 
 export default adminSlice.reducer;

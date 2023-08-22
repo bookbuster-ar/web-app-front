@@ -21,7 +21,7 @@ const Admin = () => {
     <div>
       <div className='min-h-screen flex'>
         <nav className='hidden bg-bluebook xl:flex xl:flex-col xl:w-40 xl:items-center'>
-          <ul className='hidden bg-bluebook xl:flex xl:flex-col xl:justify-around xl:w-40 xl:items-center'>
+          <ul className='hidden xl:flex xl:flex-col xl:justify-around xl:w-40 xl:items-center'>
             <li
               className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
                 activeView === 1 ? 'text-yellowbook' : 'text-white'
