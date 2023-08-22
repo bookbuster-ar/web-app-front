@@ -24,14 +24,6 @@ const FormAddQuote = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    // if (
-    //   !localStorage.getItem('session_id') ||
-    //   !localStorage.getItem('user_id')
-    // ) {
-    //   setShowError(true); // Set the state to show the error message
-    //   return;
-    // }
-
     let newQuote = { ...form };
     console.log(newQuote);
     dispatch(postQuote({ newQuote, id }));

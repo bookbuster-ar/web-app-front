@@ -26,7 +26,7 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
                   ARS $ {price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
-                  Envío sin cargo para suscriptores y hasat 20% off
+                  Envío sin cargo para suscriptores y hasta 20% off
                 </h2>
                 <button
                   onClick={handlerBuyBook}
@@ -47,7 +47,7 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
                   ARS $ {price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
-                  Envío sin cargo para suscriptores y hasat 20% off
+                  Envío sin cargo para suscriptores y hasta 20% off
                 </h2>
                 <button
                   onClick={handlerBuyBook}
@@ -69,7 +69,7 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
                   ARS $ {price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
-                  Envío sin cargo para suscriptores y hasat 20% off
+                  Envío sin cargo para suscriptores y hasta 20% off
                 </h2>
                 <button
                   onClick={handlerBuyBook}
@@ -91,7 +91,7 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
                   ARS $ {price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
-                  Envío sin cargo para suscriptores y hasat 20% off
+                  Envío sin cargo para suscriptores y hasta 20% off
                 </h2>
                 <button
                   onClick={handlerBuyBook}

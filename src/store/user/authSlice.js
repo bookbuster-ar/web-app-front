@@ -158,6 +158,7 @@ const authSlice = createSlice({
       })
       .addCase(signInWithGoogleAsync.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isLogged = true;
         state.user = action.payload;
         localStorage.setItem('session_id', action.payload.session_id);
         localStorage.setItem('user_id', action.payload.user.id);
