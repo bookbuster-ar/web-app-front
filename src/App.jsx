@@ -13,18 +13,20 @@ import {
   FormProfile,
   NotFound,
   SellOrRent,
+  Admin2
 
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import { useLocation } from 'react-router-dom';
 
 function App() {
+  const location = useLocation()
   return (
     <div>
-      <NavBar />
+      {location.pathname !== '/admin' && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LogInAndSignIn />} />
@@ -64,8 +66,8 @@ function App() {
         <Route
           path='/admin'
           element={
-            <ProtectedRoute isAdminRoute={true}>
-              <Admin />
+            <ProtectedRoute isAdminRoute={false}>
+              <Admin2 />
             </ProtectedRoute>
           }
         />

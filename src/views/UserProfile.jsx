@@ -95,6 +95,9 @@ function UserProfile() {
             <li className='text-gray-700 mb-4'>
               <strong>creditos:</strong> {user.credit ?? null}
             </li>
+            <li className='text-gray-700 mb-4'>
+              <strong>Role *temporal*:</strong> {user.role.name ?? null}
+            </li>
             {user.subscription ? (
               <li className='text-gray-700 mb-4'>
                 <strong className='bg-violet-600 rounded-lg py-2 px-4 text-white'>

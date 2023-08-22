@@ -20,7 +20,7 @@ const initialState = {
     image: null,
     role: {
       id: '',
-      name: '',
+      name: 'admin',
     },
   },
   status: 'idle',

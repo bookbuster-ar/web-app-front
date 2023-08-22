@@ -1,3 +1,5 @@
+import SearchAdmin from './SearchAdmin';
+
 const Usuarios = () => {
   const users = [
     {
@@ -25,8 +27,10 @@ const Usuarios = () => {
       birthdate: '01/01/1990',
     },
   ];
+  
   return (
     <div>
+      <SearchAdmin/>
       <div className='flex mb-7'>
         <h1 className='text-3xl'>Usuarios</h1>
         <button className='bg-blue-500 text-sm rounded ml-2 text-white py-0 px-2'>

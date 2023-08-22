@@ -1,20 +1,20 @@
-function ResponsiveMenu({classN}) {
+const Banned = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'
-      strokeWidth='2'
+      strokeWidth='1.5'
       stroke='currentColor'
-      className={` ${classN}`}
+      className='w-5 h-5'
     >
       <path
         strokeLinecap='round'
         strokeLinejoin='round'
-        d='M3.75 6.75h16.5M3.76 12.5h16.5m-16.5 5.75h16.5'
+        d='M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636'
       />
     </svg>
   );
-}
+};
 
-export default ResponsiveMenu;
+export default Banned;
