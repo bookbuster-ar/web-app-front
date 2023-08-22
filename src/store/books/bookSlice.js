@@ -28,8 +28,66 @@ const initialState = {
   booksByGenre: [],
   booksByGenreStatus: 'idle',
   booksByGenreError: null,
+  currentPage: 1,
+  totalPages: 1,
 };
-
+export const getBooksByPage = createAsyncThunk(
+  'books/getBooksByPage',
+  async ({ page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books?page=${page}`);
+    return data;
+  }
+);
+export const getTitleByPage = createAsyncThunk(
+  'books/getTitleByPage',
+  async ({ title, page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books?title=${title}&page=${page}`);
+    return data;
+  }
+);
+export const getAuthorByPage = createAsyncThunk(
+  'books/getAuthorByPage',
+  async ({ author, page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books?author=${author}&page=${page}`);
+    return data;
+  }
+);
+export const getSearchByPage = createAsyncThunk(
+  'books/getSearchByPage',
+  async ({ search, page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books?search=${search}&page=${page}`);
+    return data;
+  }
+);
+export const getAuthorTitleByPage = createAsyncThunk(
+  'books/getAuthorTitleByPage',
+  async ({ author, title, page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books?author=${author}&title=${title}&page=${page}`);
+    return data;
+  }
+);
+export const getGenreIdByPage = createAsyncThunk(
+  'books/getGenreIdByPage',
+  async ({ id, page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books/genre?id=${id}&page=${page}`);
+    return data;
+  }
+);
+export const getSubGenreIdByPage = createAsyncThunk(
+  'books/getSubGenreIdByPage',
+  async ({ id, page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books/subgenre?id=${id}&page=${page}`);
+    return data;
+  }
+);
+export const getBooksRentByPage = createAsyncThunk(
+  'books/getBooksRentByPage',
+  async ({ page }) => {
+    const { data } = await axios.get(`${URL_BASE}/books/categories/for-rent?page=${page}`);
+    return data;
+  }
+);
+//-----------------------------------------------------------------------------------------------------------
 export const getBooksBySearch = createAsyncThunk(
   'books/getBooksBySearch',
   async (search) => {
@@ -109,9 +167,118 @@ const bookSlice = createSlice({
       state.singleGenreStatus = 'idle';
       state.singleGenreError = null;
     },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
+    .addCase(getBooksByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getBooksByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getBooksByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+    .addCase(getAuthorTitleByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getAuthorTitleByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getAuthorTitleByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+    .addCase(getSearchByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getSearchByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getSearchByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+    .addCase(getTitleByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getTitleByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getTitleByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+    .addCase(getAuthorByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getAuthorByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getAuthorByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+    .addCase(getGenreIdByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getGenreIdByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data.books;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getGenreIdByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+    .addCase(getSubGenreIdByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getSubGenreIdByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data.books;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getSubGenreIdByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+    .addCase(getBooksRentByPage.pending, (state) => {
+      state.status = 'loading';
+    })
+    .addCase(getBooksRentByPage.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.books = action.payload.data;
+      state.currentPage = action.payload.paginated.currentPage;
+      state.totalPages = action.payload.paginated.totalPages;
+    })
+    .addCase(getBooksRentByPage.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    })
+
+    //-----------------------------------------------------------------------------------------------------------------------------
       .addCase(fetchGenres.pending, (state) => {
         state.genresStatus = 'loading';
       })
@@ -194,6 +361,12 @@ const bookSlice = createSlice({
   },
 });
 
+
+export const { setCurrentPage } = bookSlice.actions;
+export const selectCurrentPage = (state) => state.books.currentPage;
+export const selectTotalPages = (state) => state.books.totalPages;
+
+//-------------------------------------------------------------------------------------------------------------------------------
 export const { resetBooks } = bookSlice.actions;
 
 export const selectAllBooks = (state) => state.books.books;
