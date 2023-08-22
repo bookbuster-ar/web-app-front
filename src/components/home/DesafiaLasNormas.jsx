@@ -49,7 +49,11 @@ const DesafiaLasNormas = () => {
         <div className='flex flex-row items-center md:justify-start justify-center md:-mt-3 mb-2 gap-2'>
           <Link to={'/recommendation'}>
             <button className='bg-bluebook py-1 text-[9px] text-white w-36 flex justify-center items-center'>
-              <img src={YellowHeart} className='mr-2 h-3.5 w-3.5' alt='Corazon amarillo' />
+              <img
+                src={YellowHeart}
+                className='mr-2 h-3.5 w-3.5'
+                alt='Corazon amarillo'
+              />
               Obtené una recomendación
             </button>
           </Link>
