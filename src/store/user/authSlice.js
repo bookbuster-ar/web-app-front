@@ -4,7 +4,7 @@ import { setUser } from './userSlice';
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
-const URL_BASE = 'http://localhost:3001/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 // thunk to login with email and password
 export const signInWithEmailAsync = createAsyncThunk(
