@@ -12,7 +12,7 @@ const Search = () => {
 
   return (
     <div className=' h-screen flex flex-col items-center space-y-12 p-4'>
-      <div className='w-10/12 flex justify-center items-center'>
+      <div className='w-10/12 flex justify-center items-center mb-6'>
         <SearchBar />
       </div>
     </div>

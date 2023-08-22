@@ -111,7 +111,7 @@ const NavBar = () => {
                 size={'md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2'}
               />
             ) : (
-              <ResponsiveMenu />
+              <ResponsiveMenu classN={'w-6 h-6 md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2 text-yellowbook'} />
             )}
           </button>
         </div>

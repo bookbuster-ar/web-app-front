@@ -28,40 +28,40 @@ const Subscription = () => {
   };
 
   return (
-    <div className='flex flex-col items-center p-14 no-scroll-x'>
+    <div className='flex flex-col items-center no-scroll-x'>
       <div className='flex text-4xl'>
-        <div className='flex flex-col items-center mr-20'>
+        <div className='flex flex-col items-center mr-20 mt-10'>
           <h2 className='font-bold font-roboto text-5xl text-bluebook'>
             AL SUSCRIBIRTE A
           </h2>
           <img src={TitleBookBuster} alt='TitleBookBuster' />
         </div>
-        <div>
-          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+        <div className='cursor-default mt-10'>
+          <p className='font-sans text-2xl text-slate-400 text-sm  hover:bg-bluebook  hover:text-white'>
             Acceder a la opción de alquilar libros físicos.
           </p>
-          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+          <p className='font-sans text-2xl text-slate-400  text-sm   hover:bg-bluebook  hover:text-white'>
             Tenés la posibilidad de vender tus libros a la plataforma, y usar el
             crédito para comprar o alquilar otros libros.
           </p>
-          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+          <p className='font-sans text-2xl text-slate-400  text-sm   hover:bg-bluebook  hover:text-white'>
             Tener el envío o retiro de libros accesibles
           </p>
-          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
             Accedés a un catálogo y contenido exclusivo para socios.
           </p>
-          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
             Tenés descuentos en compras, lectura on line y audiolibros sobre el
             precio regular de la plataforma.
           </p>
-          <p className='font-sans text-2xl text-black text-sm hover:text-bluebook'>
+          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
             Descuentos en compras de productos y servicios de nuestras tiendas
             amigas.
           </p>
         </div>
       </div>
 
-      <div className='mx-auto max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none lg:pt-4 lg:pr-4'>
+      <div className='mx-auto max-w-2xl ring-1 w-4/5 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none lg:pt-4 lg:pr-4'>
         <div className='p-8 sm:p-10 lg:flex-auto'>
           <h3 className='text-2xl font-bold tracking-tight text-gray-900'>
             Suscribite
@@ -154,7 +154,7 @@ const Subscription = () => {
           </ul>
         </div>
         <div className='-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0'>
-          <div className='rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
+          <div className='bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
             <div className='mx-auto max-w-xs px-8'>
               <p className='mt-6 flex items-baseline justify-center gap-x-2'>
                 <span className='text-5xl font-bold tracking-tight text-gray-900'>

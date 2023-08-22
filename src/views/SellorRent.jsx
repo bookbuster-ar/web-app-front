@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FormSell from '../components/FormSell';
 import Rent from '../components/Rent';
+import Footer from './Footer';
 
 const SellOrRent = () => {
   const [toggle, setToggle] = useState(1);
@@ -26,7 +27,7 @@ const SellOrRent = () => {
             className={`flex-fill ${
               toggle === 2
                 ? 'text-bluebook font-bold bg-greybook h-full w-1/2 py-6'
-              : 'text-white font-bold bg-gray-400 h-full w-1/2 py-6'
+                : 'text-white font-bold bg-gray-400 h-full w-1/2 py-6'
             }  cursor-pointer`}
             onClick={() => updateToggle(2)}
           >
@@ -39,6 +40,9 @@ const SellOrRent = () => {
       </div>
       <div className={toggle === 2 ? 'block' : 'hidden'}>
         <Rent />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

@@ -20,6 +20,8 @@ import QuotesList from '../components/quotes/QuotesList';
 import FormAddRQuote from '../components/quotes/FormAddQuote';
 import Synopsis from '../components/Synopsis';
 import Loader from '../icons/Loader/Loader';
+import Footer from './Footer';
+import PaymentOptions from '../components/PaymentOptions';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -32,14 +34,25 @@ const BookDetail = () => {
   const detail = useSelector(selectDetail);
   const status = useSelector(selectDetailStatus);
 
+  console.log('detail', detail);
+
   const bookSubgenres = useSelector(selectBookSubgenres);
-  console.log('Este es el largo de booksubgenres', bookSubgenres.length);
   const bookSubgenresStatus = useSelector(selectBookSubgenresStatus);
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const [toggle, setToggle] = useState(1);
 
   const updateToggle = (value) => {
     setToggle(value);
+  };
+
+  const handleOpen = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsDialogOpen(false);
   };
 
   useEffect(() => {
@@ -99,13 +112,16 @@ const BookDetail = () => {
                   </button>
                   {/* <Link to={'/bookcheckout'}> */}
                   <button
-                    onClick={handlerBuyBook}
+                    onClick={handleOpen}
                     className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 ml-2'
                   >
                     Opciones de adquisición{' '}
                     {/* temporal, antes Ver opciones de adquisicion */}
                   </button>
-                  <button className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 my-3'>
+                  <button
+                    onClick={handleOpen}
+                    className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 my-3'
+                  >
                     +
                   </button>
                   {/* </Link> */}
@@ -223,6 +239,7 @@ const BookDetail = () => {
           </div>
         )}
       </div>
+      {isDialogOpen && <PaymentOptions price={bookToSend.price} handleClose={handleClose} handlerBuyBook={handlerBuyBook} />}
     </div>
   );
 };

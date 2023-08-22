@@ -38,6 +38,7 @@ export const signInWithGoogleAsync = createAsyncThunk(
       token,
     });
     const {user, session_id} = data;
+    console.log(data);
     thunkAPI.dispatch(setUser(user))
     return {
       user,
@@ -159,11 +160,13 @@ const authSlice = createSlice({
       .addCase(signInWithGoogleAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
+        state.isLogged = true;
         localStorage.setItem('session_id', action.payload.session_id);
         localStorage.setItem('user_id', action.payload.user.id);
       })
       .addCase(signInWithGoogleAsync.rejected, (state, action) => {
         state.isLoading = false;
+        console.log(action);
         state.error = action.error.response.data;
       })
       .addCase(signUpWithEmailAsync.pending, (state) => {
