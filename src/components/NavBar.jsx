@@ -14,7 +14,7 @@ const NavBar = () => {
   const isLogged = useSelector(selectIsLogged);
   const dispatch = useDispatch();
 
-  const isAdmin = true // Harcodeada temporalmente
+  const isAdmin = true; // Harcodeada temporalmente
 
   const handleProfile = () => {
     setShowProfile(!showProfile);
@@ -28,7 +28,7 @@ const NavBar = () => {
 
   const handleClose = () => {
     setShowMenu(false);
-    setShowProfile(false)
+    setShowProfile(false);
   };
 
   const handleMenu = () => {
@@ -111,7 +111,11 @@ const NavBar = () => {
                 size={'md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2'}
               />
             ) : (
-              <ResponsiveMenu classN={'w-6 h-6 md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2 text-yellowbook'} />
+              <ResponsiveMenu
+                classN={
+                  'w-6 h-6 md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2 text-yellowbook'
+                }
+              />
             )}
           </button>
         </div>

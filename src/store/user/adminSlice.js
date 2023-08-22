@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
+const URL_BASE = 'http://localhost:3001/api/admin';
 
 const initialState = {
   users: [],
@@ -72,7 +72,7 @@ export const getUserByName = createAsyncThunk(
   async (name) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-  
+
     const { data } = await axios.get(`${URL_BASE}/users/search?name=${name}`, {
       headers: {
         'Content-Type': 'application/json',
