@@ -52,13 +52,13 @@ export const getAuthorByPage = createAsyncThunk(
     return data;
   }
 );
-export const getSearchByPage = createAsyncThunk(
-  'books/getSearchByPage',
-  async ({ search, page }) => {
-    const { data } = await axios.get(`${URL_BASE}/books?search=${search}&page=${page}`);
-    return data;
-  }
-);
+// export const getSearchByPage = createAsyncThunk(
+//   'books/getSearchByPage',
+//   async ({ search, page }) => {
+//     const { data } = await axios.get(`${URL_BASE}/books?search=${search}&page=${page}`);
+//     return data;
+//   }
+// );
 export const getAuthorTitleByPage = createAsyncThunk(
   'books/getAuthorTitleByPage',
   async ({ author, title, page }) => {
@@ -168,7 +168,7 @@ const bookSlice = createSlice({
       state.singleGenreError = null;
     },
     setCurrentPage: (state, action) => {
-      state.currentPage = action.payload;
+      state.currentPage = action.payload;// podria volver la pagina a 1
     },
   },
   extraReducers: (builder) => {
@@ -199,19 +199,19 @@ const bookSlice = createSlice({
       state.status = 'failed';
       state.error = action.error.message;
     })
-    .addCase(getSearchByPage.pending, (state) => {
-      state.status = 'loading';
-    })
-    .addCase(getSearchByPage.fulfilled, (state, action) => {
-      state.status = 'succeeded';
-      state.books = action.payload.data;
-      state.currentPage = action.payload.paginated.currentPage;
-      state.totalPages = action.payload.paginated.totalPages;
-    })
-    .addCase(getSearchByPage.rejected, (state, action) => {
-      state.status = 'failed';
-      state.error = action.error.message;
-    })
+    // .addCase(getSearchByPage.pending, (state) => {
+    //   state.status = 'loading';
+    // })
+    // .addCase(getSearchByPage.fulfilled, (state, action) => {
+    //   state.status = 'succeeded';
+    //   state.books = action.payload.data;
+    //   state.currentPage = action.payload.paginated.currentPage;
+    //   state.totalPages = action.payload.paginated.totalPages;
+    // })
+    // .addCase(getSearchByPage.rejected, (state, action) => {
+    //   state.status = 'failed';
+    //   state.error = action.error.message;
+    // })
     .addCase(getTitleByPage.pending, (state) => {
       state.status = 'loading';
     })
