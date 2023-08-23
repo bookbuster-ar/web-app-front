@@ -16,7 +16,8 @@ const Subscribers = () => {
 
   return (
     <div className='text-center'>
-      {/* <h1>Suscriptores totales: ${subscribersList.subscriptionCount}</h1>
+      <h1>Suscriptores totales: {subscribersList.subscriptionCount || 0}</h1>
+      {/* 
       <ul className='grid grid-cols-12 gap-5 w-full font-bold sticky top-0 bg-white py-4'>
         <li>Foto</li>
         <li className='col-span-2'>Nombre</li>
