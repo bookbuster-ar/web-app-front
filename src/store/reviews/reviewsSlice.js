@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
-import { showNotification } from '../notifications/notificationsSlice';
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
