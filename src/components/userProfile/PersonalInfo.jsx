@@ -29,7 +29,7 @@ const PersonalInfo = ({ user }) => {
               <strong>Apellido:</strong> {user.lastName || 'N/A'}
             </li>
             <li className='text-gray-700 mb-4'>
-              <strong>Email:</strong> {user.email}
+              <strong>Email:</strong> {user.email || 'N/A'}
             </li>
             <li className='text-gray-700 mb-4'>
               <strong>Créditos:</strong> {user.credit ?? 0}
