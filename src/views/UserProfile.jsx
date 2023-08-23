@@ -7,43 +7,18 @@ import PersonalInfo from '../components/userProfile/PersonalInfo';
 import UserBooks from '../components/userProfile/UserBooks';
 import Bookshelves from '../components/userProfile/Bookshelves';
 
-/* Asi llega el user
-user: {
-    id: '',
-    name: '',
-    last_name: '',
-    email: '',
-    email_verified: false,
-    about: null,
-    subscription: false,
-    date_of_register: '',
-    is_blocked: false,
-    credit: 0,
-    is_inactive: false,
-    want_notifications: false,
-    image: null,
-    role: {
-      id: '',
-      name: '',
-    },
-*/
-
 function UserProfile() {
   const user = useSelector(selectUser);
-
   const [toggle, setToggle] = useState(1);
-
-  const updateToggle = (value) => {
-    setToggle(value);
-  };
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, [dispatch]);
+  }, []);
 
-  console.log('usuario', user);
+  const updateToggle = (value) => {
+    setToggle(value);
+  };
 
   return (
     <div className='min-h-screen bg-gray-100 flex no-scroll-x'>
@@ -52,7 +27,7 @@ function UserProfile() {
         <div className='flex flex-col items-center justify-center mb-8 w-[300px]'>
           <img
             src={
-              user.image ||
+              user.image ??
               'https://img.freepik.com/vector-premium/perfil-avatar-mujer-icono-redondo_24640-14042.jpg?w=826'
             }
             alt='User Avatar'
@@ -61,7 +36,7 @@ function UserProfile() {
             } object-cover`}
           />
         </div>
-        <h2 className='text-2xl mb-6 text-center'>{user.name}</h2>
+        <h2 className='text-2xl mb-6 text-center capitalize'>{user.name}</h2>
         <ul>
           <li
             className={`flex-fill ${
