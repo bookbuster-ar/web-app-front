@@ -5,7 +5,6 @@ import EntornoDigital from '../components/home/EntornoDigital';
 import NoEncontras from '../components/home/NoEncontras';
 import Carousels from '../components/Carousels';
 import Footer from './Footer';
-import ShoppingCart from '../components/ShoppingCart';
 
 const Home = () => {
   return (
@@ -32,10 +31,9 @@ const Home = () => {
       <div className='h-[250px] md:h-[230px] lg:h-[380px] xl:h-[460px] flex flex-col justify-end items-center md:flex-row md:items-end'>
         <NoEncontras />
       </div>
-      <div>
-        <ShoppingCart />
-      </div>
+      <div >
       <Footer />
+      </div>
     </div>
   );
 };
