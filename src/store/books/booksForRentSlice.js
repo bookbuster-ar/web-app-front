@@ -13,9 +13,8 @@ const initialState = {
 export const getBooksForRent = createAsyncThunk(
   'books/getBooksBySearch',
   async () => {
-    const { data } = await axios.get(`${URL_BASE}/categories/for-rent`);
-    console.log(data);
-    return data;
+    const { data } = await axios.get(`${URL_BASE}/books/categories/for-rent`);
+    return data.data;
   }
 );
 

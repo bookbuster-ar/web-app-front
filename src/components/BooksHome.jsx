@@ -1,31 +1,82 @@
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setCurrentPage,
+  selectCurrentPage,
+  selectTotalPages,
+} from '../store/books/bookSlice';
 
 export function ListOfBooks({ books }) {
-  return (
-    <ul className='grid grid-cols-4 gap-5'>
-      {books.map((book) => (
-        <Link to={`/detail/${book.id}`}>
-          <li key={book.id}>
-            <img
-              src={book.images.cover}
-              alt={book.title}
-              className='h-72 w-3/4 object-cover'
-            />
-            <p className='text-xs'>{book.author}</p>
-            <h3 className='font-semibold text-sm'>{book.title}</h3>
-          </li>
-        </Link>
-      ))}
-    </ul>
-  );
-}
+  const dispatch = useDispatch();
+  const currentPage = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
 
-export function NoBooksResults() {
-  return <p>No se encontraron libros para esta búsqueda</p>;
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      dispatch(setCurrentPage(newPage));
+    }
+  };
+  
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+  
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          className={`text-xl mx-2 ${
+            i === currentPage ? 'text-blue-500 font-bold' : 'text-blue-500'
+          }`}
+          onClick={() => handlePageChange(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+  
+    return pageNumbers;
+  };
+  return (
+    <div>
+      <div className='flex items-center justify-center mb-10'>
+        <button
+          className='text-xl text-blue-500 mr-2'
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Anterior
+        </button>
+        {renderPageNumbers()}
+        <button
+          className='text-xl text-blue-500 ml-2'
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Siguiente
+        </button>
+      </div>
+
+      <ul className='grid grid-cols-4 gap-5'>
+        {books.map((book) => (
+          <Link to={`/detail/${book.id}`} key={book.id}>
+            <li>
+              <img
+                src={book.images.cover}
+                alt={book.title}
+                className='h-72 w-3/4 object-cover'
+              />
+              <p className='text-xs'>{book.author}</p>
+              <h3 className='font-semibold text-sm'>{book.title}</h3>
+            </li>
+          </Link>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export function Books({ books }) {
   const hasBooks = books?.length > 0;
 
-  return hasBooks ? <ListOfBooks books={books} /> : <NoBooksResults />;
+  return hasBooks ? <ListOfBooks books={books} /> : '';
 }
