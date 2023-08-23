@@ -126,7 +126,6 @@ export const bannedUser = createAsyncThunk(
         },
       }
     );
-    console.log(data);
     return data;
   }
 );

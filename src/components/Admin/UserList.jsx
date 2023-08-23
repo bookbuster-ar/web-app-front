@@ -25,6 +25,7 @@ export function ListOfUsers({ users, toggle }) {
     const duration = durations[id] || 0;
     const reason = reasons[id] || '';
     const data = { id, duration, reason };
+
     dispatch(bannedUser(data));
     setDurations({})
     setReasons({})

@@ -189,7 +189,7 @@ const bookshelvesSlice = createSlice({
       .addCase(addToBookshelf.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(addToBookshelf.fulfilled, (state, action) => {
+      .addCase(addToBookshelf.fulfilled, (state) => {
         state.status = 'succeeded';
         // state.addStatus = action.data;
       })
@@ -223,7 +223,7 @@ const bookshelvesSlice = createSlice({
       .addCase(createNewShelf.pending, (state) => {
         state.bookshelfStatus = 'loading';
       })
-      .addCase(createNewShelf.fulfilled, (state, action) => {
+      .addCase(createNewShelf.fulfilled, (state) => {
         state.bookshelfStatus = 'succeeded';
         state.reloadShelf = !state.reloadShelf;
         // state.addStatus = action.data;
