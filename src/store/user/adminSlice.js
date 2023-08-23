@@ -49,7 +49,6 @@ export const getAllUsers = createAsyncThunk(
   async (_, thunkAPI) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    console.log(userid);
     try {
       const { data } = await axios.get(`${URL_BASE}/users`, {
         headers: {
@@ -58,10 +57,8 @@ export const getAllUsers = createAsyncThunk(
           sessionid,
         },
       });
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -97,8 +94,15 @@ export const getUsersBanned = createAsyncThunk(
   'admin/getUsersBanned',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${URL_BASE}/banned`);
-      console.log(data);
+      const sessionid = localStorage.getItem('session_id');
+      const userid = localStorage.getItem('user_id');
+      const { data } = await axios.get(`${URL_BASE}/banned`,  {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -108,16 +112,20 @@ export const getUsersBanned = createAsyncThunk(
 
 export const bannedUser = createAsyncThunk(
   'admin/bannedUser',
-  async ({ id, duration }) => {
+  async ({ id, duration, reason }) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    const { data } = await axios.post(`${URL_BASE}/users/${id}/ban`, {duration}, {
-      headers: {
-        'Content-Type': 'application/json',
-        userid,
-        sessionid,
-      },
-    });
+    const { data } = await axios.post(
+      `${URL_BASE}/users/${id}/ban`,
+      { duration, reason },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     console.log(data);
     return data;
   }
@@ -156,6 +164,7 @@ export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
     const { data } = await axios.get(`${URL_BASE}/subscriptions`);
+    console.log(data);
     return data;
   }
 );
@@ -354,5 +363,9 @@ const adminSlice = createSlice({
 export const selectAllUsers = (state) => state.admin.users;
 export const selectUsersStatus = (state) => state.admin.usersStatus;
 export const selectUsersError = (state) => state.admin.usersError;
+
+export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
+
+export const selectSubscriptions = (state) => state.admin.subscriptions
 
 export default adminSlice.reducer;

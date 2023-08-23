@@ -403,7 +403,7 @@ const Carousels = () => {
           {books3?.map((book, index) => {
             return (
               <div key={index} className='h-96 relative mt-4'>
-                <div className='absolute bg-red-400'>
+                <div className='absolute'>
                   <Link to={`/library`}>
                   <div
                     className={
