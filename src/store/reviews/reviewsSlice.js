@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-// const URL_BASE = 'https://bookbuster-main.onrender.com/api';
-const LOCALHOST = 'http://localhost:3001/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+
 
 const initialState = {
   reviews: [],
@@ -17,7 +17,7 @@ const initialState = {
 export const fetchReviews = createAsyncThunk(
   'reviews/fetchReviews',
   async (id) => {
-    const { data } = await axios.get(`${LOCALHOST}/books/${id}/reviews`);
+    const { data } = await axios.get(`${URL_BASE}/books/${id}/reviews`);
     return data;
   }
 );
@@ -28,7 +28,7 @@ export const postReview = createAsyncThunk(
     const userId = localStorage.getItem('user_id');
     const sessionId = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${LOCALHOST}/books/${id}/reviews`,
+      `${URL_BASE}/books/${id}/reviews`,
       newReview,
       {
         headers: {
@@ -46,7 +46,7 @@ export const getComment = createAsyncThunk(
   'comment/getComment',
   async ({ reviewId, id }) => {
     const { data } = await axios.get(
-      `${LOCALHOST}/books//${id}/reviews/${reviewId}/comments`
+      `${URL_BASE}/books//${id}/reviews/${reviewId}/comments`
     );
 
     return data;
@@ -59,7 +59,7 @@ export const postComment = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${LOCALHOST}/books/${id}/reviews/${reviewId}/comments`,
+      `${URL_BASE}/books/${id}/reviews/${reviewId}/comments`,
       newComment,
       {
         headers: {
@@ -79,7 +79,7 @@ export const postLikeReview = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${LOCALHOST}/books/${id}/reviews/${reviewId}/like`,
+      `${URL_BASE}/books/${id}/reviews/${reviewId}/like`,
       {},
       {
         headers: {
@@ -99,7 +99,7 @@ export const postLikeComment = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${LOCALHOST}/books/${id}/reviews/${reviewId}/comments/${commentId}/like`,
+      `${URL_BASE}/books/${id}/reviews/${reviewId}/comments/${commentId}/like`,
       {},
       {
         headers: {
@@ -119,7 +119,7 @@ export const deleteReview = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${LOCALHOST}/books/${id}/reviews/${reviewId}`,
+      `${URL_BASE}/books/${id}/reviews/${reviewId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ export const deleteComment = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${LOCALHOST}/books/${id}/reviews/${reviewId}/comments/${commentId}`,
+      `${URL_BASE}/books/${id}/reviews/${reviewId}/comments/${commentId}`,
       {
         headers: {
           'Content-Type': 'application/json',

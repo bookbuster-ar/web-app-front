@@ -42,6 +42,7 @@ const BookDetail = () => {
   console.log(formatPrice);
 
   const detail = useSelector(selectDetail);
+  console.log(detail.id);
   const status = useSelector(selectDetailStatus);
 
   const bookSubgenres = useSelector(selectBookSubgenres);
@@ -50,6 +51,7 @@ const BookDetail = () => {
   const bookshelves = useSelector(selectAllBookshelves);
   console.log(bookshelves);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [bookToSend, setBookToSend] = useState({});
 
   const [toggle, setToggle] = useState(1);
 
@@ -84,17 +86,22 @@ const BookDetail = () => {
     dispatch(getPriceByFormat(id));
   }, [dispatch, id]);
 
-  const bookToSend = {
-    id: detail.id,
-    title: detail.title,
-    quantity: 1,
-    price: 1000,
-    condition: 'new',
-    image: detail.image,
-    description: 'Compra del libro',
-  };
+  useEffect(() => {
+    setBookToSend({
+      id: detail.id,
+      title: detail.title,
+      quantity: 1,
+      image: detail?.images?.cover,
+      description: 'Compra del libro',
+    });
+  }, [detail]);
 
-  const handlerBuyBook = () => {
+  const handlerBuyBook = (price, condition) => {
+    setBookToSend({
+      ...bookToSend,
+      price: price,
+      condition: condition,
+    });
     dispatch(BuyBook(bookToSend));
   };
 

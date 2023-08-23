@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const URL_BASE = 'https://bookbuster-main.onrender.com/api';
-const LOCALHOST = 'http://localhost:3001/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
   bookshelves: {},
@@ -24,7 +23,7 @@ export const getBookshelves = createAsyncThunk(
   async () => {
     const userId = localStorage.getItem('user_id');
     const sessionId = localStorage.getItem('session_id');
-    const { data } = await axios.get(`${LOCALHOST}/shelves`, {
+    const { data } = await axios.get(`${URL_BASE}/shelves`, {
       headers: {
         'Content-Type': 'application/json',
         userid: userId,
@@ -42,7 +41,7 @@ export const addToBookshelf = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     console.log(bookId, 'slice');
     const response = await axios.post(
-      `${LOCALHOST}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+      `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
       {},
       {
         headers: {
@@ -63,7 +62,7 @@ export const deleteBookFromShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${LOCALHOST}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+      `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +81,7 @@ export const deleteShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${LOCALHOST}/shelves/deleteShelf?shelfId=${shelfId}`,
+      `${URL_BASE}/shelves/deleteShelf?shelfId=${shelfId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +100,7 @@ export const getBookshelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const { data } = await axios.get(
-      `${LOCALHOST}/shelves/shelfbooks?book_shelf_category_id=${book_shelf_category_id}`,
+      `${URL_BASE}/shelves/shelfbooks?book_shelf_category_id=${book_shelf_category_id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +120,7 @@ export const createNewShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${LOCALHOST}/shelves/createNewShelf?name=${name}&book_shelves_id=${book_shelves_id}`,
+      `${URL_BASE}/shelves/createNewShelf?name=${name}&book_shelves_id=${book_shelves_id}`,
       {},
       {
         headers: {
@@ -141,7 +140,7 @@ export const editNameShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${LOCALHOST}/shelves/editNameShelf?name=${name}&shelfId=${shelfId}`,
+      `${URL_BASE}/shelves/editNameShelf?name=${name}&shelfId=${shelfId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -159,7 +158,7 @@ export const getShelvesWithBooks = createAsyncThunk(
   async () => {
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
-    const { data } = await axios.get(`${LOCALHOST}/shelves/shelfWithBooks`, {
+    const { data } = await axios.get(`${URL_BASE}/shelves/shelfWithBooks`, {
       headers: {
         'Content-Type': 'application/json',
         userid,
@@ -190,7 +189,7 @@ const bookshelvesSlice = createSlice({
       .addCase(addToBookshelf.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(addToBookshelf.fulfilled, (state, action) => {
+      .addCase(addToBookshelf.fulfilled, (state) => {
         state.status = 'succeeded';
         // state.addStatus = action.data;
       })
@@ -224,7 +223,7 @@ const bookshelvesSlice = createSlice({
       .addCase(createNewShelf.pending, (state) => {
         state.bookshelfStatus = 'loading';
       })
-      .addCase(createNewShelf.fulfilled, (state, action) => {
+      .addCase(createNewShelf.fulfilled, (state) => {
         state.bookshelfStatus = 'succeeded';
         state.reloadShelf = !state.reloadShelf;
         // state.addStatus = action.data;

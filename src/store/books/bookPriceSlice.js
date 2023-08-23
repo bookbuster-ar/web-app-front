@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const URL_BASE = 'https://bookbuster-main.onrender.com/api';
-const LOCALHOST = 'http://localhost:3001/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
   priceByFormat: [],
@@ -14,7 +13,7 @@ const initialState = {
 export const getPriceByFormat = createAsyncThunk(
   'books/getPriceByFormat',
   async (id) => {
-    const { data } = await axios.get(`${LOCALHOST}/books/format/price/${id}`);
+    const { data } = await axios.get(`${URL_BASE}/books/format/price/${id}`);
     console.log(data);
     return data;
   }

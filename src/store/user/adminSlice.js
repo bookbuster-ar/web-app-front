@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
-const LOCALHOST = 'http://localhost:3001/api';
+const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
 
 const initialState = {
   users: [],
@@ -51,7 +50,7 @@ export const getAllUsers = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     try {
-      const { data } = await axios.get(`${LOCALHOST}/users`, {
+      const { data } = await axios.get(`${URL_BASE}/users`, {
         headers: {
           'Content-Type': 'application/json',
           userid,
@@ -73,7 +72,7 @@ export const getUserByName = createAsyncThunk(
       const userid = localStorage.getItem('user_id');
 
       const { data } = await axios.get(
-        `${LOCALHOST}/users/search?name=${name}`,
+        `${URL_BASE}/users/search?name=${name}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -97,7 +96,7 @@ export const getUsersBanned = createAsyncThunk(
     try {
       const sessionid = localStorage.getItem('session_id');
       const userid = localStorage.getItem('user_id');
-      const { data } = await axios.get(`${LOCALHOST}/banned`, {
+      const { data } = await axios.get(`${URL_BASE}/banned`, {
         headers: {
           'Content-Type': 'application/json',
           userid,
@@ -117,7 +116,7 @@ export const bannedUser = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     const { data } = await axios.post(
-      `${LOCALHOST}/users/${id}/ban`,
+      `${URL_BASE}/users/${id}/ban`,
       { duration, reason },
       {
         headers: {
@@ -127,7 +126,6 @@ export const bannedUser = createAsyncThunk(
         },
       }
     );
-    console.log(data);
     return data;
   }
 );
@@ -136,7 +134,7 @@ export const getTransaction = createAsyncThunk(
   'admin/getTransaction',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${LOCALHOST}/transactions/${id}`);
+      const { data } = await axios.get(`${URL_BASE}/transactions/${id}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -148,7 +146,7 @@ export const getAllTransactions = createAsyncThunk(
   'admin/getAllTransactions',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${LOCALHOST}/transactions`);
+      const { data } = await axios.get(`${URL_BASE}/transactions`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -157,14 +155,14 @@ export const getAllTransactions = createAsyncThunk(
 );
 
 export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
-  const { data } = await axios.get(`${LOCALHOST}/books/sold`);
+  const { data } = await axios.get(`${URL_BASE}/books/sold`);
   return data;
 });
 
 export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
-    const { data } = await axios.get(`${LOCALHOST}/subscriptions`);
+    const { data } = await axios.get(`${URL_BASE}/subscriptions`);
     console.log(data);
     return data;
   }
@@ -175,7 +173,7 @@ export const addCreditUser = createAsyncThunk(
   async ({ id, credits }, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        `${LOCALHOST}/user/${id}/credits`,
+        `${URL_BASE}/user/${id}/credits`,
         credits
       );
       return data;
@@ -188,7 +186,7 @@ export const addCreditUser = createAsyncThunk(
 export const createGenre = createAsyncThunk(
   'admin/createGenre',
   async (genre) => {
-    const { data } = await axios.post(`${LOCALHOST}/genre`, genre);
+    const { data } = await axios.post(`${URL_BASE}/genre`, genre);
     return data;
   }
 );
@@ -197,7 +195,7 @@ export const createSubgenre = createAsyncThunk(
   'admin/createSubgenre',
   async ({ genreId, subgenre }, thunkAPI) => {
     try {
-      const { data } = await axios.post(`${LOCALHOST}/subgenre`, {
+      const { data } = await axios.post(`${URL_BASE}/subgenre`, {
         genreId,
         subgenre,
       });
@@ -211,7 +209,7 @@ export const createSubgenre = createAsyncThunk(
 export const createRecommend = createAsyncThunk(
   'admin/createRecommend',
   async (booksId) => {
-    const { data } = await axios.post(`${LOCALHOST}/recommend`, booksId);
+    const { data } = await axios.post(`${URL_BASE}/recommend`, booksId);
     return data;
   }
 );
@@ -219,10 +217,7 @@ export const createRecommend = createAsyncThunk(
 export const updateRole = createAsyncThunk(
   'admin/updateRole',
   async (userId, roleId) => {
-    const { data } = await axios.put(
-      `${LOCALHOST}/user/${userId}/role`,
-      roleId
-    );
+    const { data } = await axios.put(`${URL_BASE}/user/${userId}/role`, roleId);
     return data;
   }
 );
