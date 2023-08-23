@@ -69,18 +69,27 @@ export const getAllUsers = createAsyncThunk(
 
 export const getUserByName = createAsyncThunk(
   'admin/getUserByName',
-  async (name) => {
-    const sessionid = localStorage.getItem('session_id');
-    const userid = localStorage.getItem('user_id');
-  
-    const { data } = await axios.get(`${URL_BASE}/users/search?name=${name}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        userid,
-        sessionid,
-      },
-    });
-    return data;
+  async (name, thunkAPI) => {
+    try {
+      const sessionid = localStorage.getItem('session_id');
+      const userid = localStorage.getItem('user_id');
+
+      const { data } = await axios.get(
+        `${URL_BASE}/users/search?name=${name}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log('este es el error', error);
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -99,11 +108,16 @@ export const getUsersBanned = createAsyncThunk(
 
 export const bannedUser = createAsyncThunk(
   'admin/bannedUser',
-  async (id, duration) => {
-    const { data } = await axios.post(
-      `${URL_BASE}/admin/users/${id}/ban`,
-      duration
-    );
+  async ({ id, duration }) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    const { data } = await axios.post(`${URL_BASE}/users/${id}/ban`, {duration}, {
+      headers: {
+        'Content-Type': 'application/json',
+        userid,
+        sessionid,
+      },
+    });
     console.log(data);
     return data;
   }

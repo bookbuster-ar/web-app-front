@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
-import { getBookshelves } from '../../store/books/bookshelvesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectAllBookshelves,
   createNewShelf,
+  selectShelvesWithBooks,
+  selectShelvesWithBooksStatus,
+  deleteShelf,
+  // selectShelvesWithBooksError,
+  getShelvesWithBooks,
+  selectReloadShelf,
 } from '../../store/books/bookshelvesSlice';
 import Carrousel from './Carrousel';
+import Loader from '../../icons/Loader/Loader';
 
 const INITIAL_FORM_STATE = {
   name: '',
@@ -13,16 +18,19 @@ const INITIAL_FORM_STATE = {
 
 const Bookshelves = () => {
   const dispatch = useDispatch();
-  const bookshelves = useSelector(selectAllBookshelves);
+  const bookshelves = useSelector(selectShelvesWithBooks); // Esta es la estanteria GENERAL
+  console.log('bookshelves componente', bookshelves);
+  const status = useSelector(selectShelvesWithBooksStatus);
+  const reloadShelf = useSelector(selectReloadShelf);
 
   const book_shelves_id = bookshelves.id;
   const { book_shelf_categories } = bookshelves;
 
-  const [form, setForm] = useState();
+  const [form, setForm] = useState(INITIAL_FORM_STATE);
 
   useEffect(() => {
-    dispatch(getBookshelves());
-  }, [dispatch]);
+    dispatch(getShelvesWithBooks());
+  }, [reloadShelf, dispatch]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,14 +39,19 @@ const Bookshelves = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let name = { ...form };
+    const { name } = { ...form };
+
     dispatch(createNewShelf({ name, book_shelves_id }));
     setForm(INITIAL_FORM_STATE);
   };
 
+  const handleDeleteShelf = (shelfId) => {
+    dispatch(deleteShelf(shelfId));
+  };
+
   return (
-    <div>
-      <h1 className='font-bold font-roboto text-5xl text-bluebook my-10 ml-6 text-center uppercase'>
+    <div className='no-scroll-x'>
+      <h1 className='font-bold font-roboto text-5xl text-bluebook my-10 ml-6 uppercase'>
         Mis estanterías
       </h1>
       <div className='ml-6 mb-10'>
@@ -62,12 +75,22 @@ const Bookshelves = () => {
         </form>
       </div>
       <div className='flex flex-col justify-center items-center'>
-        {book_shelf_categories &&
+        {status === 'loading' ? (
+          <Loader />
+        ) : (
+          book_shelf_categories &&
           book_shelf_categories.map((bookshelf) => (
-            <div className='my-4' key={bookshelf.id}>
+            <div className='my-4 w-[1200px] ' key={bookshelf.id}>
+              <button
+                className='rounded-full bg-gray-300 w-6 ml-6 hover:bg-red-400'
+                onClick={() => handleDeleteShelf(bookshelf.id)}
+              >
+                x
+              </button>
               <Carrousel bookshelf={bookshelf} />
             </div>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

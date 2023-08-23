@@ -4,7 +4,7 @@ const PersonalInfo = ({ user }) => {
   return (
     <div>
       {/* Contenido principal */}
-      <div className='  bg-gray-100 '>
+      <div className=' mx-6 bg-gray-100 '>
         <h2 className='font-bold font-roboto text-5xl text-bluebook my-10 ml-6 uppercase'>
           Mi perfil
         </h2>
@@ -22,20 +22,17 @@ const PersonalInfo = ({ user }) => {
 
           <h3 className='font-semibold text-xl mb-6'>Datos Personales:</h3>
           <ul>
-            <li className='text-gray-700 mb-4'>
-              <strong>Nombre:</strong> {user.name || null}
+            <li className='text-gray-700 mb-4 capitalize'>
+              <strong>Nombre:</strong> {user.name || 'N/A'}
             </li>
-            <li className='text-gray-700 mb-4'>
-              <strong>Apellido:</strong> {user.last_name || null}
+            <li className='text-gray-700 mb-4 capitalize'>
+              <strong>Apellido:</strong> {user.lastName || 'N/A'}
             </li>
             <li className='text-gray-700 mb-4'>
               <strong>Email:</strong> {user.email}
             </li>
             <li className='text-gray-700 mb-4'>
-              <strong>Teléfono:</strong> {user.phone || null}
-            </li>
-            <li className='text-gray-700 mb-4'>
-              <strong>creditos:</strong> {user.credit ?? null}
+              <strong>Créditos:</strong> {user.credit ?? 0}
             </li>
             {user.subscription ? (
               <li className='text-gray-700 mb-4'>

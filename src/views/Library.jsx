@@ -14,15 +14,15 @@ const Library = () => {
   }, [dispatch]);
 
   return (
-    <div className='bg-white h-screen no-scroll-x w-screen'>
+    <div className='w-full'>
       <div className='flex items-center justify-start mt-8 ml-12'>
         <img src={PurpleEye} className='h-5 md:h-8 lg:h-10 xl:h-10' />
         <h1 className='text-xl md:text-3xl lg:text-5xl xl:text-5xl font-bold font-roboto text-bluebook'>
           EXPLORÁ LA LIBRERÍA
         </h1>
       </div>
-      <div className='h-[829px] w-11/12 my-12 mx-auto'>
-        <div className='grid h-full grid-cols-9 grid-rows-16 xl:grid-cols-12 xl:grid-rows-6 lg:grid-cols-11 lg:grid-rows-9 relative'>
+      <div className='h-[829px] w-11/12 my-12 mx-auto '>
+        <div className='grid h-full grid-cols-9 grid-rows-16 xl:grid-cols-12 xl:grid-rows-6 lg:grid-cols-11 lg:grid-rows-9 '>
           {/* Esto es una separacion NARRATIVAS */}
           <div className='bg-orangebook relative col-span-5 row-span-5 col-start-1 row-start-1 text-2xl xl:col-span-4 xl:row-span-2 lg:col-span-4 lg:row-span-4 lg:text-4xl md:text-3xl font-roboto text-white font-black cursor-pointer group hover:bg-orange-200'>
             <Link to='genre/cd49e523-5861-4669-9e26-8766812de9d5'>
@@ -253,7 +253,7 @@ const Library = () => {
           </div>
         </div>
       </div>
-      <div className='w-screen'>
+      <div className=''>
         <Footer />
       </div>
     </div>
