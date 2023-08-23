@@ -76,7 +76,7 @@ const Library = () => {
             </div>
           </div>
           {/* Esto es una separacion */}
-          <div className='bg-yellowbook relative col-span-3 row-span-2 col-start-6 row-start-13 xl:col-span-1 xl:row-span-2 lg:col-span-2 lg:row-span-2 lg:col-start-8 lg:row-start-4 text-[13px] md:text-lg font-roboto text-redbook font-black cursor-pointer group hover:bg-yellow-200'>
+          <div className='bg-yellowbook relative col-span-3 row-span-2 col-start-6 row-start-13 xl:col-span-1 xl:row-span-2 lg:col-span-2 lg:row-span-2 lg:col-start-8 lg:row-start-4 text-[13px]  xl:text-[23px] md:text-lg font-roboto text-redbook font-black cursor-pointer group hover:bg-yellow-200 xl:leading-5'>
             <Link to='genre/156a7635-c01f-460d-8e0a-45c4402cd2d7'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 font-roboto'>
                 <div className='absolute bottom-2 font-roboto duration-500 group-hover:bottom-14 md:group-hover:bottom-12 lg:group-hover:bottom-16 xl:group-hover:bottom-[90px] group-hover:text-bluebook'>
@@ -85,7 +85,7 @@ const Library = () => {
                   CIA
                 </div>
               </div>
-              <div className='absolute bottom-4 transition-opacity opacity-0 group-hover:opacity-100 max-w-[60px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[90px] left-3 duration-200 text-[4px] md:text-[6px] lg:text-[8px] text-bluebook'>
+              <div className='absolute bottom-4 transition-opacity opacity-0 group-hover:opacity-100 max-w-[60px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[90px] left-3 duration-200 text-[4px] md:text-[6px] lg:text-[8px] xl:leading-none text-bluebook'>
                 Investigación y ensayo sobre ciencia, ecología, naturaleza,
                 biología, medio ambiente, recursos, pensamiento lógico y
                 matemático.
@@ -151,7 +151,7 @@ const Library = () => {
           <div className='bg-orangebook relative col-span-2 row-span-2 col-start-8 row-start-13 text-xs md:text-xl lg:text-2xl xl:text-2xl lg:col-span-2 lg:row-span-2 lg:col-start-10 lg:row-start-4 xl:col-span-1 xl:row-span-2 font-roboto text-yellowbook font-black cursor-pointer group hover:bg-orange-200'>
             <Link to='genre/093588bd-60fb-4887-be36-33eb90efd8de'>
               <div className='relative transition-all duration-500 h-full ease-in left-3'>
-                <div className='absolute bottom-2 leading-5 font-roboto duration-500 group-hover:bottom-14 md:group-hover:bottom-12 lg:group-hover:bottom-28 xl:group-hover:bottom-[100px] group-hover:text-bluebook'>
+                <div className='absolute bottom-2 leading-5 font-roboto duration-500 group-hover:bottom-14 md:group-hover:bottom-12 lg:group-hover:bottom-28 xl:group-hover:bottom-[120px] group-hover:text-bluebook'>
                   JÓVE
                   <br />
                   NES
@@ -161,7 +161,7 @@ const Library = () => {
                 Ensayos, pensamiento contemporáneo y clásico, nuevas filosofías,
                 estudios del lenguaje, ambientalismo, economía y sociología.
               </div>
-              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-4 h-4'>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-5 h-5'>
                 <img src={RedMark} alt='Marcador Rojo' />
               </div>
             </Link>
