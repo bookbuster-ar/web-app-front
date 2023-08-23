@@ -81,10 +81,8 @@ export const getUserByName = createAsyncThunk(
           },
         }
       );
-      console.log(data);
       return data;
     } catch (error) {
-      console.log('este es el error', error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -96,7 +94,7 @@ export const getUsersBanned = createAsyncThunk(
     try {
       const sessionid = localStorage.getItem('session_id');
       const userid = localStorage.getItem('user_id');
-      const { data } = await axios.get(`${URL_BASE}/banned`,  {
+      const { data } = await axios.get(`${URL_BASE}/banned`, {
         headers: {
           'Content-Type': 'application/json',
           userid,
@@ -126,7 +124,6 @@ export const bannedUser = createAsyncThunk(
         },
       }
     );
-    console.log(data);
     return data;
   }
 );
@@ -163,8 +160,16 @@ export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
 export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
-    const { data } = await axios.get(`${URL_BASE}/subscriptions`);
-    console.log(data);
+
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    const { data } = await axios.get(`${URL_BASE}/subscriptions`, {
+      headers: {
+        'Content-Type': 'application/json',
+        userid,
+        sessionid,
+      },
+    });
     return data;
   }
 );
@@ -366,6 +371,6 @@ export const selectUsersError = (state) => state.admin.usersError;
 
 export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
 
-export const selectSubscriptions = (state) => state.admin.subscriptions
+export const selectSubscriptions = (state) => state.admin.subscriptions;
 
 export default adminSlice.reducer;

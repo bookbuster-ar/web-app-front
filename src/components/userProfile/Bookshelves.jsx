@@ -19,7 +19,6 @@ const INITIAL_FORM_STATE = {
 const Bookshelves = () => {
   const dispatch = useDispatch();
   const bookshelves = useSelector(selectShelvesWithBooks); // Esta es la estanteria GENERAL
-  console.log('bookshelves componente', bookshelves);
   const status = useSelector(selectShelvesWithBooksStatus);
   const reloadShelf = useSelector(selectReloadShelf);
 

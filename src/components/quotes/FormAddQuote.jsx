@@ -13,7 +13,6 @@ const FormAddQuote = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [form, setForm] = useState(INITIAL_FORM_STATE);
-  // const [showError, setShowError] = useState(false);
   const error = useSelector(selectQuotesError);
 
   const changeHandler = (event) => {
@@ -25,7 +24,6 @@ const FormAddQuote = () => {
     event.preventDefault();
 
     let newQuote = { ...form };
-    console.log(newQuote);
     dispatch(postQuote({ newQuote, id }));
     setForm(INITIAL_FORM_STATE);
   };

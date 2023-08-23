@@ -14,7 +14,6 @@ export const fetchQuotes = createAsyncThunk(
   'quotes/fetchQuotes',
   async (bookId) => {
     const { data } = await axios.get(`${URL_BASE}/books/${bookId}/quotes`);
-    console.log(data);
     return data;
   }
 );
