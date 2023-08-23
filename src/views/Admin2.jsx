@@ -37,9 +37,9 @@ const Admin2 = () => {
   const [activeView, setActiveView] = useState(1);
 
   return (
-    <section className='flex gap-6'>
+    <section className='flex gap-6 min-h-screen relative'>
       <div
-        className={`bg-bluebook min-h-screen ${
+        className={`sticky top-0 z-10 bg-bluebook h-screen ${
           open ? 'w-56' : 'w-16'
         } duration-500 text-gray-100 px-4`}
       >
@@ -79,7 +79,7 @@ const Admin2 = () => {
             </div>
           ))}
           <Link to='/'>
-            <div className='flex mt-36 text-sm gap-3.5 font-medium p-2 -mr-1 rounded-md hover:bg-blue-800 '>
+            <div className='flex mt-16 text-sm gap-3.5 font-medium p-2 -mr-1 rounded-md hover:bg-blue-800 '>
               <div>
                 <HomeIcon />
               </div>
@@ -104,7 +104,7 @@ const Admin2 = () => {
           </Link>
         </div>
       </div>
-      <div className='m-3 text-xl text-gray-900 font-semibold'>
+      <div className='m-3 text-xl text-gray-900 font-semibold w-full'>
         <div>
           <div className={activeView === 1 ? 'block' : 'hidden'}>
             <Usuarios />

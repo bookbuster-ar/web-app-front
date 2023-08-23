@@ -37,7 +37,6 @@ export const postQuote = createAsyncThunk(
       );
       return response.status;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -108,7 +107,6 @@ const quotesSlice = createSlice({
       })
       .addCase(postQuote.rejected, (state, action) => {
         state.status = 'failed';
-        console.log(action.payload.response.data);
         state.error = action.payload?.response?.data?.error;
       })
       .addCase(postQuoteLike.fulfilled, (state) => {

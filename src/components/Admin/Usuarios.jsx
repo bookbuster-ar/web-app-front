@@ -1,35 +1,18 @@
 import SearchAdmin from './SearchAdmin';
+import { useSelector } from 'react-redux';
+import { Users } from '../Admin/UserList';
+import {
+  selectAllUsers,
+  selectUsersStatus,} from '../../store/user/adminSlice';
 
 const Usuarios = () => {
-  const users = [
-    {
-      photoURL:
-        'https://media.tycsports.com/files/2023/02/10/532928/lionel-messi_1440x810_wmk.webp',
-      name: 'Juan Pérez',
-      email: 'juan@example.com',
-      phone: '+1234567890',
-      birthdate: '01/01/1990',
-    },
-    {
-      photoURL:
-        'https://media.tycsports.com/files/2023/02/10/532928/lionel-messi_1440x810_wmk.webp',
-      name: 'Carlos Lopez',
-      email: 'carlos@example.com',
-      phone: '+1248495830',
-      birthdate: '01/01/1990',
-    },
-    {
-      photoURL:
-        'https://media.tycsports.com/files/2023/02/10/532928/lionel-messi_1440x810_wmk.webp',
-      name: 'Julian Acosta',
-      email: 'julian@example.com',
-      phone: '+1249384890',
-      birthdate: '01/01/1990',
-    },
-  ];
+
+  const usersStatus = useSelector(selectUsersStatus);
+  const users = useSelector(selectAllUsers);
+
   
   return (
-    <div>
+    <div className=''>
       <SearchAdmin/>
       <div className='flex mb-7'>
         <h1 className='text-3xl'>Usuarios</h1>
@@ -37,7 +20,21 @@ const Usuarios = () => {
           Añadir nuevo
         </button>
       </div>
-      <div className='h-auto w-11/12 space-y-3'>
+      <div className='flex'>
+        <div className='w-full'>
+          {usersStatus === 'loading' ? <p>Cargando usuarios...</p> : null}
+          {usersStatus === 'failed' ? <p>No se encontraron usuarios con ese nombre</p> : null}
+          <Users users={users}/>
+        </div>
+      </div>
+      
+    </div>
+  );
+};
+
+export default Usuarios;
+
+/* <div className='h-auto w-11/12 space-y-3'>
         {users?.map((user, index) => (
           <div key={index} className='flex space-x-28 items-center'>
             <div className='flex space-x-3'>
@@ -50,9 +47,4 @@ const Usuarios = () => {
             <span>{user.email}</span>
           </div>
         ))}
-      </div>
-    </div>
-  );
-};
-
-export default Usuarios;
+      </div> */

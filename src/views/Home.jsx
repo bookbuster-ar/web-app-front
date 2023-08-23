@@ -29,7 +29,9 @@ const Home = () => {
       <div className='h-[250px] md:h-[230px] lg:h-[380px] xl:h-[460px] flex flex-col justify-end items-center md:flex-row md:items-end'>
         <NoEncontras />
       </div>
+      <div >
       <Footer />
+      </div>
     </div>
   );
 };
