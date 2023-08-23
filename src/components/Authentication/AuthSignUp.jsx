@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { signUpWithEmailAsync } from '../../store/user/authSlice';
 import { useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
+import {showNotification} from '../../store/notifications/notificationsSlice'
 
 const SignupForm = () => {
   const [name, setName] = useState('');
@@ -33,10 +34,10 @@ const SignupForm = () => {
       const payload = unwrapResult(actionResult);
   
       // el payload lo dejamos para manejar info despues si queremos
-      window.alert('Registro exitoso!');
+      dispatch(showNotification({ message: 'Registro exitoso!', type: 'success' }));
     } catch (error) {
       // Si hay un error, mostramos el mensaje de error.
-      window.alert('El Email ya se encuentra en uso.');
+      dispatch(showNotification({ message: 'El Email ya se encuentra en uso!', type: 'error' }));
     }
   };
 

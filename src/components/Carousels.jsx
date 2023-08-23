@@ -259,6 +259,7 @@ const Carousels = () => {
           LIBROS <br /> USADOS
         </h1>
         <Slider {...settings3}>
+
           {booksForRentStatus === 'loading' ? (
             <Loader />
           ) : (

@@ -22,7 +22,7 @@ import bookCategoryReducer from './books/bookCategory';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'user'],
 };
 
 const rootReducer = combineReducers({

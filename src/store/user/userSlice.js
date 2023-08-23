@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import { convertKeysToCamelCase } from '../../util/index';
+
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
@@ -8,7 +10,7 @@ const initialState = {
     about: '',
     image: '',
     name: '',
-    lastname: '',
+    lastName: '',
     email: '',
     country: '',
     address: '',
@@ -33,17 +35,14 @@ const initialState = {
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
   const userId = localStorage.getItem('user_id');
   const sessionId = localStorage.getItem('session_id');
-  const { data } = await axios.get(
-    `${URL_BASE}/users/profile`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        userId,
-        sessionId,
-      },
-    }
-  );
-  return data.data.user;
+  const { data } = await axios.get(`${URL_BASE}/users/profile`, {
+    headers: {
+      'Content-Type': 'application/json',
+      userId,
+      sessionId,
+    },
+  });
+  return data;
 });
 
 export const updateProfile = createAsyncThunk(
@@ -110,7 +109,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user = action.payload;
+        state.user = convertKeysToCamelCase(action.payload);
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.status = 'failed';
