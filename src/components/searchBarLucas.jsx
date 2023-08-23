@@ -24,13 +24,13 @@ function useSearch() {
 
   useEffect(() => {
     if (search.length < 3) {
-      setError('La busqueda debe tener al menos 3 caracteres');
+      setError(null);
       dispatch(resetBooks());
       return;
     }
-    
+
     if (search.length < 3) {
-      setError(null);
+      setError('La busqueda debe tener al menos 3 caracteres');
       return;
     }
 
@@ -75,9 +75,8 @@ const SearchBar = () => {
       <div className='flex justify-center'>
         <div>
           {booksStatus === 'loading' ? <p>Cargando tus libros...</p> : null}
-          {booksStatus === 'rejected' ? <><p>Ocurrió un error</p> <p>No se encontraron libros para esta búsqueda</p> </> 
-          : search.length > 2 && <Books books={books} />}
-          
+          {booksStatus === 'rejected' ? <p>Ocurrió un error</p> : null}
+          {search && <Books books={books} />}
         </div>
       </div>
     </div>

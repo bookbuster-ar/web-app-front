@@ -5,19 +5,17 @@ const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
   user: {
-    id: '',
+    about: '',
+    image: '',
     name: '',
-    last_name: '',
+    lastname: '',
     email: '',
-    email_verified: false,
-    about: null,
-    subscription: false,
-    date_of_register: '',
-    is_blocked: false,
-    credit: 0,
-    is_inactive: false,
-    want_notifications: false,
-    image: null,
+    country: '',
+    address: '',
+    city: '',
+    province: '',
+    postalCode: '',
+    wantNotifications: false,
     role: {
       id: '',
       name: 'admin',
@@ -51,17 +49,14 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
 export const updateProfile = createAsyncThunk(
   'user/updateProfile',
   async (updatedProfile) => {
-    const userId = localStorage.getItem('user_id');
-    const sessionId = localStorage.getItem('session_id');
     const { data } = await axios.put(
       `${URL_BASE}/users/profile`,
       updatedProfile,
-      sessionId,
       {
         headers: {
-          'Content-Type': 'application/json',
-          userId,
-          sessionId,
+          'Content-Type': 'multipart/form-data',
+          userId: localStorage.getItem('user_id'),
+          sessionId: localStorage.getItem('session_id'),
         },
       }
     );
@@ -104,6 +99,9 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    setUpdateStatus: (state, action) => {
+      state.updateStatus = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder //USER
@@ -144,10 +142,11 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setUpdateStatus } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectUserStatus = (state) => state.user.status;
+export const selectUpdateStatus = (state) => state.user.updateStatus;
 export const selectUserError = (state) => state.user.error;
 
 export const selectFavGenres = (state) => state.user.favGenres;
