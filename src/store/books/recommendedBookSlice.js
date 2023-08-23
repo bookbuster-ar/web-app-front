@@ -25,17 +25,17 @@ const recommendedBooksSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getRecommendedBooks.pending, (state) => {state.status = 'loading'
-  })
-  .addCase(getRecommendedBooks.fulfilled, (state, action)=> {
-    state.status = 'succeeded';
-    state.recommendedBooks = action.payload;
-  })
-  .addCase(getRecommendedBooks.rejected,
-     (state, action) => {
-       state.status = 'failed';
-       state.error = action.error.message;
-     })
+      .addCase(getRecommendedBooks.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getRecommendedBooks.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.recommendedBooks = action.payload;
+      })
+      .addCase(getRecommendedBooks.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
   },
 });
 
