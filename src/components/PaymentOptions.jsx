@@ -1,4 +1,4 @@
-const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
+const PaymentOptions = ({ handlerBuyBook, handleClose, formatPrice }) => {
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
       <div className='bg-white p-6 rounded-lg shadow-md text-center h-[620px] '>
@@ -15,15 +15,12 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
         <div className='grid grid-cols-2 grid-rows-3 gap-4 w-auto h-full'>
           <div className='w-full h-fit'>
             <h1 className='text-start font-semibold font-roboto '>
-              LIBRO FÍSICO
+              {formatPrice[0].name}
             </h1>
             <div className=' w-full'>
-              <h1 className='text-start font-semibold font-roboto'>
-                Comprar nuevo
-              </h1>
               <div className='border rounded-lg border-slate-300 p-2'>
                 <h1 className='font-semibold font-roboto'>
-                  ARS $ {price}
+                  ARS $ {formatPrice[0].price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
                   Envío sin cargo para suscriptores y hasta 20% off
@@ -39,34 +36,14 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
           </div>
 
           <div>
-            <h1 className='text-start font-semibold font-roboto'>DIGITAL</h1>
+            <h1 className='text-start font-semibold font-roboto'>
+              {' '}
+              {formatPrice[3].name}
+            </h1>
             <div className=' w-full'>
-              <h1 className='text-start font-semibold font-roboto'>Comprar</h1>
               <div className='border rounded-lg border-slate-300 p-2'>
                 <h1 className='font-semibold font-roboto'>
-                  ARS $ {price}
-                </h1>
-                <h2 className='text-bluebook font-semibold'>
-                  Envío sin cargo para suscriptores y hasta 20% off
-                </h2>
-                <button
-                  onClick={handlerBuyBook}
-                  className='bg-greybook px-4 rounded-lg hover:bg-slate-300 '
-                >
-                  Comprar
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className=' w-full'>
-              <h1 className='text-start font-semibold font-roboto'>
-                Comprar usado
-              </h1>
-              <div className='border rounded-lg border-slate-300 p-2'>
-                <h1 className='font-semibold font-roboto'>
-                  ARS $ {price}
+                  ARS $ {formatPrice[3].price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
                   Envío sin cargo para suscriptores y hasta 20% off
@@ -84,11 +61,11 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
           <div>
             <div className=' w-full'>
               <h1 className='text-start font-semibold font-roboto'>
-                Comprar audiolibro
+                {formatPrice[1].name}
               </h1>
               <div className='border rounded-lg border-slate-300 p-2'>
                 <h1 className='font-semibold font-roboto'>
-                  ARS $ {price}
+                  ARS $ {formatPrice[1].price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
                   Envío sin cargo para suscriptores y hasta 20% off
@@ -105,10 +82,34 @@ const PaymentOptions = ({handlerBuyBook,handleClose,  price}) => {
 
           <div>
             <div className=' w-full'>
-              <h1 className='text-start font-semibold font-roboto'>Alquiler</h1>
+              <h1 className='text-start font-semibold font-roboto'>
+                {formatPrice[2].name}
+              </h1>
               <div className='border rounded-lg border-slate-300 p-2'>
                 <h1 className='font-semibold font-roboto'>
-                  ARS $ {price}
+                  ARS $ {formatPrice[2].price}
+                </h1>
+                <h2 className='text-bluebook font-semibold'>
+                  Envío sin cargo para suscriptores y hasta 20% off
+                </h2>
+                <button
+                  onClick={handlerBuyBook}
+                  className='bg-greybook px-4 rounded-lg hover:bg-slate-300 '
+                >
+                  Comprar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className=' w-full'>
+              <h1 className='text-start font-semibold font-roboto'>
+                {formatPrice[4].name}
+              </h1>
+              <div className='border rounded-lg border-slate-300 p-2'>
+                <h1 className='font-semibold font-roboto'>
+                  ARS $ {formatPrice[4].price}
                 </h1>
                 <h2 className='text-bluebook font-semibold'>
                   Solo para suscriptores. Envío y retiro sin cargo (AMBA)

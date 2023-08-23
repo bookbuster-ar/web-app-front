@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+// const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+const LOCALHOST = 'http://localhost:3001/api';
 
 const initialState = {
   quotes: [],
@@ -12,7 +13,7 @@ const initialState = {
 export const fetchQuotes = createAsyncThunk(
   'quotes/fetchQuotes',
   async (bookId) => {
-    const { data } = await axios.get(`${URL_BASE}/books/${bookId}/quotes`);
+    const { data } = await axios.get(`${LOCALHOST}/books/${bookId}/quotes`);
     console.log(data);
     return data;
   }
@@ -25,7 +26,7 @@ export const postQuote = createAsyncThunk(
       const userId = localStorage.getItem('user_id');
       const sessionId = localStorage.getItem('session_id');
       const response = await axios.post(
-        `${URL_BASE}/books/${id}/quotes`,
+        `${LOCALHOST}/books/${id}/quotes`,
         newQuote,
         {
           headers: {
@@ -48,7 +49,7 @@ export const postQuoteLike = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${URL_BASE}/books/${id}/quotes/${quoteId}/like`,
+      `${LOCALHOST}/books/${id}/quotes/${quoteId}/like`,
       {},
       {
         headers: {
@@ -68,7 +69,7 @@ export const deleteQuote = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${URL_BASE}/books/${id}/quotes/${quoteId}`,
+      `${LOCALHOST}/books/${id}/quotes/${quoteId}`,
       {
         headers: {
           'Content-Type': 'application/json',

@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
+// const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
+const LOCALHOST = 'http://localhost:3001/api';
 
 const initialState = {
   users: [],
@@ -49,19 +50,16 @@ export const getAllUsers = createAsyncThunk(
   async (_, thunkAPI) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    console.log(userid);
     try {
-      const { data } = await axios.get(`${URL_BASE}/users`, {
+      const { data } = await axios.get(`${LOCALHOST}/users`, {
         headers: {
           'Content-Type': 'application/json',
           userid,
           sessionid,
         },
       });
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -75,7 +73,7 @@ export const getUserByName = createAsyncThunk(
       const userid = localStorage.getItem('user_id');
 
       const { data } = await axios.get(
-        `${URL_BASE}/users/search?name=${name}`,
+        `${LOCALHOST}/users/search?name=${name}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -97,8 +95,15 @@ export const getUsersBanned = createAsyncThunk(
   'admin/getUsersBanned',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${URL_BASE}/banned`);
-      console.log(data);
+      const sessionid = localStorage.getItem('session_id');
+      const userid = localStorage.getItem('user_id');
+      const { data } = await axios.get(`${LOCALHOST}/banned`, {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -108,16 +113,20 @@ export const getUsersBanned = createAsyncThunk(
 
 export const bannedUser = createAsyncThunk(
   'admin/bannedUser',
-  async ({ id, duration }) => {
+  async ({ id, duration, reason }) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    const { data } = await axios.post(`${URL_BASE}/users/${id}/ban`, {duration}, {
-      headers: {
-        'Content-Type': 'application/json',
-        userid,
-        sessionid,
-      },
-    });
+    const { data } = await axios.post(
+      `${LOCALHOST}/users/${id}/ban`,
+      { duration, reason },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     console.log(data);
     return data;
   }
@@ -127,7 +136,7 @@ export const getTransaction = createAsyncThunk(
   'admin/getTransaction',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${URL_BASE}/transactions/${id}`);
+      const { data } = await axios.get(`${LOCALHOST}/transactions/${id}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -139,7 +148,7 @@ export const getAllTransactions = createAsyncThunk(
   'admin/getAllTransactions',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axios.get(`${URL_BASE}/transactions`);
+      const { data } = await axios.get(`${LOCALHOST}/transactions`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -148,14 +157,15 @@ export const getAllTransactions = createAsyncThunk(
 );
 
 export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
-  const { data } = await axios.get(`${URL_BASE}/books/sold`);
+  const { data } = await axios.get(`${LOCALHOST}/books/sold`);
   return data;
 });
 
 export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
-    const { data } = await axios.get(`${URL_BASE}/subscriptions`);
+    const { data } = await axios.get(`${LOCALHOST}/subscriptions`);
+    console.log(data);
     return data;
   }
 );
@@ -165,7 +175,7 @@ export const addCreditUser = createAsyncThunk(
   async ({ id, credits }, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        `${URL_BASE}/user/${id}/credits`,
+        `${LOCALHOST}/user/${id}/credits`,
         credits
       );
       return data;
@@ -178,7 +188,7 @@ export const addCreditUser = createAsyncThunk(
 export const createGenre = createAsyncThunk(
   'admin/createGenre',
   async (genre) => {
-    const { data } = await axios.post(`${URL_BASE}/genre`, genre);
+    const { data } = await axios.post(`${LOCALHOST}/genre`, genre);
     return data;
   }
 );
@@ -187,7 +197,7 @@ export const createSubgenre = createAsyncThunk(
   'admin/createSubgenre',
   async ({ genreId, subgenre }, thunkAPI) => {
     try {
-      const { data } = await axios.post(`${URL_BASE}/subgenre`, {
+      const { data } = await axios.post(`${LOCALHOST}/subgenre`, {
         genreId,
         subgenre,
       });
@@ -201,7 +211,7 @@ export const createSubgenre = createAsyncThunk(
 export const createRecommend = createAsyncThunk(
   'admin/createRecommend',
   async (booksId) => {
-    const { data } = await axios.post(`${URL_BASE}/recommend`, booksId);
+    const { data } = await axios.post(`${LOCALHOST}/recommend`, booksId);
     return data;
   }
 );
@@ -209,7 +219,10 @@ export const createRecommend = createAsyncThunk(
 export const updateRole = createAsyncThunk(
   'admin/updateRole',
   async (userId, roleId) => {
-    const { data } = await axios.put(`${URL_BASE}/user/${userId}/role`, roleId);
+    const { data } = await axios.put(
+      `${LOCALHOST}/user/${userId}/role`,
+      roleId
+    );
     return data;
   }
 );
@@ -354,5 +367,9 @@ const adminSlice = createSlice({
 export const selectAllUsers = (state) => state.admin.users;
 export const selectUsersStatus = (state) => state.admin.usersStatus;
 export const selectUsersError = (state) => state.admin.usersError;
+
+export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
+
+export const selectSubscriptions = (state) => state.admin.subscriptions;
 
 export default adminSlice.reducer;

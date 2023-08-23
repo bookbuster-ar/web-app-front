@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+// const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+const LOCALHOST = 'http://localhost:3001/api';
 
 const initialState = {
   books: [],
@@ -34,7 +35,7 @@ const initialState = {
 export const getBooksByPage = createAsyncThunk(
   'books/getBooksByPage',
   async ({ page }) => {
-    const { data } = await axios.get(`${URL_BASE}/books?page=${page}`);
+    const { data } = await axios.get(`${LOCALHOST}/books?page=${page}`);
     return data;
   }
 );
@@ -42,7 +43,7 @@ export const getTitleByPage = createAsyncThunk(
   'books/getTitleByPage',
   async ({ title, page }) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books?title=${title}&page=${page}`
+      `${LOCALHOST}/books?title=${title}&page=${page}`
     );
     return data;
   }
@@ -51,7 +52,7 @@ export const getAuthorByPage = createAsyncThunk(
   'books/getAuthorByPage',
   async ({ author, page }) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books?author=${author}&page=${page}`
+      `${LOCALHOST}/books?author=${author}&page=${page}`
     );
     return data;
   }
@@ -67,7 +68,7 @@ export const getAuthorTitleByPage = createAsyncThunk(
   'books/getAuthorTitleByPage',
   async ({ author, title, page }) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books?author=${author}&title=${title}&page=${page}`
+      `${LOCALHOST}/books?author=${author}&title=${title}&page=${page}`
     );
     return data;
   }
@@ -76,7 +77,7 @@ export const getGenreIdByPage = createAsyncThunk(
   'books/getGenreIdByPage',
   async ({ id, page }) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books/genre?id=${id}&page=${page}`
+      `${LOCALHOST}/books/genre?id=${id}&page=${page}`
     );
     return data;
   }
@@ -85,7 +86,7 @@ export const getSubGenreIdByPage = createAsyncThunk(
   'books/getSubGenreIdByPage',
   async ({ id, page }) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books/subgenre?id=${id}&page=${page}`
+      `${LOCALHOST}/books/subgenre?id=${id}&page=${page}`
     );
     return data;
   }
@@ -94,7 +95,7 @@ export const getBooksRentByPage = createAsyncThunk(
   'books/getBooksRentByPage',
   async ({ page }) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books/categories/for-rent?page=${page}`
+      `${LOCALHOST}/books/categories/for-rent?page=${page}`
     );
     return data;
   }
@@ -103,7 +104,7 @@ export const getBooksRentByPage = createAsyncThunk(
 export const getBooksBySearch = createAsyncThunk(
   'books/getBooksBySearch',
   async (search) => {
-    const { data } = await axios.get(`${URL_BASE}/books?search=${search}`);
+    const { data } = await axios.get(`${LOCALHOST}/books?search=${search}`);
     return data.data;
   }
 );
@@ -111,25 +112,25 @@ export const getBooksBySearch = createAsyncThunk(
 export const getBookByDetail = createAsyncThunk(
   'books/getBookByDetail',
   async (id) => {
-    const { data } = await axios.get(`${URL_BASE}/books/${id}`);
+    const { data } = await axios.get(`${LOCALHOST}/books/${id}`);
     return data;
   }
 );
 
 export const fetchGenres = createAsyncThunk('books/fetchGenres', async () => {
-  const { data } = await axios.get(`${URL_BASE}/genres`);
+  const { data } = await axios.get(`${LOCALHOST}/genres`);
   return data;
 });
 
 export const fetchGenre = createAsyncThunk('books/fetchGenre', async (id) => {
-  const { data } = await axios.get(`${URL_BASE}/books/genre?id=${id}`);
+  const { data } = await axios.get(`${LOCALHOST}/books/genre?id=${id}`);
   return data.data;
 });
 
 export const createBook = createAsyncThunk(
   'books/createBook',
   async (bookData) => {
-    const response = await axios.post(`${URL_BASE}/books`, bookData, {
+    const response = await axios.post(`${LOCALHOST}/books`, bookData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -142,7 +143,7 @@ export const createBook = createAsyncThunk(
 export const getEditorials = createAsyncThunk(
   'books/getEditorials',
   async () => {
-    const { data } = await axios.get(`${URL_BASE}/editorials`);
+    const { data } = await axios.get(`${LOCALHOST}/editorials`);
     return data;
   }
 );
@@ -151,7 +152,7 @@ export const getBookSubgenres = createAsyncThunk(
   'books/getBookSubgenres',
   async (id) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books/subgenres?bookId=${id}`
+      `${LOCALHOST}/books/subgenres?bookId=${id}`
     );
     return data;
   }
@@ -161,7 +162,7 @@ export const getGenreSubgenres = createAsyncThunk(
   'books/getGenreSubgenres',
   async (id) => {
     const { data } = await axios.get(
-      `${URL_BASE}/books/genre/subgenres?bookId=${id}`
+      `${LOCALHOST}/books/genre/subgenres?bookId=${id}`
     );
     return data.subgenres;
   }

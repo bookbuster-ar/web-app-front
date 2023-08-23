@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+// const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+const LOCALHOST = 'http://localhost:3001/api';
 
 const initialState = {
   bookshelves: {},
@@ -23,7 +24,7 @@ export const getBookshelves = createAsyncThunk(
   async () => {
     const userId = localStorage.getItem('user_id');
     const sessionId = localStorage.getItem('session_id');
-    const { data } = await axios.get(`${URL_BASE}/shelves`, {
+    const { data } = await axios.get(`${LOCALHOST}/shelves`, {
       headers: {
         'Content-Type': 'application/json',
         userid: userId,
@@ -41,7 +42,7 @@ export const addToBookshelf = createAsyncThunk(
     const sessionid = localStorage.getItem('session_id');
     console.log(bookId, 'slice');
     const response = await axios.post(
-      `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+      `${LOCALHOST}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
       {},
       {
         headers: {
@@ -62,7 +63,7 @@ export const deleteBookFromShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+      `${LOCALHOST}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +82,7 @@ export const deleteShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.delete(
-      `${URL_BASE}/shelves/deleteShelf?shelfId=${shelfId}`,
+      `${LOCALHOST}/shelves/deleteShelf?shelfId=${shelfId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ export const getBookshelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const { data } = await axios.get(
-      `${URL_BASE}/shelves/shelfbooks?book_shelf_category_id=${book_shelf_category_id}`,
+      `${LOCALHOST}/shelves/shelfbooks?book_shelf_category_id=${book_shelf_category_id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -120,7 +121,7 @@ export const createNewShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${URL_BASE}/shelves/createNewShelf?name=${name}&book_shelves_id=${book_shelves_id}`,
+      `${LOCALHOST}/shelves/createNewShelf?name=${name}&book_shelves_id=${book_shelves_id}`,
       {},
       {
         headers: {
@@ -140,7 +141,7 @@ export const editNameShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${URL_BASE}/shelves/editNameShelf?name=${name}&shelfId=${shelfId}`,
+      `${LOCALHOST}/shelves/editNameShelf?name=${name}&shelfId=${shelfId}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -158,7 +159,7 @@ export const getShelvesWithBooks = createAsyncThunk(
   async () => {
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
-    const { data } = await axios.get(`${URL_BASE}/shelves/shelfWithBooks`, {
+    const { data } = await axios.get(`${LOCALHOST}/shelves/shelfWithBooks`, {
       headers: {
         'Content-Type': 'application/json',
         userid,

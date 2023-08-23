@@ -22,6 +22,10 @@ import Synopsis from '../components/Synopsis';
 import Loader from '../icons/Loader/Loader';
 import PaymentOptions from '../components/PaymentOptions';
 import {
+  selectFormatPrice,
+  getPriceByFormat,
+} from '../store/books/bookPriceSlice';
+import {
   addToBookshelf,
   getBookshelves,
   selectAllBookshelves,
@@ -34,6 +38,8 @@ const BookDetail = () => {
 
   const responseUrl = useSelector(selectResponseUrl);
   const statusUrl = useSelector(selectStatus);
+  const formatPrice = useSelector(selectFormatPrice);
+  console.log(formatPrice);
 
   const detail = useSelector(selectDetail);
   const status = useSelector(selectDetailStatus);
@@ -75,6 +81,7 @@ const BookDetail = () => {
     dispatch(getBookByDetail(id));
     dispatch(getBookSubgenres(id));
     dispatch(getBookshelves());
+    dispatch(getPriceByFormat(id));
   }, [dispatch, id]);
 
   const bookToSend = {
@@ -290,9 +297,9 @@ const BookDetail = () => {
         </div>
         {isDialogOpen && (
           <PaymentOptions
-            price={bookToSend.price}
-            handleClose={handleClose}
             handlerBuyBook={handlerBuyBook}
+            handleClose={handleClose}
+            formatPrice={formatPrice}
           />
         )}
       </div>

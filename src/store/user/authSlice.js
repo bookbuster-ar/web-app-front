@@ -4,14 +4,15 @@ import { setUser } from './userSlice';
 import { auth } from '../../services/firebase/firebase';
 import axios from 'axios';
 
-const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+// const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+const LOCALHOST = 'http://localhost:3001/api';
 
 // thunk to login with email and password
 export const signInWithEmailAsync = createAsyncThunk(
   'auth/signInWithEmail',
   async ({ email, password }, thunkAPI) => {
     try {
-      const { data } = await axios.post(`${URL_BASE}/auth/login/local`, {
+      const { data } = await axios.post(`${LOCALHOST}/auth/login/local`, {
         email,
         password,
       });
@@ -34,7 +35,7 @@ export const signInWithGoogleAsync = createAsyncThunk(
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
     const token = await result.user.getIdToken();
 
-    const { data } = await axios.post(`${URL_BASE}/auth/signup/google`, {
+    const { data } = await axios.post(`${LOCALHOST}/auth/signup/google`, {
       token,
     });
     const { user, session_id } = data;
@@ -49,7 +50,7 @@ export const signInWithGoogleAsync = createAsyncThunk(
 export const signUpWithEmailAsync = createAsyncThunk(
   'auth/signUpWithEmail',
   async ({ name, lastname, email, password }) => {
-    const { data } = await axios.post(`${URL_BASE}/auth/signup/local`, {
+    const { data } = await axios.post(`${LOCALHOST}/auth/signup/local`, {
       name,
       lastname,
       email,
@@ -66,7 +67,7 @@ export const verifyUserEmail = createAsyncThunk(
   async (_, thunkAPI) => {
     const currentUserId = localStorage.getItem('user_id');
     try {
-      const response = await axios.post(`${URL_BASE}/auth/VerifyEmail`, {
+      const response = await axios.post(`${LOCALHOST}/auth/VerifyEmail`, {
         userId: currentUserId,
       });
       const { status } = response;
@@ -94,7 +95,7 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
 
   try {
     const response = await axios.post(
-      `${URL_BASE}/auth/logout`,
+      `${LOCALHOST}/auth/logout`,
       {},
       {
         headers: {

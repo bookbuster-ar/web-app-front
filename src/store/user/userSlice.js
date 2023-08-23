@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+const LOCALHOST = 'http://localhost:3001/api';
 
 const initialState = {
   user: {
@@ -33,16 +34,13 @@ const initialState = {
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
   const userId = localStorage.getItem('user_id');
   const sessionId = localStorage.getItem('session_id');
-  const { data } = await axios.get(
-    `${URL_BASE}/users/profile`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        userId,
-        sessionId,
-      },
-    }
-  );
+  const { data } = await axios.get(`${LOCALHOST}/users/profile`, {
+    headers: {
+      'Content-Type': 'application/json',
+      userId,
+      sessionId,
+    },
+  });
   return data.data.user;
 });
 
@@ -50,7 +48,7 @@ export const updateProfile = createAsyncThunk(
   'user/updateProfile',
   async (updatedProfile) => {
     const { data } = await axios.put(
-      `${URL_BASE}/users/profile`,
+      `${LOCALHOST}/users/profile`,
       updatedProfile,
       {
         headers: {
