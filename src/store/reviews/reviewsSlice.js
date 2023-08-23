@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
@@ -23,8 +24,9 @@ export const fetchReviews = createAsyncThunk(
 
 export const postReview = createAsyncThunk(
   'reviews/postReview',
-  async ({ newReview, id }) => {
-    const userId = localStorage.getItem('user_id');
+  async ({ newReview, id }, thunkAPI) => {
+    try {
+      const userId = localStorage.getItem('user_id');
     const sessionId = localStorage.getItem('session_id');
     const response = await axios.post(
       `${URL_BASE}/books/${id}/reviews`,
@@ -37,7 +39,13 @@ export const postReview = createAsyncThunk(
         },
       }
     );
+    thunkAPI.dispatch(showNotification({message: "La Review se publicó correctamente!", type: "success"}))
     return response.status;
+    } catch (error) {
+      console.log(error);
+      thunkAPI.dispatch(showNotification({message: error.response.data.error, type: "error"}));
+      return thunkAPI.rejectWithValue(error.response.data.message)
+    }
   }
 );
 

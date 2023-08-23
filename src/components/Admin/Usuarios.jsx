@@ -1,6 +1,6 @@
 import SearchAdmin from './SearchAdmin';
 import { useSelector } from 'react-redux';
-import { Users } from '../Admin/UserList';
+import { Users } from './UserList';
 import {
   selectAllUsers,
   selectUsersStatus,} from '../../store/user/adminSlice';
@@ -39,18 +39,3 @@ const Usuarios = () => {
 };
 
 export default Usuarios;
-
-/* <div className='h-auto w-11/12 space-y-3'>
-        {users?.map((user, index) => (
-          <div key={index} className='flex space-x-28 items-center'>
-            <div className='flex space-x-3'>
-              <button className='hover:text-red-600'>Bloquear</button>
-              <div className='flex items-center w-40 space-x-2'>
-                <img src={user.photoURL} alt='photo' className='w-9 h-9 bg-contain' />
-                <p>{user.name}</p>
-              </div>
-            </div>
-            <span>{user.email}</span>
-          </div>
-        ))}
-      </div> */
