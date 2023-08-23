@@ -7,16 +7,17 @@ const Quote = ({ quote, id, onClick }) => {
   const dispatch = useDispatch();
   const quoteId = quote.id;
   const userid = localStorage.getItem('user_id');
-
-  let quoteOwner = quote.by?.id === userid;
-
+  let quoteOwner = quote.creator?.id === userid;
   const handleDelete = () => {
     dispatch(deleteQuote({ id, quoteId }));
   };
 
   return (
-    <article className='w-9/12 h-full duration-500 p-12' onClick={onClick}>
-      <div className='flex flex-col w-full'>
+    <article
+      className='w-9/12 h-full duration-500 p-12 shadow-lg mb-2'
+      onClick={onClick}
+    >
+      <div className='flex flex-col w-full '>
         {quoteOwner ? (
           <button
             onClick={handleDelete}

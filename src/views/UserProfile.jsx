@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import HomeIcon from '../icons/HomeIcon';
-import { selectUser } from '../store/user/userSlice';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { selectUser, fetchUser } from '../store/user/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import PersonalInfo from '../components/userProfile/PersonalInfo';
 import UserBooks from '../components/userProfile/UserBooks';
 import Bookshelves from '../components/userProfile/Bookshelves';
@@ -37,11 +37,19 @@ function UserProfile() {
     setToggle(value);
   };
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
+  console.log('usuario', user);
+
   return (
-    <div className='min-h-screen bg-gray-100 flex'>
+    <div className='min-h-screen bg-gray-100 flex no-scroll-x'>
       {/* Barra Lateral */}
-      <div className='w-1/4 bg-white p-8 shadow-lg'>
-        <div className='flex items-center justify-center mb-8'>
+      <div className='w-[300px] bg-white p-8 shadow-lg flex flex-col items-center '>
+        <div className='flex flex-col items-center justify-center mb-8 w-[300px]'>
           <img
             src={
               user.image ||

@@ -14,6 +14,7 @@ import reviewsReducer from './reviews/reviewsSlice';
 import paymentReducer from './payment/paymentSlice';
 import quotesReducer from './quotes/quotesSlice';
 import booksForRentReducer from './books/booksForRentSlice';
+import recommendedBookSlice from './books/recommendedBookSlice';
 import notificationsReducer from './notifications/notificationsSlice';
 
 const persistConfig = {
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   payment: paymentReducer,
   quotes: quotesReducer,
   booksForRent: booksForRentReducer,
+  recommendedBooks: recommendedBookSlice,
   notifications: notificationsReducer,
 });
 

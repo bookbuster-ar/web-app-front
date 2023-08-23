@@ -31,14 +31,19 @@ const initialState = {
 };
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
-  const { data } = await axios.get(`${URL_BASE}/users/profile`, {
-    headers: {
-      'Content-Type': 'application/json',
-      userId: localStorage.getItem('user_id'),
-      sessionId: localStorage.getItem('session_id'),
-    },
-  });
-  return data;
+  const userId = localStorage.getItem('user_id');
+  const sessionId = localStorage.getItem('session_id');
+  const { data } = await axios.get(
+    `${URL_BASE}/users/profile`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        userId,
+        sessionId,
+      },
+    }
+  );
+  return data.data.user;
 });
 
 export const updateProfile = createAsyncThunk(

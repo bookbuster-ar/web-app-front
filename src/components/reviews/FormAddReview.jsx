@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage';
 import { selectReviewsError } from '../../store/reviews/reviewsSlice';
 
+import { AiFillStar } from 'react-icons/ai';
+
 const INITIAL_FORM_STATE = {
   content: '',
   rating: 0,
@@ -149,18 +151,30 @@ const FormAddReview = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    // if (
-    //   !localStorage.getItem('session_id') ||
-    //   !localStorage.getItem('user_id')
-    // ) {
-    //   setShowError(true); // Set the state to show the error message
-    //   return;
-    // }
-
     let newReview = { ...form };
-    dispatch(postReview({ newReview, id })); //ya se q no es necesario pero si no me aparecía en consola q se borraba antes del post
+    dispatch(postReview({ newReview, id }));
     setForm(INITIAL_FORM_STATE);
   };
+
+  const starList = [...Array(5)].map((ignored, i) => {
+    if (i < form.rating) {
+      return (
+        <AiFillStar
+          className='text-3xl cursor-pointer text-yellow-400'
+          key={i}
+          onClick={() => setForm({ ...form, rating: i + 1 })}
+        />
+      );
+    } else {
+      return (
+        <AiFillStar
+          className='text-3xl cursor-pointer text-gray-300 hover:text-yellow-400'
+          key={i}
+          onClick={() => setForm({ ...form, rating: i + 1 })}
+        />
+      );
+    }
+  });
 
   return (
     <div>
@@ -182,78 +196,8 @@ const FormAddReview = () => {
           placeholder='Anotá unas líneas'
           className='bg-slate-100 text-slate-600 h-28 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-300 col-span-6 resize-none outline-none rounded-lg p-2 duration-300 focus:border-gray-300'
         ></textarea>
-        <div className='flex '>
-          <input
-            value='1'
-            name='rating'
-            id='star1'
-            type='radio'
-            onClick={ratingHandler}
-            className='hidden'
-          />
-          <label
-            htmlFor='star1'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
-          >
-            ★
-          </label>
-          <input
-            value='2'
-            name='rating'
-            id='star2'
-            type='radio'
-            onClick={ratingHandler}
-            className='hidden'
-          />
-          <label
-            htmlFor='star2'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
-          >
-            ★
-          </label>
-          <input
-            value='3'
-            name='rating'
-            id='star3'
-            type='radio'
-            onClick={ratingHandler}
-            className='hidden'
-          />
-          <label
-            htmlFor='star3'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
-          >
-            ★
-          </label>
-          <input
-            value='4'
-            name='rating'
-            id='star4'
-            type='radio'
-            onClick={ratingHandler}
-            className='hidden'
-          />
-          <label
-            htmlFor='star4'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
-          >
-            ★
-          </label>
-          <input
-            value='5'
-            name='rating'
-            id='star5'
-            type='radio'
-            onClick={ratingHandler}
-            className='hidden'
-          />
-          <label
-            htmlFor='star5'
-            className='text-3xl float-right cursor-pointer transition-colors duration-300 text-gray-300 hover:text-blue-600'
-          >
-            ★
-          </label>
-        </div>
+
+        <div className='flex p-2'>{...starList}</div>
         <div>
           {reactions.map((reaction) => {
             return (
