@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { bannedUser } from '../../store/user/adminSlice';
-import { useEffect } from 'react';
 
 export function ListOfUsers({ users, toggle }) {
   const dispatch = useDispatch();
@@ -24,8 +23,8 @@ export function ListOfUsers({ users, toggle }) {
 
   const handleBanned = (id) => {
     const duration = durations[id] || 0;
-    const singleReason = reasons[id] || '';
-    const data = { id, duration, singleReason };
+    const reason = reasons[id] || '';
+    const data = { id, duration, reason };
     dispatch(bannedUser(data));
     setDurations({})
     setReasons({})
