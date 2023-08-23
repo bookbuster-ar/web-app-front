@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
@@ -127,7 +128,7 @@ export const fetchGenre = createAsyncThunk('books/fetchGenre', async (id) => {
   const { data } = await axios.get(`${URL_BASE}/books/genre?id=${id}`);
   return data.data;
 });
-
+// falta debuggear by seba dragon warrior
 export const createBook = createAsyncThunk(
   'books/createBook',
   async (bookData) => {
