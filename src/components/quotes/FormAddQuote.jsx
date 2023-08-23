@@ -30,7 +30,7 @@ const FormAddQuote = () => {
 
   return (
     <div>
-      {error && <ErrorMessage message={error} />}
+      {/* {error && <ErrorMessage message={error} />} */}
       <form
         onSubmit={submitHandler}
         className='bg-white grid grid-cols-6 gap-2 shadow-lg rounded-xl p-6 text-sm w-9/12   '

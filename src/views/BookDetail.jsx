@@ -22,6 +22,10 @@ import Synopsis from '../components/Synopsis';
 import Loader from '../icons/Loader/Loader';
 import PaymentOptions from '../components/PaymentOptions';
 import {
+  selectFormatPrice,
+  getPriceByFormat,
+} from '../store/books/bookPriceSlice';
+import {
   addToBookshelf,
   getBookshelves,
   selectAllBookshelves,
@@ -34,8 +38,11 @@ const BookDetail = () => {
 
   const responseUrl = useSelector(selectResponseUrl);
   const statusUrl = useSelector(selectStatus);
+  const formatPrice = useSelector(selectFormatPrice);
+  console.log(formatPrice);
 
   const detail = useSelector(selectDetail);
+  console.log(detail.id);
   const status = useSelector(selectDetailStatus);
 
   const bookSubgenres = useSelector(selectBookSubgenres);
@@ -43,6 +50,7 @@ const BookDetail = () => {
 
   const bookshelves = useSelector(selectAllBookshelves);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [bookToSend, setBookToSend] = useState({});
 
   const [toggle, setToggle] = useState(1);
 
@@ -74,19 +82,25 @@ const BookDetail = () => {
     dispatch(getBookByDetail(id));
     dispatch(getBookSubgenres(id));
     dispatch(getBookshelves());
+    dispatch(getPriceByFormat(id));
   }, [dispatch, id]);
 
-  const bookToSend = {
-    id: detail.id,
-    title: detail.title,
-    quantity: 1,
-    price: 1000,
-    condition: 'new',
-    image: detail.image,
-    description: 'Compra del libro',
-  };
+  useEffect(() => {
+    setBookToSend({
+      id: detail.id,
+      title: detail.title,
+      quantity: 1,
+      image: detail?.images?.cover,
+      description: 'Compra del libro',
+    });
+  }, [detail]);
 
-  const handlerBuyBook = () => {
+  const handlerBuyBook = (price, condition) => {
+    setBookToSend({
+      ...bookToSend,
+      price: price,
+      condition: condition,
+    });
     dispatch(BuyBook(bookToSend));
   };
 
@@ -289,9 +303,9 @@ const BookDetail = () => {
         </div>
         {isDialogOpen && (
           <PaymentOptions
-            price={bookToSend.price}
-            handleClose={handleClose}
             handlerBuyBook={handlerBuyBook}
+            handleClose={handleClose}
+            formatPrice={formatPrice}
           />
         )}
       </div>

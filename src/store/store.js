@@ -17,7 +17,9 @@ import booksForRentReducer from './books/booksForRentSlice';
 import booksForCartReducer from './shopping/shoppingSlice';
 import recommendedBookReducer from './books/recommendedBookSlice';
 import notificationsReducer from './notifications/notificationsSlice';
+import priceByFormatReducer from './books/bookPriceSlice';
 import bookCategoryReducer from './books/bookCategory';
+
 
 const persistConfig = {
   key: 'root',
@@ -38,6 +40,7 @@ const rootReducer = combineReducers({
   booksForCart: booksForCartReducer,
   recommendedBooks: recommendedBookReducer,
   notifications: notificationsReducer,
+  priceByFormat: priceByFormatReducer,
   bookCategory: bookCategoryReducer,
 });
 

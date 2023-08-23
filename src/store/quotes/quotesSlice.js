@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { showNotification } from '../notifications/notificationsSlice';
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
@@ -34,8 +35,17 @@ export const postQuote = createAsyncThunk(
           },
         }
       );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Ve a citas para ver lo que publicaste',
+          type: 'success',
+        })
+      );
       return response.status;
     } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -63,20 +73,33 @@ export const postQuoteLike = createAsyncThunk(
 
 export const deleteQuote = createAsyncThunk(
   'quotes/deleteQuote',
-  async ({ id, quoteId }) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    const response = await axios.delete(
-      `${URL_BASE}/books/${id}/quotes/${quoteId}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({ id, quoteId }, thunkAPI) => {
+    try {
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.delete(
+        `${URL_BASE}/books/${id}/quotes/${quoteId}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Se ha eliminado tu cita',
+          type: 'success',
+        })
+      );
+      return { status: response.status, data: response.data };
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
