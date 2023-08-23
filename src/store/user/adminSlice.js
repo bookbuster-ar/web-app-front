@@ -81,10 +81,8 @@ export const getUserByName = createAsyncThunk(
           },
         }
       );
-      console.log(data);
       return data;
     } catch (error) {
-      console.log('este es el error', error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -126,7 +124,6 @@ export const bannedUser = createAsyncThunk(
         },
       }
     );
-    console.log(data);
     return data;
   }
 );
@@ -164,7 +161,7 @@ export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
     const { data } = await axios.get(`${URL_BASE}/subscriptions`);
-    console.log(data);
+
     return data;
   }
 );

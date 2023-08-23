@@ -7,7 +7,6 @@ const Comment = ({ comment, id, reviewId }) => {
   const commentId = comment.id;
   const userid = localStorage.getItem('user_id');
   const dispatch = useDispatch();
-  console.log(comment);
   let commentOwner = comment.by.id === userid;
 
   const handleDelete = () => {

@@ -21,10 +21,6 @@ const NavBar = () => {
     setShowProfile(!showProfile);
   };
 
-  const imageDefault =
-  'https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg';
-
-
   const handleLogOut = () => {
     dispatch(logOut());
     setShowMenu(false);

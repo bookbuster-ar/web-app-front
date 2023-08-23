@@ -121,7 +121,7 @@ const Carousels = () => {
     <>
       <div className='h-[320px] w-[220px] mx-auto mt-8 mb-1 md:mt-28 md:ml-32 lg:mt-60 lg:ml-64 xl:mt-16 xl:ml-32 relative border border-slate-100 rounded-3xl shadow-lg'>
         <h1 className='text-xl ml-6 leading-4 mb-3 mt-6 font-dark text-bluebook'>
-          RECIÉN <br /> LLEGADOS
+          LOS MÁS <br /> POPULARES
         </h1>
         <Slider {...settings}>
           {mostPopularStatus === 'loading' ? (
@@ -166,7 +166,7 @@ const Carousels = () => {
 
       <div className='h-[320px] w-[220px] mx-auto my-1 md:mt-28 md:mr-32 lg:mt-60 lg:mr-64 xl:mt-16 xl:ml-20 relative border border-slate-100 rounded-3xl shadow-lg'>
         <h1 className='text-xl ml-6 leading-4 mb-3 mt-6 font-dark text-bluebook'>
-          LOS MÁS <br /> POPULARES
+          RECIÉN <br /> LLEGADOS
         </h1>
         <Slider {...settings1}>
           {newlyArrivedStatus === 'loading' ? (
@@ -211,7 +211,7 @@ const Carousels = () => {
 
       <div className='h-[320px] w-[220px] mx-auto my-1 md:-mt-24 md:ml-32 lg:-mt-56 lg:ml-64 xl:mt-16 xl:ml-8 relative border border-slate-100 rounded-3xl shadow-lg'>
         <h1 className='text-xl ml-6 leading-4 mb-7 mt-6 font-dark text-bluebook'>
-          AUDIOLIBROS
+          NOVEDADES
         </h1>
         <Slider {...settings2}>
           {latestReleasesStatus === 'loading' ? (
@@ -256,10 +256,9 @@ const Carousels = () => {
 
       <div className='h-[320px] w-[220px] mx-auto my-1 md:-mt-24 md:mr-32 lg:-mt-56 lg:mr-64 xl:mt-16 xl:ml-0 relative border border-slate-100 rounded-3xl shadow-lg'>
         <h1 className='text-xl ml-6 leading-4 mb-3 mt-6 font-dark text-bluebook'>
-          LIBROS <br /> USADOS
+          EN <br /> ALQUILER
         </h1>
         <Slider {...settings3}>
-
           {booksForRentStatus === 'loading' ? (
             <Loader />
           ) : (
