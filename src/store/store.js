@@ -21,7 +21,7 @@ import notificationsReducer from './notifications/notificationsSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'user'],
 };
 
 const rootReducer = combineReducers({
