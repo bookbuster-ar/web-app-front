@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ErrorModal from '../icons/ErrorModal';
 import SuccessModal from '../icons/SuccessModal';
 

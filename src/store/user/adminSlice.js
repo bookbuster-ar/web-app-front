@@ -94,7 +94,7 @@ export const getUsersBanned = createAsyncThunk(
     try {
       const sessionid = localStorage.getItem('session_id');
       const userid = localStorage.getItem('user_id');
-      const { data } = await axios.get(`${URL_BASE}/banned`,  {
+      const { data } = await axios.get(`${URL_BASE}/banned`, {
         headers: {
           'Content-Type': 'application/json',
           userid,
@@ -363,6 +363,6 @@ export const selectUsersError = (state) => state.admin.usersError;
 
 export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
 
-export const selectSubscriptions = (state) => state.admin.subscriptions
+export const selectSubscriptions = (state) => state.admin.subscriptions;
 
 export default adminSlice.reducer;
