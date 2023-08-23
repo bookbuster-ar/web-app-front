@@ -8,6 +8,7 @@ import { selectIsLogged } from '../store/user/authSlice';
 import { logOut } from '../store/user/authSlice';
 import Avatar from '../components/Avatar';
 
+
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -19,6 +20,10 @@ const NavBar = () => {
   const handleProfile = () => {
     setShowProfile(!showProfile);
   };
+
+  const imageDefault =
+  'https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg';
+
 
   const handleLogOut = () => {
     dispatch(logOut());

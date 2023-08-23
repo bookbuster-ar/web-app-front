@@ -17,7 +17,7 @@ const INITIAL_FORM_STATE = {
   about: '',
   image: '',
   name: '',
-  lastname: '',
+  lastName: '',
   email: '',
   country: '',
   address: '',
@@ -179,7 +179,7 @@ const FormProfile = () => {
                     ) : (
                       <>
                         <img
-                          className='h-12 w-12 rounded-'
+                          className='h-12 w-12 rounded-full object-cover'
                           src={
                             form.image instanceof File
                               ? URL.createObjectURL(form.image)
@@ -291,7 +291,7 @@ const FormProfile = () => {
                     <input
                       type='text'
                       placeholder='Ej: Pérez'
-                      name='lastname'
+                      name='lastName'
                       value={form.lastName || ''}
                       id='last-name'
                       autoComplete='family-name'
@@ -414,7 +414,7 @@ const FormProfile = () => {
                   <div className='mt-2'>
                     <input
                       type='text'
-                      name='postal_code'
+                      name='postalCode'
                       value={form.postalCode || ''}
                       placeholder='Ej: C1043AAZ'
                       id='postal_code'

@@ -17,6 +17,8 @@ import HomeIcon from '../icons/admin/Home';
 
 /* COMPONENTS */
 import Usuarios from '../components/Admin/Usuarios';
+import Subscribers from '../components/Admin/Subscribers';
+import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
 import ModalMessage from '../components/ModalMessage';
 
@@ -110,10 +112,10 @@ const Admin2 = () => {
             <Usuarios />
           </div>
           <div className={activeView === 2 ? 'block' : 'hidden'}>
-            <h1>Suscriptores</h1>
+            <Subscribers/>
           </div>
           <div className={activeView === 3 ? 'block' : 'hidden'}>
-            <h1>Baneados</h1>
+            <Baneados/>
           </div>
           <div className={activeView === 4 ? 'block' : 'hidden'}>
             <Revision />

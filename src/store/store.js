@@ -14,14 +14,17 @@ import reviewsReducer from './reviews/reviewsSlice';
 import paymentReducer from './payment/paymentSlice';
 import quotesReducer from './quotes/quotesSlice';
 import booksForRentReducer from './books/booksForRentSlice';
-import recommendedBookSlice from './books/recommendedBookSlice';
+import booksForCartReducer from './shopping/shoppingSlice';
+import recommendedBookReducer from './books/recommendedBookSlice';
 import notificationsReducer from './notifications/notificationsSlice';
 import priceByFormatReducer from './books/bookPriceSlice';
+import bookCategoryReducer from './books/bookCategory';
+
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'user'],
 };
 
 const rootReducer = combineReducers({
@@ -34,9 +37,11 @@ const rootReducer = combineReducers({
   payment: paymentReducer,
   quotes: quotesReducer,
   booksForRent: booksForRentReducer,
-  recommendedBooks: recommendedBookSlice,
+  booksForCart: booksForCartReducer,
+  recommendedBooks: recommendedBookReducer,
   notifications: notificationsReducer,
   priceByFormat: priceByFormatReducer,
+  bookCategory: bookCategoryReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
