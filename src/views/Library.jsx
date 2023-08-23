@@ -60,7 +60,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion TEATRO */}
           <div className='bg-pinkbook relative col-span-5 row-span-3 col-start-1 row-start-12 text-2xl md:text-3xl lg:text-4xl xl:text-5xl xl:col-span-4 xl:row-span-1 lg:col-span-6 lg:row-span-1 lg:col-start-6 lg:row-start-9 font-roboto text-yellowbook font-black cursor-pointer group hover:bg-pink-200'>
-            <Link to='genre/e60e1481-ce30-416b-a13a-8ed9c554dd11'>
+            <Link to='genre/88507a88-ea84-4894-bb51-ef0336e82b2f'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 md:left-5 lg:left-5 xl:left-5'>
                 <div className='absolute bottom-0 leading-1 font-roboto duration-500 group-hover:bottom-14 lg:group-hover:bottom-10 xl:group-hover:bottom-14 group-hover:text-bluebook'>
                   TEATRO
@@ -149,7 +149,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-orangebook relative col-span-2 row-span-2 col-start-8 row-start-13 text-xs md:text-xl lg:text-2xl xl:text-2xl lg:col-span-2 lg:row-span-2 lg:col-start-10 lg:row-start-4 xl:col-span-1 xl:row-span-2 font-roboto text-yellowbook font-black cursor-pointer group hover:bg-orange-200'>
-            <Link to='genre/093588bd-60fb-4887-be36-33eb90efd8de'>
+            <Link to='genre/e7c94e7a-986e-4b26-a947-feef377a8c06'>
               <div className='relative transition-all duration-500 h-full ease-in left-3'>
                 <div className='absolute bottom-2 leading-5 font-roboto duration-500 group-hover:bottom-14 md:group-hover:bottom-12 lg:group-hover:bottom-28 xl:group-hover:bottom-[120px] group-hover:text-bluebook'>
                   JÓVE
@@ -202,7 +202,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-redbook relative col-span-2 row-span-2 col-start-1 row-start-10 xl:col-span-3 xl:row-span-2 lg:col-span-2 lg:row-span-2 lg:col-start-4 lg:row-start-8 text-[7px] md:text-sm lg:text-md xl:text-2xl font-roboto text-white font-black cursor-pointer group hover:bg-red-200'>
-            <Link to='genre/a59840fe-7f7a-4086-9966-d18725ab8e70'>
+            <Link to='genre/166091af-2c73-455c-94e0-e6f30107645c'>
               <div className='relative transition-all duration-500 h-full ease-in left-1 md:left-3'>
                 <div className='absolute bottom-1 left-1 font-roboto duration-500 group-hover:bottom-10 lg:group-hover:bottom-24 xl:group-hover:bottom-32 group-hover:text-bluebook'>
                   BIENESTAR Y <br /> ESPIRITUALIDAD
