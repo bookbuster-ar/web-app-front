@@ -10,7 +10,9 @@ export default function Avatar() {
     <>
       <div className='flex justify-center -space-x-2 overflow-hidden'>
         <img
-          className='inline-block h-8 w-8 md:h-10 md:w-10 lg:w-12 lg:h-12 xl:h-14 xl:w-14 rounded-full border-yellowbook border-2 object-cover'
+          className={`inline-block h-8 w-8 md:h-10 md:w-10 lg:w-12 lg:h-12 xl:h-14 xl:w-14 rounded-full ${
+            user.subscription ? 'border-4 border-yellowbook' : ''
+          }  border-2 object-cover`}
           src={user.image || imageDefault}
           alt={user.name}
         />

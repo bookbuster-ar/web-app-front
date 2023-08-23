@@ -138,7 +138,6 @@ export const createBook = createAsyncThunk(
         sessionId: localStorage.getItem('session_id'),
       },
     });
-
     return response.status;
   }
 );

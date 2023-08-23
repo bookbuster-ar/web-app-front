@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+ const URL_BASE = 'https://bookbuster-main.onrender.com/api';
+
 
 const initialState = {
   quotes: [],
@@ -13,7 +14,6 @@ export const fetchQuotes = createAsyncThunk(
   'quotes/fetchQuotes',
   async (bookId) => {
     const { data } = await axios.get(`${URL_BASE}/books/${bookId}/quotes`);
-    console.log(data);
     return data;
   }
 );
