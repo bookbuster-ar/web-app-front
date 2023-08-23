@@ -1,41 +1,36 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createBook,
-  fetchGenres,
-  getEditorials,
-  selectEditorials,
+  selectBookStatus,
+  setStatus,
 } from '../store/books/bookSlice';
 import buildFormData from '../util';
-import debounce from 'just-debounce-it';
-import { normalizeString } from '../util/normalizeString';
 import OrangeLines from '../assets/home/desafia/OrangeLines.png';
+import Loader from '../icons/Loader/Loader';
 
 const INITIAL_FORM_STATE = {
   title: '',
   author: '',
-  publication_year: '',
-  editorial_id: '',
-  editorial_name: '',
+  publicationYear: '',
+  editorialName: '',
   images: {
     cover: null,
-    extra: [null, null, null],
+    backCover: null,
+    spine: null,
+    inHalf: null,
   },
 };
 
-const IMAGE_TYPES = {
-  backCover: 0,
-  spine: 1,
-  openSpine: 2,
-};
-
 const FormSell = () => {
-  const [filteredEditorials, setFilteredEditorials] = useState([]);
   const [form, setForm] = useState(INITIAL_FORM_STATE);
-  const editorials = useSelector(selectEditorials);
+  const status = useSelector(selectBookStatus);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const dispatch = useDispatch();
+
   const currentYear = new Date().getFullYear();
+  const imagesLoaded = Object.values(form.images).filter(Boolean).length;
 
   // Handlers
   const changeHandler = (event) => {
@@ -43,96 +38,124 @@ const FormSell = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const editorialChangeHandler = (event) => {
-    const value = event.target.value;
-    setForm({ ...form, editorial_name: value });
-    if (value.length >= 3) debouncedGetEditorial(value);
+  const changeHandlerImage = (event) => {
+    const { name } = event.target;
+    const updatedImages = { ...form.images, [name]: event.target.files[0] };
+    setForm({ ...form, images: updatedImages });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    let updatedForm = { ...form };
-    const existingEditorial = editorials.find(
-      (e) =>
-        normalizeString(e.name) === normalizeString(updatedForm.editorial_name)
-    );
 
-    if (existingEditorial) {
-      updatedForm.editorial_id = existingEditorial.id;
-      updatedForm.editorial_name = '';
-    } else {
-      updatedForm.editorial_id = null;
-    }
-
-    const bookData = buildFormData(updatedForm);
+    const bookData = buildFormData(form);
     dispatch(createBook(bookData));
-
-    setForm(INITIAL_FORM_STATE);
+    // setForm(INITIAL_FORM_STATE);
   };
 
-  const handleUploadCover = (event) => {
-    event.preventDefault();
-    const file = event.target.files[0];
-
-    setForm((prevForm) => ({
-      ...prevForm,
-      images: {
-        ...prevForm.images,
-        cover: file,
-      },
-    }));
+  const isValidForm = () => {
+    return (
+      form.title &&
+      form.author &&
+      form.publicationYear &&
+      form.editorialName &&
+      form.images.cover &&
+      form.images.backCover &&
+      form.images.spine &&
+      form.images.inHalf
+    );
   };
 
-  const handleUploadExtraImages = (type) => (event) => {
-    event.preventDefault();
-    const file = event.target.files[0];
+  if (status === 'loading') {
+    return (
+      <div className='h-screen flex items-center justify-center'>
+        <Loader />
+      </div>
+    );
+  }
 
-    setForm((prevForm) => {
-      const extraImages = [...prevForm.images.extra];
+  if (status === 'succeeded') {
+    return (
+      <div className='h-screen flex items-center justify-center'>
+        <div className='fixed z-10 inset-0 overflow-y-auto'>
+          <div className='flex items-center justify-center min-h-screen'>
+            <div className='bg-white rounded-lg shadow-lg p-6 animate__animated animate__zoomIn'>
+              <div className='flex items-center justify-center mb-4'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-6 w-6 text-green-300 mr-2'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
+                >
+                  <path
+                    fillRule='evenodd'
+                    d='M17.707,4.293c0.391,0.391,0.391,1.023,0,1.414l-9,9c-0.391,0.391-1.023,0.391-1.414,0l-5-5c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0L8,12.586l8.293-8.293C16.684,3.902,17.316,3.902,17.707,4.293z'
+                  />
+                </svg>
+                <h2 className='text-lg font-medium text-gray-900'>
+                  ¡Envío Exitoso!
+                </h2>
+              </div>
+              <p className='text-sm text-gray-500 mb-4'>
+                Tu libro fue enviado para revisión. En las próximas 24 h nos
+                pondremos en contacto con vos para confirmar el estado de tu
+                publicación
+              </p>
+              <div className='flex justify-center'>
+                <button
+                  className='bg-green-400 hover:bg-green-500 text-white font-medium py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
+                  onClick={() => dispatch(setStatus('idle'))}
+                >
+                  Aceptar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-      if (type === 'backCover') extraImages[0] = file;
-      if (type === 'spine') extraImages[1] = file;
-      if (type === 'openSpine') extraImages[2] = file;
-
-      return {
-        ...prevForm,
-        images: {
-          ...prevForm.images,
-          extra: extraImages,
-        },
-      };
-    });
-  };
-
-  const debouncedGetEditorial = useCallback(
-    debounce((editorial) => {
-      if (editorial) {
-        const normalizedInput = normalizeString(editorial);
-        const matches = editorials.filter((e) =>
-          normalizeString(e.name).includes(normalizedInput)
-        );
-        setFilteredEditorials(matches);
-      } else {
-        setFilteredEditorials([]);
-      }
-    }, 500),
-    []
-  );
-
-  useEffect(() => {
-    dispatch(fetchGenres());
-    dispatch(getEditorials());
-  }, [dispatch]);
-
-  const images = [
-    { label: 'Tapa', image: form.images.cover },
-    { label: 'Contratapa', image: form.images.extra[IMAGE_TYPES.backCover] },
-    { label: 'Lomo', image: form.images.extra[IMAGE_TYPES.spine] },
-    {
-      label: 'Lomo abierto por la mitad',
-      image: form.images.extra[IMAGE_TYPES.openSpine],
-    },
-  ];
+  if (status === 'failed') {
+    return (
+      <div className='h-screen flex items-center justify-center'>
+        <div className='fixed z-10 inset-0 overflow-y-auto'>
+          <div className='flex items-center justify-center min-h-screen'>
+            <div className='bg-white rounded-lg shadow-lg p-6 animate__animated animate__zoomIn'>
+              <div className='flex items-center justify-center mb-4'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-6 w-6 text-red-500 mr-2'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
+                >
+                  <path
+                    fillRule='evenodd'
+                    d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-2.293 2.293a1 1 0 001.414 1.414L10 11.414l2.293 2.293a1 1 0 001.414-1.414L11.414 10l2.293-2.293a1 1 0 00-1.414-1.414L10 8.586 7.707 7.293z'
+                  />
+                </svg>
+                <h2 className='text-lg font-medium text-gray-900'>
+                  ¡Error en el envío!
+                </h2>
+              </div>
+              <p className='text-sm text-gray-500 mb-4'>
+                ¡No fue posible enviar tu libro a Bookbuster! Verifica: <br />
+                <br />- Estar logeado en tu cuenta
+                <br /> -Tener una suscripción activa a Bookbuster <br /> <br />
+              </p>
+              <div className='flex justify-center'>
+                <button
+                  className='bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2'
+                  onClick={() => dispatch(setStatus('idle'))}
+                >
+                  Entendido
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='flex flex-row '>
@@ -163,10 +186,16 @@ const FormSell = () => {
             Si tu libro cumple con estos requisitos, completá los siguientes
             datos:
           </p>
+          <p>
+            Todo con <b className='text-red-500'>*</b> es de carácter
+            obligatorio
+          </p>
         </div>
         <form onSubmit={submitHandler} className='flex flex-col items-end'>
           <div className='my-2'>
-            <label className='mr-16 w-48 items-center '>Título del libro</label>
+            <label className='mr-16 w-48 items-center '>
+              Título del libro <b className='text-red-500'>*</b>
+            </label>
             <input
               type='text'
               name='title'
@@ -177,7 +206,9 @@ const FormSell = () => {
           </div>
 
           <div className='my-2'>
-            <label className='mr-16'>Autor</label>
+            <label className='mr-16'>
+              Autor <b className='text-red-500'>*</b>
+            </label>
             <input
               type='text'
               name='author'
@@ -188,11 +219,13 @@ const FormSell = () => {
           </div>
 
           <div className='my-2'>
-            <label className='mr-16'>Año de publicación</label>
+            <label className='mr-16'>
+              Año de publicación <b className='text-red-500'>*</b>
+            </label>
             <input
               type='number'
-              name='publication_year'
-              value={form.publication_year}
+              name='publicationYear'
+              value={form.publicationYear}
               min={`${currentYear}` - 14}
               max={`${currentYear}`}
               onChange={changeHandler}
@@ -201,34 +234,16 @@ const FormSell = () => {
           </div>
 
           <div className='my-2'>
-            <label className='mr-16 '>Editorial</label>
+            <label className='mr-16 '>
+              Editorial <b className='text-red-500'>*</b>
+            </label>
             <input
               type='text'
-              name='editorial_name'
-              value={form.editorial_name}
-              onChange={editorialChangeHandler}
+              name='editorialName'
+              value={form.editorialName}
+              onChange={changeHandler}
               className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
             />
-            {filteredEditorials.length > 0 && (
-              <div>
-                {filteredEditorials.map((e) => (
-                  <div
-                    className='flex justify-center m-1 text-white border rounded-xl bg-blue-300 cursor-pointer '
-                    key={e.id}
-                    onClick={() => {
-                      setForm({
-                        ...form,
-                        editorial_id: e.id,
-                        editorial_name: e.name,
-                      });
-                      setFilteredEditorials([]);
-                    }}
-                  >
-                    {e.name}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
           <h1 className='mr-36 font-bold text-gray-600'>
@@ -237,34 +252,46 @@ const FormSell = () => {
 
           <div className='flex flex-col items-end'>
             <div className='flex flex-row m-2'>
-              <label className='mr-16'>Tapa</label>
+              <label className='mr-16'>
+                Tapa <b className='text-red-500'>*</b>
+              </label>
               <input
                 type='file'
-                onChange={handleUploadCover}
+                name='cover'
+                onChange={(e) => changeHandlerImage(e)}
                 className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
               />
             </div>
             <div className='flex flex-row m-2'>
-              <label className='mr-16'>Contratapa</label>
+              <label className='mr-16'>
+                Contratapa <b className='text-red-500'>*</b>
+              </label>
               <input
                 type='file'
-                onChange={handleUploadExtraImages('backCover')}
+                name='backCover'
+                onChange={(e) => changeHandlerImage(e)}
                 className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
               />
             </div>
             <div className='flex flex-row m-2'>
-              <label className='mr-16'>Lomo</label>
+              <label className='mr-16'>
+                Lomo <b className='text-red-500'>*</b>
+              </label>
               <input
                 type='file'
-                onChange={handleUploadExtraImages('spine')}
+                name='spine'
+                onChange={(e) => changeHandlerImage(e)}
                 className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
               />
             </div>
             <div className='flex flex-row m-2'>
-              <label className='mr-16'>Lomo abierto por la mitad</label>
+              <label className='mr-16'>
+                Lomo abierto por la mitad <b className='text-red-500'>*</b>
+              </label>
               <input
                 type='file'
-                onChange={handleUploadExtraImages('openSpine')}
+                name='inHalf'
+                onChange={(e) => changeHandlerImage(e)}
                 className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
               />
             </div>
@@ -279,7 +306,12 @@ const FormSell = () => {
           </p>
           <button
             type='submit'
-            className='bg-bluebook hover:bg-blue-800 text 3x1 text-white font-bold font-roboto py-4 px-4 my-3 self-center'
+            disabled={!isValidForm()}
+            className={`font-bold font-roboto py-4 px-4 my-3 self-center ${
+              isValidForm()
+                ? 'bg-bluebook hover:bg-blue-800 text-white'
+                : 'bg-gray-400 text-black'
+            }`}
           >
             ENVIAR INFORMACIÓN
           </button>
@@ -294,21 +326,120 @@ const FormSell = () => {
         <div className=' text-black bg-blue-300 bg-opacity-10 text-base rounded-xl pl-2 p-2 h-5/6 bg-transparent border shadow-lg outline-none flex flex-col items-center justify-center'>
           <h2 className='font-bold text-3xl'>{form.title}</h2>
           <h3 className='text-xl'>{form.author}</h3>
-          <h3>{form.publication_year}</h3>
-          <h3>{form.editorial_name}</h3>
-          {images.map(
-            (imgData, index) =>
-              imgData.image && (
-                <div key={index} className='flex flex-col items-center'>
-                  <h4>{imgData.label}</h4>
-                  <img
-                    src={URL.createObjectURL(imgData.image)}
-                    alt={`Vista previa de ${imgData.label}`}
-                    className='max-w-xs'
-                  />
-                </div>
-              )
-          )}
+          <h3>{form.publicationYear}</h3>
+          <h3>{form.editorialName}</h3>
+          <div
+            id='book-carousel'
+            className='relative w-full'
+            data-carousel='slide'
+          >
+            <div className='relative h-56 overflow-hidden rounded-lg md:h-96 aspect-w-3 aspect-h-4'>
+              {Object.values(form.images).map(
+                (image, index) =>
+                  image && (
+                    <div
+                      key={index}
+                      className={`absolute w-full h-full top-0 left-0 transition-opacity duration-300 ease-in-out ${
+                        index === activeImageIndex
+                          ? 'opacity-100 visible'
+                          : 'opacity-0 invisible'
+                      }`}
+                    >
+                      <img
+                        src={URL.createObjectURL(image)}
+                        className='object-cover object-center w-full h-full'
+                        alt={`Vista previa del libro ${image.name}`}
+                      />
+                    </div>
+                  )
+              )}
+            </div>
+            <div className='absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2'>
+              {Object.values(form.images).map(
+                (image, index) =>
+                  image && (
+                    <button
+                      key={index}
+                      type='button'
+                      className={`w-3 h-3 rounded-full ${
+                        index === activeImageIndex ? 'bg-blue-500' : ''
+                      }`}
+                      aria-current={
+                        index === activeImageIndex ? 'true' : 'false'
+                      }
+                      aria-label={`Slide ${index + 1}`}
+                      onClick={() => setActiveImageIndex(index)}
+                    ></button>
+                  )
+              )}
+            </div>
+            {imagesLoaded > 1 && (
+              <button
+                type='button'
+                className='absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none'
+                data-carousel-prev
+                onClick={() => {
+                  if (activeImageIndex > 0) {
+                    setActiveImageIndex(activeImageIndex - 1);
+                  }
+                }}
+              >
+                <span className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none'>
+                  <svg
+                    className='w-4 h-4 text-white dark:text-gray-800'
+                    aria-hidden='true'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 6 10'
+                  >
+                    <path
+                      stroke='currentColor'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth='2'
+                      d='M5 1 1 5l4 4'
+                    />
+                  </svg>
+                  <span className='sr-only'>Previous</span>
+                </span>
+              </button>
+            )}
+
+            {imagesLoaded > 1 && (
+              <button
+                type='button'
+                className='absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none'
+                data-carousel-next
+                onClick={() => {
+                  if (
+                    activeImageIndex <
+                    Object.values(form.images).filter(Boolean).length - 1
+                  ) {
+                    setActiveImageIndex(activeImageIndex + 1);
+                  }
+                }}
+              >
+                <span className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none'>
+                  <svg
+                    className='w-4 h-4 text-white dark:text-gray-800'
+                    aria-hidden='true'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 6 10'
+                  >
+                    <path
+                      stroke='currentColor'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth='2'
+                      d='m1 9 4-4-4-4'
+                    />
+                  </svg>
+                  <span className='sr-only'>Next</span>
+                </span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
