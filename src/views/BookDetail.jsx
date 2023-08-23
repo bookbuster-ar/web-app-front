@@ -95,20 +95,20 @@ const BookDetail = () => {
   const selectHandler = (event) => {
     const book_shelf_category_id =
       event.target.options[event.target.selectedIndex].id;
-    console.log('book_shelf_category_id!!!!!!!!!!!! AHHHHHHH', book_shelf_category_id);
-    dispatch(addToBookshelf({bookId, book_shelf_category_id}));
+
+    dispatch(addToBookshelf({ bookId, book_shelf_category_id }));
   };
 
   return (
     <div className='no-scroll-x'>
-      <div className='pt-10 flex flex-col content-center'>
+      <div className='pt-10 flex flex-col content-center '>
         <div className='mb-10 '>
           {status === 'loading' ? (
             <div className='flex flex-col items-center w-full mt-60 '>
               <Loader />
             </div>
           ) : (
-            <div className='flex w-full h-[500px] ml-20'>
+            <div className='flex w-full h-full ml-20'>
               <div className='w-96 mx-14 '>
                 <img
                   className='h-96 object-cover '
@@ -140,7 +140,7 @@ const BookDetail = () => {
                       <select
                         name='bookshelves'
                         onChange={selectHandler}
-                        className={`${
+                        className={`bg-bluebook text-white ${
                           bookshelvesOptions ? 'block' : 'hidden'
                         } `}
                       >
@@ -150,7 +150,7 @@ const BookDetail = () => {
                               key={`${bookshelf.id}-${index}`}
                               value={bookshelf.name}
                               id={bookshelf.id}
-                              className='bg-bluebook text-white'
+                              className=' bg-bluebook text-white'
                             >
                               {bookshelf.name}
                             </option>

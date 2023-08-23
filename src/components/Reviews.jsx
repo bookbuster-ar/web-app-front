@@ -72,7 +72,7 @@ const Reviews = () => {
   const reviewsToDisplay = activeTab === 0 ? opiniones : reseñasEditoriales;
 
   return (
-    <div className='border rounded overflow-hidden shadow-lg p-6'>
+    <div className='border rounded  shadow-lg p-6'>
       <div className='border-b'>
         <ul className='flex'>
           <li className='flex-1'>

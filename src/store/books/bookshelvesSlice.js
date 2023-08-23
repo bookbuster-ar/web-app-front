@@ -12,6 +12,10 @@ const initialState = {
   bookshelf: {},
   bookshelfStatus: 'idle',
   bookshelfError: null,
+  shelvesWithBooks: {},
+  shelvesWithBooksStatus: 'idle',
+  shelvesWithBooksError: null,
+  reloadShelf: false,
 };
 
 export const getBookshelves = createAsyncThunk(
@@ -71,10 +75,28 @@ export const deleteBookFromShelf = createAsyncThunk(
   }
 );
 
+export const deleteShelf = createAsyncThunk(
+  'bookshelves/deleteShelf',
+  async (shelfId) => {
+    const userid = localStorage.getItem('user_id');
+    const sessionid = localStorage.getItem('session_id');
+    const response = await axios.delete(
+      `${URL_BASE}/shelves/deleteShelf?shelfId=${shelfId}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
+    return { status: response.status, data: response.data };
+  }
+);
+
 export const getBookshelf = createAsyncThunk(
   'bookshelves/getBookshelf',
   async (book_shelf_category_id) => {
-    console.log('Book Shelf Category ID: ', book_shelf_category_id);
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const { data } = await axios.get(
@@ -98,7 +120,7 @@ export const createNewShelf = createAsyncThunk(
     const userid = localStorage.getItem('user_id');
     const sessionid = localStorage.getItem('session_id');
     const response = await axios.post(
-      `${URL_BASE}/shelves/createNewShelf?name=${name}&book_shelves_id =${book_shelves_id}`,
+      `${URL_BASE}/shelves/createNewShelf?name=${name}&book_shelves_id=${book_shelves_id}`,
       {},
       {
         headers: {
@@ -128,6 +150,23 @@ export const editNameShelf = createAsyncThunk(
       }
     );
     return { status: response.status, data: response.data };
+  }
+);
+
+export const getShelvesWithBooks = createAsyncThunk(
+  'bookshelves/getShelvesWithBooks',
+  async () => {
+    const userid = localStorage.getItem('user_id');
+    const sessionid = localStorage.getItem('session_id');
+    const { data } = await axios.get(`${URL_BASE}/shelves/shelfWithBooks`, {
+      headers: {
+        'Content-Type': 'application/json',
+        userid,
+        sessionid,
+      },
+    });
+    console.log(data);
+    return data;
   }
 );
 
@@ -171,11 +210,22 @@ const bookshelvesSlice = createSlice({
       .addCase(getBookshelf.rejected, (state, action) => {
         state.bookshelfError = action.error;
       })
+      .addCase(deleteShelf.pending, (state) => {
+        state.bookshelfStatus = 'loading';
+      })
+      .addCase(deleteShelf.fulfilled, (state) => {
+        state.bookshelfStatus = 'succeeded';
+        state.reloadShelf = !state.reloadShelf;
+      })
+      .addCase(deleteShelf.rejected, (state, action) => {
+        state.bookshelfError = action.error;
+      })
       .addCase(createNewShelf.pending, (state) => {
         state.bookshelfStatus = 'loading';
       })
       .addCase(createNewShelf.fulfilled, (state, action) => {
         state.bookshelfStatus = 'succeeded';
+        state.reloadShelf = !state.reloadShelf;
         // state.addStatus = action.data;
       })
       .addCase(createNewShelf.rejected, (state, action) => {
@@ -184,6 +234,17 @@ const bookshelvesSlice = createSlice({
       })
       .addCase(editNameShelf.pending, (state) => {
         state.bookshelfStatus = 'loading';
+      })
+      .addCase(getShelvesWithBooks.pending, (state) => {
+        state.shelvesWithBooksStatus = 'loading';
+      })
+      .addCase(getShelvesWithBooks.fulfilled, (state, action) => {
+        state.shelvesWithBooksStatus = 'succeeded';
+        state.shelvesWithBooks = action.payload;
+      })
+      .addCase(getShelvesWithBooks.rejected, (state, action) => {
+        state.shelvesWithBooksStatus = 'failed';
+        state.shelvesWithBooksError = action.error;
       });
   },
 });
@@ -200,4 +261,15 @@ export const selectBookshelfStatus = (state) =>
   state.bookshelves.bookshelfStatus;
 export const selectBookshelfError = (state) => state.bookshelves.bookshelfError;
 
+export const selectShelvesWithBooks = (state) =>
+  state.bookshelves.shelvesWithBooks;
+export const selectShelvesWithBooksStatus = (state) =>
+  state.bookshelves.shelvesWithBooksStatus;
+export const selectShelvesWithBooksError = (state) =>
+  state.bookshelves.shelvesWithBooksError;
+export const selectReloadShelf = (state) => state.bookshelves.reloadShelf;
 export default bookshelvesSlice.reducer;
+
+// shelvesWithBooks: {},
+//   shelvesWithBooksStatus: 'idle',
+//   shelvesWithBooksError: null,
