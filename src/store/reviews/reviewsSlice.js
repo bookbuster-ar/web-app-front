@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { showNotification } from '../notifications/notificationsSlice';
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
@@ -23,21 +24,34 @@ export const fetchReviews = createAsyncThunk(
 
 export const postReview = createAsyncThunk(
   'reviews/postReview',
-  async ({ newReview, id }) => {
-    const userId = localStorage.getItem('user_id');
-    const sessionId = localStorage.getItem('session_id');
-    const response = await axios.post(
-      `${URL_BASE}/books/${id}/reviews`,
-      newReview,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userId,
-          sessionId,
-        },
-      }
-    );
-    return response.status;
+  async ({ newReview, id }, thunkAPI) => {
+    try {
+      const userId = localStorage.getItem('user_id');
+      const sessionId = localStorage.getItem('session_id');
+      const response = await axios.post(
+        `${URL_BASE}/books/${id}/reviews`,
+        newReview,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userId,
+            sessionId,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Se creo tu reseña, ve a lectores para verla',
+          type: 'succes',
+        })
+      );
+      return response.status;
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -114,20 +128,30 @@ export const postLikeComment = createAsyncThunk(
 
 export const deleteReview = createAsyncThunk(
   'reviews/deleteReview',
-  async ({ id, reviewId }) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    const response = await axios.delete(
-      `${URL_BASE}/books/${id}/reviews/${reviewId}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({ id, reviewId }, thunkAPI) => {
+    try {
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.delete(
+        `${URL_BASE}/books/${id}/reviews/${reviewId}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({ message: 'Se eliminó tu reseña', type: 'success' })
+      );
+      return { status: response.status, data: response.data };
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
