@@ -25,7 +25,7 @@ const Library = () => {
         <div className='grid h-full grid-cols-9 grid-rows-16 xl:grid-cols-12 xl:grid-rows-6 lg:grid-cols-11 lg:grid-rows-9 '>
           {/* Esto es una separacion NARRATIVAS */}
           <div className='bg-orangebook relative col-span-5 row-span-5 col-start-1 row-start-1 text-2xl xl:col-span-4 xl:row-span-2 lg:col-span-4 lg:row-span-4 lg:text-4xl md:text-3xl font-roboto text-white font-black cursor-pointer group hover:bg-orange-200'>
-            <Link to='genre/cd49e523-5861-4669-9e26-8766812de9d5'>
+            <Link to='genre/b6961368-05ec-420a-b85c-750fc584996c'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 md:left-5 lg:left-5 xl:left-5'>
                 <div className='absolute bottom-1 leading-10 font-roboto duration-500 group-hover:bottom-24 group-hover:text-bluebook'>
                   NARRATIVAS
@@ -43,7 +43,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion NO FICCION Y CRONICA */}
           <div className='bg-redbook relative col-span-4 row-span-6 col-start-6 row-start-1 lg:col-span-3 lg:row-span-5 xl:col-span-3 xl:row-span-3 text-lg md:text-3xl  font-roboto text-yellowbook font-black cursor-pointer group hover:bg-red-200'>
-            <Link to='genre/ca9bc2d6-3d43-46d6-96b2-8e99b7453d00'>
+            <Link to='genre/916e68f5-fbcd-424e-99b6-be8b727fcd16'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 md:left-5 lg:left-5 xl:left-5'>
                 <div className='absolute bottom-2 leading-6 font-roboto duration-500 group-hover:bottom-28 md:group-hover:bottom-24 group-hover:text-bluebook'>
                   NO FICCIÓN <br />Y CRÓNICA
@@ -76,8 +76,8 @@ const Library = () => {
             </div>
           </div>
           {/* Esto es una separacion */}
-          <div className='bg-yellowbook relative col-span-3 row-span-2 col-start-6 row-start-13 xl:col-span-1 xl:row-span-2 lg:col-span-2 lg:row-span-2 lg:col-start-8 lg:row-start-4 text-[13px] md:text-lg font-roboto text-redbook font-black cursor-pointer group hover:bg-yellow-200'>
-            <Link to='genre/156a7635-c01f-460d-8e0a-45c4402cd2d7'>
+          <div className='bg-yellowbook relative col-span-3 row-span-2 col-start-6 row-start-13 xl:col-span-1 xl:row-span-2 lg:col-span-2 lg:row-span-2 lg:col-start-8 lg:row-start-4 text-[13px]  xl:text-[23px] md:text-lg font-roboto text-redbook font-black cursor-pointer group hover:bg-yellow-200 xl:leading-5'>
+            <Link to='genre/66692bb0-fe37-423d-b4d2-a5cbfde3e46f'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 font-roboto'>
                 <div className='absolute bottom-2 font-roboto duration-500 group-hover:bottom-14 md:group-hover:bottom-12 lg:group-hover:bottom-16 xl:group-hover:bottom-[90px] group-hover:text-bluebook'>
                   CIEN
@@ -85,7 +85,7 @@ const Library = () => {
                   CIA
                 </div>
               </div>
-              <div className='absolute bottom-4 transition-opacity opacity-0 group-hover:opacity-100 max-w-[60px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[90px] left-3 duration-200 text-[4px] md:text-[6px] lg:text-[8px] text-bluebook'>
+              <div className='absolute bottom-4 transition-opacity opacity-0 group-hover:opacity-100 max-w-[60px] md:max-w-[130px] lg:max-w-[150px] xl:max-w-[90px] left-3 duration-200 text-[4px] md:text-[6px] lg:text-[8px] xl:leading-none text-bluebook'>
                 Investigación y ensayo sobre ciencia, ecología, naturaleza,
                 biología, medio ambiente, recursos, pensamiento lógico y
                 matemático.
@@ -97,7 +97,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-white relative col-span-5 row-span-3 col-start-1 row-start-15 text-sm md:text-lg xl:text-2xl lg:col-span-7 lg:row-span-1 lg:col-start-6 lg:row-start-8 xl:col-span-4 xl:row-span-1 font-roboto text-redbook font-black cursor-pointer group hover:bg-blue-200'>
-            <Link to='genre/b0684c9f-8236-47b8-b4e3-600e3e2ca3eb'>
+            <Link to='genre/88507a88-ea84-4894-bb51-ef0336e82b2f'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 font-roboto'>
                 <div className='absolute bottom-1 font-roboto duration-500 group-hover:bottom-14 xl:group-hover:bottom-20 group-hover:text-bluebook'>
                   HISTORIA Y POLÍTICA
@@ -115,7 +115,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-white relative col-span-5 row-span-2 col-start-1 row-start-6 text-md md:text-2xl lg:text-2xl xl:text-3xl lg:col-span-4 lg:row-span-1 lg:col-start-1 lg:row-start-5 xl:col-span-4 xl:row-span-1 font-roboto text-bluebook font-black cursor-pointer group hover:bg-blue-200'>
-            <Link to='genre/4375baed-ffaa-4d62-9643-9e0852eecfb0'>
+            <Link to='genre/56ddcc41-4bd8-4ee3-8834-61fbbec4ae78'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 md:left-5 lg:left-5 xl:left-5'>
                 <div className='absolute bottom-2 duration-500 group-hover:bottom-12 md:group-hover:bottom-13 xl:group-hover:bottom-16 group-hover:text-bluebook'>
                   RELATOS BREVES
@@ -132,7 +132,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-bluebook relative col-span-4 row-span-3 col-start-6 row-start-10 text-sm md:text-2xl lg:text-3xl xl:text-3xl lg:col-span-4 lg:row-span-3 lg:col-start-8 lg:row-start-1 xl:col-span-4 xl:row-span-2 font-roboto text-white font-black cursor-pointer group hover:bg-blue-200'>
-            <Link to='genre/61b1d9bf-f5f0-41bc-9e2c-f236602d8d80'>
+            <Link to='genre/5ed686bb-17ee-45d8-8b90-19ae17e06daf'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 md:left-5 lg:left-5 xl:left-5 font-roboto'>
                 <div className='absolute bottom-2 duration-500 group-hover:bottom-20 group-hover:text-bluebook'>
                   PENSAMIENTOS <br /> Y FILOSOFÍA
@@ -151,7 +151,7 @@ const Library = () => {
           <div className='bg-orangebook relative col-span-2 row-span-2 col-start-8 row-start-13 text-xs md:text-xl lg:text-2xl xl:text-2xl lg:col-span-2 lg:row-span-2 lg:col-start-10 lg:row-start-4 xl:col-span-1 xl:row-span-2 font-roboto text-yellowbook font-black cursor-pointer group hover:bg-orange-200'>
             <Link to='genre/093588bd-60fb-4887-be36-33eb90efd8de'>
               <div className='relative transition-all duration-500 h-full ease-in left-3'>
-                <div className='absolute bottom-2 leading-5 font-roboto duration-500 group-hover:bottom-14 md:group-hover:bottom-12 lg:group-hover:bottom-28 xl:group-hover:bottom-[100px] group-hover:text-bluebook'>
+                <div className='absolute bottom-2 leading-5 font-roboto duration-500 group-hover:bottom-14 md:group-hover:bottom-12 lg:group-hover:bottom-28 xl:group-hover:bottom-[120px] group-hover:text-bluebook'>
                   JÓVE
                   <br />
                   NES
@@ -161,14 +161,14 @@ const Library = () => {
                 Ensayos, pensamiento contemporáneo y clásico, nuevas filosofías,
                 estudios del lenguaje, ambientalismo, economía y sociología.
               </div>
-              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-4 h-4'>
+              <div className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-500 right-2 top-2 w-5 h-5'>
                 <img src={RedMark} alt='Marcador Rojo' />
               </div>
             </Link>
           </div>
           {/* Esto es una separacion */}
           <div className='bg-yellowbook relative col-span-5 row-span-2 col-start-1 row-start-8 text-lg md:text-2xl lg:col-span-4 lg:row-span-2 lg:col-start-1 lg:row-start-6 xl:col-span-4 xl:row-span-1 font-roboto text-redbook font-black cursor-pointer group hover:bg-yellow-200'>
-            <Link to='genre/86dee506-02e0-498b-8c0d-ae36712b61a1'>
+            <Link to='genre/a7552db7-5339-487c-8df6-e0e53ef4b4ef'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 md:left-5'>
                 <div className='absolute bottom-1 font-roboto duration-500 group-hover:bottom-14 lg:group-hover:bottom-16 group-hover:text-bluebook'>
                   POESÍA
@@ -185,7 +185,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-pinkbook relative col-span-4 row-span-3 col-start-6 row-start-7 xl:col-span-3 xl:row-span-1 lg:col-span-3 lg:row-span-2 lg:col-start-5 lg:row-start-6 font-roboto text-xl md:text-2xl text-bluebook font-black cursor-pointer group hover:bg-pink-200'>
-            <Link to='genre/4fa6d874-f95b-47e4-9ccb-2a3b57abe41f'>
+            <Link to='genre/0cd77985-8bbd-4d84-9370-19e7f7192a37'>
               <div className='relative transition-all duration-500 h-full ease-in left-3'>
                 <div className='absolute bottom-1 font-roboto duration-500 group-hover:bottom-20 group-hover:text-bluebook'>
                   MÚSICA
@@ -219,7 +219,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-white relative col-span-3 row-span-2 col-start-3 row-start-10 xl:col-span-3 xl:row-span-2 lg:col-span-3 lg:row-span-2 lg:col-start-1 lg:row-start-8 text-[10px] md:text-[15px] lg:text-[20px] xl:text-[25px] font-roboto text-orangebook font-black cursor-pointer group hover:bg-blue-200'>
-            <Link to='genre/ac222fdc-e53d-4bbb-8726-03f5dbdd0823'>
+            <Link to='genre/95c418cd-ee80-4ba3-be92-4fb934f7d2ef'>
               <div className='relative transition-all duration-500 h-full ease-in left-3 lg:left-5'>
                 <div className='absolute bottom-1 left-1 front-roboto duration-500 group-hover:bottom-12 lg:group-hover:bottom-16 group-hover:text-bluebook'>
                   NIÑOS Y NIÑAS
@@ -236,7 +236,7 @@ const Library = () => {
           </div>
           {/* Esto es una separacion */}
           <div className='bg-pinkbook relative col-span-6 row-span-4 col-start-6 row-start-15 xl:col-span-6 xl:row-span-2 lg:col-span-4 lg:row-span-2 lg:col-start-8 lg:row-start-6 text-sm md:text-md lg:text-3xl xl:text-4xl font-roboto text-redbook font-black cursor-pointer group hover:bg-pink-200'>
-            <Link to='genre/5a48caeb-d3cb-443c-a894-c620694e73a5'>
+            <Link to='genre/23a87ca0-fb68-443a-90d2-e982e53ff006'>
               <div className='relative transition-all duration-500 h-full ease-in left-3'>
                 <div className='absolute bottom-1 left-1 front-roboto duration-500 group-hover:bottom-12 md:group-hover:bottom-10 lg:group-hover:bottom-20 xl:group-hover:bottom-28 group-hover:text-bluebook'>
                   FEMINISMOS Y <br /> LGTBIQ

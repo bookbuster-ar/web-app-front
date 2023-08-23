@@ -4,7 +4,7 @@ const PersonalInfo = ({ user }) => {
   return (
     <div>
       {/* Contenido principal */}
-      <div className='  bg-gray-100 '>
+      <div className=' mx-6 bg-gray-100 '>
         <h2 className='font-bold font-roboto text-5xl text-bluebook my-10 ml-6 uppercase'>
           Mi perfil
         </h2>
@@ -29,7 +29,7 @@ const PersonalInfo = ({ user }) => {
               <strong>Apellido:</strong> {user.lastName || 'N/A'}
             </li>
             <li className='text-gray-700 mb-4'>
-              <strong>Email:</strong> {user.email}
+              <strong>Email:</strong> {user.email || 'N/A'}
             </li>
             <li className='text-gray-700 mb-4'>
               <strong>Créditos:</strong> {user.credit ?? 0}

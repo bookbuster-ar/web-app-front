@@ -1,3 +1,19 @@
+export function convertKeysToCamelCase(obj) {
+  const camelCaseObj = {};
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const camelKey = key.replace(/([-_][a-z])/gi, ($1) => {
+        return $1.toUpperCase().replace('-', '').replace('_', '');
+      });
+
+      camelCaseObj[camelKey] = obj[key];
+    }
+  }
+
+  return camelCaseObj;
+}
+
 const buildFormData = (bookInfo) => {
   const {
     title,
