@@ -14,7 +14,7 @@ function UserProfile() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
+  }, [dispatch]);
 
   const updateToggle = (value) => {
     setToggle(value);
@@ -68,7 +68,7 @@ function UserProfile() {
             } mr-6 cursor-pointer`}
             onClick={() => updateToggle(3)}
           >
-            Mis estanterÃ­as
+            Mis estanterías
           </li>
           <li
             className={`flex-fill ${

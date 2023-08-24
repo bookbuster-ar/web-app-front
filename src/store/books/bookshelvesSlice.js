@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
@@ -33,25 +34,37 @@ export const getBookshelves = createAsyncThunk(
     return data;
   }
 );
-
+// no me culpen si no funciona, lo hice a siegas y con render caido a pedazos :'(
 export const addToBookshelf = createAsyncThunk(
   'bookshelves/addToBookshelf',
-  async ({ bookId, book_shelf_category_id }) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    console.log(bookId, 'slice');
-    const response = await axios.post(
-      `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
-      {},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({ bookId, book_shelf_category_id }, thunkAPI) => {
+    try {
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.post(
+        `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Libro agregado con éxito a tu estanteria',
+          type: 'success',
+        })
+      );
+      return { status: response.status, data: response.data };
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -109,7 +122,6 @@ export const getBookshelf = createAsyncThunk(
         },
       }
     );
-    console.log('Response of BookShelf Category: ', data);
     return data;
   }
 );
@@ -165,7 +177,6 @@ export const getShelvesWithBooks = createAsyncThunk(
         sessionid,
       },
     });
-    console.log(data);
     return data;
   }
 );
@@ -189,7 +200,7 @@ const bookshelvesSlice = createSlice({
       .addCase(addToBookshelf.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(addToBookshelf.fulfilled, (state, action) => {
+      .addCase(addToBookshelf.fulfilled, (state) => {
         state.status = 'succeeded';
         // state.addStatus = action.data;
       })
@@ -223,7 +234,7 @@ const bookshelvesSlice = createSlice({
       .addCase(createNewShelf.pending, (state) => {
         state.bookshelfStatus = 'loading';
       })
-      .addCase(createNewShelf.fulfilled, (state, action) => {
+      .addCase(createNewShelf.fulfilled, (state) => {
         state.bookshelfStatus = 'succeeded';
         state.reloadShelf = !state.reloadShelf;
         // state.addStatus = action.data;

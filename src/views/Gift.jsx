@@ -5,8 +5,74 @@ import estrellaNaranja from '../assets/gift/estrellaNaranja.png';
 import manchaRoja from '../assets/gift/manchaRoja.png';
 import cruzRosa from '../assets/gift/cruzRosa.png';
 import Footer from './Footer';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  giftSubscription,
+  selectResponseUrl,
+  selectStatus,
+} from '../store/payment/paymentSlice';
 
 const Gift = () => {
+  const dispatch = useDispatch();
+  const responseUrl = useSelector(selectResponseUrl);
+  const status = useSelector(selectStatus);
+
+  const [emailOption1, setEmailOption1] = useState('');
+  const [emailOption2, setEmailOption2] = useState('');
+  const [emailOption3, setEmailOption3] = useState('');
+  const [selectedGiftDays, setSelectedGiftDays] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
+
+  useEffect(() => {
+    if (status === 200) {
+      window.location.href = responseUrl;
+    }
+  }, [status, dispatch]);
+
+  const handleGiftClick = (option) => {
+    if (selectedGiftDays && selectedPrice) {
+      const email = getEmailForOption(option);
+      if (email) {
+        dispatch(
+          giftSubscription({
+            price: selectedPrice,
+            userEmail: email,
+            giftDays: selectedGiftDays,
+          })
+        );
+      }
+    }
+  };
+
+  const getEmailForOption = (option) => {
+    switch (option) {
+      case 1:
+        return emailOption1;
+      case 2:
+        return emailOption2;
+      case 3:
+        return emailOption3;
+      default:
+        return '';
+    }
+  };
+
+  const setEmailForOption = (option, value) => {
+    switch (option) {
+      case 1:
+        setEmailOption1(value);
+        break;
+      case 2:
+        setEmailOption2(value);
+        break;
+      case 3:
+        setEmailOption3(value);
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <div className='flex flex-col justify-content items-center relative no-scroll-x'>
       <img src={GiftImage} alt='Books' className='mt-8' />
@@ -36,12 +102,23 @@ const Gift = () => {
                 ARS
               </span>
             </p>
-            <a
-              href='#'
+            <input
+              type='email'
+              placeholder='Ingresa tu email'
+              value={emailOption1}
+              onChange={(e) => setEmailForOption(1, e.target.value)}
+              className='mt-6 rounded-md border border-gray-300 p-2'
+            />
+            <button
+              onClick={() => {
+                setSelectedGiftDays(30);
+                setSelectedPrice(2000);
+                handleGiftClick(1);
+              }}
               className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
-            </a>
+            </button>
           </div>
         </div>
 
@@ -58,12 +135,23 @@ const Gift = () => {
                 ARS
               </span>
             </p>
-            <a
-              href='#'
+            <input
+              type='email'
+              placeholder='Ingresa tu email'
+              value={emailOption2}
+              onChange={(e) => setEmailForOption(2, e.target.value)}
+              className='mt-6 rounded-md border border-gray-300 p-2'
+            />
+            <button
+              onClick={() => {
+                setSelectedGiftDays(90);
+                setSelectedPrice(5000);
+                handleGiftClick(2);
+              }}
               className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
-            </a>
+            </button>
           </div>
         </div>
 
@@ -80,12 +168,23 @@ const Gift = () => {
                 ARS
               </span>
             </p>
-            <a
-              href='#'
+            <input
+              type='email'
+              placeholder='Ingresa tu email'
+              value={emailOption3}
+              onChange={(e) => setEmailForOption(3, e.target.value)}
+              className='mt-6 rounded-md border border-gray-300 p-2'
+            />
+            <button
+              onClick={() => {
+                setSelectedGiftDays(365);
+                setSelectedPrice(20000);
+                handleGiftClick(3);
+              }}
               className='mt-10 block w-full bg-bluebook px-3 py-2 text-center text-sm font-bold font-roboto text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600'
             >
               REGALAR
-            </a>
+            </button>
           </div>
         </div>
       </div>
