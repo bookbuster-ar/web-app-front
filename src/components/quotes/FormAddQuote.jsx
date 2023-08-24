@@ -13,7 +13,6 @@ const FormAddQuote = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [form, setForm] = useState(INITIAL_FORM_STATE);
-  // const [showError, setShowError] = useState(false);
   const error = useSelector(selectQuotesError);
 
   const changeHandler = (event) => {
@@ -25,14 +24,13 @@ const FormAddQuote = () => {
     event.preventDefault();
 
     let newQuote = { ...form };
-    console.log(newQuote);
     dispatch(postQuote({ newQuote, id }));
     setForm(INITIAL_FORM_STATE);
   };
 
   return (
     <div>
-      {error && <ErrorMessage message={error} />}
+      {/* {error && <ErrorMessage message={error} />} */}
       <form
         onSubmit={submitHandler}
         className='bg-white grid grid-cols-6 gap-2 shadow-lg rounded-xl p-6 text-sm w-9/12   '
