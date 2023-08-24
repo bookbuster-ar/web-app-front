@@ -160,7 +160,7 @@ const FormSell = () => {
   return (
     <div className='flex flex-col lg:flex-row'>
       <div className='flex flex-col justify-content items-center m-3 w-2/4 mx-auto'>
-        <div className='flex flex-col justify-center  p-4 m-2 mx-auto'>
+        <div className='flex flex-col justify-center p-4 m-2 w-[380px] md:w-[650px] lg:w-[550px] xl:w-[720px]'>
           {/* <div className='hidden md:absolute md:inline'>
             <img
               className='md:h-10 md:ml-80 md:-mt-16 lg:h-14 lg:ml-[400px] lg:-mt-20 xl:h-14 xl:ml-[10px] xl:-mt-[150px]'
@@ -168,90 +168,97 @@ const FormSell = () => {
               alt='Lineas naranjas horizontales'
             />
           </div> */}
-          <h1 className='font-bold font-roboto text-5xl text-bluebook my-6 text-center'>
-            ¿CÓMO VENDERLE TUS LIBROS A BOOKBUSTER?
-          </h1>
-          <h2>
-            Bookbuster es una plataforma de novedades editoriales. Para vender
-            tu libro a la plataforma, debe cumplir los siguientes requisitos:
-          </h2>
-          <p className=' font-bold text-bluebook'>
-            • El libro debe haberse publicado en los últimos 15 años.
-          </p>
-          <p className=' font-bold text-bluebook'>
-            • No debe estar marcado, ni faltarle páginas, ni tener daños que
-            impidan su correcta lectura.
-          </p>
-          <p>
-            Si tu libro cumple con estos requisitos, completá los siguientes
-            datos:
-          </p>
-          <p className='bg-red-300 w-fit p-1 rounded-md text-sm'>
-            Todo campo que contenga <b className='text-red-600'>*</b> es de
-            carácter obligatorio
-          </p>
+          <div>
+            <h1 className='font-bold font-roboto text-bluebook my-6 text-center text-4xl md:text-5xl'>
+              ¿CÓMO VENDERLE TUS LIBROS A BOOKBUSTER?
+            </h1>
+          </div>
+          <div>
+            <h2>
+              Bookbuster es una plataforma de novedades editoriales. Para vender
+              tu libro a la plataforma, debe cumplir los siguientes requisitos:
+            </h2>
+            <p className=' font-bold text-bluebook'>
+              • El libro debe haberse publicado en los últimos 15 años.
+            </p>
+            <p className=' font-bold text-bluebook'>
+              • No debe estar marcado, ni faltarle páginas, ni tener daños que
+              impidan su correcta lectura.
+            </p>
+            <p>
+              Si tu libro cumple con estos requisitos, completá los siguientes
+              datos:
+            </p>
+            <p className='bg-red-300 w-fit p-1 rounded-md text-sm'>
+              Todo campo que contenga <b className='text-red-600'>*</b> es de
+              carácter obligatorio
+            </p>
+          </div>
         </div>
-        <form onSubmit={submitHandler} className='flex flex-col items-end'>
-          <div className='my-2'>
-            <label className='mr-16 w-48'>
-              Título del libro <b className='text-red-500'>*</b>
-            </label>
-            <input
-              type='text'
-              name='title'
-              onChange={changeHandler}
-              value={form.title}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
+
+        <form onSubmit={submitHandler} className='w-[350px] md:w-[600px] lg:flex flex-col items-end lg:w-[550px] xl:w-[700px]'>
+          <div className='md:flex flex-col md:items-end'>            
+            <div className='my-2'>
+              <label className='mr-16 w-48'>
+                Título del libro <b className='text-red-500'>*</b>
+              </label>
+              <input
+                type='text'
+                name='title'
+                onChange={changeHandler}
+                value={form.title}
+                className='text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none w-[350px] md:w-[350px] lg:w-[350px] xl:w-96'
+              />
+            </div>
+
+            <div className='my-2'>
+              <label className='mr-16'>
+                Autor <b className='text-red-500'>*</b>
+              </label>
+              <input
+                type='text'
+                name='author'
+                value={form.author}
+                onChange={changeHandler}
+                className='text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none w-[350px] md:w-[350px] lg:w-[350px] xl:w-96'
+              />
+            </div>
+
+            <div className='my-2'>
+              <label className='md:mr-16 lg:mr-12 xl:mr-16'>
+                Año de publicación <b className='text-red-500'>*</b>
+              </label>
+              <input
+                type='number'
+                name='publicationYear'
+                value={form.publicationYear}
+                min={`${currentYear}` - 14}
+                max={`${currentYear}`}
+                onChange={changeHandler}
+                className='text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none w-[350px] md:w-[350px] lg:w-[350px] xl:w-96'
+              />
+            </div>
+
+            <div className='my-2'>
+              <label className='mr-16 '>
+                Editorial <b className='text-red-500'>*</b>
+              </label>
+              <input
+                type='text'
+                name='editorialName'
+                value={form.editorialName}
+                onChange={changeHandler}
+                className='text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none w-[350px] md:w-[350px] lg:w-[350px] xl:w-96'
+              />
+            </div>
           </div>
 
-          <div className='my-2'>
-            <label className='mr-16'>
-              Autor <b className='text-red-500'>*</b>
-            </label>
-            <input
-              type='text'
-              name='author'
-              value={form.author}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-
-          <div className='my-2'>
-            <label className='mr-16'>
-              Año de publicación <b className='text-red-500'>*</b>
-            </label>
-            <input
-              type='number'
-              name='publicationYear'
-              value={form.publicationYear}
-              min={`${currentYear}` - 14}
-              max={`${currentYear}`}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-
-          <div className='my-2'>
-            <label className='mr-16 '>
-              Editorial <b className='text-red-500'>*</b>
-            </label>
-            <input
-              type='text'
-              name='editorialName'
-              value={form.editorialName}
-              onChange={changeHandler}
-              className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
-            />
-          </div>
-
-          <h1 className='mr-36 font-bold text-gray-600'>
+          <h1 className='font-bold text-gray-600 ml-[105px] mt-8 md:ml-[350px] lg:mr-12 xl:mr-28'>
             Fotos reales del libro
           </h1>
 
           <div className='flex flex-col items-end'>
-            <div className='flex flex-row m-2'>
+            <div className='flex flex-col m-2 md:flex-row'>
               <label className='mr-16'>
                 Tapa <b className='text-red-500'>*</b>
               </label>
@@ -259,10 +266,10 @@ const FormSell = () => {
                 type='file'
                 name='cover'
                 onChange={(e) => changeHandlerImage(e)}
-                className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+                className='text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none xl:w-96'
               />
             </div>
-            <div className='flex flex-row m-2'>
+            <div className='flex flex-col m-2 md:flex-row'>
               <label className='mr-16'>
                 Contratapa <b className='text-red-500'>*</b>
               </label>
@@ -270,10 +277,10 @@ const FormSell = () => {
                 type='file'
                 name='backCover'
                 onChange={(e) => changeHandlerImage(e)}
-                className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+                className='text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none xl:w-96'
               />
             </div>
-            <div className='flex flex-row m-2'>
+            <div className='flex flex-col m-2 md:flex-row'>
               <label className='mr-16'>
                 Lomo <b className='text-red-500'>*</b>
               </label>
@@ -281,18 +288,20 @@ const FormSell = () => {
                 type='file'
                 name='spine'
                 onChange={(e) => changeHandlerImage(e)}
-                className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+                className='text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none xl:w-96'
               />
             </div>
-            <div className='flex flex-row m-2'>
-              <label className='mr-16'>
-                Lomo abierto por la mitad <b className='text-red-500'>*</b>
-              </label>
+            <div className='flex flex-col m-2 md:flex-row'>
+              <div className='flex items-center md:w-[150px] lg:w-[150px] xl:w-[200px]'>
+                <label className='lg:mr-10 xl:-mr-2'>
+                  Lomo abierto por la mitad <b className='text-red-500'>*</b>
+                </label>
+              </div>
               <input
                 type='file'
                 name='inHalf'
                 onChange={(e) => changeHandlerImage(e)}
-                className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+                className='text-black text-base rounded-md pl-2  p-2  bg-transparent border outline-none md:ml-[55px] lg:ml-[10px] xl:ml-[59px] xl:w-96'
               />
             </div>
           </div>
@@ -304,21 +313,23 @@ const FormSell = () => {
             En caso de estar de acuerdo, nos encargaremos de retirar el libro,
             sin costo adicional para vos.
           </p>
-          <button
-            type='submit'
-            disabled={!isValidForm()}
-            className={`font-bold font-roboto py-4 px-4 my-3 self-center ${
-              isValidForm()
-                ? 'bg-bluebook hover:bg-blue-800 text-white'
-                : 'bg-gray-400 text-black'
-            }`}
-          >
-            ENVIAR INFORMACIÓN
-          </button>
+          <div className='w-full flex justify-center'>
+            <button
+              type='submit'
+              disabled={!isValidForm()}
+              className={`font-bold font-roboto py-4 px-4 my-3 self-center ${
+                isValidForm()
+                  ? 'bg-bluebook hover:bg-blue-800 text-white'
+                  : 'bg-gray-400 text-black'
+              }`}
+            >
+              ENVIAR INFORMACIÓN
+            </button>
+          </div>
         </form>
       </div>
 
-      <div className=' w-5/12 ml-10 max-h-fit'>
+      <div className='h-screen w-[350px] ml-[20px] md:w-[500px] md:ml-[135px] lg:mr-4 lg:ml-5 lg:w-5/12 xl:mr-10'>
         <h1 className='font-bold font-roboto text-4xl text-bluebook text-center p-4 m-2'>
           TU LIBRO
         </h1>

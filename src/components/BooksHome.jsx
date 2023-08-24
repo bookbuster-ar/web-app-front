@@ -56,21 +56,21 @@ export function ListOfBooks({ books }) {
         </button>
       </div>
 
-      <ul className='grid grid-cols-4 gap-5'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {books.map((book) => (
           <Link to={`/detail/${book.id}`} key={book.id}>
-            <li>
+            <div className='flex flex-col items-center m-2'>
               <img
                 src={book.images.cover}
                 alt={book.title}
-                className='h-72 w-3/4 object-cover'
+                className='h-72 w-full object-cover xl:w-11/12'
               />
               <p className='text-xs'>{book.author}</p>
               <h3 className='font-semibold text-sm'>{book.title}</h3>
-            </li>
+            </div>
           </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
