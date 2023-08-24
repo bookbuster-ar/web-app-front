@@ -15,11 +15,14 @@ import TransactionsIcon from '../icons/admin/Transactions';
 import AddStockIcon from '../icons/admin/AddStock';
 import HomeIcon from '../icons/admin/Home';
 
+import { BiSolidBookAdd } from 'react-icons/bi';
+
 /* COMPONENTS */
 import Usuarios from '../components/Admin/Usuarios';
 import Subscribers from '../components/Admin/Subscribers';
 import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
+import FormCreate from '../components/Admin/FormCreate';
 import RecommendBooks from '../components/Admin/RecommendBooks';
 
 const Admin = () => {
@@ -27,13 +30,14 @@ const Admin = () => {
     { name: 'Usuarios', icon: UsersIcon },
     { name: 'Suscriptores', icon: SubscribersIcon },
     { name: 'Baneados', icon: BannedIcon },
-    { name: 'Revisión y publicación', icon: RevisionIcon, margin: true },
+    { name: 'Revisión', icon: RevisionIcon, margin: true },
     { name: 'Recomendados', icon: RecommendedIcon },
     { name: 'Generos', icon: GenresIcon },
     { name: 'Subgeneros', icon: SubgenresIcon },
     { name: 'Vendidos', icon: VendidosIcon, margin: true },
     { name: 'Transacciones', icon: TransactionsIcon },
     { name: 'Agregar Stock', icon: AddStockIcon },
+    { name: 'Publicación', icon: BiSolidBookAdd },
   ];
   const [open, setOpen] = useState(true);
   const [activeView, setActiveView] = useState(1);
@@ -143,6 +147,9 @@ const Admin = () => {
           </div>
           <div className={activeView === 10 ? 'block' : 'hidden'}>
             <h1>Stock</h1>
+          </div>
+          <div className={activeView === 11 ? 'block' : 'hidden'}>
+            <FormCreate fromReview={false} />
           </div>
         </div>
         {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
