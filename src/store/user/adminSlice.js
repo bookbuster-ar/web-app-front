@@ -44,7 +44,7 @@ const initialState = {
   userRoleStatus: 'idle',
   userRoleError: null,
   recommendBooks: [],
-  sortOrder: 'name',  // este puede ser 'name' o 'date'
+  sortOrder: 'name', // este puede ser 'name' o 'date'
 };
 
 export const getAllUsers = createAsyncThunk(
@@ -147,8 +147,16 @@ export const bannedUser = createAsyncThunk(
 export const getTransaction = createAsyncThunk(
   'admin/getTransaction',
   async (id, thunkAPI) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
     try {
-      const { data } = await axios.get(`${URL_BASE}/transactions/${id}`);
+      const { data } = await axios.get(`${URL_BASE}/transactions/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -159,8 +167,16 @@ export const getTransaction = createAsyncThunk(
 export const getAllTransactions = createAsyncThunk(
   'admin/getAllTransactions',
   async (_, thunkAPI) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
     try {
-      const { data } = await axios.get(`${URL_BASE}/transactions`);
+      const { data } = await axios.get(`${URL_BASE}/transactions`, {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -169,7 +185,15 @@ export const getAllTransactions = createAsyncThunk(
 );
 
 export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
-  const { data } = await axios.get(`${URL_BASE}/books/sold`);
+  const sessionid = localStorage.getItem('session_id');
+  const userid = localStorage.getItem('user_id');
+  const { data } = await axios.get(`${URL_BASE}/books/sold`, {
+    headers: {
+      'Content-Type': 'application/json',
+      userid,
+      sessionid,
+    },
+  });
   return data;
 });
 
@@ -220,7 +244,15 @@ export const addCreditUser = createAsyncThunk(
 export const createGenre = createAsyncThunk(
   'admin/createGenre',
   async (genre) => {
-    const { data } = await axios.post(`${URL_BASE}/genre`, genre);
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    const { data } = await axios.post(`${URL_BASE}/genre`, genre, {
+      headers: {
+        'Content-Type': 'application/json',
+        userid,
+        sessionid,
+      },
+    });
     return data;
   }
 );
@@ -228,11 +260,23 @@ export const createGenre = createAsyncThunk(
 export const createSubgenre = createAsyncThunk(
   'admin/createSubgenre',
   async ({ genreId, subgenre }, thunkAPI) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
     try {
-      const { data } = await axios.post(`${URL_BASE}/subgenre`, {
-        genreId,
-        subgenre,
-      });
+      const { data } = await axios.post(
+        `${URL_BASE}/subgenre`,
+        {
+          genreId,
+          subgenre,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -262,7 +306,7 @@ export const createRecommend = createAsyncThunk(
 
 export const updateRole = createAsyncThunk(
   'admin/updateRole',
-  async ({userId, roleId}) => {
+  async ({ userId, roleId }) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     const { data } = await axios.put(
@@ -296,9 +340,14 @@ const adminSlice = createSlice({
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
         if (state.sortOrder === 'name') {
-          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+          state.users = action.payload.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
         } else {
-          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+          state.users = action.payload.sort(
+            (a, b) =>
+              new Date(a.date_of_register) - new Date(b.date_of_register)
+          );
         }
       })
       .addCase(getAllUsers.rejected, (state, action) => {
@@ -311,9 +360,14 @@ const adminSlice = createSlice({
       .addCase(getUserByName.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
         if (state.sortOrder === 'name') {
-          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+          state.users = action.payload.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
         } else {
-          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+          state.users = action.payload.sort(
+            (a, b) =>
+              new Date(a.date_of_register) - new Date(b.date_of_register)
+          );
         }
       })
       .addCase(getUserByName.rejected, (state, action) => {
@@ -431,20 +485,22 @@ const adminSlice = createSlice({
       })
       .addCase(updateRole.fulfilled, (state, action) => {
         state.userRoleStatus = 'succeeded';
-        const updatedUser = action.payload; 
-        const userIndex = state.users.findIndex(user => user.id === updatedUser.id);
+        const updatedUser = action.payload;
+        const userIndex = state.users.findIndex(
+          (user) => user.id === updatedUser.id
+        );
         if (userIndex !== -1) {
-           state.users[userIndex] = updatedUser;
+          state.users[userIndex] = updatedUser;
         }
       })
       .addCase(updateRole.rejected, (state, action) => {
         state.userRoleStatus = 'failed';
-        state.userRoleError = action.error.message; 
+        state.userRoleError = action.error.message;
       });
   },
 });
 
-export const {setSortOrder} = adminSlice.actions;
+export const { setSortOrder } = adminSlice.actions;
 
 export const selectAllUsers = (state) => state.admin.users;
 export const selectUsersStatus = (state) => state.admin.usersStatus;
@@ -461,7 +517,6 @@ export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
 export const selectSubscriptions = (state) => state.admin.subscriptions;
 
 export const selectRoles = (state) => state.admin.roles;
-export const selectUserRoleStatus = (state) => state.admin.userRoleStatus
-
+export const selectUserRoleStatus = (state) => state.admin.userRoleStatus;
 
 export default adminSlice.reducer;
