@@ -13,32 +13,32 @@ import {
   FormProfile,
   NotFound,
   SellOrRent,
-  Admin2
-
+  Admin2,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
 import ProtectedRoute from './components/ProtectedRoute';
+import About from './views/About';
 import { useLocation } from 'react-router-dom';
 import ModalMessage from './components/ModalMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideNotification } from './store/notifications/notificationsSlice';
 
 function App() {
-  const location = useLocation()
-  const notification = useSelector(state => state.notifications)
-  const dispatch = useDispatch()
+  const location = useLocation();
+  const notification = useSelector((state) => state.notifications);
+  const dispatch = useDispatch();
 
   return (
     <div>
-      {notification.isActive && 
-        <ModalMessage 
-           message={notification.message} 
-           type={notification.type} 
-           onClose={() => dispatch(hideNotification())} 
+      {notification.isActive && (
+        <ModalMessage
+          message={notification.message}
+          type={notification.type}
+          onClose={() => dispatch(hideNotification())}
         />
-      }
+      )}
       {location.pathname !== '/admin' && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />
@@ -52,6 +52,7 @@ function App() {
         <Route path='/library/genre/:id' element={<Genre />} />
         <Route path='/VerifyEmail' element={<VerifyEmail />} />
         <Route path='/gift' element={<Gift />} />
+        <Route path='/about' element={<About />} />
         <Route
           path='/sellbook'
           element={
@@ -86,7 +87,6 @@ function App() {
         />
         <Route path='*' element={<NotFound />} />
       </Routes>
-      
     </div>
   );
 }
