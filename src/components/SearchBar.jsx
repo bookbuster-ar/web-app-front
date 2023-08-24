@@ -57,7 +57,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <div className='space-x-2 flex items-center my-9 ml-15 justify-center'>
+      <div className='space-x-2 flex items-center my-9  justify-center'>
         <Search />
         <input
           type='text'
@@ -65,12 +65,12 @@ const SearchBar = () => {
           placeholder='Encontrá tu próximo libro'
           onChange={handleChange}
           name='search'
-          className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+          className='w-52 md:w-80 lg:w-96 md:text-black text-base rounded-md pl-2 p-2  bg-transparent border outline-none'
         />
         {search && <p onClick={handleDelete}><Delete classN={'cursor-pointer'} /></p>}
       </div>
       <br />
-      {error && <p>{error}</p>}
+      {error && <p className='text-center'>{error}</p>}
       <br />
       <div className='flex justify-center'>
         <div>

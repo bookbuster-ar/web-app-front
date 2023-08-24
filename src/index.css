@@ -21,8 +21,12 @@ nav {
   overflow-x: hidden;
 }
 
+.no-scroll-y {
+  overflow-y: hidden;
+}
+
 @font-face {
-  font-family: "Kabut";
+  font-family: 'Kabut';
   src: url(./assets/fonts/KabutHitam.ttf);
 }
 

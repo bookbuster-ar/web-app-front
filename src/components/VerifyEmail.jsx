@@ -72,10 +72,10 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className='flex flex-col items-center gap-2 bg-sky-700 max-w-sm mx-auto text-white p-4 border rounded-md mt-20 '>
+    <div className='flex flex-col items-center gap-2 bg-bluebook max-w-sm mx-auto text-white p-4 border rounded-md mt-20 '>
       <h1 className='font-bold '>Verificación de Email</h1>
       <button
-        className='text-sky-700 bg-white border rounded py-2 px-6 font-bold hover:bg-sky-200 transform ease-in duration-150'
+        className='text-bluebook bg-white border rounded py-2 px-6 font-bold hover:bg-sky-200 transform ease-in duration-150'
         onClick={handlerVerifyEmail}
       >
         Verificar
