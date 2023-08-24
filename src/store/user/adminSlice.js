@@ -43,6 +43,7 @@ const initialState = {
   userRoleStatus: 'idle',
   userRoleError: null,
   recommendBooks: [],
+  sortOrder: 'name',  // este puede ser 'name' o 'date'
 };
 
 export const getAllUsers = createAsyncThunk(
@@ -161,7 +162,6 @@ export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
 export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
-
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     const { data } = await axios.get(`${URL_BASE}/subscriptions`, {
@@ -174,6 +174,19 @@ export const getSubscriptions = createAsyncThunk(
     return data;
   }
 );
+
+export const getRoles = createAsyncThunk('admin/getRoles', async () => {
+  const sessionid = localStorage.getItem('session_id');
+  const userid = localStorage.getItem('user_id');
+  const { data } = await axios.get(`${URL_BASE}/roles`, {
+    headers: {
+      'Content-Type': 'application/json',
+      userid,
+      sessionid,
+    },
+  });
+  return data;
+});
 
 export const addCreditUser = createAsyncThunk(
   'admin/addCreditUser',
@@ -218,7 +231,6 @@ export const createRecommend = createAsyncThunk(
   async ({ booksId, genreId }) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    console.log('entra en la slice', booksId, genreId);
     const { data } = await axios.post(
       `${URL_BASE}/recommend/${genreId}`,
       { booksId },
@@ -230,15 +242,26 @@ export const createRecommend = createAsyncThunk(
         },
       }
     );
-    console.log('devuelve esto', data);
     return data;
   }
 );
 
 export const updateRole = createAsyncThunk(
   'admin/updateRole',
-  async (userId, roleId) => {
-    const { data } = await axios.put(`${URL_BASE}/user/${userId}/role`, roleId);
+  async ({userId, roleId}) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    const { data } = await axios.put(
+      `${URL_BASE}/user/${userId}/role`,
+      { roleId },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     return data;
   }
 );
@@ -246,7 +269,11 @@ export const updateRole = createAsyncThunk(
 const adminSlice = createSlice({
   name: 'admin',
   initialState,
-  reducers: {},
+  reducers: {
+    setSortOrder: (state, action) => {
+      state.sortOrder = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllUsers.pending, (state) => {
@@ -254,7 +281,11 @@ const adminSlice = createSlice({
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
-        state.users = action.payload;
+        if (state.sortOrder === 'name') {
+          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+        } else {
+          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+        }
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.usersStatus = 'failed';
@@ -265,7 +296,11 @@ const adminSlice = createSlice({
       })
       .addCase(getUserByName.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
-        state.users = action.payload;
+        if (state.sortOrder === 'name') {
+          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+        } else {
+          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+        }
       })
       .addCase(getUserByName.rejected, (state, action) => {
         state.usersStatus = 'failed';
@@ -366,19 +401,36 @@ const adminSlice = createSlice({
         state.singleTransactionStatus = 'failed';
         state.allBannedUsersError = action.error;
       })
+      .addCase(getRoles.pending, (state) => {
+        state.rolesStatus = 'loading';
+      })
+      .addCase(getRoles.fulfilled, (state, action) => {
+        state.rolesStatus = 'succeeded';
+        state.roles = action.payload;
+      })
+      .addCase(getRoles.rejected, (state, action) => {
+        state.rolesStatus = 'failed';
+        state.rolesError = action.error;
+      })
       .addCase(updateRole.pending, (state) => {
-        state.userRolStatus = 'loading';
+        state.userRoleStatus = 'loading';
       })
       .addCase(updateRole.fulfilled, (state, action) => {
         state.userRoleStatus = 'succeeded';
-        state.userRole = action.payload;
+        const updatedUser = action.payload; 
+        const userIndex = state.users.findIndex(user => user.id === updatedUser.id);
+        if (userIndex !== -1) {
+           state.users[userIndex] = updatedUser;
+        }
       })
       .addCase(updateRole.rejected, (state, action) => {
         state.userRoleStatus = 'failed';
-        state.userRoleError = action.error;
+        state.userRoleError = action.error.message; 
       });
   },
 });
+
+export const {setSortOrder} = adminSlice.actions;
 
 export const selectAllUsers = (state) => state.admin.users;
 export const selectUsersStatus = (state) => state.admin.usersStatus;
@@ -393,5 +445,9 @@ export const selectWeeklyRecommendedError = (state) =>
 export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
 
 export const selectSubscriptions = (state) => state.admin.subscriptions;
+
+export const selectRoles = (state) => state.admin.roles;
+export const selectUserRoleStatus = (state) => state.admin.userRoleStatus
+
 
 export default adminSlice.reducer;

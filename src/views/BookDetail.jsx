@@ -39,10 +39,8 @@ const BookDetail = () => {
   const responseUrl = useSelector(selectResponseUrl);
   const statusUrl = useSelector(selectStatus);
   const formatPrice = useSelector(selectFormatPrice);
-  console.log(formatPrice);
 
   const detail = useSelector(selectDetail);
-  console.log(detail.id);
   const status = useSelector(selectDetailStatus);
 
   const bookSubgenres = useSelector(selectBookSubgenres);

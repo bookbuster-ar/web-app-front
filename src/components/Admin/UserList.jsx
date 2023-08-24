@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { bannedUser } from '../../store/user/adminSlice';
-import { }
+import { getRoles, selectRoles, updateRole, selectUserRoleStatus } from '../../store/user/adminSlice';
 import AdminRoleIcon from '../../icons/AdminRole';
 import UserRoleIcon from '../../icons/userRole';
 
@@ -9,6 +9,8 @@ export function ListOfUsers({ users, toggle }) {
   const dispatch = useDispatch();
   const [durations, setDurations] = useState({});
   const [reasons, setReasons] = useState({});
+  const [userRole, adminRole] = useSelector(selectRoles);
+  
 
   const handleReasons = (id, event) => {
     setReasons((prevReasons) => ({
@@ -24,9 +26,12 @@ export function ListOfUsers({ users, toggle }) {
     }));
   };
 
-  const toggleRole = () => {
-
-  }
+  const toggleRole = async (userId, currentRole) => {
+    const newRole = currentRole === 'Admin' ? 'User' : 'Admin'; // Cambiar el rol
+    const objectRoleId = newRole === 'Admin' ? adminRole : userRole; // Suponiendo que adminRole y userRole son los IDs de los roles. Si no es así, ajusta esta línea adecuadamente.
+    const roleId = objectRoleId.id
+    dispatch(updateRole({userId, roleId})); // Llama a la acción para actualizar el rol en el backend
+  };
 
   const handleBanned = (id) => {
     const duration = durations[id] || 0;
@@ -34,10 +39,15 @@ export function ListOfUsers({ users, toggle }) {
     const data = { id, duration, reason };
 
     dispatch(bannedUser(data));
-    setDurations({})
-    setReasons({})
+    setDurations({});
+    setReasons({});
   };
 
+  
+
+  useEffect(() => {
+    dispatch(getRoles());
+  }, []);
 
   const imageDefault =
     'https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg';
@@ -53,10 +63,10 @@ export function ListOfUsers({ users, toggle }) {
           Miembro <br />
           desde
         </li>
-        <li className='col-span-3 xl:col-span-4'>Banear/Razon</li>
+        <li className='col-span-3 xl:col-span-4'>Banear - Razon</li>
       </ul>
       <ul className='grid grid-cols-1 gap-5 w-full'>
-        {users.map((user) => (
+        {users?.map((user) => (
           <li
             className={`grid grid-cols-12 items-center gap-x-5 border-b-2 rounded-lg p-2 ${
               toggle ? 'bg-blue-100' : ''
@@ -69,11 +79,20 @@ export function ListOfUsers({ users, toggle }) {
               className='mx-auto col-span-4 md:col-span-2 md:h-20 md:w-20 lg:h-24 lg:w-24 lg:col-span-2 p-4 object-cover rounded-full'
             />
             <h3 className='font-semibold flex text-md col-span-4 md:col-span-3 lg:col-span-2'>
-             <span onClick={toggleRole} className='mr-5 cursor-pointer'>{user.subscription ? <AdminRoleIcon/> : <UserRoleIcon/>}</span>{user.name} {user.last_name}
+              <span onClick={() => toggleRole(user.id, user.role)} className='mr-5 hover:scale-110 transition-all duration-200 cursor-pointer'>
+                {user.role === 'Admin' ? <AdminRoleIcon /> : <UserRoleIcon />}
+              </span>
+              {user.name} {user.last_name}
             </h3>
-            <p className='text-md col-span-4 md:col-span-2 lg:col-span-1'>{user.subscription ? 'Si' : 'No'}</p>
-            <h3 className='font-semibold text-sm lg:text-xs col-span-6 md:col-span-5 lg:col-span-3 xl:col-span-2'>{user.email}</h3>
-            <p className='text-xs col-span-6 md:col-span-2 lg:col-span-1 xl:col-span-1'>{user.date_of_register}</p>
+            <p className='text-md col-span-4 md:col-span-2 lg:col-span-1'>
+              {user.subscription ? 'Si' : 'No'}
+            </p>
+            <h3 className='font-semibold text-sm lg:text-xs col-span-6 md:col-span-5 lg:col-span-3 xl:col-span-2'>
+              {user.email}
+            </h3>
+            <p className='text-xs col-span-6 md:col-span-2 lg:col-span-1 xl:col-span-1'>
+              {user.date_of_register}
+            </p>
             <div className='flex col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2 justify-center'>
               <input
                 className='rounded-l-xl h-5 md:h-6 xl:h-8 text-xs xl:text-md  w-16 xl:w-20'
@@ -116,7 +135,7 @@ export function ListOfUsers({ users, toggle }) {
 }
 
 export function NoUsersResults() {
-  return <p>No se encontraron usuarios para esta búsqueda</p>;
+  return <p className='absolute'>No se encontraron usuarios para esta búsqueda</p>;
 }
 
 export function Users({ users, toggle }) {

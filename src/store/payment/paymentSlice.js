@@ -79,7 +79,6 @@ export const BuyBook = createAsyncThunk(
           },
         }
       );
-      console.log(response);
       const { status } = response;
       const init_point = response.data.response.body.init_point;
 

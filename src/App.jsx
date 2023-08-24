@@ -13,7 +13,6 @@ import {
   FormProfile,
   NotFound,
   SellOrRent,
-  Admin2
 
 } from './views/index';
 import NavBar from './components/NavBar';
@@ -29,6 +28,7 @@ function App() {
   const location = useLocation()
   const notification = useSelector(state => state.notifications)
   const dispatch = useDispatch()
+
 
   return (
     <div>
@@ -79,8 +79,8 @@ function App() {
         <Route
           path='/admin'
           element={
-            <ProtectedRoute isAdminRoute={false}>
-              <Admin2 />
+            <ProtectedRoute isAdminRoute={true}>
+              <Admin />
             </ProtectedRoute>
           }
         />

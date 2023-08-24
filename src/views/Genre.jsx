@@ -21,7 +21,6 @@ const Genre = () => {
   const singleGenre = useSelector(selectSingleGenre);
   let singleGenreStatus = useSelector(selectSingleGenreStatus);
   const weeklyRecommended = useSelector(selectWeeklyRecommended);
-  console.log(weeklyRecommended);
 
   useEffect(() => {
     dispatch(fetchGenre(id));
