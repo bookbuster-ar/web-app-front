@@ -45,7 +45,7 @@ const Bookshelves = () => {
   };
 
   const handleDeleteShelf = (shelfId) => {
-    dispatch(deleteShelf(shelfId));
+    dispatch(deleteShelf({shelfId}));
   };
 
   return (
