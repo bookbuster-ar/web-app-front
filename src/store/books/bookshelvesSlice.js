@@ -103,20 +103,34 @@ export const deleteBookFromShelf = createAsyncThunk(
 
 export const deleteShelf = createAsyncThunk(
   'bookshelves/deleteShelf',
-  async (shelfId) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    const response = await axios.delete(
-      `${URL_BASE}/shelves/deleteShelf?shelfId=${shelfId}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({shelfId}, thunkAPI) => {
+    try {
+      
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.delete(
+        `${URL_BASE}/shelves/deleteShelf?shelfId=${shelfId}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Estanteria eliminada con exito',
+          type: 'success',
+        })
+      )
+      return { status: response.status, data: response.data };
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      )
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
