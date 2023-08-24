@@ -194,9 +194,9 @@ const BookDetail = () => {
                     <div className=' w-full '>
                       <ul className='flex '>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill hover:scale-110 transition-all duration-200 ${
                             toggle === 1
-                              ? 'text-bluebook  font-bold'
+                              ? 'text-bluebook  font-bold scale-110 '
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(1)}
@@ -204,9 +204,9 @@ const BookDetail = () => {
                           Descripción
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill hover:scale-110 transition-all duration-200 ${
                             toggle === 2
-                              ? 'text-bluebook font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800 '
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(2)}
@@ -214,9 +214,9 @@ const BookDetail = () => {
                           Citas
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill hover:scale-110 transition-all duration-200 ${
                             toggle === 3
-                              ? 'text-bluebook  font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(3)}
@@ -224,9 +224,9 @@ const BookDetail = () => {
                           Tu cita
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill hover:scale-110 transition-all duration-200 ${
                             toggle === 4
-                              ? 'text-bluebook font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(4)}
@@ -234,9 +234,9 @@ const BookDetail = () => {
                           Lectores
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill hover:scale-110 transition-all duration-200 ${
                             toggle === 5
-                              ? 'text-bluebook font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(5)}
@@ -244,6 +244,7 @@ const BookDetail = () => {
                           Tu opinión
                         </li>
                       </ul>
+                      <hr className="my-4 border-t border-gray-400 mx-auto" />
                     </div>
                   </div>
 
