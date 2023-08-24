@@ -177,6 +177,7 @@ export const getAllTransactions = createAsyncThunk(
           sessionid,
         },
       });
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -243,16 +244,20 @@ export const addCreditUser = createAsyncThunk(
 
 export const createGenre = createAsyncThunk(
   'admin/createGenre',
-  async (genre) => {
+  async ({ name }) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    const { data } = await axios.post(`${URL_BASE}/genre`, genre, {
-      headers: {
-        'Content-Type': 'application/json',
-        userid,
-        sessionid,
-      },
-    });
+    const { data } = await axios.post(
+      `${URL_BASE}/genre`,
+      { name },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     return data;
   }
 );
@@ -521,5 +526,15 @@ export const selectUserRoleStatus = (state) => state.admin.userRoleStatus;
 
 export const selectSoldBooksStatus = (state) => state.admin.soldBooksStatus;
 export const selectSoldBooks = (state) => state.admin.soldBooks;
+
+export const selectTransactionsStatus = (state) =>
+  state.admin.transactionsStatus;
+export const selectTransactions = (state) => state.admin.transactions;
+
+export const selectNewGenre = (state) => state.admin.newGenre;
+export const selectNewGenreStatus = (state) => state.admin.newGenreStatus;
+
+export const selectNewSubgenre = (state) => state.admin.newSubgenre;
+export const selectNewSubgenreStatus = (state) => state.admin.newSubgenreStatus;
 
 export default adminSlice.reducer;
