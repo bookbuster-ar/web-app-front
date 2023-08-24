@@ -42,19 +42,89 @@ function App() {
       )}
       {location.pathname !== '/admin' && <NavBar />}
       <Routes>
-        <Route path='/' element={<ProtectedRouteBannedUser><Home /></ProtectedRouteBannedUser>} />
+        <Route
+          path='/'
+          element={
+            <ProtectedRouteBannedUser>
+              <Home />
+            </ProtectedRouteBannedUser>
+          }
+        />
         <Route path='/login' element={<LogInAndSignIn />} />
-        <Route path='/library' element={<ProtectedRouteBannedUser><Library /></ProtectedRouteBannedUser>} />
-        <Route path='/detail/:id' element={<ProtectedRouteBannedUser><BookDetail /></ProtectedRouteBannedUser>} />
-        <Route path='/search' element={<ProtectedRouteBannedUser><Search /></ProtectedRouteBannedUser>} />
-
-        <Route path='/recommendation' element={<ProtectedRouteBannedUser><Recommendation /></ProtectedRouteBannedUser>} />
-        <Route path='/subscription' element={<ProtectedRouteBannedUser><Subscription /></ProtectedRouteBannedUser>} />
-        <Route path='/library/genre/:id' element={<ProtectedRouteBannedUser><Genre /></ProtectedRouteBannedUser>} />
-        <Route path='/VerifyEmail' element={<ProtectedRouteBannedUser><VerifyEmail /></ProtectedRouteBannedUser>} />
-        <Route path='/gift' element={<ProtectedRouteBannedUser><Gift /></ProtectedRouteBannedUser>} />
-        <Route path='/sellbook' element={<ProtectedRouteBannedUser><SellOrRent /></ProtectedRouteBannedUser>} />
-        <Route path='/banned' element={<Banned />}/>
+        <Route
+          path='/library'
+          element={
+            <ProtectedRouteBannedUser>
+              <Library />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/detail/:id'
+          element={
+            <ProtectedRouteBannedUser>
+              <BookDetail />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/search'
+          element={
+            <ProtectedRouteBannedUser>
+              <Search />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/recommendation'
+          element={
+            <ProtectedRouteBannedUser>
+              <Recommendation />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/subscription'
+          element={
+            <ProtectedRouteBannedUser>
+              <Subscription />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/library/genre/:id'
+          element={
+            <ProtectedRouteBannedUser>
+              <Genre />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/VerifyEmail'
+          element={
+            <ProtectedRouteBannedUser>
+              <VerifyEmail />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/gift'
+          element={
+            <ProtectedRouteBannedUser>
+              <Gift />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route
+          path='/sellbook'
+          element={
+            <ProtectedRouteBannedUser>
+              <SellOrRent />
+            </ProtectedRouteBannedUser>
+          }
+        />
+        <Route path='/banned' element={<Banned />} />
+        <Route path='/about' element={<About />} />
         <Route
           path='/user'
           element={
@@ -79,7 +149,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path='*' element={<ProtectedRouteBannedUser><NotFound /></ProtectedRouteBannedUser>} />
+        <Route
+          path='*'
+          element={
+            <ProtectedRouteBannedUser>
+              <NotFound />
+            </ProtectedRouteBannedUser>
+          }
+        />
       </Routes>
     </div>
   );
