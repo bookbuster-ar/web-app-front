@@ -15,34 +15,31 @@ export function convertKeysToCamelCase(obj) {
 }
 
 const buildFormData = (bookInfo) => {
-  const {
-    title,
-    author,
-    publication_year,
-    editorial_id,
-    editorial_name,
-    images: { cover, extra },
-  } = bookInfo;
+  const { title, author, publicationYear, editorialName } = bookInfo;
 
   const formData = new FormData();
 
   formData.append('title', title);
   formData.append('author', author);
-  formData.append('publication_year', publication_year);
-  formData.append('editorial_id', editorial_id);
-  formData.append('editorial_name', editorial_name);
+  formData.append('publicationYear', publicationYear);
+  formData.append('editorialName', editorialName);
 
-  if (cover instanceof File) {
-    formData.append('cover', cover);
+  if (bookInfo.images?.cover) {
+    formData.append('cover', bookInfo.images.cover);
   }
 
-  if (Array.isArray(extra) && extra.length > 0) {
-    extra.forEach((file) => {
-      if (file instanceof File) {
-        formData.append(`extra`, file);
-      }
-    });
+  if (bookInfo.images?.backCover) {
+    formData.append('backCover', bookInfo.images.backCover);
   }
+
+  if (bookInfo.images?.spine) {
+    formData.append('spine', bookInfo.images.spine);
+  }
+
+  if (bookInfo.images?.inHalf) {
+    formData.append('inHalf', bookInfo.images.inHalf);
+  }
+
   return formData;
 };
 

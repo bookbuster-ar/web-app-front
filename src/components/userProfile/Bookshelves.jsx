@@ -19,7 +19,6 @@ const INITIAL_FORM_STATE = {
 const Bookshelves = () => {
   const dispatch = useDispatch();
   const bookshelves = useSelector(selectShelvesWithBooks); // Esta es la estanteria GENERAL
-  console.log('bookshelves componente', bookshelves);
   const status = useSelector(selectShelvesWithBooksStatus);
   const reloadShelf = useSelector(selectReloadShelf);
 
@@ -75,22 +74,20 @@ const Bookshelves = () => {
         </form>
       </div>
       <div className='flex flex-col justify-center items-center'>
-        {status === 'loading' ? (
-          <Loader />
-        ) : (
+        {
           book_shelf_categories &&
           book_shelf_categories.map((bookshelf) => (
             <div className='my-4 w-[1200px] ' key={bookshelf.id}>
               <button
-                className='rounded-full bg-gray-300 w-6 ml-6 hover:bg-red-400'
+                className='rounded-full bg-gray-300 w-20 ml-6 hover:bg-red-400'
                 onClick={() => handleDeleteShelf(bookshelf.id)}
               >
-                x
+                Eliminar
               </button>
               <Carrousel bookshelf={bookshelf} />
             </div>
           ))
-        )}
+        }
       </div>
     </div>
   );

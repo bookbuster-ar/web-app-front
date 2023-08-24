@@ -22,6 +22,10 @@ import Synopsis from '../components/Synopsis';
 import Loader from '../icons/Loader/Loader';
 import PaymentOptions from '../components/PaymentOptions';
 import {
+  selectFormatPrice,
+  getPriceByFormat,
+} from '../store/books/bookPriceSlice';
+import {
   addToBookshelf,
   getBookshelves,
   selectAllBookshelves,
@@ -34,16 +38,19 @@ const BookDetail = () => {
 
   const responseUrl = useSelector(selectResponseUrl);
   const statusUrl = useSelector(selectStatus);
+  const formatPrice = useSelector(selectFormatPrice);
+  console.log(formatPrice);
 
   const detail = useSelector(selectDetail);
+  console.log(detail.id);
   const status = useSelector(selectDetailStatus);
 
   const bookSubgenres = useSelector(selectBookSubgenres);
   const bookSubgenresStatus = useSelector(selectBookSubgenresStatus);
 
   const bookshelves = useSelector(selectAllBookshelves);
-  console.log(bookshelves);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [bookToSend, setBookToSend] = useState({});
 
   const [toggle, setToggle] = useState(1);
 
@@ -75,19 +82,25 @@ const BookDetail = () => {
     dispatch(getBookByDetail(id));
     dispatch(getBookSubgenres(id));
     dispatch(getBookshelves());
+    dispatch(getPriceByFormat(id));
   }, [dispatch, id]);
 
-  const bookToSend = {
-    id: detail.id,
-    title: detail.title,
-    quantity: 1,
-    price: 1000,
-    condition: 'new',
-    image: detail.image,
-    description: 'Compra del libro',
-  };
+  useEffect(() => {
+    setBookToSend({
+      id: detail.id,
+      title: detail.title,
+      quantity: 1,
+      image: detail?.images?.cover,
+      description: 'Compra del libro',
+    });
+  }, [detail]);
 
-  const handlerBuyBook = () => {
+  const handlerBuyBook = (price, condition) => {
+    setBookToSend({
+      ...bookToSend,
+      price: price,
+      condition: condition,
+    });
     dispatch(BuyBook(bookToSend));
   };
 
@@ -125,13 +138,13 @@ const BookDetail = () => {
                   <h2 className='text-lg text-gray-500 mt-2'>
                     {detail.author}
                   </h2>
-                  <div>
-                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 '>
+                  <div className='relative'>
+                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 '>
                       Agregar a mi estantería
                     </button>
                     <button
                       onClick={handleBookshelves}
-                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 my-3'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 mt-3'
                     >
                       +
                     </button>
@@ -140,10 +153,11 @@ const BookDetail = () => {
                       <select
                         name='bookshelves'
                         onChange={selectHandler}
-                        className={`bg-bluebook text-white ${
+                        className={`bg-bluebook absolute text-white ${
                           bookshelvesOptions ? 'block' : 'hidden'
                         } `}
                       >
+                        <option value="mis estantes">Mis estantes</option>
                         {bookshelves.book_shelf_categories?.map(
                           (bookshelf, index) => (
                             <option
@@ -290,9 +304,9 @@ const BookDetail = () => {
         </div>
         {isDialogOpen && (
           <PaymentOptions
-            price={bookToSend.price}
-            handleClose={handleClose}
             handlerBuyBook={handlerBuyBook}
+            handleClose={handleClose}
+            formatPrice={formatPrice}
           />
         )}
       </div>

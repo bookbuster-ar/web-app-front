@@ -21,7 +21,6 @@ export const getMostPopular = createAsyncThunk(
     const { data } = await axios.get(
       `${URL_BASE}/books/categories/most-popular`
     );
-    console.log(data);
     return data;
   }
 );
@@ -32,7 +31,6 @@ export const getNewlyArrived = createAsyncThunk(
     const { data } = await axios.get(
       `${URL_BASE}/books/categories/newly-arrived`
     );
-    console.log(data);
     return data;
   }
 );
@@ -43,7 +41,6 @@ export const getLatestReleases = createAsyncThunk(
     const { data } = await axios.get(
       `${URL_BASE}/books/categories/latest-releases`
     );
-    console.log(data);
     return data;
   }
 );
