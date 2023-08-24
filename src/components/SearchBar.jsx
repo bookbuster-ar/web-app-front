@@ -65,12 +65,12 @@ const SearchBar = () => {
           placeholder='Encontrá tu próximo libro'
           onChange={handleChange}
           name='search'
-          className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+          className='w-72 md:text-black text-base rounded-md pl-2 md:w-96 p-2  bg-transparent border outline-none'
         />
         {search && <p onClick={handleDelete}><Delete classN={'cursor-pointer'} /></p>}
       </div>
       <br />
-      {error && <p>{error}</p>}
+      {error && <p className='text-center'>{error}</p>}
       <br />
       <div className='flex justify-center'>
         <div>
