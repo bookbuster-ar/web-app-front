@@ -222,7 +222,7 @@ const Gift = () => {
         <img
           src={estrellaNaranja}
           alt='estrellaNaranja'
-          className='absolute w-[270px] ml-[-850px] top-[950px] '
+          className='absolute w-[270px] ml-[-960px] top-[950px] '
         />
       </div>
       <div>
