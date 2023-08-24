@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
@@ -36,61 +37,100 @@ export const getBookshelves = createAsyncThunk(
 
 export const addToBookshelf = createAsyncThunk(
   'bookshelves/addToBookshelf',
-  async ({ bookId, book_shelf_category_id }) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    console.log(bookId, 'slice');
-    const response = await axios.post(
-      `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
-      {},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({ bookId, book_shelf_category_id }, thunkAPI) => {
+    try {
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.post(
+        `${URL_BASE}/shelves/addBookToShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Libro agregado con éxito a tu estanteria',
+          type: 'success',
+        })
+      );
+      return { status: response.status, data: response.data };
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
-//faltan los cases
 export const deleteBookFromShelf = createAsyncThunk(
   'bookshelves/deleteBookFromShelf',
-  async ({ bookId, book_shelf_category_id }) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    const response = await axios.delete(
-      `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({ bookId, book_shelf_category_id }, thunkAPI) => {
+    try {
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.delete(
+        `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Libro eliminado con exito de tu estanteria',
+          type: 'success',
+        })
+      )
+      return { status: response.status, data: response.data };
+      
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      )
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
 export const deleteShelf = createAsyncThunk(
   'bookshelves/deleteShelf',
-  async (shelfId) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    const response = await axios.delete(
-      `${URL_BASE}/shelves/deleteShelf?shelfId=${shelfId}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({shelfId}, thunkAPI) => {
+    try {
+      
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.delete(
+        `${URL_BASE}/shelves/deleteShelf?shelfId=${shelfId}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Estanteria eliminada con exito',
+          type: 'success',
+        })
+      )
+      return { status: response.status, data: response.data };
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      )
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -109,7 +149,6 @@ export const getBookshelf = createAsyncThunk(
         },
       }
     );
-    console.log('Response of BookShelf Category: ', data);
     return data;
   }
 );
@@ -165,7 +204,6 @@ export const getShelvesWithBooks = createAsyncThunk(
         sessionid,
       },
     });
-    console.log(data);
     return data;
   }
 );
@@ -189,7 +227,7 @@ const bookshelvesSlice = createSlice({
       .addCase(addToBookshelf.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(addToBookshelf.fulfilled, (state, action) => {
+      .addCase(addToBookshelf.fulfilled, (state) => {
         state.status = 'succeeded';
         // state.addStatus = action.data;
       })
@@ -197,8 +235,16 @@ const bookshelvesSlice = createSlice({
         state.status = 'failed';
         state.error = action.error;
       })
-      .addCase(deleteBookFromShelf.fulfilled, (state, action) => {
-        state.deletedStatus = action.data;
+      .addCase(deleteBookFromShelf.fulfilled, (state) => {
+        state.deletedStatus = 'succeeded';
+        state.reloadShelf = !state.reloadShelf;
+      })
+      .addCase(deleteBookFromShelf.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteBookFromShelf.rejected, (state, action) => {
+        state.deletedStatus = 'failed';
+        state.error = action.error;
       })
       .addCase(getBookshelf.pending, (state) => {
         state.bookshelfStatus = 'loading';
@@ -223,7 +269,7 @@ const bookshelvesSlice = createSlice({
       .addCase(createNewShelf.pending, (state) => {
         state.bookshelfStatus = 'loading';
       })
-      .addCase(createNewShelf.fulfilled, (state, action) => {
+      .addCase(createNewShelf.fulfilled, (state) => {
         state.bookshelfStatus = 'succeeded';
         state.reloadShelf = !state.reloadShelf;
         // state.addStatus = action.data;

@@ -17,8 +17,11 @@ import HomeIcon from '../icons/admin/Home';
 
 /* COMPONENTS */
 import Usuarios from '../components/Admin/Usuarios';
+import Subscribers from '../components/Admin/Subscribers';
+import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
 import ModalMessage from '../components/ModalMessage';
+import RecommendBooks from '../components/Admin/RecommendBooks';
 
 const Admin2 = () => {
   const menus = [
@@ -26,7 +29,7 @@ const Admin2 = () => {
     { name: 'Suscriptores', icon: SubscribersIcon },
     { name: 'Baneados', icon: BannedIcon },
     { name: 'Revisión y publicación', icon: RevisionIcon, margin: true },
-    { name: 'Recomendados', icon: RecommendedIcon},
+    { name: 'Recomendados', icon: RecommendedIcon },
     { name: 'Generos', icon: GenresIcon },
     { name: 'Subgeneros', icon: SubgenresIcon },
     { name: 'Vendidos', icon: VendidosIcon, margin: true },
@@ -40,16 +43,16 @@ const Admin2 = () => {
     <section className='flex gap-6 min-h-screen relative'>
       <div
         className={`sticky top-0 z-10 bg-bluebook h-screen ${
-          open ? 'w-56' : 'w-16'
+          open ? 'w-36 md:w-56' : 'w-12 md:w-16'
         } duration-500 text-gray-100 px-4`}
       >
         <div
           className='py-3 flex justify-end cursor-pointer'
           onClick={() => setOpen(!open)}
         >
-          <ResponsiveMenu classN={'w-6 h-6 md:w-11 md:h-12 text-yellowbook'} />
+          <ResponsiveMenu classN={'w-6 h-6 md:w-11 md:h-12 scale-50 md:scale-75 lg:scale-90 xl:scale-100 text-yellowbook'} />
         </div>
-        <div className='mt-4 flex flex-col gap-4 relative'>
+        <div className='-mt-40 md:-mt-12 lg:mt-0 xl:mt-7 -ml-2 md:ml-0 flex flex-col gap-4 relative scale-50 md:scale-75 lg:scale-90 xl:scale-100'>
           {menus?.map((menu, i) => (
             <div
               onClick={() => setActiveView(i + 1)}
@@ -110,16 +113,16 @@ const Admin2 = () => {
             <Usuarios />
           </div>
           <div className={activeView === 2 ? 'block' : 'hidden'}>
-            <h1>Suscriptores</h1>
+            <Subscribers />
           </div>
           <div className={activeView === 3 ? 'block' : 'hidden'}>
-            <h1>Baneados</h1>
+            <Baneados />
           </div>
           <div className={activeView === 4 ? 'block' : 'hidden'}>
             <Revision />
           </div>
           <div className={activeView === 5 ? 'block' : 'hidden'}>
-            <h1>Recomendados</h1>
+            <RecommendBooks />
           </div>
           <div className={activeView === 6 ? 'block' : 'hidden'}>
             <h1>Géneros</h1>
@@ -137,7 +140,7 @@ const Admin2 = () => {
             <h1>Stock</h1>
           </div>
         </div>
-      {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
+        {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
       </div>
     </section>
   );

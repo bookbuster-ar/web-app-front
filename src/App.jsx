@@ -21,11 +21,24 @@ import VerifyEmail from './components/VerifyEmail';
 import ProtectedRoute from './components/ProtectedRoute';
 import About from './views/About';
 import { useLocation } from 'react-router-dom';
+import ModalMessage from './components/ModalMessage';
+import { useDispatch, useSelector } from 'react-redux';
+import { hideNotification } from './store/notifications/notificationsSlice';
 
 function App() {
   const location = useLocation();
+  const notification = useSelector((state) => state.notifications);
+  const dispatch = useDispatch();
+
   return (
     <div>
+      {notification.isActive && (
+        <ModalMessage
+          message={notification.message}
+          type={notification.type}
+          onClose={() => dispatch(hideNotification())}
+        />
+      )}
       {location.pathname !== '/admin' && <NavBar />}
       <Routes>
         <Route path='/' element={<Home />} />

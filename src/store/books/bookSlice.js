@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
@@ -9,6 +10,8 @@ const initialState = {
   error: null,
   genres: [],
   genresStatus: 'idle',
+  createBookStatus: 'idle',
+  createBookError: null,
   genresError: null,
   singleGenre: {},
   singleGenreStatus: 'idle',
@@ -125,16 +128,19 @@ export const fetchGenre = createAsyncThunk('books/fetchGenre', async (id) => {
   const { data } = await axios.get(`${URL_BASE}/books/genre?id=${id}`);
   return data.data;
 });
-
+// falta debuggear by seba dragon warrior
 export const createBook = createAsyncThunk(
   'books/createBook',
   async (bookData) => {
+    const userId = localStorage.getItem('user_id');
+    const sessionId = localStorage.getItem('session_id');
     const response = await axios.post(`${URL_BASE}/books`, bookData, {
       headers: {
         'Content-Type': 'multipart/form-data',
+        userId,
+        sessionId,
       },
     });
-
     return response.status;
   }
 );
@@ -181,6 +187,9 @@ const bookSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload; // podria volver la pagina a 1
     },
+    setStatus: (state, action) => {
+      state.createBookStatus = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -210,19 +219,6 @@ const bookSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-      // .addCase(getSearchByPage.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(getSearchByPage.fulfilled, (state, action) => {
-      //   state.status = 'succeeded';
-      //   state.books = action.payload.data;
-      //   state.currentPage = action.payload.paginated.currentPage;
-      //   state.totalPages = action.payload.paginated.totalPages;
-      // })
-      // .addCase(getSearchByPage.rejected, (state, action) => {
-      //   state.status = 'failed';
-      //   state.error = action.error.message;
-      // })
       .addCase(getTitleByPage.pending, (state) => {
         state.status = 'loading';
       })
@@ -313,16 +309,15 @@ const bookSlice = createSlice({
         state.singleGenreError = action.error.message;
       })
       .addCase(createBook.pending, (state) => {
-        state.status = 'loading';
+        state.createBookStatus = 'loading';
         state.error = null;
       })
       .addCase(createBook.fulfilled, (state, action) => {
-        if (action.payload.status === 201) {
-          state.status = 'succeeded';
-        }
+        state.createBookStatus = 'succeeded';
       })
       .addCase(createBook.rejected, (state, action) => {
-        state.status = 'failed';
+        state.createBookStatus = 'failed';
+        console.log('Action Bebé:', action);
         state.error = action.error.message;
       }) // ------------------          A partir de aca los Case de Search            -----------------
       .addCase(getBooksBySearch.pending, (state) => {
@@ -377,9 +372,10 @@ export const selectCurrentPage = (state) => state.books.currentPage;
 export const selectTotalPages = (state) => state.books.totalPages;
 
 //-------------------------------------------------------------------------------------------------------------------------------
-export const { resetBooks } = bookSlice.actions;
+export const { resetBooks, setStatus } = bookSlice.actions;
 
 export const selectAllBooks = (state) => state.books.books;
+export const selectBookStatus = (state) => state.books.createBookStatus;
 export const selectStatus = (state) => state.books.status;
 export const selectError = (state) => state.books.error;
 

@@ -5,6 +5,10 @@ import {
   selectSingleGenre,
   selectSingleGenreStatus,
 } from '../store/books/bookSlice';
+import {
+  getWeeklyRecommendedBooks,
+  selectWeeklyRecommended,
+} from '../store/books/weeklyRecommendedSlice';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Loader from '../icons/Loader/Loader';
@@ -16,17 +20,18 @@ const Genre = () => {
 
   const singleGenre = useSelector(selectSingleGenre);
   let singleGenreStatus = useSelector(selectSingleGenreStatus);
+  const weeklyRecommended = useSelector(selectWeeklyRecommended);
+  console.log(weeklyRecommended);
 
   useEffect(() => {
     dispatch(fetchGenre(id));
+    dispatch(getWeeklyRecommendedBooks(id));
   }, [dispatch, id]);
-
-  console.log(singleGenreStatus);
 
   if (singleGenreStatus === 'loading') {
     return (
       <div className='flex flex-col items-center mt-60'>
-        <Loader />                            
+        <Loader />
       </div>
     );
   }
@@ -44,14 +49,11 @@ const Genre = () => {
           RECOMENDACIONES DE LA SEMANA
         </p>
         <div className='max-[640px]:flex-wrap h-96 w-11/12 gap-3 my-2 flex min-[640px]:overflow-x-scroll'>
-          {singleGenre.books?.map((book, index) => {
+          {weeklyRecommended?.map((book, index) => {
             return (
               <Link to={`/detail/${book.id}`} key={index}>
                 <div className='h-72 w-36 text-sm my-4'>
-                  <img
-                    className='h-48 w-40 object-fill'
-                    src={book.images.cover}
-                  />
+                  <img className='h-48 w-40 object-fill' src={book.images} />
                   <h2>{book.author}</h2>
                   <h2 className='font-bold'>{book.title}</h2>
                 </div>

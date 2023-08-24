@@ -14,7 +14,7 @@ function UserProfile() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
+  }, [dispatch]);
 
   const updateToggle = (value) => {
     setToggle(value);
@@ -27,7 +27,7 @@ function UserProfile() {
         <div className='flex flex-col items-center justify-center mb-8 w-[300px]'>
           <img
             src={
-              user.image ??
+              user.image ||
               'https://img.freepik.com/vector-premium/perfil-avatar-mujer-icono-redondo_24640-14042.jpg?w=826'
             }
             alt='User Avatar'
@@ -68,7 +68,7 @@ function UserProfile() {
             } mr-6 cursor-pointer`}
             onClick={() => updateToggle(3)}
           >
-            Mis estanterÃ­as
+            Mis estanterías
           </li>
           <li
             className={`flex-fill ${

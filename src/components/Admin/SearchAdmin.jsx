@@ -38,7 +38,7 @@ const SearchAdmin = () => {
           placeholder='Buscá por nombre'
           onChange={handleChange}
           name='search'
-          className='text-black text-base rounded-md pl-2 w-96 p-2  bg-transparent border outline-none'
+          className='text-black text-sm md:text-md rounded-md pl-2 w-40 md:w-60 lg:w-80 xl:w-96 p-2  bg-transparent border outline-none'
         />
         <div onClick={handleDelete}>
         {search && <DeleteIcon/>}
