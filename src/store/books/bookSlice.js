@@ -328,7 +328,7 @@ const bookSlice = createSlice({
         state.createBookStatus = 'loading';
         state.error = null;
       })
-      .addCase(createBook.fulfilled, (state, action) => {
+      .addCase(createBook.fulfilled, (state) => {
         state.createBookStatus = 'succeeded';
       })
       .addCase(createBook.rejected, (state, action) => {

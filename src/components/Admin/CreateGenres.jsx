@@ -20,14 +20,14 @@ const CreateGenres = () => {
         Crear nuevos Géneros
       </h1>
       <div className='container mx-auto'>
-        <div className='h-50 w-full rounded-lg bg-white '>
+        <div className='h-50 w-full rounded-lg bg-white mt-20'>
           <div className='flex items-center justify-between border-b mt-3'>
             <div className='p-3 text-gray-700 text-lg font-bold'>Género</div>
             <input
               type='text'
               value={newGenreName}
               onChange={(e) => setNewGenreName(e.target.value)}
-              className='p-5 text-gray-700 text-lg border-b w-full mr-3'
+              className='p-5 text-gray-700 text-lg border-b w-full mr-3 rounded-lg'
               placeholder='Nuevo género'
             />
 
