@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
   books: [],
-  status: 'idle', 
+  sentForReview: [],
+  sentForReviewStatus: 'idle',
+  sentForReviewError: null,
+  status: 'idle',
   error: null,
   genres: [],
   genresStatus: 'idle',
@@ -34,6 +36,15 @@ const initialState = {
   currentPage: 1,
   totalPages: 1,
 };
+
+export const getBookSentForReview = createAsyncThunk(
+  'books/getBookSentForReview',
+  async () => {
+    const { data } = await axios.get(`${URL_BASE}/admin/booksToReview`);
+    return data;
+  }
+);
+
 export const getBooksByPage = createAsyncThunk(
   'books/getBooksByPage',
   async ({ page }) => {
@@ -187,6 +198,17 @@ const bookSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getBookSentForReview.pending, (state) => {
+        state.sentForReviewStatus = 'loading';
+      })
+      .addCase(getBookSentForReview.fulfilled, (state, action) => {
+        state.sentForReviewStatus = 'succeeded';
+        state.sentForReview = action.payload;
+      })
+      .addCase(getBookSentForReview.rejected, (state, action) => {
+        state.sentForReviewStatus = 'failed';
+        state.sentForReviewError = action.error.message;
+      })
       .addCase(getBooksByPage.pending, (state) => {
         state.status = 'loading';
       })
@@ -366,6 +388,12 @@ export const selectTotalPages = (state) => state.books.totalPages;
 
 //-------------------------------------------------------------------------------------------------------------------------------
 export const { resetBooks, setStatus } = bookSlice.actions;
+
+export const selectSentForReviewStatus = (state) =>
+  state.books.sentForReviewStatus;
+export const selectSentForReview = (state) => state.books.sentForReview;
+export const selectSentForReviewError = (state) =>
+  state.books.sentForReviewError;
 
 export const selectAllBooks = (state) => state.books.books;
 export const selectBookStatus = (state) => state.books.createBookStatus;
