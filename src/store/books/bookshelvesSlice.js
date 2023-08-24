@@ -208,8 +208,16 @@ const bookshelvesSlice = createSlice({
         state.status = 'failed';
         state.error = action.error;
       })
-      .addCase(deleteBookFromShelf.fulfilled, (state, action) => {
-        state.deletedStatus = action.data;
+      .addCase(deleteBookFromShelf.fulfilled, (state) => {
+        state.deletedStatus = 'succeeded';
+        state.reloadShelf = !state.reloadShelf;
+      })
+      .addCase(deleteBookFromShelf.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteBookFromShelf.rejected, (state, action) => {
+        state.deletedStatus = 'failed';
+        state.error = action.error;
       })
       .addCase(getBookshelf.pending, (state) => {
         state.bookshelfStatus = 'loading';

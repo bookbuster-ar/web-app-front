@@ -157,6 +157,7 @@ const BookDetail = () => {
                           bookshelvesOptions ? 'block' : 'hidden'
                         } `}
                       >
+                        <option value="mis estantes">Mis estantes</option>
                         {bookshelves.book_shelf_categories?.map(
                           (bookshelf, index) => (
                             <option
