@@ -207,5 +207,6 @@ export const { setRedirectPath, unsetEmailStatus } = authSlice.actions;
 export const redirectPathSelector = (state) => state.auth.redirectPath;
 export const selectStatusVerified = (state) => state.auth.statusEmailVerified;
 export const selectIsLogged = (state) => state.auth.isLogged;
+export const selectUserAuth = (state) => state.auth.user
 
 export default authSlice.reducer;

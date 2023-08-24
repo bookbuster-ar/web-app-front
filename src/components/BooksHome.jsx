@@ -56,14 +56,14 @@ export function ListOfBooks({ books }) {
         </button>
       </div>
 
-      <ul className='grid grid-cols-4 gap-5'>
+      <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
         {books.map((book) => (
           <Link to={`/detail/${book.id}`} key={book.id}>
             <li>
               <img
                 src={book.images.cover}
                 alt={book.title}
-                className='h-72 w-3/4 object-cover'
+                className='h-3/4 w-40 object-cover'
               />
               <p className='text-xs'>{book.author}</p>
               <h3 className='font-semibold text-sm'>{book.title}</h3>
