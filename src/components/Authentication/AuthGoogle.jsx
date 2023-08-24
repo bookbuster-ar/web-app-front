@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { signInWithGoogleAsync } from '../../store/user/authSlice'
 import { useNavigate } from 'react-router-dom';
+import { fetchUser } from '../../store/user/userSlice';
 
 const GoogleSignIn = () => {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ const GoogleSignIn = () => {
   const handleGoogleSignIn = async () => {
     try {
       await dispatch(signInWithGoogleAsync()).unwrap().then(() => {
+        dispatch(fetchUser());
         navigate('/')
       });
     } catch (error) {

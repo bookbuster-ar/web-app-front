@@ -39,10 +39,8 @@ const BookDetail = () => {
   const responseUrl = useSelector(selectResponseUrl);
   const statusUrl = useSelector(selectStatus);
   const formatPrice = useSelector(selectFormatPrice);
-  console.log(formatPrice);
 
   const detail = useSelector(selectDetail);
-  console.log(detail.id);
   const status = useSelector(selectDetailStatus);
 
   const bookSubgenres = useSelector(selectBookSubgenres);
@@ -114,23 +112,23 @@ const BookDetail = () => {
 
   return (
     <div className='no-scroll-x'>
-      <div className='pt-10 flex flex-col content-center '>
-        <div className='mb-10 '>
+      <div className='pt-10 flex flex-col mx-4 lg:mx-0 content-center '>
+        <div className='mb-10 max-w-xs md:max-w-none'>
           {status === 'loading' ? (
             <div className='flex flex-col items-center w-full mt-60 '>
               <Loader />
             </div>
           ) : (
-            <div className='flex w-full h-full ml-20'>
-              <div className='w-96 mx-14 '>
+            <div className='flex flex-col md:flex-row h-full lg:ml-20'>
+              <div className='w-96 mx-24 md:mx-auto min-w-fit'>
                 <img
-                  className='h-96 object-cover '
+                  className='h-60 md:h-96 object-cover '
                   src={detail.images?.cover}
                   alt={detail.title}
                 />
               </div>
 
-              <div className='md:col-span-1 flex flex-col justify-between w-full'>
+              <div className='mx-12 flex flex-col mt-4 md:mt-0  w-full'>
                 <div>
                   <h1 className='text-3xl font-semibold text-gray-800'>
                     {detail.title}
@@ -139,12 +137,12 @@ const BookDetail = () => {
                     {detail.author}
                   </h2>
                   <div className='relative'>
-                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 '>
+                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 mx-1'>
                       Agregar a mi estantería
                     </button>
                     <button
                       onClick={handleBookshelves}
-                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 mt-3'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 '
                     >
                       +
                     </button>
@@ -157,7 +155,7 @@ const BookDetail = () => {
                           bookshelvesOptions ? 'block' : 'hidden'
                         } `}
                       >
-                        <option value="mis estantes">Mis estantes</option>
+                        <option value='mis estantes'>Mis estantes</option>
                         {bookshelves.book_shelf_categories?.map(
                           (bookshelf, index) => (
                             <option
@@ -176,7 +174,7 @@ const BookDetail = () => {
                     {/* <Link to={'/bookcheckout'}> */}
                     <button
                       onClick={handleOpen}
-                      className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 ml-2'
+                      className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 mx-1'
                     >
                       Opciones de adquisición{' '}
                       {/* temporal, antes Ver opciones de adquisicion */}
@@ -194,9 +192,9 @@ const BookDetail = () => {
                     <div className=' w-full '>
                       <ul className='flex '>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill text-xs md:texs-sm lg:text-md hover:scale-110 transition-all duration-200 ${
                             toggle === 1
-                              ? 'text-bluebook  font-bold'
+                              ? 'text-bluebook  font-bold scale-110 '
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(1)}
@@ -204,9 +202,9 @@ const BookDetail = () => {
                           Descripción
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill text-xs md:texs-sm lg:text-md hover:scale-110 transition-all duration-200 ${
                             toggle === 2
-                              ? 'text-bluebook font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800 '
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(2)}
@@ -214,9 +212,9 @@ const BookDetail = () => {
                           Citas
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill text-xs md:texs-sm lg:text-md hover:scale-110 transition-all duration-200 ${
                             toggle === 3
-                              ? 'text-bluebook  font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(3)}
@@ -224,9 +222,9 @@ const BookDetail = () => {
                           Tu cita
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill text-xs md:texs-sm lg:text-md hover:scale-110 transition-all duration-200 ${
                             toggle === 4
-                              ? 'text-bluebook font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(4)}
@@ -234,9 +232,9 @@ const BookDetail = () => {
                           Lectores
                         </li>
                         <li
-                          className={`flex-fill ${
+                          className={`flex-fill text-xs md:texs-sm lg:text-md hover:scale-110 transition-all duration-200 ${
                             toggle === 5
-                              ? 'text-bluebook font-bold'
+                              ? 'text-bluebook font-bold scale-110'
                               : 'text-gray-800'
                           } mr-6 cursor-pointer`}
                           onClick={() => updateToggle(5)}
@@ -244,6 +242,7 @@ const BookDetail = () => {
                           Tu opinión
                         </li>
                       </ul>
+                      <hr className='my-4 border-t border-gray-400 mx-auto' />
                     </div>
                   </div>
 
