@@ -5,7 +5,7 @@ const PersonalInfo = ({ user }) => {
     <div>
       {/* Contenido principal */}
       <div className=' mx-6 bg-gray-100 '>
-        <h2 className='font-bold font-roboto text-5xl text-bluebook my-10 ml-6 uppercase'>
+        <h2 className='font-bold font-roboto text-3xl md:text-5xl text-bluebook my-10 ml-6 uppercase'>
           Mi perfil
         </h2>
         <div className='bg-white p-8 rounded-xl shadow-lg'>

@@ -74,12 +74,12 @@ const Gift = () => {
     }
   };
   return (
-    <div className='flex flex-col justify-content items-center relative no-scroll-x'>
+    <div className='flex flex-col mx-4 md:mx-0 justify-content items-center relative no-scroll-x'>
       <img src={GiftImage} alt='Books' className='mt-8' />
-      <h2 className='font-bold font-roboto text-5xl text-bluebook mt-6'>
+      <h2 className='font-bold font-roboto text-bluebook mt-6 text-4xl text-center md:text-5xl'>
         REGALÁ BOOKBUSTER
       </h2>
-      <h3 className='text-gray-600 font-roboto text-3xl m-6'>
+      <h3 className='text-gray-600 font-roboto text-3xl m-6 text-center'>
         Regalá la experiencia de lectura sin límites
       </h3>
       <img
@@ -88,8 +88,8 @@ const Gift = () => {
         className='absolute mt-[470px] ml-[470px] w-[200px] '
       />
 
-      <div className='flex flex-wrap'>
-        <div className='rounded-2xl  bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16'>
+      <div className='flex flex-wrap scale-90 md:scale-100 items-center justify-center'>
+        <div className='flex flex-col rounded-2xl  bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5  lg:py-16'>
           <div className='mx-auto max-w-xs px-8'>
             <p className='text-base font-semibold text-gray-600'>
               Regalo por 1 mes
@@ -215,14 +215,14 @@ const Gift = () => {
         <img
           src={manchaRoja}
           alt='estrellaNaranja'
-          className='absolute w-[250px] ml-[660px] top-[750px]'
+          className='absolute w-[250px] ml-[600px] top-[750px]'
         />
       </div>
       <div>
         <img
           src={estrellaNaranja}
           alt='estrellaNaranja'
-          className='absolute w-[270px] ml-[-900px] top-[950px] '
+          className='absolute w-[270px] ml-[-850px] top-[950px] '
         />
       </div>
       <div>

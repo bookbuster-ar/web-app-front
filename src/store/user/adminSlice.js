@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
@@ -39,10 +40,11 @@ const initialState = {
   roles: [],
   rolesStatus: 'idle',
   rolesError: null,
-  userRol: {},
-  userRolStatus: 'idle',
-  userRolError: null,
+  userRole: {},
+  userRoleStatus: 'idle',
+  userRoleError: null,
   recommendBooks: [],
+  sortOrder: 'name',  // este puede ser 'name' o 'date'
 };
 
 export const getAllUsers = createAsyncThunk(
@@ -111,21 +113,34 @@ export const getUsersBanned = createAsyncThunk(
 
 export const bannedUser = createAsyncThunk(
   'admin/bannedUser',
-  async ({ id, duration, reason }) => {
+  async ({ id, duration, reason }, thunkAPI) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    const { data } = await axios.post(
-      `${URL_BASE}/users/${id}/ban`,
-      { duration, reason },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return data;
+    try {
+      const { data } = await axios.post(
+        `${URL_BASE}/users/${id}/ban`,
+        { duration, reason },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: data.message,
+          type: 'success',
+        })
+      );
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
@@ -173,6 +188,19 @@ export const getSubscriptions = createAsyncThunk(
     return data;
   }
 );
+
+export const getRoles = createAsyncThunk('admin/getRoles', async () => {
+  const sessionid = localStorage.getItem('session_id');
+  const userid = localStorage.getItem('user_id');
+  const { data } = await axios.get(`${URL_BASE}/roles`, {
+    headers: {
+      'Content-Type': 'application/json',
+      userid,
+      sessionid,
+    },
+  });
+  return data;
+});
 
 export const addCreditUser = createAsyncThunk(
   'admin/addCreditUser',
@@ -234,8 +262,20 @@ export const createRecommend = createAsyncThunk(
 
 export const updateRole = createAsyncThunk(
   'admin/updateRole',
-  async (userId, roleId) => {
-    const { data } = await axios.put(`${URL_BASE}/user/${userId}/role`, roleId);
+  async ({userId, roleId}) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    const { data } = await axios.put(
+      `${URL_BASE}/user/${userId}/role`,
+      { roleId },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     return data;
   }
 );
@@ -243,7 +283,11 @@ export const updateRole = createAsyncThunk(
 const adminSlice = createSlice({
   name: 'admin',
   initialState,
-  reducers: {},
+  reducers: {
+    setSortOrder: (state, action) => {
+      state.sortOrder = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllUsers.pending, (state) => {
@@ -251,7 +295,11 @@ const adminSlice = createSlice({
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
-        state.users = action.payload;
+        if (state.sortOrder === 'name') {
+          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+        } else {
+          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+        }
       })
       .addCase(getAllUsers.rejected, (state, action) => {
         state.usersStatus = 'failed';
@@ -262,7 +310,11 @@ const adminSlice = createSlice({
       })
       .addCase(getUserByName.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
-        state.users = action.payload;
+        if (state.sortOrder === 'name') {
+          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+        } else {
+          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+        }
       })
       .addCase(getUserByName.rejected, (state, action) => {
         state.usersStatus = 'failed';
@@ -363,19 +415,36 @@ const adminSlice = createSlice({
         state.singleTransactionStatus = 'failed';
         state.allBannedUsersError = action.error;
       })
+      .addCase(getRoles.pending, (state) => {
+        state.rolesStatus = 'loading';
+      })
+      .addCase(getRoles.fulfilled, (state, action) => {
+        state.rolesStatus = 'succeeded';
+        state.roles = action.payload;
+      })
+      .addCase(getRoles.rejected, (state, action) => {
+        state.rolesStatus = 'failed';
+        state.rolesError = action.error;
+      })
       .addCase(updateRole.pending, (state) => {
-        state.userRolStatus = 'loading';
+        state.userRoleStatus = 'loading';
       })
       .addCase(updateRole.fulfilled, (state, action) => {
-        state.userRolStatus = 'succeeded';
-        state.userRol = action.payload;
+        state.userRoleStatus = 'succeeded';
+        const updatedUser = action.payload; 
+        const userIndex = state.users.findIndex(user => user.id === updatedUser.id);
+        if (userIndex !== -1) {
+           state.users[userIndex] = updatedUser;
+        }
       })
       .addCase(updateRole.rejected, (state, action) => {
-        state.userRolStatus = 'failed';
-        state.userRolError = action.error;
+        state.userRoleStatus = 'failed';
+        state.userRoleError = action.error.message; 
       });
   },
 });
+
+export const {setSortOrder} = adminSlice.actions;
 
 export const selectAllUsers = (state) => state.admin.users;
 export const selectUsersStatus = (state) => state.admin.usersStatus;
@@ -390,5 +459,9 @@ export const selectWeeklyRecommendedError = (state) =>
 export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
 
 export const selectSubscriptions = (state) => state.admin.subscriptions;
+
+export const selectRoles = (state) => state.admin.roles;
+export const selectUserRoleStatus = (state) => state.admin.userRoleStatus
+
 
 export default adminSlice.reducer;

@@ -20,7 +20,7 @@ const initialState = {
     wantNotifications: false,
     role: {
       id: '',
-      name: 'admin',
+      name: '',
     },
   },
   status: 'idle',

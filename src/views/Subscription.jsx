@@ -7,6 +7,7 @@ import {
   selectStatus,
 } from '../store/payment/paymentSlice';
 import TitleBookBuster from '../assets/home/desafia/TitleBookBuster.png';
+import Footer from './Footer';
 
 const Subscription = () => {
   const dispatch = useDispatch();
@@ -29,39 +30,39 @@ const Subscription = () => {
 
   return (
     <div className='flex flex-col items-center no-scroll-x'>
-      <div className='flex text-4xl'>
-        <div className='flex flex-col items-center mr-20 mt-10'>
-          <h2 className='font-bold font-roboto text-5xl text-bluebook'>
+      <div className='md:flex'>
+        <div className='flex flex-col items-center mt-10 md:w-[640px] px-5 justify-center lg:w-[570px] xl:w-[500px]'>
+          <h2 className='text-3xl mx-12 w-[300px] md:scale-110 font-bold font-roboto text-bluebook md:text-5xl lg:text-6xl'>
             AL SUSCRIBIRTE A
           </h2>
-          <img src={TitleBookBuster} alt='TitleBookBuster' />
+          <img src={TitleBookBuster} alt='TitleBookBuster' className='w-60  mx-10 md:w-[700px]'/>
         </div>
-        <div className='cursor-default mt-10'>
-          <p className='font-sans text-2xl text-slate-400 text-sm  hover:bg-bluebook  hover:text-white'>
+        <div className='mx-10 md:cursor-default mt-10 xl:flex flex-col justify-center '>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Acceder a la opción de alquilar libros físicos.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm   hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm   hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Tenés la posibilidad de vender tus libros a la plataforma, y usar el
             crédito para comprar o alquilar otros libros.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm   hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5  text-xs md:text-sm   hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Tener el envío o retiro de libros accesibles
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm  hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Accedés a un catálogo y contenido exclusivo para socios.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm  hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Tenés descuentos en compras, lectura on line y audiolibros sobre el
             precio regular de la plataforma.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm  hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Descuentos en compras de productos y servicios de nuestras tiendas
             amigas.
           </p>
         </div>
       </div>
 
-      <div className='mx-auto max-w-2xl ring-1 w-4/5 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none lg:pt-4 lg:pr-4'>
+      <div className='mx-auto max-w-2xl ring-1 w-4/5 ring-gray-200 sm:mt-16 lg:mx-0 lg:flex lg:max-w-none lg:pt-4 lg:pr-4'>
         <div className='p-8 sm:p-10 lg:flex-auto'>
           <h3 className='text-2xl font-bold tracking-tight text-gray-900'>
             Suscribite
@@ -180,6 +181,9 @@ const Subscription = () => {
         </div>
       </div>
       <FAQs />
+      <div className='w-full'>
+      <Footer />
+      </div>
     </div>
   );
 };

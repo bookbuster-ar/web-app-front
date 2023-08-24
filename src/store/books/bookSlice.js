@@ -6,7 +6,7 @@ const URL_BASE = 'https://bookbuster-main.onrender.com/api';
 
 const initialState = {
   books: [],
-  status: 'idle', // loading, failed, succedded
+  status: 'idle', 
   error: null,
   genres: [],
   genresStatus: 'idle',
@@ -59,13 +59,7 @@ export const getAuthorByPage = createAsyncThunk(
     return data;
   }
 );
-// export const getSearchByPage = createAsyncThunk(
-//   'books/getSearchByPage',
-//   async ({ search, page }) => {
-//     const { data } = await axios.get(`${URL_BASE}/books?search=${search}&page=${page}`);
-//     return data;
-//   }
-// );
+
 export const getAuthorTitleByPage = createAsyncThunk(
   'books/getAuthorTitleByPage',
   async ({ author, title, page }) => {

@@ -1,214 +1,154 @@
-import { useState } from 'react';
-import Usuarios from '../components/Admin/Usuarios';
-import Productos from '../components/Admin/Productos';
-import Compras from '../components/Admin/Compras';
-import Revision from '../components/Admin/Reseñas';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../store/user/userSlice';
+import React, { useState } from 'react';
 import ResponsiveMenu from '../icons/ResponsiveMenu';
-import Delete from '../icons/Delete';
+import { Link } from 'react-router-dom';
+
+/* ICONS */
+import BannedIcon from '../icons/admin/Banned';
+import SubscribersIcon from '../icons/admin/Subscribers';
+import UsersIcon from '../icons/admin/Users';
+import RevisionIcon from '../icons/admin/Revision';
+import RecommendedIcon from '../icons/admin/Recommended';
+import GenresIcon from '../icons/admin/Genres';
+import SubgenresIcon from '../icons/admin/Subgenres';
+import VendidosIcon from '../icons/admin/Vendidos';
+import TransactionsIcon from '../icons/admin/Transactions';
+import AddStockIcon from '../icons/admin/AddStock';
+import HomeIcon from '../icons/admin/Home';
+
+/* COMPONENTS */
+import Usuarios from '../components/Admin/Usuarios';
+import Subscribers from '../components/Admin/Subscribers';
+import Baneados from '../components/Admin/Baneados';
+import Revision from '../components/Admin/Reseñas';
+import RecommendBooks from '../components/Admin/RecommendBooks';
 
 const Admin = () => {
-  const user = useSelector(selectUser);
-  const [adminMenu, setAdminMenu] = useState(true);
+  const menus = [
+    { name: 'Usuarios', icon: UsersIcon },
+    { name: 'Suscriptores', icon: SubscribersIcon },
+    { name: 'Baneados', icon: BannedIcon },
+    { name: 'Revisión y publicación', icon: RevisionIcon, margin: true },
+    { name: 'Recomendados', icon: RecommendedIcon },
+    { name: 'Generos', icon: GenresIcon },
+    { name: 'Subgeneros', icon: SubgenresIcon },
+    { name: 'Vendidos', icon: VendidosIcon, margin: true },
+    { name: 'Transacciones', icon: TransactionsIcon },
+    { name: 'Agregar Stock', icon: AddStockIcon },
+  ];
+  const [open, setOpen] = useState(true);
   const [activeView, setActiveView] = useState(1);
 
-  const updateView = (value) => {
-    setActiveView(value);
-  };
-
   return (
-    <div>
-      <div className='min-h-screen flex no-scroll-x'>
-        <nav className='hidden bg-bluebook xl:flex xl:flex-col xl:w-40 xl:items-center'>
-          <ul className='hidden xl:flex xl:flex-col xl:justify-around xl:w-40 xl:items-center'>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 1 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(1)}
+    <section className='flex gap-6 min-h-screen relative'>
+      <div
+        className={`sticky top-0 z-10 bg-bluebook h-screen ${
+          open ? 'w-36 md:w-56' : 'w-12 md:w-16'
+        } duration-500 text-gray-100 px-4`}
+      >
+        <div
+          className='py-3 flex justify-end cursor-pointer'
+          onClick={() => setOpen(!open)}
+        >
+          <ResponsiveMenu
+            classN={
+              'w-6 h-6 md:w-11 md:h-12 scale-50 md:scale-75 lg:scale-90 xl:scale-100 text-yellowbook'
+            }
+          />
+        </div>
+        <div className='-mt-40 md:-mt-12 lg:mt-0 xl:mt-7 -ml-2 md:ml-0 flex flex-col gap-4 relative scale-50 md:scale-75 lg:scale-90 xl:scale-100'>
+          {menus?.map((menu, i) => (
+            <div
+              onClick={() => setActiveView(i + 1)}
+              key={i}
+              className={` ${
+                menu?.margin && 'mt-5'
+              } group flex items-center text-sm gap-3.5 font-medium p-2 -mr-1 rounded-md hover:bg-blue-800 `}
             >
-              Usuarios
-            </li>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 2 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(2)}
-            >
-              Suscripciones
-            </li>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 3 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(3)}
-            >
-              Baneados
-            </li>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 4 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(4)}
-            >
-              Revisión
-            </li>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 5 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(5)}
-            >
-              Generos
-            </li>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 6 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(6)}
-            >
-              Subgeneros
-            </li>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 7 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(7)}
-            >
-              Libros vendidos
-            </li>
-            <li
-              className={` text-white my-4 ursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook ${
-                activeView === 8 ? 'text-yellowbook' : 'text-white'
-              } `}
-              onClick={() => setActiveView(8)}
-            >
-              Transacciones
-            </li>
-          </ul>
-
-          <div className='xl:hidden cursor-pointer mx-5' onClick=''>
-            <button>
-              {adminMenu ? (
-                <Delete
-                  color={'yellowbook'}
-                  size={'md:w-11 md:h-12 lg:w-14 lg:h-16 lg:mr-2'}
-                />
-              ) : (
-                <ResponsiveMenu />
-              )}
-            </button>
-          </div>
-
-          {/* Mobile menu */}
-          {adminMenu && (
-            <div className='bg-bluebook xl:hidden'>
-              <div className='px-2 pb-3 pt-1'>
-                <ul>
-                  <li className='text-white text-center'>
-                    <span
-                      onClick=''
-                      className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
-                    >
-                      Explorá la Librería
-                    </span>
-                  </li>
-                  <li className='text-white text-center'>
-                    <span
-                      onClick=''
-                      className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
-                    >
-                      ¿Por qué suscribirme?
-                    </span>
-                  </li>
-                  <li className='text-white text-center'>
-                    <span
-                      onClick=''
-                      className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
-                    >
-                      Vendé o Alquila
-                    </span>
-                  </li>
-                  <li className='text-white text-center'>
-                    <span
-                      onClick=''
-                      className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
-                    >
-                      Regalá Bookbuste
-                    </span>
-                  </li>
-                  <li className='text-white text-center'>
-                    <span
-                      onClick=''
-                      className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
-                    >
-                      Encontrá tu próximo libro
-                    </span>
-                  </li>
-
-                  <li onClick='' className='text-white text-center'>
-                    <button className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out border bg-redbook hover:border-red-700 px-4 py-2 rounded-md'>
-                      Iniciar sesión
-                    </button>
-                  </li>
-                </ul>
-              </div>
+              <div>{React.createElement(menu?.icon)}</div>
+              <h2
+                style={{
+                  transitionDelay: `${i}00ms`,
+                }}
+                className={`whitespace-pre duration-300 ${
+                  !open && 'opacity-0 translate-x-28 overflow-hidden'
+                }`}
+              >
+                {menu?.name}
+              </h2>
+              <h2
+                className={`${
+                  open && 'hidden'
+                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+              >
+                {menu?.name}
+              </h2>
             </div>
-          )}
-        </nav>
-        {/* ... */}
-
+          ))}
+          <div className=' mt-4 '>
+            <Link to='/'>
+              <div className='flex text-sm gap-3.5 font-medium p-2 -mr-1 rounded-md hover:bg-blue-800 '>
+                <div>
+                  <HomeIcon />
+                </div>
+                <h2
+                  style={{
+                    transitionDelay: `1000ms`,
+                  }}
+                  className={`whitespace-pre duration-300 ${
+                    !open && 'opacity-0 translate-x-28 overflow-hidden'
+                  }`}
+                >
+                  Home
+                </h2>
+                <h2
+                  className={`${
+                    open && 'hidden'
+                  } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                >
+                  Home
+                </h2>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className='m-3 text-xl text-gray-900 font-semibold w-full'>
         <div>
           <div className={activeView === 1 ? 'block' : 'hidden'}>
             <Usuarios />
           </div>
           <div className={activeView === 2 ? 'block' : 'hidden'}>
-            <h1>Suscriptores</h1>
+            <Subscribers />
           </div>
           <div className={activeView === 3 ? 'block' : 'hidden'}>
-            <h1>Baneados</h1>
+            <Baneados />
           </div>
           <div className={activeView === 4 ? 'block' : 'hidden'}>
             <Revision />
           </div>
           <div className={activeView === 5 ? 'block' : 'hidden'}>
-            <h1>Géneros</h1>
+            <RecommendBooks />
           </div>
           <div className={activeView === 6 ? 'block' : 'hidden'}>
-            <h1>Subgéneros</h1>
+            <h1>Géneros</h1>
           </div>
           <div className={activeView === 7 ? 'block' : 'hidden'}>
-            <h1>Libros vendidos</h1>
+            <h1>Subgéneros</h1>
           </div>
           <div className={activeView === 8 ? 'block' : 'hidden'}>
+            <h1>Libros vendidos</h1>
+          </div>
+          <div className={activeView === 9 ? 'block' : 'hidden'}>
             <h1>Transacciones</h1>
           </div>
+          <div className={activeView === 10 ? 'block' : 'hidden'}>
+            <h1>Stock</h1>
+          </div>
         </div>
+        {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Admin;
-
-<div className='xl:w-40 flex flex-col items-center justify-between'>
-  <button
-    className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
-    aria-current='page'
-  >
-    Dashboard
-  </button>
-  <button className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'>
-    Team
-  </button>
-  <button className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'>
-    Projects
-  </button>
-  <button className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'>
-    Calendar
-  </button>
-  <button className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'>
-    Reports
-  </button>
-</div>;
