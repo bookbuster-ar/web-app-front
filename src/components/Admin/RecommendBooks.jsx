@@ -52,12 +52,12 @@ const RecommendBooks = () => {
     setSelectedBooks([]);
   };
   return (
-    <div className='flex justify-center items-center'>
+    <div className='flex flex-col'>
       <h1 className='text-xl md:text-2xl bg-bluebook py-2 px-4 w-72 text-center text-white rounded-lg font-bold mb-4'>
         Libros Recomendados
       </h1>
       <select
-        className='text-xl block mb-4 p-2 border border-gray-300 rounded'
+        className='text-xl block mb-4 p-2 border border-gray-300 rounded  w-96'
         onChange={(e) => handleGenreChange(e.target.value)}
       >
         <option value=''>Selecciona un género</option>
@@ -85,7 +85,7 @@ const RecommendBooks = () => {
         </div>
       )}
       <button
-        className='mt-4 bg-bluebook text-white px-4 py-2 rounded hover:bg-blue-600 cursor-pointer'
+        className='mt-4 bg-bluebook text-white px-4 py-2 w-96 rounded hover:bg-blue-600 cursor-pointer'
         onClick={(event) => handleAddRecommended(event.target.value)}
         disabled={selectedBooks.length === 0}
       >
