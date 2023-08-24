@@ -21,6 +21,7 @@ import Subscribers from '../components/Admin/Subscribers';
 import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
 import RecommendBooks from '../components/Admin/RecommendBooks';
+import SoldBooks from '../components/SoldBooks';
 
 const Admin = () => {
   const menus = [
@@ -136,7 +137,7 @@ const Admin = () => {
             <h1>Subgéneros</h1>
           </div>
           <div className={activeView === 8 ? 'block' : 'hidden'}>
-            <h1>Libros vendidos</h1>
+            <SoldBooks />
           </div>
           <div className={activeView === 9 ? 'block' : 'hidden'}>
             <h1>Transacciones</h1>
