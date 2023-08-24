@@ -52,7 +52,7 @@ const RecommendBooks = () => {
     setSelectedBooks([]);
   };
   return (
-    <div>
+    <div className='flex justify-center items-center'>
       <h1 className='text-xl md:text-2xl bg-bluebook py-2 px-4 w-72 text-center text-white rounded-lg font-bold mb-4'>
         Libros Recomendados
       </h1>

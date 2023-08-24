@@ -28,6 +28,7 @@ import SoldBooks from '../components/Admin/SoldBooks';
 import CreateGenres from '../components/Admin/CreateGenres';
 import CreateSubgenres from '../components/Admin/CreateSubgenre';
 import Transactions from '../components/Admin/Transactions';
+import Stock from '../components/Admin/Stock';
 
 const Admin = () => {
   const menus = [
@@ -152,7 +153,7 @@ const Admin = () => {
             <Transactions />
           </div>
           <div className={activeView === 10 ? 'block' : 'hidden'}>
-            <h1>Stock</h1>
+            <Stock />
           </div>
           <div className={activeView === 11 ? 'block' : 'hidden'}>
             <FormCreate fromReview={false} />

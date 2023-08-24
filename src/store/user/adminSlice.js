@@ -265,13 +265,6 @@ export const createGenre = createAsyncThunk(
 export const createSubgenre = createAsyncThunk(
   'admin/createSubgenre',
   async ({ genreId, subgenreName }, thunkAPI) => {
-    console.log(
-      'llego a la action',
-      'genreId:',
-      genreId,
-      'subgenre:',
-      subgenreName
-    );
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     try {
@@ -289,7 +282,6 @@ export const createSubgenre = createAsyncThunk(
           },
         }
       );
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
