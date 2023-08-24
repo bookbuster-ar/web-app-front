@@ -21,6 +21,7 @@ import Subscribers from '../components/Admin/Subscribers';
 import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
 import ModalMessage from '../components/ModalMessage';
+import RecommendBooks from '../components/Admin/RecommendBooks';
 
 const Admin2 = () => {
   const menus = [
@@ -28,7 +29,7 @@ const Admin2 = () => {
     { name: 'Suscriptores', icon: SubscribersIcon },
     { name: 'Baneados', icon: BannedIcon },
     { name: 'Revisión y publicación', icon: RevisionIcon, margin: true },
-    { name: 'Recomendados', icon: RecommendedIcon},
+    { name: 'Recomendados', icon: RecommendedIcon },
     { name: 'Generos', icon: GenresIcon },
     { name: 'Subgeneros', icon: SubgenresIcon },
     { name: 'Vendidos', icon: VendidosIcon, margin: true },
@@ -112,16 +113,16 @@ const Admin2 = () => {
             <Usuarios />
           </div>
           <div className={activeView === 2 ? 'block' : 'hidden'}>
-            <Subscribers/>
+            <Subscribers />
           </div>
           <div className={activeView === 3 ? 'block' : 'hidden'}>
-            <Baneados/>
+            <Baneados />
           </div>
           <div className={activeView === 4 ? 'block' : 'hidden'}>
             <Revision />
           </div>
           <div className={activeView === 5 ? 'block' : 'hidden'}>
-            <h1>Recomendados</h1>
+            <RecommendBooks />
           </div>
           <div className={activeView === 6 ? 'block' : 'hidden'}>
             <h1>Géneros</h1>
@@ -139,7 +140,7 @@ const Admin2 = () => {
             <h1>Stock</h1>
           </div>
         </div>
-      {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
+        {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
       </div>
     </section>
   );
