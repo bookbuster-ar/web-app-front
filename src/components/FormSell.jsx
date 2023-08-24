@@ -6,7 +6,7 @@ import {
   setStatus,
 } from '../store/books/bookSlice';
 import buildFormData from '../util';
-import OrangeLines from '../assets/home/desafia/OrangeLines.png';
+// import OrangeLines from '../assets/home/desafia/OrangeLines.png';
 import Loader from '../icons/Loader/Loader';
 
 const INITIAL_FORM_STATE = {
@@ -158,16 +158,16 @@ const FormSell = () => {
   }
 
   return (
-    <div className='flex flex-row '>
-      <div className='flex flex-col justify-content items-center m-3 w-2/4'>
-        <div className='flex flex-col justify-center  p-4 m-2 '>
-          <div className='hidden md:absolute md:inline'>
+    <div className='flex flex-col lg:flex-row'>
+      <div className='flex flex-col justify-content items-center m-3 w-2/4 mx-auto'>
+        <div className='flex flex-col justify-center  p-4 m-2 mx-auto'>
+          {/* <div className='hidden md:absolute md:inline'>
             <img
               className='md:h-10 md:ml-80 md:-mt-16 lg:h-14 lg:ml-[400px] lg:-mt-20 xl:h-14 xl:ml-[10px] xl:-mt-[150px]'
               src={OrangeLines}
               alt='Lineas naranjas horizontales'
             />
-          </div>
+          </div> */}
           <h1 className='font-bold font-roboto text-5xl text-bluebook my-6 text-center'>
             ¿CÓMO VENDERLE TUS LIBROS A BOOKBUSTER?
           </h1>
@@ -186,14 +186,14 @@ const FormSell = () => {
             Si tu libro cumple con estos requisitos, completá los siguientes
             datos:
           </p>
-          <p>
-            Todo con <b className='text-red-500'>*</b> es de carácter
-            obligatorio
+          <p className='bg-red-300 w-fit p-1 rounded-md text-sm'>
+            Todo campo que contenga <b className='text-red-600'>*</b> es de
+            carácter obligatorio
           </p>
         </div>
         <form onSubmit={submitHandler} className='flex flex-col items-end'>
           <div className='my-2'>
-            <label className='mr-16 w-48 items-center '>
+            <label className='mr-16 w-48'>
               Título del libro <b className='text-red-500'>*</b>
             </label>
             <input
