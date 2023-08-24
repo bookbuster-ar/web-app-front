@@ -21,6 +21,7 @@ import Subscribers from '../components/Admin/Subscribers';
 import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
 import ModalMessage from '../components/ModalMessage';
+import RecommendBooks from '../components/Admin/RecommendBooks';
 
 const Admin2 = () => {
   const menus = [
@@ -127,7 +128,7 @@ const Admin2 = () => {
             <Revision />
           </div>
           <div className={activeView === 5 ? 'block' : 'hidden'}>
-            <h1>Recomendados</h1>
+            <RecommendBooks />
           </div>
           <div className={activeView === 6 ? 'block' : 'hidden'}>
             <h1>Géneros</h1>

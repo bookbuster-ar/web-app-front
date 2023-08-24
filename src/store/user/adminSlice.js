@@ -42,6 +42,7 @@ const initialState = {
   userRole: {},
   userRoleStatus: 'idle',
   userRoleError: null,
+  recommendBooks: [],
 };
 
 export const getAllUsers = createAsyncThunk(
@@ -214,8 +215,22 @@ export const createSubgenre = createAsyncThunk(
 
 export const createRecommend = createAsyncThunk(
   'admin/createRecommend',
-  async (booksId) => {
-    const { data } = await axios.post(`${URL_BASE}/recommend`, booksId);
+  async ({ booksId, genreId }) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    console.log('entra en la slice', booksId, genreId);
+    const { data } = await axios.post(
+      `${URL_BASE}/recommend/${genreId}`,
+      { booksId },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
+    console.log('devuelve esto', data);
     return data;
   }
 );
@@ -368,6 +383,12 @@ const adminSlice = createSlice({
 export const selectAllUsers = (state) => state.admin.users;
 export const selectUsersStatus = (state) => state.admin.usersStatus;
 export const selectUsersError = (state) => state.admin.usersError;
+
+export const selectWeeklyRecommended = (state) => state.admin.recommend;
+export const selectWeeklyRecommendedStatus = (state) =>
+  state.admin.recommendStatus;
+export const selectWeeklyRecommendedError = (state) =>
+  state.admin.recommendError;
 
 export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
 
