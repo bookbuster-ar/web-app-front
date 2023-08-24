@@ -11,7 +11,7 @@ import Gift from './Gift';
 import FormProfile from './FormProfile';
 import NotFound from './NotFound';
 import SellOrRent from './SellorRent';
-import Admin2 from './Admin';
+import Banned from './Banned';
 
 export {
   Home,
@@ -27,5 +27,5 @@ export {
   FormProfile,
   NotFound,
   SellOrRent,
-  Admin2
+  Banned,
 };
