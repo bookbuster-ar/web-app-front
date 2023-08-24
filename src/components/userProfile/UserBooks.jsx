@@ -32,7 +32,7 @@ const UserBooks = () => {
               Libros comprados
             </p>
             <div className='max-[640px]:flex-wrap h-96 w-11/12 gap-3 my-2 flex min-[640px]:overflow-x-scroll'>
-              {userBooks.length > 0 &&
+              {userBooks?.length > 0 &&
                 userBooks?.map((book) => {
                   return (
                     <Link to={`/detail/${book.id}`} key={book.id}>

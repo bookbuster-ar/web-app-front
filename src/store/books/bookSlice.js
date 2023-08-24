@@ -132,11 +132,13 @@ export const fetchGenre = createAsyncThunk('books/fetchGenre', async (id) => {
 export const createBook = createAsyncThunk(
   'books/createBook',
   async (bookData) => {
+    const userId = localStorage.getItem('user_id');
+    const sessionId = localStorage.getItem('session_id');
     const response = await axios.post(`${URL_BASE}/books`, bookData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        userId: localStorage.getItem('user_id'),
-        sessionId: localStorage.getItem('session_id'),
+        userId,
+        sessionId,
       },
     });
     return response.status;
