@@ -76,7 +76,7 @@ const Recommendation = () => {
         <div className='mt-10 mb-16'>
           <h2 className='font-bold font-roboto text-5xl text-bluebook  ml-6 text-center uppercase'>
             ¿Qué libro estás buscando?
-          </h2> 
+          </h2>
         </div>
       </div>
 
