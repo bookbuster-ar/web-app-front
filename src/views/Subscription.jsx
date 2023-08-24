@@ -30,32 +30,32 @@ const Subscription = () => {
 
   return (
     <div className='flex flex-col items-center no-scroll-x'>
-      <div className=' md:flex'>
+      <div className='md:flex'>
         <div className='flex flex-col items-center mt-10 md:w-[640px] px-5 justify-center lg:w-[570px] xl:w-[500px]'>
-          <h2 className='text-3xl font-bold font-roboto text-bluebook md:text-5xl lg:text-6xl'>
+          <h2 className='text-3xl mx-12 w-[300px] md:scale-110 font-bold font-roboto text-bluebook md:text-5xl lg:text-6xl'>
             AL SUSCRIBIRTE A
           </h2>
-          <img src={TitleBookBuster} alt='TitleBookBuster' className='w-80 md:w-[700px]'/>
+          <img src={TitleBookBuster} alt='TitleBookBuster' className='w-60  mx-10 md:w-[700px]'/>
         </div>
-        <div className='mx-3 md:cursor-default mt-10 xl:flex flex-col justify-center'>
-          <p className='font-sans text-2xl text-slate-400 text-sm  hover:bg-bluebook  hover:text-white'>
+        <div className='mx-10 md:cursor-default mt-10 xl:flex flex-col justify-center '>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Acceder a la opción de alquilar libros físicos.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm   hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm   hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Tenés la posibilidad de vender tus libros a la plataforma, y usar el
             crédito para comprar o alquilar otros libros.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm   hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5  text-xs md:text-sm   hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Tener el envío o retiro de libros accesibles
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm  hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Accedés a un catálogo y contenido exclusivo para socios.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm  hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Tenés descuentos en compras, lectura on line y audiolibros sobre el
             precio regular de la plataforma.
           </p>
-          <p className='font-sans text-2xl text-slate-400  text-sm  hover:bg-bluebook  hover:text-white'>
+          <p className='font-sans text-2xl text-slate-400 mx-5 text-xs md:text-sm  hover:bg-bluebook  hover:text-white transition-all duration-200'>
             Descuentos en compras de productos y servicios de nuestras tiendas
             amigas.
           </p>

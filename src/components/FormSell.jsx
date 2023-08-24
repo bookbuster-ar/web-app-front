@@ -329,7 +329,7 @@ const FormSell = () => {
         </form>
       </div>
 
-      <div className='h-screen w-[350px] ml-[20px] md:w-[500px] md:ml-[135px] lg:mr-4 lg:ml-5 lg:w-5/12 xl:mr-10'>
+      <div className='h-full w-3/4 mx-auto md:3/5 lg:mr-4 lg:ml-5 lg:w-5/12 xl:mr-10'>
         <h1 className='font-bold font-roboto text-4xl text-bluebook text-center p-4 m-2'>
           TU LIBRO
         </h1>

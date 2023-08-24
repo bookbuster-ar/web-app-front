@@ -13,7 +13,6 @@ export const getWeeklyRecommendedBooks = createAsyncThunk(
   'weeklyRecommended/getWeeklyRecommendedBooks',
   async (genreId) => {
     const { data } = await axios.get(`${URL_BASE}/books/weekly/${genreId}`);
-    console.log(data?.recommendedBook);
     return data?.recommendedBook;
   }
 );

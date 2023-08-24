@@ -4,16 +4,11 @@ import { selectUserAuth } from '../store/user/authSlice';
 import NotFound from '../views/NotFound';
 import { useEffect } from 'react';
 
-const ProtectedRoute = ({ children, isAdminRoute = false }) => {
-  const user_id = localStorage.getItem('user_id');
+const ProtectedRouteBannedUser = ({ children, isAdminRoute = false }) => {
   const user = useSelector(selectUserAuth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user_id !== user?.id) {
-      navigate('/login');
-    }
-    
     if (user?.is_blocked) {
       navigate('/banned'); 
     }
@@ -26,4 +21,4 @@ const ProtectedRoute = ({ children, isAdminRoute = false }) => {
   return children;
 };
 
-export default ProtectedRoute;
+export default ProtectedRouteBannedUser;

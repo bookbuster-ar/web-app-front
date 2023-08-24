@@ -18,7 +18,7 @@ const Usuarios = () => {
   }
   
   return (
-    <div className=''>
+    <div className='mt-8'>
       <SearchAdmin/>
       <div className='flex mb-7'>
         <h1 className='text-3xl'>Usuarios</h1>
@@ -28,8 +28,8 @@ const Usuarios = () => {
       </div>
       <div className='flex'>
         <div className='w-full'>
-          {usersStatus === 'loading' ? <p>Cargando usuarios...</p> : null}
-          {usersStatus === 'failed' ? <p>No se encontraron usuarios con ese nombre</p> : null}
+          {usersStatus === 'loading' ? <p className='absolute -mt-28'>Cargando usuarios...</p> : null}
+          {usersStatus === 'failed' ? <p className='absolute -mt-28'>No se encontraron usuarios con ese nombre</p> : null}
           <Users users={users} toggle={colorBg} />
         </div>
       </div>

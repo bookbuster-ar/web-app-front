@@ -7,6 +7,7 @@ import {
   selectIsLogged,
   redirectPathSelector,
 } from '../../store/user/authSlice';
+import { fetchUser } from '../../store/user/userSlice';
 import Eye from '../../icons/Eye';
 import EyeSlash from '../../icons/EyeSlash'
 
@@ -33,6 +34,7 @@ const SignInWithEmail = () => {
     await dispatch(signInWithEmailAsync({ email, password }))
       .unwrap()
       .then(() => {
+        dispatch(fetchUser());
         if (redirectPathValue) {
           navigate(redirectPathValue);
           dispatch(setRedirectPath(null)); // Limpiar el redirectPath después de usarlo

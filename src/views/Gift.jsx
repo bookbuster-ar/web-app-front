@@ -74,7 +74,7 @@ const Gift = () => {
     }
   };
   return (
-    <div className='flex flex-col justify-content items-center relative no-scroll-x'>
+    <div className='flex flex-col mx-4 md:mx-0 justify-content items-center relative no-scroll-x'>
       <img src={GiftImage} alt='Books' className='mt-8' />
       <h2 className='font-bold font-roboto text-bluebook mt-6 text-4xl text-center md:text-5xl'>
         REGALÁ BOOKBUSTER
@@ -88,7 +88,7 @@ const Gift = () => {
         className='absolute mt-[470px] ml-[470px] w-[200px] '
       />
 
-      <div className='flex flex-wrap items-center justify-center'>
+      <div className='flex flex-wrap scale-90 md:scale-100 items-center justify-center'>
         <div className='flex flex-col rounded-2xl  bg-gray-50 m-6 py-10 text-center ring-1 ring-inset ring-gray-900/5  lg:py-16'>
           <div className='mx-auto max-w-xs px-8'>
             <p className='text-base font-semibold text-gray-600'>

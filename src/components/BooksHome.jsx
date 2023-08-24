@@ -16,10 +16,10 @@ export function ListOfBooks({ books }) {
       dispatch(setCurrentPage(newPage));
     }
   };
-  
+
   const renderPageNumbers = () => {
     const pageNumbers = [];
-  
+
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
         <button
@@ -33,7 +33,7 @@ export function ListOfBooks({ books }) {
         </button>
       );
     }
-  
+
     return pageNumbers;
   };
   return (
@@ -56,21 +56,21 @@ export function ListOfBooks({ books }) {
         </button>
       </div>
 
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+      <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
         {books.map((book) => (
           <Link to={`/detail/${book.id}`} key={book.id}>
-            <div className='flex flex-col items-center m-2'>
+            <div className='flex flex-col items-center m-2 hover:scale-110 transition-all duration-200'>
               <img
                 src={book.images.cover}
                 alt={book.title}
-                className='h-72 w-full object-cover xl:w-11/12'
+                className='h-3/4 w-40 object-cover '
               />
               <p className='text-xs'>{book.author}</p>
               <h3 className='font-semibold text-sm'>{book.title}</h3>
             </div>
           </Link>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
