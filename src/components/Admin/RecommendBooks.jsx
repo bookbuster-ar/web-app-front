@@ -68,12 +68,14 @@ const RecommendBooks = () => {
         ))}
       </select>
       {selectedGenre && status === 'succeeded' && (
-        <div className='grid grid-cols-2 gap-4 cursor pointer'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 w-11/12 cursor-pointer'>
           {booksByGenre.books.map((book) => (
             <div
               key={book.id}
-              className={`p-4 border border-gray-300 rounded ${
-                selectedBooks.includes(book.id) ? 'bg-blue-200' : ''
+              className={`p-4 border border-gray-300 rounded  ${
+                selectedBooks.includes(book.id)
+                  ? 'bg-blue-500 text-white transition-all duration-300 scale-105'
+                  : ''
               }`}
               onClick={() => handleBookSelect(book.id)}
             >
@@ -83,7 +85,7 @@ const RecommendBooks = () => {
         </div>
       )}
       <button
-        className='mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 cursor-pointer'
+        className='mt-4 bg-bluebook text-white px-4 py-2 rounded hover:bg-blue-600 cursor-pointer'
         onClick={(event) => handleAddRecommended(event.target.value)}
         disabled={selectedBooks.length === 0}
       >

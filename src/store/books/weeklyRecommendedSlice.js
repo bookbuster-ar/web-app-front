@@ -13,7 +13,8 @@ export const getWeeklyRecommendedBooks = createAsyncThunk(
   'weeklyRecommended/getWeeklyRecommendedBooks',
   async (genreId) => {
     const { data } = await axios.get(`${URL_BASE}/books/weekly/${genreId}`);
-    return data;
+    console.log(data?.recommendedBook);
+    return data?.recommendedBook;
   }
 );
 
@@ -28,7 +29,7 @@ const weeklyRecommendedBooksSlice = createSlice({
       })
       .addCase(getWeeklyRecommendedBooks.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.recommendedBooks = action.payload;
+        state.weeklyRecommended = action.payload;
       })
       .addCase(getWeeklyRecommendedBooks.rejected, (state, action) => {
         state.status = 'failed';
