@@ -13,17 +13,17 @@ import {
   FormProfile,
   NotFound,
   SellOrRent,
-  Admin2
-
+  Admin2,
 } from './views/index';
 import NavBar from './components/NavBar';
 import LogInAndSignIn from './components/LogInAndSignIn';
 import VerifyEmail from './components/VerifyEmail';
 import ProtectedRoute from './components/ProtectedRoute';
+import About from './views/About';
 import { useLocation } from 'react-router-dom';
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
   return (
     <div>
       {location.pathname !== '/admin' && <NavBar />}
@@ -39,6 +39,7 @@ function App() {
         <Route path='/library/genre/:id' element={<Genre />} />
         <Route path='/VerifyEmail' element={<VerifyEmail />} />
         <Route path='/gift' element={<Gift />} />
+        <Route path='/about' element={<About />} />
         <Route
           path='/sellbook'
           element={
