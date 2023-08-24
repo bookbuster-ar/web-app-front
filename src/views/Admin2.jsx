@@ -28,7 +28,7 @@ const Admin2 = () => {
     { name: 'Suscriptores', icon: SubscribersIcon },
     { name: 'Baneados', icon: BannedIcon },
     { name: 'Revisión y publicación', icon: RevisionIcon, margin: true },
-    { name: 'Recomendados', icon: RecommendedIcon},
+    { name: 'Recomendados', icon: RecommendedIcon },
     { name: 'Generos', icon: GenresIcon },
     { name: 'Subgeneros', icon: SubgenresIcon },
     { name: 'Vendidos', icon: VendidosIcon, margin: true },
@@ -49,7 +49,11 @@ const Admin2 = () => {
           className='py-3 flex justify-end cursor-pointer'
           onClick={() => setOpen(!open)}
         >
-          <ResponsiveMenu classN={'w-6 h-6 md:w-11 md:h-12 scale-50 md:scale-75 lg:scale-90 xl:scale-100 text-yellowbook'} />
+          <ResponsiveMenu
+            classN={
+              'w-6 h-6 md:w-11 md:h-12 scale-50 md:scale-75 lg:scale-90 xl:scale-100 text-yellowbook'
+            }
+          />
         </div>
         <div className='-mt-40 md:-mt-12 lg:mt-0 xl:mt-7 -ml-2 md:ml-0 flex flex-col gap-4 relative scale-50 md:scale-75 lg:scale-90 xl:scale-100'>
           {menus?.map((menu, i) => (
@@ -80,30 +84,32 @@ const Admin2 = () => {
               </h2>
             </div>
           ))}
-          <Link to='/'>
-            <div className='flex mt-16 text-sm gap-3.5 font-medium p-2 -mr-1 rounded-md hover:bg-blue-800 '>
-              <div>
-                <HomeIcon />
+          <div className=' mt-16 '>
+            <Link to='/'>
+              <div className='flex text-sm gap-3.5 font-medium p-2 -mr-1 rounded-md hover:bg-blue-800 '>
+                <div>
+                  <HomeIcon />
+                </div>
+                <h2
+                  style={{
+                    transitionDelay: `1000ms`,
+                  }}
+                  className={`whitespace-pre duration-300 ${
+                    !open && 'opacity-0 translate-x-28 overflow-hidden'
+                  }`}
+                >
+                  Home
+                </h2>
+                <h2
+                  className={`${
+                    open && 'hidden'
+                  } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                >
+                  Home
+                </h2>
               </div>
-              <h2
-                style={{
-                  transitionDelay: `1000ms`,
-                }}
-                className={`whitespace-pre duration-300 ${
-                  !open && 'opacity-0 translate-x-28 overflow-hidden'
-                }`}
-              >
-                Home
-              </h2>
-              <h2
-                className={`${
-                  open && 'hidden'
-                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
-              >
-                Home
-              </h2>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
       </div>
       <div className='m-3 text-xl text-gray-900 font-semibold w-full'>
@@ -112,10 +118,10 @@ const Admin2 = () => {
             <Usuarios />
           </div>
           <div className={activeView === 2 ? 'block' : 'hidden'}>
-            <Subscribers/>
+            <Subscribers />
           </div>
           <div className={activeView === 3 ? 'block' : 'hidden'}>
-            <Baneados/>
+            <Baneados />
           </div>
           <div className={activeView === 4 ? 'block' : 'hidden'}>
             <Revision />
@@ -139,7 +145,7 @@ const Admin2 = () => {
             <h1>Stock</h1>
           </div>
         </div>
-      {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
+        {/* <ModalMessage status={401} message={'Saca la mano de ahi carajo'} /> */}
       </div>
     </section>
   );

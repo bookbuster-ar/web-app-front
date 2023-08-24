@@ -39,9 +39,9 @@ const initialState = {
   roles: [],
   rolesStatus: 'idle',
   rolesError: null,
-  userRol: {},
-  userRolStatus: 'idle',
-  userRolError: null,
+  userRole: {},
+  userRoleStatus: 'idle',
+  userRoleError: null,
 };
 
 export const getAllUsers = createAsyncThunk(
@@ -355,12 +355,12 @@ const adminSlice = createSlice({
         state.userRolStatus = 'loading';
       })
       .addCase(updateRole.fulfilled, (state, action) => {
-        state.userRolStatus = 'succeeded';
-        state.userRol = action.payload;
+        state.userRoleStatus = 'succeeded';
+        state.userRole = action.payload;
       })
       .addCase(updateRole.rejected, (state, action) => {
-        state.userRolStatus = 'failed';
-        state.userRolError = action.error;
+        state.userRoleStatus = 'failed';
+        state.userRoleError = action.error;
       });
   },
 });

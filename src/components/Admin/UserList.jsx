@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { bannedUser } from '../../store/user/adminSlice';
+import { }
+import AdminRoleIcon from '../../icons/AdminRole';
+import UserRoleIcon from '../../icons/userRole';
 
 export function ListOfUsers({ users, toggle }) {
   const dispatch = useDispatch();
@@ -20,6 +23,10 @@ export function ListOfUsers({ users, toggle }) {
       [id]: event.target.value,
     }));
   };
+
+  const toggleRole = () => {
+
+  }
 
   const handleBanned = (id) => {
     const duration = durations[id] || 0;
@@ -61,8 +68,8 @@ export function ListOfUsers({ users, toggle }) {
               alt={user.name}
               className='mx-auto col-span-4 md:col-span-2 md:h-20 md:w-20 lg:h-24 lg:w-24 lg:col-span-2 p-4 object-cover rounded-full'
             />
-            <h3 className='font-semibold text-md col-span-4 md:col-span-3 lg:col-span-2'>
-              {user.name} {user.last_name}
+            <h3 className='font-semibold flex text-md col-span-4 md:col-span-3 lg:col-span-2'>
+             <span onClick={toggleRole} className='mr-5 cursor-pointer'>{user.subscription ? <AdminRoleIcon/> : <UserRoleIcon/>}</span>{user.name} {user.last_name}
             </h3>
             <p className='text-md col-span-4 md:col-span-2 lg:col-span-1'>{user.subscription ? 'Si' : 'No'}</p>
             <h3 className='font-semibold text-sm lg:text-xs col-span-6 md:col-span-5 lg:col-span-3 xl:col-span-2'>{user.email}</h3>

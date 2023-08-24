@@ -24,7 +24,7 @@ const Subscribers = () => {
         <li className='col-span-3 text-center'>Email</li>
       </ul>
       <ul className='grid grid-cols-1 gap-5 w-full'>
-        {users.map((user) => (
+        {users?.map((user) => (
           <li
             className={`grid grid-cols-12 items-center gap-x-5 border-b-2 rounded-lg `}
             key={user.id}
