@@ -34,7 +34,7 @@ export const getBookshelves = createAsyncThunk(
     return data;
   }
 );
-// no me culpen si no funciona, lo hice a siegas y con render caido a pedazos :'(
+
 export const addToBookshelf = createAsyncThunk(
   'bookshelves/addToBookshelf',
   async ({ bookId, book_shelf_category_id }, thunkAPI) => {
@@ -68,23 +68,36 @@ export const addToBookshelf = createAsyncThunk(
   }
 );
 
-//faltan los cases
 export const deleteBookFromShelf = createAsyncThunk(
   'bookshelves/deleteBookFromShelf',
-  async ({ bookId, book_shelf_category_id }) => {
-    const userid = localStorage.getItem('user_id');
-    const sessionid = localStorage.getItem('session_id');
-    const response = await axios.delete(
-      `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return { status: response.status, data: response.data };
+  async ({ bookId, book_shelf_category_id }, thunkAPI) => {
+    try {
+      const userid = localStorage.getItem('user_id');
+      const sessionid = localStorage.getItem('session_id');
+      const response = await axios.delete(
+        `${URL_BASE}/shelves/deleteBookFromShelf?bookId=${bookId}&book_shelf_category_id=${book_shelf_category_id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: 'Libro eliminado con exito de tu estanteria',
+          type: 'success',
+        })
+      )
+      return { status: response.status, data: response.data };
+      
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      )
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
