@@ -28,9 +28,6 @@ function App() {
   const location = useLocation();
   const notification = useSelector((state) => state.notifications);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const notification = useSelector((state) => state.notifications);
-  const dispatch = useDispatch();
 
   return (
     <div>
@@ -39,13 +36,7 @@ function App() {
           message={notification.message}
           type={notification.type}
           onClose={() => dispatch(hideNotification())}
-      {notification.isActive && (
-        <ModalMessage
-          message={notification.message}
-          type={notification.type}
-          onClose={() => dispatch(hideNotification())}
         />
-      )}
       )}
       {location.pathname !== '/admin' && <NavBar />}
       <Routes>
