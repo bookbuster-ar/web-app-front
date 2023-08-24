@@ -120,7 +120,7 @@ const BookDetail = () => {
             </div>
           ) : (
             <div className='flex flex-col md:flex-row h-full lg:ml-20'>
-              <div className='w-96 mx-24 md:mx-auto min-w-fit'>
+              <div className='w-96 mx-24 md:mx-2 min-w-fit'>
                 <img
                   className='h-60 md:h-96 object-cover '
                   src={detail.images?.cover}
@@ -128,7 +128,7 @@ const BookDetail = () => {
                 />
               </div>
 
-              <div className='mx-12 flex flex-col mt-4 md:mt-0  w-full'>
+              <div className=' flex flex-col mt-4 md:mt-0  w-full mx-10 md:mx-5'>
                 <div>
                   <h1 className='text-3xl font-semibold text-gray-800'>
                     {detail.title}
@@ -137,12 +137,12 @@ const BookDetail = () => {
                     {detail.author}
                   </h2>
                   <div className='relative'>
-                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 mx-1'>
+                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 mx-1 md:text-[14px] lg:text-[16px]'>
                       Agregar a mi estantería
                     </button>
                     <button
                       onClick={handleBookshelves}
-                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 '
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 md:text-[14px] lg:text-[16px]'
                     >
                       +
                     </button>
@@ -174,14 +174,14 @@ const BookDetail = () => {
                     {/* <Link to={'/bookcheckout'}> */}
                     <button
                       onClick={handleOpen}
-                      className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 mx-1'
+                      className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 mx-1 md:text-[14px] lg:text-[16px]'
                     >
                       Opciones de adquisición{' '}
                       {/* temporal, antes Ver opciones de adquisicion */}
                     </button>
                     <button
                       onClick={handleOpen}
-                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 my-3'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 my-3 md:text-[14px] lg:text-[16px]'
                     >
                       +
                     </button>
@@ -259,7 +259,7 @@ const BookDetail = () => {
                             bookSubgenres.map((subgenre) => (
                               <div
                                 key={subgenre.id}
-                                className='text-gray-400 border-gray-400 mr-1 hover:border-bluebook border-2 hover:text-bluebook uppercase p-2 w-fit h-6 flex items-center justify-center text-xs '
+                                className='h-fit text-gray-400 border-gray-400 mr-1 hover:border-bluebook border-2 hover:text-bluebook uppercase p-1 w-fit h-6 flex items-center justify-center text-xs '
                               >
                                 {subgenre.name}
                               </div>

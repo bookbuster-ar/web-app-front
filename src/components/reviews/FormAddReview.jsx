@@ -197,14 +197,14 @@ const FormAddReview = () => {
           className='bg-slate-100 text-slate-600 h-28 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-300 col-span-6 resize-none outline-none rounded-lg p-2 duration-300 focus:border-gray-300'
         ></textarea>
 
-        <div className='flex p-2'>{...starList}</div>
-        <div>
+        <div className='flex p-2 md:w-[530px] lg:w-[750px] xl:w-[700px]'>{...starList}</div>
+        <div className=' md:w-[420px] lg:w-[560px] xl:w-[700px]'>
           {reactions.map((reaction) => {
             return (
               <button
                 key={reaction.id}
                 value={reaction.id}
-                className={`m-2 border-none  ${reaction.color} ${reaction.text} font-bold px-4 py-2 m-2 transition duration-500 ease select-none ${reaction.hover} focus:outline-none focus:shadow-outline focus:ring focus:ring-blue-300`}
+                className={`m-2 border-none  ${reaction.color} ${reaction.text} font-bold px-4 py-2 m-2 transition duration-500 ease select-none ${reaction.hover} focus:outline-none focus:shadow-outline focus:ring focus:ring-blue-300 text-[12px] md:text-[12px] lg:text-[15px] xl:text-[15px]`}
                 onClick={reactionHandler}
               >
                 {reaction.name}
