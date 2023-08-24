@@ -21,7 +21,7 @@ import Subscribers from '../components/Admin/Subscribers';
 import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
 import RecommendBooks from '../components/Admin/RecommendBooks';
-import SoldBooks from '../components/SoldBooks';
+import SoldBooks from '../components/Admin/SoldBooks';
 
 const Admin = () => {
   const menus = [

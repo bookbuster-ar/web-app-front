@@ -519,4 +519,7 @@ export const selectSubscriptions = (state) => state.admin.subscriptions;
 export const selectRoles = (state) => state.admin.roles;
 export const selectUserRoleStatus = (state) => state.admin.userRoleStatus;
 
+export const selectSoldBooksStatus = (state) => state.admin.soldBooksStatus;
+export const selectSoldBooks = (state) => state.admin.soldBooks;
+
 export default adminSlice.reducer;
