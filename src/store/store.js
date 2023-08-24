@@ -19,7 +19,7 @@ import recommendedBookReducer from './books/recommendedBookSlice';
 import notificationsReducer from './notifications/notificationsSlice';
 import priceByFormatReducer from './books/bookPriceSlice';
 import bookCategoryReducer from './books/bookCategory';
-
+import weeklyRecommendedBooksReducer from './books/weeklyRecommendedSlice';
 
 const persistConfig = {
   key: 'root',
@@ -42,6 +42,7 @@ const rootReducer = combineReducers({
   notifications: notificationsReducer,
   priceByFormat: priceByFormatReducer,
   bookCategory: bookCategoryReducer,
+  weeklyRecommended: weeklyRecommendedBooksReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

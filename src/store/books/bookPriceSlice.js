@@ -14,7 +14,6 @@ export const getPriceByFormat = createAsyncThunk(
   'books/getPriceByFormat',
   async (id) => {
     const { data } = await axios.get(`${URL_BASE}/books/format/price/${id}`);
-    console.log(data);
     return data;
   }
 );
