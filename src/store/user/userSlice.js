@@ -30,6 +30,9 @@ const initialState = {
   favGenres: [],
   favGenresStatus: 'idle',
   favGenresError: null,
+  userBooks: [],
+  userBooksStatus: 'idle',
+  userBooksError: null,
 };
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
@@ -91,6 +94,21 @@ export const getFavGenres = createAsyncThunk('user/getFavGenres', async () => {
   return data;
 });
 
+///users/books user id por headers
+
+export const getUserBooks = createAsyncThunk('user/getUserBooks', async () => {
+  const userId = localStorage.getItem('user_id');
+  const sessionId = localStorage.getItem('session_id');
+  const { data } = await axios.get(`${URL_BASE}/users/books`, {
+    headers: {
+      'Content-Type': 'application/json',
+      userId,
+      sessionId,
+    },
+  });
+  return data;
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -137,6 +155,17 @@ const userSlice = createSlice({
       .addCase(getFavGenres.rejected, (state, action) => {
         state.favGenresStatus = 'failed';
         state.favGenresError = action.error.message;
+      })
+      .addCase(getUserBooks.pending, (state) => {
+        state.userBooksStatus = 'loading';
+      })
+      .addCase(getUserBooks.fulfilled, (state, action) => {
+        state.userBooksStatus = 'succeeded';
+        state.userBooks = convertKeysToCamelCase(action.payload);
+      })
+      .addCase(getUserBooks.rejected, (state, action) => {
+        state.userBooksStatus = 'failed';
+        state.userBooksError = action.error.message;
       });
   },
 });
@@ -151,5 +180,9 @@ export const selectUserError = (state) => state.user.error;
 export const selectFavGenres = (state) => state.user.favGenres;
 export const selectFavGenresStatus = (state) => state.user.favGenresStatus;
 export const selectFavGenresError = (state) => state.user.favGenresError;
+
+export const selectUserBooks = (state) => state.user.userBooks;
+export const selectUserBooksStatus = (state) => state.user.userBooksStatus;
+export const selectUserBooksError = (state) => state.user.userBooksError;
 
 export default userSlice.reducer;

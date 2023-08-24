@@ -81,10 +81,8 @@ export const getUserByName = createAsyncThunk(
           },
         }
       );
-      console.log(data);
       return data;
     } catch (error) {
-      console.log('este es el error', error);
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -162,6 +160,7 @@ export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
 export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
+
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     const { data } = await axios.get(`${URL_BASE}/subscriptions`, {
@@ -171,7 +170,6 @@ export const getSubscriptions = createAsyncThunk(
         sessionid,
       },
     });
-    console.log(data);
     return data;
   }
 );

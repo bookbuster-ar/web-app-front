@@ -49,7 +49,6 @@ const BookDetail = () => {
   const bookSubgenresStatus = useSelector(selectBookSubgenresStatus);
 
   const bookshelves = useSelector(selectAllBookshelves);
-  console.log(bookshelves);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [bookToSend, setBookToSend] = useState({});
 
@@ -139,13 +138,13 @@ const BookDetail = () => {
                   <h2 className='text-lg text-gray-500 mt-2'>
                     {detail.author}
                   </h2>
-                  <div>
-                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 my-3 '>
+                  <div className='relative'>
+                    <button className='bg-bluebook hover:bg-blue-800 text-white font-light py-2 px-4 mt-3 '>
                       Agregar a mi estantería
                     </button>
                     <button
                       onClick={handleBookshelves}
-                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 my-3'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-light py-2 px-4 mt-3'
                     >
                       +
                     </button>
@@ -154,7 +153,7 @@ const BookDetail = () => {
                       <select
                         name='bookshelves'
                         onChange={selectHandler}
-                        className={`bg-bluebook text-white ${
+                        className={`bg-bluebook absolute text-white ${
                           bookshelvesOptions ? 'block' : 'hidden'
                         } `}
                       >

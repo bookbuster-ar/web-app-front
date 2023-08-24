@@ -16,7 +16,6 @@ export const signInWithEmailAsync = createAsyncThunk(
         password,
       });
       const { session_id, user } = data.data;
-      console.log(data);
       thunkAPI.dispatch(setUser(user));
       return {
         user,
@@ -105,7 +104,6 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
     );
     localStorage.removeItem('session_id');
     localStorage.removeItem('user_id');
-    console.log(response);
     return {
       isLogged: response.status === 204 ? false : true,
       user: null,
