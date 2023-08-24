@@ -48,11 +48,14 @@ const Genre = () => {
           RECOMENDACIONES DE LA SEMANA
         </p>
         <div className='max-[640px]:flex-wrap h-96 w-11/12 gap-3 my-2 flex min-[640px]:overflow-x-scroll'>
-          {weeklyRecommended?.map((book, index) => {
+          {singleGenre.books?.map((book, index) => {
             return (
               <Link to={`/detail/${book.id}`} key={index}>
                 <div className='h-72 w-36 text-sm my-4'>
-                  <img className='h-48 w-40 object-fill' src={book.images} />
+                  <img
+                    className='h-48 w-40 object-fill'
+                    src={book.images.cover}
+                  />
                   <h2>{book.author}</h2>
                   <h2 className='font-bold'>{book.title}</h2>
                 </div>
