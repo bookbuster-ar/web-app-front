@@ -1,4 +1,4 @@
-import CheckCircle from '../icons/CheckCircle';
+
 
 const SoldBooks = () => {
   const books = [
@@ -18,7 +18,7 @@ const SoldBooks = () => {
   return (
     <div className='text-center'>
       <h1 className='bg-bluebook w-60 mx-auto text-white rounded-lg py-2 px-4'>
-        Suscriptores
+        Libros vendidos
       </h1>
       <br />
       <ul className='hidden lg:bg-bluebook text-white rounded-lg lg:grid grid-cols-6 gap-5 w-full font-bold sticky top-0 bg-white py-4'>
