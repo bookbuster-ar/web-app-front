@@ -161,7 +161,6 @@ export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
 export const getSubscriptions = createAsyncThunk(
   'admin/getSubscriptions',
   async () => {
-
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     const { data } = await axios.get(`${URL_BASE}/subscriptions`, {
@@ -218,7 +217,6 @@ export const createRecommend = createAsyncThunk(
   async ({ booksId, genreId }) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    console.log('entra en la slice', booksId, genreId);
     const { data } = await axios.post(
       `${URL_BASE}/recommend/${genreId}`,
       { booksId },
@@ -230,7 +228,6 @@ export const createRecommend = createAsyncThunk(
         },
       }
     );
-    console.log('devuelve esto', data);
     return data;
   }
 );

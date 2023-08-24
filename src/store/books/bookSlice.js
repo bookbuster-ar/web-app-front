@@ -317,7 +317,6 @@ const bookSlice = createSlice({
       })
       .addCase(createBook.rejected, (state, action) => {
         state.createBookStatus = 'failed';
-        console.log('Action Bebé:', action);
         state.error = action.error.message;
       }) // ------------------          A partir de aca los Case de Search            -----------------
       .addCase(getBooksBySearch.pending, (state) => {
