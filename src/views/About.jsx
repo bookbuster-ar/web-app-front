@@ -49,7 +49,7 @@ const devs = [
     name: 'Federico Risetti',
     role: 'Frontend Developer',
     imageUrl:
-      'https://media.licdn.com/dms/image/D4D03AQHfX9ZEbeVp0g/profile-displayphoto-shrink_400_400/0/1679922420473?e=1698278400&v=beta&t=b_bl0_Cllh8QKMPo_Rbz4-LsDOaVPizxGwzJjexvLok',
+      'https://media.licdn.com/dms/image/D4D03AQEhJFk92UEAOw/profile-displayphoto-shrink_400_400/0/1692876918716?e=1698278400&v=beta&t=vmig3Hxh8JrMvuMvbHZ1ytV3eKvObShIiJGlQjWihSg',
     linkedinUrl: 'https://www.linkedin.com/in/federico-risetti-507567196/',
     githubUrl: 'https://github.com/risettifede',
   },
