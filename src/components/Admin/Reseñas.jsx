@@ -1,8 +1,8 @@
 const Revision = () => {
   return (
     <div className=' w-[1340px] h-full '>
-      <h1 className='text-center font-roboto font-bold text-bluebook my-2'>
-        LISTADO DE LIBROS PARA REVISIÓN
+      <h1 className='bg-bluebook w-80 mx-auto mb-10 text-white rounded-lg py-2 px-4 text-center'>
+        Listado de libros para revisión
       </h1>
       <div className='grid grid-rows-3 grid-cols-3 '>
         <div className='bg-greybook text-slate-600 text-center font-semibold'>

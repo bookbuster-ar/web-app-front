@@ -22,6 +22,9 @@ import Baneados from '../components/Admin/Baneados';
 import Revision from '../components/Admin/Reseñas';
 import RecommendBooks from '../components/Admin/RecommendBooks';
 import SoldBooks from '../components/Admin/SoldBooks';
+import CreateGenres from '../components/Admin/CreateGenres';
+import CreateSubgenres from '../components/Admin/CreateSubgenre';
+import Transactions from '../components/Admin/Transactions';
 
 const Admin = () => {
   const menus = [
@@ -131,16 +134,18 @@ const Admin = () => {
             <RecommendBooks />
           </div>
           <div className={activeView === 6 ? 'block' : 'hidden'}>
-            <h1>Géneros</h1>
+            <h1>
+              <CreateGenres />
+            </h1>
           </div>
           <div className={activeView === 7 ? 'block' : 'hidden'}>
-            <h1>Subgéneros</h1>
+            <CreateSubgenres />
           </div>
           <div className={activeView === 8 ? 'block' : 'hidden'}>
             <SoldBooks />
           </div>
           <div className={activeView === 9 ? 'block' : 'hidden'}>
-            <h1>Transacciones</h1>
+            <Transactions />
           </div>
           <div className={activeView === 10 ? 'block' : 'hidden'}>
             <h1>Stock</h1>

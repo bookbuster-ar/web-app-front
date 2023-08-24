@@ -1,3 +1,4 @@
+
 import {
   getSoldBooks,
   selectSoldBooks,
@@ -34,6 +35,7 @@ const SoldBooks = () => {
       </ul>
       <ul className='grid grid-cols-1 gap-5 w-full'>
         {soldBooks?.map((book, index) => (
+
           <li
             key={index}
             className={`grid grid-cols-12 items-center gap-x-5 border-b-2 rounded-lg `}
@@ -43,6 +45,7 @@ const SoldBooks = () => {
               alt={book.book}
               className='mx-auto h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 col-span-4 md:col-span-2 lg:col-span-2 p-4 object-cover rounded-full'
             />
+
             <h3 className='font-semibold text-xl col-span-8 md:col-span-3 lg:col-span-4'>
               {book.book}
             </h3>
