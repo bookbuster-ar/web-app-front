@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { showNotification } from '../notifications/notificationsSlice';
 import axios from 'axios';
 
 const URL_BASE = 'https://bookbuster-main.onrender.com/api/admin';
@@ -43,7 +44,7 @@ const initialState = {
   userRoleStatus: 'idle',
   userRoleError: null,
   recommendBooks: [],
-  sortOrder: 'name',  // este puede ser 'name' o 'date'
+  sortOrder: 'name', // este puede ser 'name' o 'date'
 };
 
 export const getAllUsers = createAsyncThunk(
@@ -112,29 +113,50 @@ export const getUsersBanned = createAsyncThunk(
 
 export const bannedUser = createAsyncThunk(
   'admin/bannedUser',
-  async ({ id, duration, reason }) => {
+  async ({ id, duration, reason }, thunkAPI) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    const { data } = await axios.post(
-      `${URL_BASE}/users/${id}/ban`,
-      { duration, reason },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          userid,
-          sessionid,
-        },
-      }
-    );
-    return data;
+    try {
+      const { data } = await axios.post(
+        `${URL_BASE}/users/${id}/ban`,
+        { duration, reason },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
+      thunkAPI.dispatch(
+        showNotification({
+          message: data.message,
+          type: 'success',
+        })
+      );
+      return data;
+    } catch (error) {
+      thunkAPI.dispatch(
+        showNotification({ message: error.response.data.error, type: 'error' })
+      );
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 
 export const getTransaction = createAsyncThunk(
   'admin/getTransaction',
   async (id, thunkAPI) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
     try {
-      const { data } = await axios.get(`${URL_BASE}/transactions/${id}`);
+      const { data } = await axios.get(`${URL_BASE}/transactions/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -145,8 +167,17 @@ export const getTransaction = createAsyncThunk(
 export const getAllTransactions = createAsyncThunk(
   'admin/getAllTransactions',
   async (_, thunkAPI) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
     try {
-      const { data } = await axios.get(`${URL_BASE}/transactions`);
+      const { data } = await axios.get(`${URL_BASE}/transactions`, {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      });
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -155,7 +186,15 @@ export const getAllTransactions = createAsyncThunk(
 );
 
 export const getSoldBooks = createAsyncThunk('admin/getSoldBooks', async () => {
-  const { data } = await axios.get(`${URL_BASE}/books/sold`);
+  const sessionid = localStorage.getItem('session_id');
+  const userid = localStorage.getItem('user_id');
+  const { data } = await axios.get(`${URL_BASE}/books/sold`, {
+    headers: {
+      'Content-Type': 'application/json',
+      userid,
+      sessionid,
+    },
+  });
   return data;
 });
 
@@ -205,20 +244,44 @@ export const addCreditUser = createAsyncThunk(
 
 export const createGenre = createAsyncThunk(
   'admin/createGenre',
-  async (genre) => {
-    const { data } = await axios.post(`${URL_BASE}/genre`, genre);
+  async ({ name }) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
+    const { data } = await axios.post(
+      `${URL_BASE}/genre`,
+      { name },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          userid,
+          sessionid,
+        },
+      }
+    );
     return data;
   }
 );
 
 export const createSubgenre = createAsyncThunk(
   'admin/createSubgenre',
-  async ({ genreId, subgenre }, thunkAPI) => {
+  async ({ genreId, subgenreName }, thunkAPI) => {
+    const sessionid = localStorage.getItem('session_id');
+    const userid = localStorage.getItem('user_id');
     try {
-      const { data } = await axios.post(`${URL_BASE}/subgenre`, {
-        genreId,
-        subgenre,
-      });
+      const { data } = await axios.post(
+        `${URL_BASE}/subgenre`,
+        {
+          genreId,
+          subgenreName,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            userid,
+            sessionid,
+          },
+        }
+      );
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -248,7 +311,7 @@ export const createRecommend = createAsyncThunk(
 
 export const updateRole = createAsyncThunk(
   'admin/updateRole',
-  async ({userId, roleId}) => {
+  async ({ userId, roleId }) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     const { data } = await axios.put(
@@ -282,9 +345,14 @@ const adminSlice = createSlice({
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
         if (state.sortOrder === 'name') {
-          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+          state.users = action.payload.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
         } else {
-          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+          state.users = action.payload.sort(
+            (a, b) =>
+              new Date(a.date_of_register) - new Date(b.date_of_register)
+          );
         }
       })
       .addCase(getAllUsers.rejected, (state, action) => {
@@ -297,9 +365,14 @@ const adminSlice = createSlice({
       .addCase(getUserByName.fulfilled, (state, action) => {
         state.usersStatus = 'succeeded';
         if (state.sortOrder === 'name') {
-          state.users = action.payload.sort((a, b) => a.name.localeCompare(b.name));
+          state.users = action.payload.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          );
         } else {
-          state.users = action.payload.sort((a, b) => new Date(a.date_of_register) - new Date(b.date_of_register));
+          state.users = action.payload.sort(
+            (a, b) =>
+              new Date(a.date_of_register) - new Date(b.date_of_register)
+          );
         }
       })
       .addCase(getUserByName.rejected, (state, action) => {
@@ -417,20 +490,22 @@ const adminSlice = createSlice({
       })
       .addCase(updateRole.fulfilled, (state, action) => {
         state.userRoleStatus = 'succeeded';
-        const updatedUser = action.payload; 
-        const userIndex = state.users.findIndex(user => user.id === updatedUser.id);
+        const updatedUser = action.payload;
+        const userIndex = state.users.findIndex(
+          (user) => user.id === updatedUser.id
+        );
         if (userIndex !== -1) {
-           state.users[userIndex] = updatedUser;
+          state.users[userIndex] = updatedUser;
         }
       })
       .addCase(updateRole.rejected, (state, action) => {
         state.userRoleStatus = 'failed';
-        state.userRoleError = action.error.message; 
+        state.userRoleError = action.error.message;
       });
   },
 });
 
-export const {setSortOrder} = adminSlice.actions;
+export const { setSortOrder } = adminSlice.actions;
 
 export const selectAllUsers = (state) => state.admin.users;
 export const selectUsersStatus = (state) => state.admin.usersStatus;
@@ -447,7 +522,19 @@ export const selectallBannedUsers = (state) => state.admin.allBannedUsers;
 export const selectSubscriptions = (state) => state.admin.subscriptions;
 
 export const selectRoles = (state) => state.admin.roles;
-export const selectUserRoleStatus = (state) => state.admin.userRoleStatus
+export const selectUserRoleStatus = (state) => state.admin.userRoleStatus;
 
+export const selectSoldBooksStatus = (state) => state.admin.soldBooksStatus;
+export const selectSoldBooks = (state) => state.admin.soldBooks;
+
+export const selectTransactionsStatus = (state) =>
+  state.admin.transactionsStatus;
+export const selectTransactions = (state) => state.admin.transactions;
+
+export const selectNewGenre = (state) => state.admin.newGenre;
+export const selectNewGenreStatus = (state) => state.admin.newGenreStatus;
+
+export const selectNewSubgenre = (state) => state.admin.newSubgenre;
+export const selectNewSubgenreStatus = (state) => state.admin.newSubgenreStatus;
 
 export default adminSlice.reducer;
