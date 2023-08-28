@@ -12,7 +12,7 @@ const Footer = () => {
           </div>
         </Link>
         <Link to='/about'>
-          <div className='hidden md:inline md:w-6 md:h-6 xl:h-10 xl:w-10 hover:scale-110 transition-all duration-300 hover:bg-opacity-20 hover:bg-violet-600'>
+          <div className='hidden md:block md:w-6 md:h-6 xl:h-10 xl:w-10 hover:scale-110 transition-all duration-300 hover:bg-opacity-20 hover:bg-yellow-600'>
             <img src={FooterSave} alt='Logo de guardado amarillo' />
           </div>
         </Link>
