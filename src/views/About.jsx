@@ -1,5 +1,5 @@
 // import Footer from './Footer';
-import React from 'react';
+// import React from 'react';
 import Linkedin from '../icons/Linkedin';
 import Github from '../icons/Github';
 import CaroImage from '../assets/team/caro.png';
@@ -76,7 +76,8 @@ const devs = [
 const owners = [
   { name: 'Daniela Morán',
     role: 'Founder', 
-    imageUrl: DanielaImage 
+    imageUrl: DanielaImage,
+    linkedinUrl: 'https://www.linkedin.com/in/danimor%C3%A1n/',
   },
   {
     name: 'Matias Chahin',
@@ -85,6 +86,7 @@ const owners = [
     linkedinUrl: 'https://www.linkedin.com/in/matias-chahin-3a265031/',
   },
 ];
+
 
 export default function About() {
   return (
@@ -97,11 +99,11 @@ export default function About() {
           <p className='mt-6 text-lg leading-8 text-gray-600'></p>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-12'>
+        <div className='grid grid-cols-3 md:grid-cols-2 gap-8 mb-12'>
           {owners.map((owner) => (
             <div
               key={owner.name}
-              className='card bg-gray-100 p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300'
+              className='card bg-gray-100 p-4 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300'
             >
               <div className='flex items-center'>
                 <img
@@ -110,7 +112,7 @@ export default function About() {
                   alt={owner.name}
                 />
                 <div>
-                  <h3 className='text-base font-semibold leading-7 tracking-tight text-gray-900'>
+                  <h3 className='text-xl font-semibold leading-7 tracking-tight text-gray-900'>
                     {owner.name}
                   </h3>
                   <p className='text-sm font-semibold leading-6 text-indigo-600'>
@@ -146,10 +148,10 @@ export default function About() {
                   alt={person.name}
                 />
                 <div>
-                  <h3 className='text-base font-semibold leading-7 tracking-tight text-gray-900'>
+                  <h3 className='text-xl font-semibold leading-7 tracking-tight text-gray-900'>
                     {person.name}
                   </h3>
-                  <p className='text-sm font-semibold leading-6 text-indigo-600'>
+                  <p className='text-md font-semibold leading-6 text-indigo-600'>
                     {person.role}
                   </p>
                   <div className='flex flex-wrap'>
