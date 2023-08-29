@@ -99,7 +99,7 @@ export default function About() {
           <p className='mt-6 text-lg leading-8 text-gray-600'></p>
         </div>
 
-        <div className='grid grid-cols-3 md:grid-cols-2 gap-8 mb-12'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-12'>
           {owners.map((owner) => (
             <div
               key={owner.name}
