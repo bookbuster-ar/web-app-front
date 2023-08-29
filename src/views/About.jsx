@@ -19,7 +19,7 @@ const devs = [
     role: 'Backend Developer',
     imageUrl: DavidImage,
     linkedinUrl: 'https://www.linkedin.com/in/thisisdavidramos/',
-    githubUrl: 'https://github.com/itsjefferson/',
+    githubUrl: 'https://github.com/davidincode/',
   },
   {
     name: 'Milagros Fernández Boto',
@@ -48,7 +48,7 @@ const devs = [
     imageUrl: SebaImage,
     linkedinUrl:
       'https://www.linkedin.com/in/sebastian-orlando-velazquez-gonzales/',
-    githubUrl: 'https://github.com/seba2803/seba2803',
+    githubUrl: 'https://github.com/seba2803',
   },
   {
     name: 'Federico Risetti',
