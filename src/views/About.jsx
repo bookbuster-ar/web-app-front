@@ -2,65 +2,50 @@
 // import React from 'react';
 import Linkedin from '../icons/Linkedin';
 import Github from '../icons/Github';
-import david from '../assets/Images/david.png';
-import lucas from '../assets/Images/Lucas.png';
-import milagros from '../assets/Images/Milagros.png';
-import carolina from '../assets/Images/Carolina.png';
-import sebastian from '../assets/Images/Sebastian.png';
-import ezequiel from '../assets/Images/Ezequiel.png';
-import federico from '../assets/Images/Federico.png';
-import celeste from '../assets/Images/Celeste.png';
-import matias from '../assets/Images/matias.png';
-import daniela from '../assets/Images/daniela.png';
-
-const owners = [
-  {
-    name: 'Matias Chahin',
-    role: 'Cofundador',
-    imageUrl: matias,
-    linkedinUrl: 'https://www.linkedin.com/in/matias-chahin-3a265031/',
-  },
-  {
-    name: 'Daniela Morán',
-    role: 'Cofunadora',
-    imageUrl: daniela,
-    linkedinUrl: 'https://www.linkedin.com/in/danimor%C3%A1n/',
-  },
-];
+import CaroImage from '../assets/team/caro.png';
+import LucasImage from '../assets/team/lucas.png';
+import MiliImage from '../assets/team/milib.png';
+import DavidImage from '../assets/team/david.png';
+import SebaImage from '../assets/team/seba.png';
+import CeleImage from '../assets/team/cele.png';
+import EzeImage from '../assets/team/eze.png';
+import FedeImage from '../assets/team/fede.png';
+import MatiasImage from '../assets/owners/matias.png';
+import DanielaImage from '../assets/owners/daniela.png';
 
 const devs = [
   {
     name: 'David Ramos',
     role: 'Backend Developer',
-    imageUrl: david,
+    imageUrl: DavidImage,
     linkedinUrl: 'https://www.linkedin.com/in/thisisdavidramos/',
     githubUrl: 'https://github.com/itsjefferson/',
   },
   {
     name: 'Milagros Fernández Boto',
     role: 'Frontend Developer',
-    imageUrl: milagros,
+    imageUrl: MiliImage,
     linkedinUrl: 'https://www.linkedin.com/in/milagrosfboto/',
     githubUrl: 'https://github.com/Milifboto',
   },
   {
     name: 'Carolina Palacios',
     role: 'Backend Developer',
-    imageUrl: carolina,
+    imageUrl: CaroImage,
     linkedinUrl: 'https://www.linkedin.com/in/carolina-palacios-0723b726b/',
     githubUrl: 'https://github.com/CarolinaPalacios ',
   },
   {
     name: 'Lucas López',
     role: 'Frontend Developer',
-    imageUrl: lucas,
+    imageUrl: LucasImage,
     linkedinUrl: 'https://www.linkedin.com/in/lucaslopezdev/',
     githubUrl: 'https://github.com/lucaslopezdev',
   },
   {
     name: 'Sebastián Velázquez',
     role: 'Backend Developer',
-    imageUrl: sebastian,
+    imageUrl: SebaImage,
     linkedinUrl:
       'https://www.linkedin.com/in/sebastian-orlando-velazquez-gonzales/',
     githubUrl: 'https://github.com/seba2803/seba2803',
@@ -68,25 +53,40 @@ const devs = [
   {
     name: 'Federico Risetti',
     role: 'Frontend Developer',
-    imageUrl: federico,
+    imageUrl: FedeImage,
     linkedinUrl: 'https://www.linkedin.com/in/federico-risetti-507567196/',
     githubUrl: 'https://github.com/risettifede',
   },
   {
     name: 'Maria Celeste Coronel',
     role: 'Backend Developer',
-    imageUrl: celeste,
+    imageUrl: CeleImage,
     linkedinUrl: 'https://www.linkedin.com/in/mcelestecrnl/',
     githubUrl: 'https://github.com/MCCoronel',
   },
   {
     name: 'Ezequiel Valdiviezo',
     role: 'Frontend Developer',
-    imageUrl: ezequiel,
+    imageUrl: EzeImage,
     linkedinUrl: 'https://www.linkedin.com/in/ezequiel-valdiviezo-987582247/',
     githubUrl: 'https://github.com/REValdiviezo',
   },
 ];
+
+const owners = [
+  { name: 'Daniela Morán',
+    role: 'Founder', 
+    imageUrl: DanielaImage,
+    linkedinUrl: 'https://www.linkedin.com/in/danimor%C3%A1n/',
+  },
+  {
+    name: 'Matias Chahin',
+    role: 'Founder',
+    imageUrl: MatiasImage,
+    linkedinUrl: 'https://www.linkedin.com/in/matias-chahin-3a265031/',
+  },
+];
+
 
 export default function About() {
   return (
