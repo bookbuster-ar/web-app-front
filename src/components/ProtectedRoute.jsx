@@ -9,13 +9,25 @@ const ProtectedRoute = ({ children, isAdminRoute = false }) => {
   const user = useSelector(selectUserAuth);
   const navigate = useNavigate();
 
+  // Función para obtener el ID del usuario, independientemente de cómo se registró
+  const getUserId = () => {
+    if ('user' in user) {
+      return user?.user?.id;
+    }
+    return user?.id;
+  };
+
   useEffect(() => {
-    if (user_id !== user?.id) {
+    const currentUserId = getUserId();
+    
+    if (user_id !== currentUserId) {
       navigate('/login');
+      return;
     }
     
     if (user?.is_blocked) {
-      navigate('/banned'); 
+      navigate('/banned');
+      return;
     }
   }, [user, navigate]);
 
