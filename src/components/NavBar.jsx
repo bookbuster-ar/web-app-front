@@ -9,12 +9,11 @@ import { selectUserAuth } from '../store/user/authSlice';
 import { logOut } from '../store/user/authSlice';
 import Avatar from '../components/Avatar';
 
-
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const isLogged = useSelector(selectIsLogged);
-  const user = useSelector(selectUserAuth)
+  const user = useSelector(selectUserAuth);
   const dispatch = useDispatch();
 
   const isAdmin = user?.role?.name === 'Admin' ? true : false;
@@ -164,7 +163,7 @@ const NavBar = () => {
                     onClick={handleClose}
                     className='cursor-pointer border-b-2 border-transparent transition-colors duration-300 ease-in-out hover:border-yellowbook'
                   >
-                    Regalá Bookbuste
+                    Regalá Bookbuster
                   </span>
                 </Link>
               </li>

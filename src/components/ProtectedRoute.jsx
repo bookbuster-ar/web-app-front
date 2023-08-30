@@ -24,10 +24,12 @@ const ProtectedRoute = ({ children, isAdminRoute = false }) => {
       navigate('/login');
       return;
     }
-    
+
     if (user?.is_blocked) {
       navigate('/banned');
+
       return;
+
     }
   }, [user, navigate]);
 
