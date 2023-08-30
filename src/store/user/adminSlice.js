@@ -267,7 +267,6 @@ export const createSubgenre = createAsyncThunk(
   async ({ genreIds, subgenreName }, thunkAPI) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
-    console.log(genreIds, subgenreName);
     try {
       const { data } = await axios.post(
         `${URL_BASE}/subgenre`,

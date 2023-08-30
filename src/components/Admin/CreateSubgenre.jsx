@@ -18,7 +18,6 @@ const CreateSubgenres = () => {
 
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [subgenreName, setSubgenreName] = useState('');
-  console.log(selectedGenres);
 
   const handleGenreSelect = (genreId) => {
     setSelectedGenres((prevSelectedGenres) => {

@@ -164,7 +164,6 @@ const authSlice = createSlice({
       })
       .addCase(signInWithGoogleAsync.rejected, (state, action) => {
         state.isLoading = false;
-        console.log(action);
         state.error = action.error.response.data;
       })
       .addCase(signUpWithEmailAsync.pending, (state) => {
@@ -209,6 +208,6 @@ export const { setRedirectPath, unsetEmailStatus } = authSlice.actions;
 export const redirectPathSelector = (state) => state.auth.redirectPath;
 export const selectStatusVerified = (state) => state.auth.statusEmailVerified;
 export const selectIsLogged = (state) => state.auth.isLogged;
-export const selectUserAuth = (state) => state.auth.user
+export const selectUserAuth = (state) => state.auth.user;
 
 export default authSlice.reducer;
