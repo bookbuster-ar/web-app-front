@@ -264,14 +264,14 @@ export const createGenre = createAsyncThunk(
 
 export const createSubgenre = createAsyncThunk(
   'admin/createSubgenre',
-  async ({ genreId, subgenreName }, thunkAPI) => {
+  async ({ genreIds, subgenreName }, thunkAPI) => {
     const sessionid = localStorage.getItem('session_id');
     const userid = localStorage.getItem('user_id');
     try {
       const { data } = await axios.post(
         `${URL_BASE}/subgenre`,
         {
-          genreId,
+          genreIds,
           subgenreName,
         },
         {
