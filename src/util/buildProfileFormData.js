@@ -15,7 +15,10 @@ const buildProfileFormData = (profileInfo) => {
   if (profileInfo.province) formData.append('province', profileInfo.province);
 
   if (profileInfo.postalCode)
-    formData.append('postalCode', parseInt(postalCode, 10).toString());
+    formData.append(
+      'postalCode',
+      parseInt(profileInfo.postalCode, 10).toString()
+    );
 
   if (profileInfo.image && profileInfo.image instanceof File)
     formData.append('image', profileInfo.image);
