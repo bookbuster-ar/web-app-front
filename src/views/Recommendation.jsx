@@ -151,8 +151,8 @@ const Recommendation = () => {
               onChange={handleSelectAuthor_nationality}
             >
               <option></option>
-              <option id='1' name='Latinoamericans'>
-                Latioamérica
+              <option id='1' name='Latinamericans'>
+                Latinoamérica
               </option>
               <option id='2' name='Others'>
                 Otros
