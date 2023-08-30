@@ -93,7 +93,7 @@ const Revision = () => {
                     </td>
                     <td className='border-b border-gray-200 bg-white px-5 py-5 text-sm'>
                       {/* Puedes cambiar este estado según tu lógica */}
-                      <span class='rounded-full bg-yellow-200 px-3 py-1 text-xs font-semibold text-yellow-900'>
+                      <span className='rounded-full bg-yellow-200 px-3 py-1 text-xs font-semibold text-yellow-900'>
                         Pendiente
                       </span>
                     </td>

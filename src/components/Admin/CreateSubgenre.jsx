@@ -16,19 +16,28 @@ const CreateSubgenres = () => {
     dispatch(fetchGenres());
   }, [dispatch]);
 
-  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedGenres, setSelectedGenres] = useState([]);
   const [subgenreName, setSubgenreName] = useState('');
+  console.log(selectedGenres);
 
   const handleGenreSelect = (genreId) => {
-    setSelectedGenre(genreId);
+    setSelectedGenres((prevSelectedGenres) => {
+      if (prevSelectedGenres.includes(genreId)) {
+        return prevSelectedGenres.filter((id) => id !== genreId);
+      } else {
+        return [...prevSelectedGenres, genreId];
+      }
+    });
   };
 
   const handleSubgenreCreate = () => {
-    if (selectedGenre && subgenreName) {
-      dispatch(createSubgenre({ genreId: selectedGenre, subgenreName }));
+    if (selectedGenres.length > 0 && subgenreName) {
+      dispatch(createSubgenre({ genreIds: selectedGenres, subgenreName }));
       setSubgenreName('');
+      setSelectedGenres([]);
     }
   };
+
   return (
     <div className='my-10'>
       <h1 className='bg-bluebook w-72 mx-auto text-white rounded-lg py-2 px-4 text-center '>
@@ -38,25 +47,25 @@ const CreateSubgenres = () => {
         <div className='h-50 w-full rounded-lg bg-white '>
           <div className='flex flex-col items-center justify-center border-b mb-10'>
             <h1 className='p-3 text-gray-700 text-lg font-bold mt-10'>
-              Seleccioná un género:
+              Seleccioná uno o más géneros:
             </h1>
-            <select
-              value={selectedGenre}
-              onChange={(e) => handleGenreSelect(e.target.value)}
-              className='border rounded-lg px-4 py-2 mx-3 w-1/3 text-gray-700 text-lg cursor-pointer'
-            >
-              <option value=''>Seleccionar género...</option>
+            <div className='space-y-2'>
               {genres.map((genre) => (
-                <option key={genre.id} value={genre.id}>
-                  {genre.name}
-                </option>
+                <label key={genre.id} className='flex items-center space-x-2'>
+                  <input
+                    type='checkbox'
+                    className='rounded text-blue-500 border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50'
+                    checked={selectedGenres.includes(genre.id)}
+                    onChange={() => handleGenreSelect(genre.id)}
+                  />
+                  <span>{genre.name}</span>
+                </label>
               ))}
-            </select>
-            <div />
+            </div>
           </div>
         </div>
         <div className='p-3 flex items-center justify-center'>
-          {selectedGenre && status === 'succeeded' && (
+          {selectedGenres.length > 0 && status === 'succeeded' && (
             <input
               type='text'
               value={subgenreName}
@@ -65,7 +74,7 @@ const CreateSubgenres = () => {
               className='border rounded-lg px-4 py-2 w-96 h-12 '
             />
           )}
-          {selectedGenre && (
+          {selectedGenres.length > 0 && (
             <button
               onClick={handleSubgenreCreate}
               className='text-slate-800 hover:text-blue-600 text-md bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2'
