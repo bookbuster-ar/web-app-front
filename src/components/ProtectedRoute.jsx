@@ -8,14 +8,28 @@ const ProtectedRoute = ({ children, isAdminRoute = false }) => {
   const user_id = localStorage.getItem('user_id');
   const user = useSelector(selectUserAuth);
   const navigate = useNavigate();
-  const userIdFromUserObject = user?.id || (user?.user && user?.user.id);
+
+  // Función para obtener el ID del usuario, independientemente de cómo se registró
+  const getUserId = () => {
+    if ('user' in user) {
+      return user?.user?.id;
+    }
+    return user?.id;
+  };
+
   useEffect(() => {
-    if (user_id !== userIdFromUserObject) {
+    const currentUserId = getUserId();
+    
+    if (user_id !== currentUserId) {
       navigate('/login');
+      return;
     }
 
     if (user?.is_blocked) {
       navigate('/banned');
+
+      return;
+
     }
   }, [user, navigate]);
 
