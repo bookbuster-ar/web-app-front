@@ -8,14 +8,14 @@ const ProtectedRoute = ({ children, isAdminRoute = false }) => {
   const user_id = localStorage.getItem('user_id');
   const user = useSelector(selectUserAuth);
   const navigate = useNavigate();
-
+  const userIdFromUserObject = user?.id || (user?.user && user?.user.id);
   useEffect(() => {
-    if (user_id !== user?.id) {
+    if (user_id !== userIdFromUserObject) {
       navigate('/login');
     }
-    
+
     if (user?.is_blocked) {
-      navigate('/banned'); 
+      navigate('/banned');
     }
   }, [user, navigate]);
 
